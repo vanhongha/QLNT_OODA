@@ -1,0 +1,12 @@
+D:\Project\QLNT\QLNT\bin\Debug\QLNT.exe.config
+D:\Project\QLNT\QLNT\bin\Debug\QLNT.exe
+D:\Project\QLNT\QLNT\bin\Debug\QLNT.pdb
+D:\Project\QLNT\QLNT\bin\Debug\DevComponents.DotNetBar2.dll
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.csprojResolveAssemblyReference.cache
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.Properties.Resources.resources
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.csproj.GenerateResource.Cache
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.csproj.CoreCompileInputs.cache
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.exe
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.pdb
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.Presentation.frmMain.resources
+D:\Project\QLNT\QLNT\obj\Debug\QLNT.Presentation.frmThongTinSucKhoe.resources
