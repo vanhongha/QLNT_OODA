@@ -88,6 +88,7 @@
             this.chkHienMatKhau.Size = new System.Drawing.Size(119, 23);
             this.chkHienMatKhau.TabIndex = 3;
             this.chkHienMatKhau.Text = "Hiện mật khẩu";
+            this.chkHienMatKhau.CheckedChanged += new System.EventHandler(this.chkHienMatKhau_CheckedChanged);
             // 
             // txtMatKhau
             // 
@@ -101,6 +102,8 @@
             this.txtMatKhau.PasswordChar = '•';
             this.txtMatKhau.Size = new System.Drawing.Size(172, 24);
             this.txtMatKhau.TabIndex = 2;
+            this.txtMatKhau.TextChanged += new System.EventHandler(this.txtMatKhau_TextChanged);
+            this.txtMatKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatKhau_KeyDown);
             // 
             // txtTaiKhoan
             // 
@@ -113,6 +116,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(172, 24);
             this.txtTaiKhoan.TabIndex = 0;
+            this.txtTaiKhoan.TextChanged += new System.EventHandler(this.txtTaiKhoan_TextChanged);
             // 
             // labelX2
             // 
@@ -163,6 +167,7 @@
             this.txtThoat.Size = new System.Drawing.Size(113, 35);
             this.txtThoat.TabIndex = 9;
             this.txtThoat.Text = "Thoát";
+            this.txtThoat.Click += new System.EventHandler(this.txtThoat_Click);
             // 
             // pictureBox1
             // 
