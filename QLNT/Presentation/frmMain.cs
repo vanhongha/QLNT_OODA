@@ -13,6 +13,8 @@ namespace QLNT.Presentation
 {
     public partial class frmMain : Form
     {
+        public static string quyen;
+
         public frmMain()
         {
             InitializeComponent();
