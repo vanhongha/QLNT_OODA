@@ -71,7 +71,7 @@
             this.panel1.Controls.Add(this.ribbonPanel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1765, 128);
             this.panel1.TabIndex = 0;
@@ -86,7 +86,7 @@
             this.ribbonPanel4.Controls.Add(this.ribbonBar4);
             this.ribbonPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ribbonPanel4.Location = new System.Drawing.Point(0, 0);
-            this.ribbonPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonPanel4.Name = "ribbonPanel4";
             this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.ribbonPanel4.Size = new System.Drawing.Size(1765, 128);
@@ -100,7 +100,7 @@
             this.btnThongTin_TaiKhoan,
             this.btnDangXuat});
             this.ribbonBar2.Location = new System.Drawing.Point(1054, 0);
-            this.ribbonBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonBar2.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonBar2.Name = "ribbonBar2";
             this.ribbonBar2.Size = new System.Drawing.Size(141, 124);
             this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -133,7 +133,7 @@
             this.btnHocPhi,
             this.btnBaoCao_HocPhi});
             this.ribbonBar1.Location = new System.Drawing.Point(895, 0);
-            this.ribbonBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonBar1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonBar1.Name = "ribbonBar1";
             this.ribbonBar1.Size = new System.Drawing.Size(159, 124);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -165,7 +165,7 @@
             this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnTemp});
             this.ribbonBar7.Location = new System.Drawing.Point(606, 0);
-            this.ribbonBar7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonBar7.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonBar7.Name = "ribbonBar7";
             this.ribbonBar7.Size = new System.Drawing.Size(289, 124);
             this.ribbonBar7.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -189,7 +189,7 @@
             this.btnSucKhoe_ThongTin,
             this.btnSucKhoe_BaoCao});
             this.ribbonBar5.Location = new System.Drawing.Point(441, 0);
-            this.ribbonBar5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonBar5.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonBar5.Name = "ribbonBar5";
             this.ribbonBar5.Size = new System.Drawing.Size(165, 124);
             this.ribbonBar5.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -226,7 +226,7 @@
             this.btnTiepNhan,
             this.btnXepLop});
             this.ribbonBar4.Location = new System.Drawing.Point(4, 0);
-            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonBar4.Name = "ribbonBar4";
             this.ribbonBar4.Size = new System.Drawing.Size(437, 124);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
@@ -241,6 +241,7 @@
             this.btnDiemDanh.Name = "btnDiemDanh";
             this.btnDiemDanh.SubItemsExpandWidth = 14;
             this.btnDiemDanh.Text = "Điểm danh";
+            this.btnDiemDanh.Click += new System.EventHandler(this.btnDiemDanh_Click);
             // 
             // btnTraCuu
             // 
@@ -259,6 +260,7 @@
             this.btnPhieuBeNgoan.Name = "btnPhieuBeNgoan";
             this.btnPhieuBeNgoan.SubItemsExpandWidth = 14;
             this.btnPhieuBeNgoan.Text = "Phiếu bé ngoan";
+            this.btnPhieuBeNgoan.Click += new System.EventHandler(this.btnPhieuBeNgoan_Click);
             // 
             // btnTiepNhan
             // 
@@ -286,7 +288,7 @@
             this.tabControl.Controls.Add(this.tabControlPanel1);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 128);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabControl.SelectedTabIndex = 0;
@@ -303,7 +305,7 @@
             this.tabControlPanel1.Controls.Add(this.reflectionLabel1);
             this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 26);
-            this.tabControlPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
             this.tabControlPanel1.Size = new System.Drawing.Size(1765, 780);
@@ -322,7 +324,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::QLNT.Properties.Resources.background;
             this.pictureBox1.Location = new System.Drawing.Point(1, 24);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1763, 695);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -337,7 +339,7 @@
             this.bar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.label});
             this.bar1.Location = new System.Drawing.Point(1, 1);
-            this.bar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bar1.Margin = new System.Windows.Forms.Padding(4);
             this.bar1.Name = "bar1";
             this.bar1.Size = new System.Drawing.Size(1763, 23);
             this.bar1.Stretch = true;
@@ -356,7 +358,7 @@
             this.reflectionLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
             this.reflectionLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.reflectionLabel1.Location = new System.Drawing.Point(1, 719);
-            this.reflectionLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reflectionLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.reflectionLabel1.Name = "reflectionLabel1";
             this.reflectionLabel1.Size = new System.Drawing.Size(1763, 60);
             this.reflectionLabel1.TabIndex = 2;
@@ -390,7 +392,7 @@
             this.ClientSize = new System.Drawing.Size(1765, 934);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Quản lý mầm non";
             this.Load += new System.EventHandler(this.frmMain_Load);

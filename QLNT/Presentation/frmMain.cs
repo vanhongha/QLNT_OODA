@@ -78,5 +78,41 @@ namespace QLNT.Presentation
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
+
+        private void btnDiemDanh_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Điểm danh"))
+            {
+                TabItem tab = tabControl.CreateTab("Điểm danh");
+                tab.PredefinedColor = eTabItemColor.Lemon;
+                frmDiemDanh _frmDiemDanh = new frmDiemDanh(tabControl, tab);
+                //_frmTiepNhan.TopLevel = false;
+                _frmDiemDanh.Dock = DockStyle.Fill;
+                //_frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmDiemDanh);
+                _frmDiemDanh.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnPhieuBeNgoan_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Phiếu bé ngoan"))
+            {
+                TabItem tab = tabControl.CreateTab("Phiếu bé ngoan");
+                tab.PredefinedColor = eTabItemColor.Red;
+                frmPhieuBeNgoan _frmPhieuBeNgoan = new frmPhieuBeNgoan(tabControl, tab);
+                //_frmTiepNhan.TopLevel = false;
+                _frmPhieuBeNgoan.Dock = DockStyle.Fill;
+                //_frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmPhieuBeNgoan);
+                _frmPhieuBeNgoan.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
 }
