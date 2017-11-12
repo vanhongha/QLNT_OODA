@@ -60,5 +60,23 @@ namespace QLNT.Presentation
         {
 
         }
+
+        private void btnTiepNhan_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Tiếp nhận"))
+            {
+                TabItem tab = tabControl.CreateTab("Tiếp nhận");
+                tab.PredefinedColor = eTabItemColor.Green;
+                frmTiepNhan _frmTiepNhan = new frmTiepNhan(tabControl, tab);
+                //_frmTiepNhan.TopLevel = false;
+                _frmTiepNhan.Dock = DockStyle.Fill;
+                //_frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmTiepNhan);
+                _frmTiepNhan.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
 }

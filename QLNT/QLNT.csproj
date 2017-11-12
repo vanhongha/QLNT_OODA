@@ -69,6 +69,12 @@
     <Compile Include="Presentation\frmThongTinSucKhoe.Designer.cs">
       <DependentUpon>frmThongTinSucKhoe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmTiepNhan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmTiepNhan.Designer.cs">
+      <DependentUpon>frmTiepNhan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
@@ -79,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmThongTinSucKhoe.resx">
       <DependentUpon>frmThongTinSucKhoe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmTiepNhan.resx">
+      <DependentUpon>frmTiepNhan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
