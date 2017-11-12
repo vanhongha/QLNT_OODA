@@ -1,19 +1,19 @@
 ﻿using DevComponents.DotNetBar;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
 {
     public partial class frmMain : Form
     {
-        public static string quyen;
+        private static Quyen quyen;
+
+        public static Quyen Quyen
+        {
+            get { return quyen; }
+            set { quyen = value; }
+        }
+
 
         public frmMain()
         {
@@ -22,8 +22,31 @@ namespace QLNT.Presentation
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            PhanQuyen();
         }
+
+#region Phan Quyen
+        private void PhanQuyen()
+        {
+            switch(quyen)
+            {
+                case Quyen.NhaBep:
+                    break;
+                case Quyen.GiaoVien:
+                    btnTraCuu.Enabled = false;
+                    btnTiepNhan.Enabled = false;
+                    btnXepLop.Enabled = false;
+                    btnHocPhi.Enabled = false;
+                    btnBaoCao_HocPhi.Enabled = false;
+                    break;
+                case Quyen.GiaoVu:
+                    btnPhieuBeNgoan.Enabled = false;
+                    btnSucKhoe_ThongTin.Enabled = false;
+                    btnSucKhoe_BaoCao.Enabled = false;
+                    break;
+            }
+        }
+#endregion
 
         public bool CheckOpenedTabs(string name)
         {
