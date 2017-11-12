@@ -22,3 +22,16 @@ C:\Users\Hong Ha\Documents\Projects\UIT\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentati
 C:\Users\Hong Ha\Documents\Projects\UIT\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmThongTinSucKhoe.resources
 C:\Users\Hong Ha\Documents\Projects\UIT\QLNT_OODA\QLNT\obj\Debug\QLNT.Properties.Resources.resources
 C:\Users\Hong Ha\Documents\Projects\UIT\QLNT_OODA\QLNT\obj\Debug\QLNT.csproj.GenerateResource.Cache
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.csprojResolveAssemblyReference.cache
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmDangNhap.resources
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmMain.resources
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmThongTinSucKhoe.resources
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.Properties.Resources.resources
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.csproj.GenerateResource.Cache
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.csproj.CoreCompileInputs.cache
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.exe
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.pdb
+D:\Project\QLNT_OODA\QLNT\bin\Debug\QLNT.exe.config
+D:\Project\QLNT_OODA\QLNT\bin\Debug\QLNT.exe
+D:\Project\QLNT_OODA\QLNT\bin\Debug\QLNT.pdb
+D:\Project\QLNT_OODA\QLNT\bin\Debug\DevComponents.DotNetBar2.dll

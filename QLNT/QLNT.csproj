@@ -49,8 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
+    <Compile Include="BusinessLayer\LopBLL.cs" />
+    <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
+    <Compile Include="DataLayer\LopDAL.cs" />
+    <Compile Include="DataLayer\SucKhoeDAL.cs" />
+    <Compile Include="Entities\LoaiLop.cs" />
+    <Compile Include="Entities\Lop.cs" />
+    <Compile Include="Entities\NamHoc.cs" />
+    <Compile Include="Entities\SucKhoe.cs" />
     <Compile Include="Presentation\frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +79,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ultilities\Key.cs" />
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
