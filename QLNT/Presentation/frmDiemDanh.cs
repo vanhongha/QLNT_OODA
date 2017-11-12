@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DevComponents.DotNetBar;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 
 namespace QLNT.Presentation
 {
-    public partial class frmDiemDanh : UserControl
+    public partial class frmDiemDanh : Form
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
-        public frmDiemDanh()
-        {
-            InitializeComponent();
-        }
+
         public frmDiemDanh(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
@@ -26,9 +15,9 @@ namespace QLNT.Presentation
             tab = _tab;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public frmDiemDanh()
         {
-
+            InitializeComponent();
         }
     }
 }

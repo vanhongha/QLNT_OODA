@@ -49,8 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
+    <Compile Include="BusinessLayer\LopBLL.cs" />
+    <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
+    <Compile Include="DataLayer\LopDAL.cs" />
+    <Compile Include="DataLayer\SucKhoeDAL.cs" />
+    <Compile Include="Entities\LoaiLop.cs" />
+    <Compile Include="Entities\Lop.cs" />
+    <Compile Include="Entities\NamHoc.cs" />
+    <Compile Include="Entities\SucKhoe.cs" />
     <Compile Include="Presentation\frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,7 +66,7 @@
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmDiemDanh.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\frmDiemDanh.Designer.cs">
       <DependentUpon>frmDiemDanh.cs</DependentUpon>
@@ -70,7 +78,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmPhieuBeNgoan.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\frmPhieuBeNgoan.Designer.cs">
       <DependentUpon>frmPhieuBeNgoan.cs</DependentUpon>
@@ -82,13 +90,14 @@
       <DependentUpon>frmThongTinSucKhoe.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmTiepNhan.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\frmTiepNhan.Designer.cs">
       <DependentUpon>frmTiepNhan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ultilities\Key.cs" />
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>

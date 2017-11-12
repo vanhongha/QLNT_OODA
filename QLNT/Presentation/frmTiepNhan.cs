@@ -1,24 +1,21 @@
-﻿using System;
+﻿using DevComponents.DotNetBar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 
 namespace QLNT.Presentation
 {
-    public partial class frmTiepNhan : UserControl
+    public partial class frmTiepNhan : Form
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
-        public frmTiepNhan()
-        {
-            InitializeComponent();
-        }
+
         public frmTiepNhan(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
@@ -26,9 +23,9 @@ namespace QLNT.Presentation
             tab = _tab;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public frmTiepNhan()
         {
-
+            InitializeComponent();
         }
     }
 }

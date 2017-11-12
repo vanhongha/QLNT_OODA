@@ -1,4 +1,5 @@
 ﻿using DevComponents.DotNetBar;
+using QLNT.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,13 @@ namespace QLNT.Presentation
 {
     public partial class frmMain : Form
     {
-        public static string quyen;
+        private static Quyen quyen;
+
+        public static Quyen Quyen
+        {
+            get { return quyen; }
+            set { quyen = value; }
+        }
 
         public frmMain()
         {
@@ -22,8 +29,31 @@ namespace QLNT.Presentation
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            PhanQuyen();
         }
+
+        #region Phan Quyen
+        private void PhanQuyen()
+        {
+            switch (quyen)
+            {
+                case Quyen.NhaBep:
+                    break;
+                case Quyen.GiaoVien:
+                    btnTraCuu.Enabled = false;
+                    btnTiepNhan.Enabled = false;
+                    btnXepLop.Enabled = false;
+                    btnHocPhi.Enabled = false;
+                    btnBaoCao_HocPhi.Enabled = false;
+                    break;
+                case Quyen.GiaoVu:
+                    btnPhieuBeNgoan.Enabled = false;
+                    btnSucKhoe_ThongTin.Enabled = false;
+                    btnSucKhoe_BaoCao.Enabled = false;
+                    break;
+            }
+        }
+        #endregion
 
         public bool CheckOpenedTabs(string name)
         {
@@ -68,9 +98,9 @@ namespace QLNT.Presentation
                 TabItem tab = tabControl.CreateTab("Tiếp nhận");
                 tab.PredefinedColor = eTabItemColor.Green;
                 frmTiepNhan _frmTiepNhan = new frmTiepNhan(tabControl, tab);
-                //_frmTiepNhan.TopLevel = false;
+                _frmTiepNhan.TopLevel = false;
                 _frmTiepNhan.Dock = DockStyle.Fill;
-                //_frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
+                _frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
                 tab.AttachedControl.Controls.Add(_frmTiepNhan);
                 _frmTiepNhan.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
@@ -86,9 +116,9 @@ namespace QLNT.Presentation
                 TabItem tab = tabControl.CreateTab("Điểm danh");
                 tab.PredefinedColor = eTabItemColor.Lemon;
                 frmDiemDanh _frmDiemDanh = new frmDiemDanh(tabControl, tab);
-                //_frmTiepNhan.TopLevel = false;
+                _frmDiemDanh.TopLevel = false;
                 _frmDiemDanh.Dock = DockStyle.Fill;
-                //_frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
+                _frmDiemDanh.StartPosition = FormStartPosition.CenterParent;
                 tab.AttachedControl.Controls.Add(_frmDiemDanh);
                 _frmDiemDanh.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
@@ -104,9 +134,9 @@ namespace QLNT.Presentation
                 TabItem tab = tabControl.CreateTab("Phiếu bé ngoan");
                 tab.PredefinedColor = eTabItemColor.Red;
                 frmPhieuBeNgoan _frmPhieuBeNgoan = new frmPhieuBeNgoan(tabControl, tab);
-                //_frmTiepNhan.TopLevel = false;
+                _frmPhieuBeNgoan.TopLevel = false;
                 _frmPhieuBeNgoan.Dock = DockStyle.Fill;
-                //_frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
+                _frmPhieuBeNgoan.StartPosition = FormStartPosition.CenterParent;
                 tab.AttachedControl.Controls.Add(_frmPhieuBeNgoan);
                 _frmPhieuBeNgoan.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;

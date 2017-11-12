@@ -35,7 +35,7 @@ namespace QLNT.Presentation
                 if (DangNhapBLL.XemDL("*", txtTaiKhoan.Text.Trim(), txtMatKhau.Text.Trim()).Rows.Count != 0)
                 {
                     frmMain formMain = new frmMain();
-                    frmMain.quyen = DangNhapBLL.XemDL("QUYEN", txtTaiKhoan.Text, txtMatKhau.Text).Rows[0][0].ToString();
+                    frmMain.Quyen = (Quyen)Enum.Parse(typeof(Quyen), DangNhapBLL.XemDL("QUYEN", txtTaiKhoan.Text, txtMatKhau.Text).Rows[0][0].ToString());
                     this.Hide();
                     formMain.ShowDialog();
                     this.Close();
@@ -46,6 +46,7 @@ namespace QLNT.Presentation
                     txtMatKhau.Clear();
                 }
             }
+
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
