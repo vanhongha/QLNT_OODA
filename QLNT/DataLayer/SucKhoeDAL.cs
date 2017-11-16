@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using QLNT.Entities;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace QLNT.DataLayer
@@ -20,6 +21,25 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
 
             return db.dt;
+        }
+
+        public static void CapNhatSucKhoe(SucKhoe sucKhoe)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatSucKhoe");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", sucKhoe.MaTre);
+            cmd.Parameters.AddWithValue("@Thang", sucKhoe.Thang);
+            cmd.Parameters.AddWithValue("@Nam", sucKhoe.Nam);
+            cmd.Parameters.AddWithValue("@CanNang", sucKhoe.CanNang);
+            cmd.Parameters.AddWithValue("@ChieuCao", sucKhoe.ChieuCao);
+            cmd.Parameters.AddWithValue("@BMI", sucKhoe.BMI);
+            cmd.Parameters.AddWithValue("@GhiChu", sucKhoe.GhiChu);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
         }
     }
 }

@@ -11,9 +11,9 @@ namespace QLNT.BusinessLayer
 {
     class LopBLL
     {
-        public static List<NamHoc> GetListNamHoc()
+        public static List<NamHoc> GetListNienKhoa()
         {
-            return LopDAL.GetListNamHoc();
+            return LopDAL.GetListNienKhoa();
         }
 
         public static List<LoaiLop> GetListLoaiLop()
@@ -44,6 +44,17 @@ namespace QLNT.BusinessLayer
                 return new NamHoc(row);
             }
             return new NamHoc();
+        }
+
+        public static int GetNamHoc(int thang, string maNamHoc)
+        {
+            NamHoc namHoc = LopBLL.GetInfoNamHoc(maNamHoc);
+            int nam = 0;
+            if (thang < namHoc.NgayBatDau.Month)
+                nam = namHoc.NgayKetThuc.Year;
+            else
+                nam = namHoc.NgayBatDau.Year;
+            return nam;
         }
     }
 }
