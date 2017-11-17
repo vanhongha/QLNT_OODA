@@ -11,7 +11,7 @@ namespace QLNT.DataLayer
 {
     class LopDAL
     {
-        public static List<NamHoc> GetListNamHoc()
+        public static List<NamHoc> GetListNienKhoa()
         {
             DataAccessHelper db = new DataAccessHelper();
             SqlCommand cmd = db.Command("GetNamHoc");

@@ -13,6 +13,23 @@ namespace QLNT.Entities
             set { maTre = value; }
         }
 
+        private int thang;
+
+        public int Thang
+        {
+            get { return thang; }
+            set { thang = value; }
+        }
+
+        private int nam;
+
+        public int Nam
+        {
+            get { return nam; }
+            set { nam = value; }
+        }
+
+
         private string hoTenTre;
         
         public string HoTenTre
@@ -73,6 +90,8 @@ namespace QLNT.Entities
         public SucKhoe(System.Data.DataRow row)
         {
             this.maTre = row["MaTre"].ToString();
+            this.thang = int.Parse(row["Thang"].ToString());
+            this.nam = int.Parse(row["Nam"].ToString());
             this.hoTenTre = row["HoTenTre"].ToString();
             this.gioiTinh = row["GioiTinh"].ToString();
             this.ngaySinh = (DateTime)row["NgaySinh"];
@@ -80,6 +99,10 @@ namespace QLNT.Entities
             this.canNang = float.Parse(row["CanNang"].ToString());
             this.bmi = float.Parse(row["BMI"].ToString());
             this.ghiChu = row["GhiChu"].ToString();
+        }
+
+        public SucKhoe()
+        {
         }
     }
 }
