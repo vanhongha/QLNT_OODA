@@ -121,6 +121,7 @@ namespace QLNT.Entities
                 dienThoai = value;
             }
         }
+
         public Tre(DataRow row)
         {
             this.maTre = row["MaTre"].ToString();

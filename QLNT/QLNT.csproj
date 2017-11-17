@@ -51,10 +51,12 @@
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
     <Compile Include="BusinessLayer\LopBLL.cs" />
     <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
+    <Compile Include="BusinessLayer\TreBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
     <Compile Include="DataLayer\LopDAL.cs" />
     <Compile Include="DataLayer\SucKhoeDAL.cs" />
+    <Compile Include="DataLayer\TreDAL.cs" />
     <Compile Include="Entities\LoaiLop.cs" />
     <Compile Include="Entities\Lop.cs" />
     <Compile Include="Entities\NamHoc.cs" />
@@ -99,11 +101,11 @@
     <Compile Include="Presentation\frmTiepNhan.Designer.cs">
       <DependentUpon>frmTiepNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\UserControl1.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Presentation\frmTimKiem.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="Presentation\frmTimKiem.Designer.cs">
+      <DependentUpon>frmTimKiem.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,9 +128,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmTiepNhan.resx">
       <DependentUpon>frmTiepNhan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

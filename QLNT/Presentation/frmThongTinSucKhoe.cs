@@ -64,8 +64,8 @@ namespace QLNT.Presentation
             cboLop.Items.Clear();
             cboLop.DisplayMember = "Text";
             cboLop.ValueMember = "Value";
-            foreach (Lop lop in LopBLL.GetListLop(GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()),
-                GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString())))
+            foreach (Lop lop in LopBLL.GetListLop(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()),
+                KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString())))
             {
                 cboLop.Items.Add(new { Text = lop.TenLop.Trim(), Value = lop.MaLop.Trim() });
             }
@@ -100,20 +100,11 @@ namespace QLNT.Presentation
             }
         }
 
-        string GetKeyFromCombobox(string value)
-        {
-            if (value != null)
-            {
-                var code = value.Split(new[] { "Value = " }, StringSplitOptions.None)[1];
-                code = code.Substring(0, code.Length - 2);
-                return code;
-            }
-            return "";
-        }
+ 
 
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSiSo.Text = LopBLL.GetInfoLop(GetKeyFromCombobox(cboLop.SelectedItem.ToString())).SiSo.ToString();
+            txtSiSo.Text = LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())).SiSo.ToString();
             loadDataGirdView();
         }
 
@@ -126,9 +117,9 @@ namespace QLNT.Presentation
             else
             {
                 dgvSucKhoe.DataSource = SucKhoeBLL.GetListSucKhoe(
-                    GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
+                    KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
                     int.Parse(cboThang.SelectedItem.ToString()),
-                    GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                    KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
             }
 
             dgvSucKhoe.Columns[0].HeaderText = "STT";
@@ -223,7 +214,7 @@ namespace QLNT.Presentation
             SucKhoe sucKhoe = new SucKhoe();
             sucKhoe.MaTre = maTre;
             sucKhoe.Thang = int.Parse(cboThang.Text);
-            sucKhoe.Nam = LopBLL.GetNamHoc(sucKhoe.Thang, GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+            sucKhoe.Nam = LopBLL.GetNamHoc(sucKhoe.Thang, KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
             sucKhoe.CanNang = float.Parse(txtCanNang.Text);
             sucKhoe.ChieuCao = float.Parse(txtChieuCao.Text);
             sucKhoe.BMI = float.Parse(txtBMI.Text);

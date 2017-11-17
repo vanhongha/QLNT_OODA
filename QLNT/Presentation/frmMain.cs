@@ -144,5 +144,23 @@ namespace QLNT.Presentation
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
+
+        private void btnTraCuu_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Tra cứu"))
+            {
+                TabItem tab = tabControl.CreateTab("Tra cứu");
+                tab.PredefinedColor = eTabItemColor.Cyan;
+                frmTimKiem _frmTimKiem = new frmTimKiem(tabControl, tab);
+                _frmTimKiem.TopLevel = false;
+                _frmTimKiem.Dock = DockStyle.Fill;
+                _frmTimKiem.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmTimKiem);
+                _frmTimKiem.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
 }

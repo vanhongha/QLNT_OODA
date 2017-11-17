@@ -70,6 +70,26 @@ namespace QLNT.DataLayer
             return listLop;
         }
 
+        public static List<Lop> GetListLop(string maNamHoc)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GETLISTLOP_NAM");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaNamHoc", maNamHoc);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            List<Lop> listLop = new List<Lop>();
+            foreach (DataRow row in db.dt.Rows)
+            {
+                listLop.Add(new Lop(row));
+            }
+            return listLop;
+        }
+
         public static DataTable GetInfoLop(string maLop)
         {
             DataAccessHelper db = new DataAccessHelper();
