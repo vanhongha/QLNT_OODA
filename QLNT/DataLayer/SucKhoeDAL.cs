@@ -35,6 +35,7 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@CanNang", sucKhoe.CanNang);
             cmd.Parameters.AddWithValue("@ChieuCao", sucKhoe.ChieuCao);
             cmd.Parameters.AddWithValue("@BMI", sucKhoe.BMI);
+            cmd.Parameters.AddWithValue("@TinhTrang", sucKhoe.TinhTrang);
             cmd.Parameters.AddWithValue("@GhiChu", sucKhoe.GhiChu);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);

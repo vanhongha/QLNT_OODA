@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboLoaiLop = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,8 +45,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.btnCapNhat = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtGhiChu = new System.Windows.Forms.RichTextBox();
             this.txtBMI = new System.Windows.Forms.TextBox();
@@ -57,16 +55,23 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgvSucKhoe = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.btnCapNhat = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtTinhTrang = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSucKhoe)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboLoaiLop
             // 
+            this.cboLoaiLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLoaiLop.FormattingEnabled = true;
             this.cboLoaiLop.Location = new System.Drawing.Point(127, 56);
@@ -124,6 +129,7 @@
             // 
             // cboThang
             // 
+            this.cboThang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboThang.FormattingEnabled = true;
             this.cboThang.Location = new System.Drawing.Point(466, 14);
@@ -144,6 +150,7 @@
             // 
             // cboLop
             // 
+            this.cboLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLop.FormattingEnabled = true;
             this.cboLop.Location = new System.Drawing.Point(127, 98);
@@ -174,6 +181,7 @@
             // 
             // cboNamHoc
             // 
+            this.cboNamHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNamHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboNamHoc.FormattingEnabled = true;
             this.cboNamHoc.Location = new System.Drawing.Point(127, 14);
@@ -206,8 +214,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnDong);
-            this.panel3.Controls.Add(this.btnCapNhat);
+            this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(654, 146);
@@ -215,81 +222,64 @@
             this.panel3.Size = new System.Drawing.Size(423, 490);
             this.panel3.TabIndex = 15;
             // 
-            // btnDong
-            // 
-            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDong.Location = new System.Drawing.Point(248, 436);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(142, 42);
-            this.btnDong.TabIndex = 30;
-            this.btnDong.Text = "Đóng";
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-            // 
-            // btnCapNhat
-            // 
-            this.btnCapNhat.Enabled = false;
-            this.btnCapNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhat.Location = new System.Drawing.Point(46, 436);
-            this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(142, 42);
-            this.btnCapNhat.TabIndex = 31;
-            this.btnCapNhat.Text = "Cập nhật";
-            this.btnCapNhat.UseVisualStyleBackColor = true;
-            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtGhiChu);
+            this.groupBox1.Controls.Add(this.txtTinhTrang);
             this.groupBox1.Controls.Add(this.txtBMI);
             this.groupBox1.Controls.Add(this.txtChieuCao);
             this.groupBox1.Controls.Add(this.txtCanNang);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(46, 6);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 405);
+            this.groupBox1.Size = new System.Drawing.Size(423, 490);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sức khỏe";
             // 
             // txtGhiChu
             // 
+            this.txtGhiChu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtGhiChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGhiChu.Location = new System.Drawing.Point(123, 206);
+            this.txtGhiChu.Location = new System.Drawing.Point(145, 261);
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(204, 180);
+            this.txtGhiChu.Size = new System.Drawing.Size(244, 113);
             this.txtGhiChu.TabIndex = 7;
             this.txtGhiChu.Text = "";
             // 
             // txtBMI
             // 
-            this.txtBMI.Enabled = false;
             this.txtBMI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBMI.Location = new System.Drawing.Point(123, 151);
+            this.txtBMI.Location = new System.Drawing.Point(145, 151);
             this.txtBMI.Name = "txtBMI";
-            this.txtBMI.Size = new System.Drawing.Size(204, 30);
+            this.txtBMI.ReadOnly = true;
+            this.txtBMI.Size = new System.Drawing.Size(244, 30);
             this.txtBMI.TabIndex = 6;
+            this.txtBMI.TextChanged += new System.EventHandler(this.txtBMI_TextChanged);
             // 
             // txtChieuCao
             // 
             this.txtChieuCao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChieuCao.Location = new System.Drawing.Point(123, 100);
+            this.txtChieuCao.Location = new System.Drawing.Point(145, 100);
             this.txtChieuCao.Name = "txtChieuCao";
-            this.txtChieuCao.Size = new System.Drawing.Size(204, 30);
+            this.txtChieuCao.Size = new System.Drawing.Size(244, 30);
             this.txtChieuCao.TabIndex = 6;
             this.txtChieuCao.TextChanged += new System.EventHandler(this.txtChieuCao_TextChanged);
             // 
             // txtCanNang
             // 
             this.txtCanNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCanNang.Location = new System.Drawing.Point(123, 47);
+            this.txtCanNang.Location = new System.Drawing.Point(145, 47);
             this.txtCanNang.Name = "txtCanNang";
-            this.txtCanNang.Size = new System.Drawing.Size(204, 30);
+            this.txtCanNang.Size = new System.Drawing.Size(244, 30);
             this.txtCanNang.TabIndex = 6;
             this.txtCanNang.TextChanged += new System.EventHandler(this.txtCanNang_TextChanged);
             // 
@@ -309,7 +299,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(19, 213);
+            this.label9.Location = new System.Drawing.Point(19, 261);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 20);
             this.label9.TabIndex = 5;
@@ -340,32 +330,32 @@
             this.dgvSucKhoe.AllowUserToAddRows = false;
             this.dgvSucKhoe.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvSucKhoe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSucKhoe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSucKhoe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvSucKhoe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSucKhoe.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSucKhoe.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvSucKhoe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSucKhoe.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgvSucKhoe.Location = new System.Drawing.Point(0, 0);
             this.dgvSucKhoe.MultiSelect = false;
             this.dgvSucKhoe.Name = "dgvSucKhoe";
             this.dgvSucKhoe.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvSucKhoe.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvSucKhoe.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvSucKhoe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSucKhoe.ShowCellErrors = false;
             this.dgvSucKhoe.ShowCellToolTips = false;
@@ -374,6 +364,59 @@
             this.dgvSucKhoe.Size = new System.Drawing.Size(654, 490);
             this.dgvSucKhoe.TabIndex = 26;
             this.dgvSucKhoe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucKhoe_CellClick);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnDong);
+            this.panel5.Controls.Add(this.btnCapNhat);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 390);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(423, 100);
+            this.panel5.TabIndex = 30;
+            // 
+            // btnDong
+            // 
+            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDong.Location = new System.Drawing.Point(230, 32);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(142, 42);
+            this.btnDong.TabIndex = 32;
+            this.btnDong.Text = "Đóng";
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            // 
+            // btnCapNhat
+            // 
+            this.btnCapNhat.Enabled = false;
+            this.btnCapNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapNhat.Location = new System.Drawing.Point(29, 32);
+            this.btnCapNhat.Name = "btnCapNhat";
+            this.btnCapNhat.Size = new System.Drawing.Size(142, 42);
+            this.btnCapNhat.TabIndex = 33;
+            this.btnCapNhat.Text = "Cập nhật";
+            this.btnCapNhat.UseVisualStyleBackColor = true;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(19, 211);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 20);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Tình trạng";
+            // 
+            // txtTinhTrang
+            // 
+            this.txtTinhTrang.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTinhTrang.Location = new System.Drawing.Point(145, 201);
+            this.txtTinhTrang.Name = "txtTinhTrang";
+            this.txtTinhTrang.ReadOnly = true;
+            this.txtTinhTrang.Size = new System.Drawing.Size(244, 30);
+            this.txtTinhTrang.TabIndex = 6;
             // 
             // frmThongTinSucKhoe
             // 
@@ -393,6 +436,7 @@
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSucKhoe)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -412,8 +456,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox txtGhiChu;
         private System.Windows.Forms.TextBox txtBMI;
@@ -424,5 +466,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dgvSucKhoe;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnDong;
+        private System.Windows.Forms.Button btnCapNhat;
+        private System.Windows.Forms.TextBox txtTinhTrang;
+        private System.Windows.Forms.Label label10;
     }
 }

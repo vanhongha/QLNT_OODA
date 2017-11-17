@@ -74,12 +74,12 @@ namespace QLNT.Presentation
             {
                 TabItem tab = tabControl.CreateTab("Thông tin sức khỏe");
                 tab.PredefinedColor = eTabItemColor.Yellow;
-                frmThongTinSucKhoe _frmThongTinSucKhoe = new frmThongTinSucKhoe(tabControl, tab);
-                _frmThongTinSucKhoe.TopLevel = false;
-                _frmThongTinSucKhoe.Dock = DockStyle.Fill;
-                _frmThongTinSucKhoe.StartPosition = FormStartPosition.CenterParent;
-                tab.AttachedControl.Controls.Add(_frmThongTinSucKhoe);
-                _frmThongTinSucKhoe.Show();
+                frmThongTinSucKhoe _frmBieuDoSucKhoe = new frmThongTinSucKhoe(tabControl, tab);
+                _frmBieuDoSucKhoe.TopLevel = false;
+                _frmBieuDoSucKhoe.Dock = DockStyle.Fill;
+                _frmBieuDoSucKhoe.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmBieuDoSucKhoe);
+                _frmBieuDoSucKhoe.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
             }
             else
@@ -157,6 +157,24 @@ namespace QLNT.Presentation
                 _frmTimKiem.StartPosition = FormStartPosition.CenterParent;
                 tab.AttachedControl.Controls.Add(_frmTimKiem);
                 _frmTimKiem.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnSucKhoe_BaoCao_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Biểu đồ sức khỏe"))
+            {
+                TabItem tab = tabControl.CreateTab("Biểu đồ sức khỏe");
+                tab.PredefinedColor = eTabItemColor.Yellow;
+                frmBieuDoSucKhoe _frmBieuDoSucKhoe = new frmBieuDoSucKhoe(tabControl, tab);
+                _frmBieuDoSucKhoe.TopLevel = false;
+                _frmBieuDoSucKhoe.Dock = DockStyle.Fill;
+                _frmBieuDoSucKhoe.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmBieuDoSucKhoe);
+                _frmBieuDoSucKhoe.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
             }
             else

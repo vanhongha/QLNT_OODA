@@ -208,6 +208,7 @@
             this.btnSucKhoe_BaoCao.Name = "btnSucKhoe_BaoCao";
             this.btnSucKhoe_BaoCao.SubItemsExpandWidth = 14;
             this.btnSucKhoe_BaoCao.Text = "Báo cáo";
+            this.btnSucKhoe_BaoCao.Click += new System.EventHandler(this.btnSucKhoe_BaoCao_Click);
             // 
             // ribbonBar4
             // 

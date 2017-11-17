@@ -11,7 +11,10 @@ namespace QLNT.Presentation
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
+
         private string maTre;
+        private string gioiTinh;
+        private DateTime ngaySinh;
 
         public frmThongTinSucKhoe(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
@@ -26,7 +29,7 @@ namespace QLNT.Presentation
             loadListNamHoc();
             loadListLoaiLop();
             initComboboxThang();
-            loadDataGirdView();
+            LoadDataGirdView();
         }
 
         private void initDataGridView()
@@ -89,6 +92,8 @@ namespace QLNT.Presentation
             if (!cboLoaiLop.Text.Equals(""))
             {
                 loadListLop();
+                LoadDataGirdView();
+                ClearAllField();
             }
         }
 
@@ -97,6 +102,8 @@ namespace QLNT.Presentation
             if (!cboNamHoc.Text.Equals(""))
             {
                 loadListLop();
+                LoadDataGirdView();
+                ClearAllField();
             }
         }
 
@@ -105,10 +112,11 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSiSo.Text = LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())).SiSo.ToString();
-            loadDataGirdView();
+            LoadDataGirdView();
+            ClearAllField();
         }
 
-        private void loadDataGirdView()
+        private void LoadDataGirdView()
         {
             if (cboLop.SelectedItem == null || cboThang.SelectedItem == null || cboNamHoc.SelectedItem == null)
             {
@@ -129,7 +137,8 @@ namespace QLNT.Presentation
             dgvSucKhoe.Columns[7].HeaderText = "Cân nặng (kg)";
             dgvSucKhoe.Columns[8].HeaderText = "Chiều cao (cm)";
             dgvSucKhoe.Columns[9].HeaderText = "BMI";
-            dgvSucKhoe.Columns[10].HeaderText = "Ghi chú";
+            dgvSucKhoe.Columns[10].HeaderText = "Tình trạng";
+            dgvSucKhoe.Columns[11].HeaderText = "Ghi chú";
 
             dgvSucKhoe.Columns[0].Width = 50;
             dgvSucKhoe.Columns[4].Width = 260;
@@ -138,20 +147,22 @@ namespace QLNT.Presentation
             dgvSucKhoe.Columns[7].Width = 150;
             dgvSucKhoe.Columns[8].Width = 150;
             dgvSucKhoe.Columns[9].Width = 120;
-            dgvSucKhoe.Columns[10].Width = 500;
+            dgvSucKhoe.Columns[10].Width = 200;
+            dgvSucKhoe.Columns[10].Width = 300;
 
             for (int i = 0; i < dgvSucKhoe.Rows.Count; i++)
             {
                 dgvSucKhoe.Rows[i].Cells[0].Value = i + 1;
             }
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "CanNang", "ChieuCao", "BMI", "GhiChu" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "CanNang", "ChieuCao", "BMI", "TinhTrang", "GhiChu" };
             ControlFormat.DataGridViewFormat(dgvSucKhoe, listProp);
         }
 
         private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadDataGirdView();
+            LoadDataGirdView();
+            ClearAllField();
         }
 
         private void dgvSucKhoe_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -159,9 +170,12 @@ namespace QLNT.Presentation
             if (e.RowIndex != -1 && e.RowIndex != dgvSucKhoe.RowCount)
             {
                 maTre = dgvSucKhoe.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
+                gioiTinh = dgvSucKhoe.Rows[e.RowIndex].Cells["GioiTinh"].Value.ToString();
+                ngaySinh = (DateTime) dgvSucKhoe.Rows[e.RowIndex].Cells["NgaySinh"].Value;
                 txtCanNang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["CanNang"].Value.ToString();
                 txtChieuCao.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["ChieuCao"].Value.ToString();
                 txtBMI.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["BMI"].Value.ToString();
+                txtTinhTrang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["TinhTrang"].Value.ToString();
                 txtGhiChu.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["GhiChu"].Value.ToString();
                 btnCapNhat.Enabled = true;
             }
@@ -169,7 +183,11 @@ namespace QLNT.Presentation
 
         private void txtCanNang_TextChanged(object sender, EventArgs e)
         {
-            if (txtCanNang.Text == "") return;
+            if (txtCanNang.Text == "")
+            {
+                txtBMI.Clear();
+                return;
+            }
             try
             {
                 float.Parse(txtCanNang.Text);
@@ -177,6 +195,7 @@ namespace QLNT.Presentation
             catch(Exception ex)
             {
                 MessageBox.Show("Chỉ được nhập ký tự số.");
+                txtCanNang.Clear();
                 return;
             }
 
@@ -190,7 +209,11 @@ namespace QLNT.Presentation
 
         private void txtChieuCao_TextChanged(object sender, EventArgs e)
         {
-            if (txtChieuCao.Text == "") return;
+            if (txtChieuCao.Text == "")
+            {
+                txtBMI.Clear();
+                return;
+            }
             try
             {
                 float.Parse(txtChieuCao.Text);
@@ -198,6 +221,7 @@ namespace QLNT.Presentation
             catch (Exception ex)
             {
                 MessageBox.Show("Chỉ được nhập ký tự số.");
+                txtChieuCao.Clear();
                 return;
             }
 
@@ -209,19 +233,33 @@ namespace QLNT.Presentation
             }
         }
 
+        private void txtBMI_TextChanged(object sender, EventArgs e)
+        {
+            if(txtBMI.Text == "" || txtBMI.Text.Trim() == "0")
+            {
+                txtTinhTrang.Clear();
+            } else
+            {
+                float bmi = float.Parse(txtBMI.Text);
+                txtTinhTrang.Text = SucKhoeBLL.TinhTrangDuaTrenBMI(bmi, gioiTinh, ngaySinh);
+            }
+        }
+
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             SucKhoe sucKhoe = new SucKhoe();
             sucKhoe.MaTre = maTre;
             sucKhoe.Thang = int.Parse(cboThang.Text);
             sucKhoe.Nam = LopBLL.GetNamHoc(sucKhoe.Thang, KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-            sucKhoe.CanNang = float.Parse(txtCanNang.Text);
-            sucKhoe.ChieuCao = float.Parse(txtChieuCao.Text);
-            sucKhoe.BMI = float.Parse(txtBMI.Text);
+            sucKhoe.CanNang = txtCanNang.Text.Trim() == "" ? 0 : float.Parse(txtCanNang.Text);
+            sucKhoe.ChieuCao = txtChieuCao.Text.Trim() == "" ? 0 : float.Parse(txtChieuCao.Text);
+            sucKhoe.BMI = txtBMI.Text.Trim() == "" ? 0 : float.Parse(txtBMI.Text);
+            sucKhoe.TinhTrang = txtTinhTrang.Text;
             sucKhoe.GhiChu = txtGhiChu.Text;
             if (SucKhoeBLL.CapNhatSucKhoe(sucKhoe))
             {
                 MessageBox.Show("Cập nhật thành công!");
+                LoadDataGirdView();
             }
             else
             {
@@ -233,6 +271,15 @@ namespace QLNT.Presentation
         {
             this.Close();
             tabControl.Tabs.Remove(tab);
+        }
+
+        private void ClearAllField()
+        {
+            txtCanNang.Clear();
+            txtChieuCao.Clear();
+            txtBMI.Clear();
+            txtTinhTrang.Clear();
+            txtGhiChu.Clear();
         }
     }
 }

@@ -79,6 +79,14 @@ namespace QLNT.Entities
             set { bmi = value; }
         }
 
+        private string tinhTrang;
+
+        public string TinhTrang
+        {
+            get { return tinhTrang; }
+            set { tinhTrang = value; }
+        }
+
         private string ghiChu;
 
         public string GhiChu
