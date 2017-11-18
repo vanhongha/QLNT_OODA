@@ -114,8 +114,15 @@
     <Compile Include="Presentation\frmBieuDoSucKhoe.Designer.cs">
       <DependentUpon>frmBieuDoSucKhoe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmXepLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmXepLop.Designer.cs">
+      <DependentUpon>frmXepLop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ultilities\ComboboxLoad.cs" />
     <Compile Include="Ultilities\ControlFormat.cs" />
     <Compile Include="Ultilities\Key.cs" />
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
@@ -138,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmBieuDoSucKhoe.resx">
       <DependentUpon>frmBieuDoSucKhoe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmXepLop.resx">
+      <DependentUpon>frmXepLop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -198,6 +208,17 @@
   <ItemGroup>
     <None Include="Resources\background.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icons8-forward-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-double-right-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-back-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-double-left-50.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

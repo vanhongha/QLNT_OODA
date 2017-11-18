@@ -275,6 +275,7 @@
             this.btnXepLop.Name = "btnXepLop";
             this.btnXepLop.SubItemsExpandWidth = 14;
             this.btnXepLop.Text = "Xếp lớp";
+            this.btnXepLop.Click += new System.EventHandler(this.btnXepLop_Click);
             // 
             // tabControl
             // 

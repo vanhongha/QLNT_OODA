@@ -180,5 +180,23 @@ namespace QLNT.Presentation
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
+
+        private void btnXepLop_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Xếp lớp"))
+            {
+                TabItem tab = tabControl.CreateTab("Xếp lớp");
+                tab.PredefinedColor = eTabItemColor.Cyan;
+                frmXepLop _frmXepLop = new frmXepLop(tabControl, tab);
+                _frmXepLop.TopLevel = false;
+                _frmXepLop.Dock = DockStyle.Fill;
+                _frmXepLop.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmXepLop);
+                _frmXepLop.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
 }

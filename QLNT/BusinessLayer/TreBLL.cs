@@ -15,5 +15,10 @@ namespace QLNT.BusinessLayer
         {
             return TreDAL.GetListTre(lop, keyWord);
         }
+
+        public static DataTable GetListTreChuaCoLop()
+        {
+            return TreDAL.GetListTreChuaCoLop();
+        }
     }
 }

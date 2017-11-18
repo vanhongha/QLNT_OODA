@@ -37,5 +37,19 @@ namespace QLNT.DataLayer
 
             return db.dt;
         }
+
+        public static DataTable GetListTreChuaCoLop()
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = null;
+            cmd = db.Command("GetListTreChuaCoLop");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
     }
 }
