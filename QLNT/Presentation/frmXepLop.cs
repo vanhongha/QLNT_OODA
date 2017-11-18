@@ -18,6 +18,7 @@ namespace QLNT.Presentation
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
+        private List<string> listMaTre;
 
         public frmXepLop()
         {
@@ -48,7 +49,7 @@ namespace QLNT.Presentation
                     dgvDanhSach.Rows[i].Cells[0].Value = i + 1;
 
                 string[] listProp = { "STT", "HoTenTre", "NgaySinh" };
-                ControlFormat.DataGridViewFormat(dgvKetQua, listProp);
+                ControlFormat.DataGridViewFormat(dgvDanhSach, listProp);
             }
             else
             {
@@ -105,11 +106,38 @@ namespace QLNT.Presentation
             ComboboxLoad.LoaiLop(cboLoaiLop_LuaChon);
         }
 
+        private void RemoveAllListMaTre()
+        {
+            listMaTre.Clear();
+        }
+
+        private void SaveListMaTre()
+        {
+            List<DataGridViewRow> selectedRows = dgvDanhSach.SelectedRows
+                     .OfType<DataGridViewRow>()
+                     .Where(row => !row.IsNewRow)
+                     .ToList();
+            List<DataGridViewCell> selectedCells = dgvDanhSach.SelectedCells.OfType<DataGridViewCell>().ToList();
+
+            foreach (DataGridViewCell cell in selectedCells)
+            {
+                if (!selectedRows.Contains(dgvDanhSach.Rows[cell.RowIndex]))
+                    selectedRows.Add(dgvDanhSach.Rows[cell.RowIndex]);
+            }
+
+            foreach (DataGridViewRow row in selectedRows)
+                if (!listMaTre.Contains(row.Cells["MaTre"].Value.ToString()))
+                    listMaTre.Add(row.Cells["MaTre"].Value.ToString());
+                
+            foreach (string ma in listMaTre)
+                MessageBox.Show(ma);
+        }
         #endregion
 
         #region Event
         private void frmXepLop_Load(object sender, EventArgs e)
         {
+            listMaTre = new List<string>();
             rdoChuyenLop.Checked = true;
             LoadDGVDanhSach();
             LoadListNamHoc();
@@ -171,9 +199,13 @@ namespace QLNT.Presentation
             LoadDGVKetQua();
         }
 
-
+        private void btnPutForward_Click(object sender, EventArgs e)
+        {
+            RemoveAllListMaTre();
+            SaveListMaTre();
+        }
         #endregion
 
-       
+
     }
 }

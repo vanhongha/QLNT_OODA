@@ -369,6 +369,7 @@
             this.btnPutForward.Size = new System.Drawing.Size(94, 54);
             this.btnPutForward.TabIndex = 1;
             this.btnPutForward.UseVisualStyleBackColor = true;
+            this.btnPutForward.Click += new System.EventHandler(this.btnPutForward_Click);
             // 
             // frmXepLop
             // 
