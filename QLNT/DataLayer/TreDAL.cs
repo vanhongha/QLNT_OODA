@@ -134,5 +134,20 @@ namespace QLNT.DataLayer
             return "";
         }
 
+        public static DataTable GetListTreTheoMaLop(string maLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetListTreTheoLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
     }
 }

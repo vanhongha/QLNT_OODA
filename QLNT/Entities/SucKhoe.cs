@@ -106,6 +106,7 @@ namespace QLNT.Entities
             this.chieuCao = float.Parse(row["ChieuCao"].ToString());
             this.canNang = float.Parse(row["CanNang"].ToString());
             this.bmi = float.Parse(row["BMI"].ToString());
+            this.tinhTrang = row["TinhTrang"].ToString();
             this.ghiChu = row["GhiChu"].ToString();
         }
 

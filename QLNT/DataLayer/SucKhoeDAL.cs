@@ -42,5 +42,27 @@ namespace QLNT.DataLayer
             db.dt = new DataTable();
             da.Fill(db.dt);
         }
+
+        public static SucKhoe GetSucKhoeTheoThang(string maTre, int thang, int nam)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetSucKhoeTheoThang");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            foreach(DataRow row in db.dt.Rows)
+            {
+                return new SucKhoe(row);
+            }
+
+            return null;
+        }
     }
 }

@@ -125,5 +125,21 @@ namespace QLNT.BusinessLayer
             }
         }
 
+        public static List<SucKhoe> GetListSucKhoeTheoThang(string maTre, int tuThang, int denThang, string maNamHoc)
+        {
+            List<SucKhoe> listSucKhoe = new List<SucKhoe>();
+
+            listSucKhoe.Add(SucKhoeDAL.GetSucKhoeTheoThang(maTre, tuThang, LopBLL.GetNamHoc(tuThang, maNamHoc)));
+            while (tuThang != denThang)
+            {
+                tuThang++;
+                if (tuThang > 12)
+                    tuThang = 1;
+                listSucKhoe.Add(SucKhoeDAL.GetSucKhoeTheoThang(maTre, tuThang, LopBLL.GetNamHoc(tuThang, maNamHoc)));
+            }
+
+            return listSucKhoe;
+        }
+
     }
 }
