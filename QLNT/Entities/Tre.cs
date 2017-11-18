@@ -11,7 +11,7 @@ namespace QLNT.Entities
     {
         private string maTre;
         private string hoTen;
-        private string ngaySinh;
+        private DateTime ngaySinh;
         private string gioiTinh;
         private string tenCha;
         private string tenMe;
@@ -44,7 +44,7 @@ namespace QLNT.Entities
             }
         }
 
-        public string NgaySinh
+        public DateTime NgaySinh
         {
             get
             {
@@ -126,12 +126,26 @@ namespace QLNT.Entities
         {
             this.maTre = row["MaTre"].ToString();
             this.HoTen = row["HoTenTre"].ToString();
-            this.ngaySinh = row["NgaySinh"].ToString();
+            this.ngaySinh = (DateTime)row["NgaySinh"];
             this.gioiTinh = row["GioiTinh"].ToString();
             this.tenCha = row["HoTenCha"].ToString();
             this.tenMe = row["HoTenMe"].ToString();
             this.diaChi = row["DiaChi"].ToString();
             this.dienThoai = row["SDTLienLac"].ToString();
+        }
+        public Tre(string maTre, string hoTen, 
+            string gioiTinh, DateTime ngaySinh, 
+            string tenCha, string tenMe, 
+            string diaChi, string dienThoai)
+        {
+            this.MaTre = maTre;
+            this.HoTen = hoTen;
+            this.GioiTinh = gioiTinh;
+            this.NgaySinh = ngaySinh;
+            this.tenCha = tenCha;
+            this.TenMe = tenMe;
+            this.DiaChi = diaChi;
+            this.DienThoai = dienThoai;
         }
 
         public Tre()

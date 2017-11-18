@@ -51,11 +51,13 @@
   <ItemGroup>
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
     <Compile Include="BusinessLayer\LopBLL.cs" />
+    <Compile Include="BusinessLayer\PhieuTiepNhanBLL.cs" />
     <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
     <Compile Include="BusinessLayer\TreBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
     <Compile Include="DataLayer\LopDAL.cs" />
+    <Compile Include="DataLayer\PhieuTiepNhanDAL.cs" />
     <Compile Include="DataLayer\SucKhoeDAL.cs" />
     <Compile Include="DataLayer\TreDAL.cs" />
     <Compile Include="Entities\LoaiLop.cs" />
