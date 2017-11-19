@@ -46,8 +46,12 @@ namespace QLNT.DataLayer
             SqlCommand cmd = null;
             cmd = db.Command("GetListTreChuaCoLop");
             cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
             return db.dt;
         }
+
         public static DataTable LayThongTinTre(string maTre)
         {
             DataAccessHelper db = new DataAccessHelper();
@@ -94,13 +98,8 @@ namespace QLNT.DataLayer
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
-            da.Fill(db.dt);
-
-
-            
-        }
-    
-        
+            da.Fill(db.dt);            
+        }       
 
         public static DataTable ThemTre(Tre tre)
         {
@@ -148,6 +147,20 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
 
             return db.dt;
+        }
+
+        public static void XepLop(string maTre, string maLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("XepLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
         }
     }
 }

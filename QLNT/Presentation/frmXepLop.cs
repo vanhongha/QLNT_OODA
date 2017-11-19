@@ -111,26 +111,23 @@ namespace QLNT.Presentation
             listMaTre.Clear();
         }
 
-        private void SaveListMaTre()
+        private void SaveListMaTre(DataGridView dgv)
         {
-            List<DataGridViewRow> selectedRows = dgvDanhSach.SelectedRows
+            List<DataGridViewRow> selectedRows = dgv.SelectedRows
                      .OfType<DataGridViewRow>()
                      .Where(row => !row.IsNewRow)
                      .ToList();
-            List<DataGridViewCell> selectedCells = dgvDanhSach.SelectedCells.OfType<DataGridViewCell>().ToList();
+            List<DataGridViewCell> selectedCells = dgv.SelectedCells.OfType<DataGridViewCell>().ToList();
 
             foreach (DataGridViewCell cell in selectedCells)
             {
-                if (!selectedRows.Contains(dgvDanhSach.Rows[cell.RowIndex]))
-                    selectedRows.Add(dgvDanhSach.Rows[cell.RowIndex]);
+                if (!selectedRows.Contains(dgv.Rows[cell.RowIndex]))
+                    selectedRows.Add(dgv.Rows[cell.RowIndex]);
             }
 
             foreach (DataGridViewRow row in selectedRows)
                 if (!listMaTre.Contains(row.Cells["MaTre"].Value.ToString()))
                     listMaTre.Add(row.Cells["MaTre"].Value.ToString());
-                
-            foreach (string ma in listMaTre)
-                MessageBox.Show(ma);
         }
         #endregion
 
@@ -202,7 +199,40 @@ namespace QLNT.Presentation
         private void btnPutForward_Click(object sender, EventArgs e)
         {
             RemoveAllListMaTre();
-            SaveListMaTre();
+            SaveListMaTre(dgvDanhSach);
+
+            if (cboLop.SelectedItem != null)
+            {
+                DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
+                {
+                    if (TreBLL.XepLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())))
+                    {
+                        LoadDGVDanhSach();
+                        LoadDGVKetQua();
+                        MessageBox.Show("Thêm trẻ vào lớp " +
+                            LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())).TenLop +
+                            " thành công!",
+                            "Thông báo");
+                    }
+                }
+                else
+                    MessageBox.Show("Lớp được chọn không còn hoạt động, vui lòng chọn lớp của niên khóa hiện tại", "Thông báo");
+            }
+            else
+                MessageBox.Show("Vui lòng chọn lớp để chuyển trẻ!");
+        }
+
+        private void btnPutBack_Click(object sender, EventArgs e)
+        {
+            RemoveAllListMaTre();
+            SaveListMaTre(dgvKetQua);
+        }
+
+        private void btnPutForwardAll_Click(object sender, EventArgs e)
+        {
+           
         }
         #endregion
 

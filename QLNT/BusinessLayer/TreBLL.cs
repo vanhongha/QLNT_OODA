@@ -22,6 +22,7 @@ namespace QLNT.BusinessLayer
         {
             return TreDAL.GetListTreChuaCoLop();
         }
+
         public static string GenMaTre()
         {
             string id = TreDAL.GetLastID().Trim();
@@ -65,6 +66,36 @@ namespace QLNT.BusinessLayer
         public static DataTable GetListTreTheoMaLop(string maLop)
         {
             return TreDAL.GetListTreTheoMaLop(maLop);
+        }
+
+        public static bool XepLop(string maTre, string maLop)
+        {              
+            try
+            {
+                TreDAL.XepLop(maTre, maLop);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        
+        }
+
+        public static bool XepLop(List<string> listMaTre, string maLop)
+        {
+            foreach (string maTre in listMaTre)
+            {
+                try
+                {
+                    TreDAL.XepLop(maTre, maLop);
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

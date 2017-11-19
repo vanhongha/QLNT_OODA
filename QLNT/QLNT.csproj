@@ -51,12 +51,14 @@
   <ItemGroup>
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
     <Compile Include="BusinessLayer\LopBLL.cs" />
+    <Compile Include="BusinessLayer\NamHocBLL.cs" />
     <Compile Include="BusinessLayer\PhieuTiepNhanBLL.cs" />
     <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
     <Compile Include="BusinessLayer\TreBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
     <Compile Include="DataLayer\LopDAL.cs" />
+    <Compile Include="DataLayer\NamHocDAL.cs" />
     <Compile Include="DataLayer\PhieuTiepNhanDAL.cs" />
     <Compile Include="DataLayer\SucKhoeDAL.cs" />
     <Compile Include="DataLayer\TreDAL.cs" />
@@ -124,6 +126,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ultilities\Checking.cs" />
     <Compile Include="Ultilities\ComboboxLoad.cs" />
     <Compile Include="Ultilities\ControlFormat.cs" />
     <Compile Include="Ultilities\Key.cs" />

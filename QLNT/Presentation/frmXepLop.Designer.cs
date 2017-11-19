@@ -349,6 +349,7 @@
             this.btnPutBack.Size = new System.Drawing.Size(94, 54);
             this.btnPutBack.TabIndex = 1;
             this.btnPutBack.UseVisualStyleBackColor = true;
+            this.btnPutBack.Click += new System.EventHandler(this.btnPutBack_Click);
             // 
             // btnPutForwardAll
             // 
@@ -359,6 +360,7 @@
             this.btnPutForwardAll.Size = new System.Drawing.Size(94, 54);
             this.btnPutForwardAll.TabIndex = 1;
             this.btnPutForwardAll.UseVisualStyleBackColor = true;
+            this.btnPutForwardAll.Click += new System.EventHandler(this.btnPutForwardAll_Click);
             // 
             // btnPutForward
             // 
