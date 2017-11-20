@@ -88,6 +88,24 @@
     <Compile Include="Presentation\frmDiemDanh.Designer.cs">
       <DependentUpon>frmDiemDanh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmDinhDuong_MonAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_MonAn.Designer.cs">
+      <DependentUpon>frmDinhDuong_MonAn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_NguyenLieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_NguyenLieu.Designer.cs">
+      <DependentUpon>frmDinhDuong_NguyenLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_ThucDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_ThucDon.Designer.cs">
+      <DependentUpon>frmDinhDuong_ThucDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +169,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmDiemDanh.resx">
       <DependentUpon>frmDiemDanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmDinhDuong_MonAn.resx">
+      <DependentUpon>frmDinhDuong_MonAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmDinhDuong_NguyenLieu.resx">
+      <DependentUpon>frmDinhDuong_NguyenLieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmDinhDuong_ThucDon.resx">
+      <DependentUpon>frmDinhDuong_ThucDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

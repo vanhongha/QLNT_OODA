@@ -39,7 +39,9 @@
             this.btnApDungHocPhi = new DevComponents.DotNetBar.ButtonItem();
             this.btnThuHocPhi = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnTemp = new DevComponents.DotNetBar.ButtonItem();
+            this.btnThucDon = new DevComponents.DotNetBar.ButtonItem();
+            this.btnMonAn = new DevComponents.DotNetBar.ButtonItem();
+            this.btnNguyenLieu = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar5 = new DevComponents.DotNetBar.RibbonBar();
             this.btnSucKhoe_ThongTin = new DevComponents.DotNetBar.ButtonItem();
             this.btnSucKhoe_BaoCao = new DevComponents.DotNetBar.ButtonItem();
@@ -57,8 +59,6 @@
             this.reflectionLabel1 = new DevComponents.DotNetBar.Controls.ReflectionLabel();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.btnTimKiem = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.panel1.SuspendLayout();
             this.ribbonPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
@@ -163,9 +163,9 @@
             this.ribbonBar7.AutoOverflowEnabled = true;
             this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnTemp,
-            this.buttonItem1,
-            this.buttonItem3});
+            this.btnThucDon,
+            this.btnMonAn,
+            this.btnNguyenLieu});
             this.ribbonBar7.Location = new System.Drawing.Point(455, 0);
             this.ribbonBar7.Name = "ribbonBar7";
             this.ribbonBar7.Size = new System.Drawing.Size(217, 101);
@@ -173,14 +173,35 @@
             this.ribbonBar7.TabIndex = 2;
             this.ribbonBar7.Text = "Quản lý dinh dưỡng";
             // 
-            // btnTemp
+            // btnThucDon
             // 
-            this.btnTemp.Image = ((System.Drawing.Image)(resources.GetObject("btnTemp.Image")));
-            this.btnTemp.ImagePaddingHorizontal = 8;
-            this.btnTemp.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnTemp.Name = "btnTemp";
-            this.btnTemp.SubItemsExpandWidth = 14;
-            this.btnTemp.Text = "Thực đơn";
+            this.btnThucDon.Image = ((System.Drawing.Image)(resources.GetObject("btnThucDon.Image")));
+            this.btnThucDon.ImagePaddingHorizontal = 8;
+            this.btnThucDon.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnThucDon.Name = "btnThucDon";
+            this.btnThucDon.SubItemsExpandWidth = 14;
+            this.btnThucDon.Text = "Thực đơn";
+            this.btnThucDon.Click += new System.EventHandler(this.btnThucDon_Click);
+            // 
+            // btnMonAn
+            // 
+            this.btnMonAn.Image = ((System.Drawing.Image)(resources.GetObject("btnMonAn.Image")));
+            this.btnMonAn.ImagePaddingHorizontal = 8;
+            this.btnMonAn.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnMonAn.Name = "btnMonAn";
+            this.btnMonAn.SubItemsExpandWidth = 14;
+            this.btnMonAn.Text = "Món ăn";
+            this.btnMonAn.Click += new System.EventHandler(this.btnMonAn_Click);
+            // 
+            // btnNguyenLieu
+            // 
+            this.btnNguyenLieu.Image = ((System.Drawing.Image)(resources.GetObject("btnNguyenLieu.Image")));
+            this.btnNguyenLieu.ImagePaddingHorizontal = 8;
+            this.btnNguyenLieu.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnNguyenLieu.Name = "btnNguyenLieu";
+            this.btnNguyenLieu.SubItemsExpandWidth = 14;
+            this.btnNguyenLieu.Text = "Nguyên liệu";
+            this.btnNguyenLieu.Click += new System.EventHandler(this.btnNguyenLieu_Click);
             // 
             // ribbonBar5
             // 
@@ -382,24 +403,6 @@
             this.btnTimKiem.SubItemsExpandWidth = 14;
             this.btnTimKiem.Text = "Tìm kiếm";
             // 
-            // buttonItem1
-            // 
-            this.buttonItem1.Image = ((System.Drawing.Image)(resources.GetObject("buttonItem1.Image")));
-            this.buttonItem1.ImagePaddingHorizontal = 8;
-            this.buttonItem1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.buttonItem1.Name = "buttonItem1";
-            this.buttonItem1.SubItemsExpandWidth = 14;
-            this.buttonItem1.Text = "Món ăn";
-            // 
-            // buttonItem3
-            // 
-            this.buttonItem3.Image = ((System.Drawing.Image)(resources.GetObject("buttonItem3.Image")));
-            this.buttonItem3.ImagePaddingHorizontal = 8;
-            this.buttonItem3.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.buttonItem3.Name = "buttonItem3";
-            this.buttonItem3.SubItemsExpandWidth = 14;
-            this.buttonItem3.Text = "Nguyên liệu";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,7 +429,7 @@
         private System.Windows.Forms.Panel panel1;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanel4;
         private DevComponents.DotNetBar.RibbonBar ribbonBar7;
-        private DevComponents.DotNetBar.ButtonItem btnTemp;
+        private DevComponents.DotNetBar.ButtonItem btnThucDon;
         private DevComponents.DotNetBar.RibbonBar ribbonBar5;
         private DevComponents.DotNetBar.ButtonItem btnSucKhoe_ThongTin;
         private DevComponents.DotNetBar.RibbonBar ribbonBar4;
@@ -450,7 +453,7 @@
         private DevComponents.DotNetBar.ButtonItem btnSucKhoe_BaoCao;
         private DevComponents.DotNetBar.ButtonItem btnTraCuu;
         private DevComponents.DotNetBar.ButtonItem btnTimKiem;
-        private DevComponents.DotNetBar.ButtonItem buttonItem1;
-        private DevComponents.DotNetBar.ButtonItem buttonItem3;
+        private DevComponents.DotNetBar.ButtonItem btnMonAn;
+        private DevComponents.DotNetBar.ButtonItem btnNguyenLieu;
     }
 }

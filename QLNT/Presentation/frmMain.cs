@@ -234,5 +234,59 @@ namespace QLNT.Presentation
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
+
+        private void btnThucDon_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Thực đơn"))
+            {
+                TabItem tab = tabControl.CreateTab("Thực đơn");
+                tab.PredefinedColor = eTabItemColor.Blue;
+                frmDinhDuong_ThucDon _frmDinhDuong_ThucDon = new frmDinhDuong_ThucDon(tabControl, tab);
+                _frmDinhDuong_ThucDon.TopLevel = false;
+                _frmDinhDuong_ThucDon.Dock = DockStyle.Fill;
+                _frmDinhDuong_ThucDon.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmDinhDuong_ThucDon);
+                _frmDinhDuong_ThucDon.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnMonAn_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Món ăn"))
+            {
+                TabItem tab = tabControl.CreateTab("Món ăn");
+                tab.PredefinedColor = eTabItemColor.Blue;
+                frmDinhDuong_MonAn _frmDinhDuong_MonAn = new frmDinhDuong_MonAn(tabControl, tab);
+                _frmDinhDuong_MonAn.TopLevel = false;
+                _frmDinhDuong_MonAn.Dock = DockStyle.Fill;
+                _frmDinhDuong_MonAn.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmDinhDuong_MonAn);
+                _frmDinhDuong_MonAn.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnNguyenLieu_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Nguyên liệu"))
+            {
+                TabItem tab = tabControl.CreateTab("Nguyên liệu");
+                tab.PredefinedColor = eTabItemColor.Blue;
+                frmDinhDuong_NguyenLieu _frmDinhDuong_NguyenLieu = new frmDinhDuong_NguyenLieu(tabControl, tab);
+                _frmDinhDuong_NguyenLieu.TopLevel = false;
+                _frmDinhDuong_NguyenLieu.Dock = DockStyle.Fill;
+                _frmDinhDuong_NguyenLieu.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmDinhDuong_NguyenLieu);
+                _frmDinhDuong_NguyenLieu.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
 }
