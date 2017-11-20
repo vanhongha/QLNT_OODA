@@ -129,7 +129,6 @@
     <Compile Include="Ultilities\Checking.cs" />
     <Compile Include="Ultilities\ComboboxLoad.cs" />
     <Compile Include="Ultilities\ControlFormat.cs" />
-    <Compile Include="Ultilities\GridUtility.cs" />
     <Compile Include="Ultilities\Key.cs" />
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
@@ -225,15 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-double-left-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-save-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cancel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

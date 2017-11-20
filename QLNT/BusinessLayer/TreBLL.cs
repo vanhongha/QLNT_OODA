@@ -68,20 +68,6 @@ namespace QLNT.BusinessLayer
             return TreDAL.GetListTreTheoMaLop(maLop);
         }
 
-        public static bool XepLop(string maTre, string maLop)
-        {              
-            try
-            {
-                TreDAL.XepLop(maTre, maLop);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        
-        }
-
         public static bool XepLop(List<string> listMaTre, string maLop)
         {
             foreach (string maTre in listMaTre)
@@ -89,6 +75,22 @@ namespace QLNT.BusinessLayer
                 try
                 {
                     TreDAL.XepLop(maTre, maLop);
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool ChuyenLop(List<string> listMaTre, string maLopMoi)
+        {
+            foreach (string maTre in listMaTre)
+            {
+                try
+                {
+                    TreDAL.ChuyenLop(maTre, maLopMoi);
                 }
                 catch (Exception ex)
                 {
