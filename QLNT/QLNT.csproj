@@ -141,6 +141,7 @@
     <Compile Include="Ultilities\Checking.cs" />
     <Compile Include="Ultilities\ComboboxLoad.cs" />
     <Compile Include="Ultilities\ControlFormat.cs" />
+    <Compile Include="Ultilities\DataHandle.cs" />
     <Compile Include="Ultilities\Key.cs" />
     <EmbeddedResource Include="Presentation\frmApDungHocPhi.resx">
       <DependentUpon>frmApDungHocPhi.cs</DependentUpon>
@@ -242,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-double-left-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-microsoft-excel-40.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

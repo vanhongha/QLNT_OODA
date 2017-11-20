@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QLNT.BusinessLayer;
 using QLNT.Entities;
+using System.IO;
+using QLNT.Ultilities;
+using System.Globalization;
 
 namespace QLNT.Presentation
 {
@@ -145,6 +148,7 @@ namespace QLNT.Presentation
         {
             string gioiTinh;
             DataTable dt = TreBLL.LayThongTinTre(maTre);
+            txtMaHocSinh.Text = dt.Rows[0]["MaTre"].ToString();
             txtHoTen.Text = dt.Rows[0]["HoTenTre"].ToString();
 
             gioiTinh = dt.Rows[0]["GioiTinh"].ToString();
@@ -153,7 +157,10 @@ namespace QLNT.Presentation
             else
                 rdbNu.Checked = true;
 
-            //dtNgaySinh.Value = DateTime.ParseExact(dt.Rows[0]["HoTenMe"].ToString(), "dd/MM/yyy", null);
+            DateTime date = DateTime.ParseExact(Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            
+            dateNgaySinh.Value = date;
+
 
             txtHoTenMe.Text = dt.Rows[0]["HoTenMe"].ToString();
             txtHoTenCha.Text = dt.Rows[0]["HoTenCha"].ToString();
@@ -201,13 +208,14 @@ namespace QLNT.Presentation
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            List<string> listMaTre = DataHandle.SaveListMaTre(dgvTiepNhan);
             try
             {
                 DialogResult dialog = MessageBox.Show("Bạn có chắc muốn xóa trẻ này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialog == DialogResult.Yes)
                 {
-                    TreBLL.XoaTre(maTre);
-                    MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TreBLL.XoaTre(listMaTre);
+                    MessageBox.Show("Đã xóa" + listMaTre.Count + " trẻ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     CleanInput();
                     loadDataGridView();
@@ -218,6 +226,24 @@ namespace QLNT.Presentation
                 MessageBox.Show(ex.Message, "Thông báo");
             }
         }
-    
+
+        private void btnNhapTuFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog(); ;
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string filePath = openFileDialog.FileName;          
+                try
+                {
+                    DataTable dt = DataHandle.ReadDataFromExcelFile(filePath);
+                    DataHandle.ThemTreVaoDBTuExcel(dt);
+                    loadDataGridView();
+                }
+                catch (IOException)
+                {
+                }
+            }
+        }
     }
 }
