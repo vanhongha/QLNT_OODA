@@ -70,6 +70,12 @@
     <Compile Include="Entities\TheoDoiNgay.cs" />
     <Compile Include="Entities\TheoDoiThang.cs" />
     <Compile Include="Entities\Tre.cs" />
+    <Compile Include="Presentation\frmApDungHocPhi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmApDungHocPhi.Designer.cs">
+      <DependentUpon>frmApDungHocPhi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,12 @@
     </Compile>
     <Compile Include="Presentation\frmThongTinSucKhoe.Designer.cs">
       <DependentUpon>frmThongTinSucKhoe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmThuHocPhi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmThuHocPhi.Designer.cs">
+      <DependentUpon>frmThuHocPhi.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmTiepNhan.cs">
       <SubType>Form</SubType>
@@ -130,6 +142,9 @@
     <Compile Include="Ultilities\ComboboxLoad.cs" />
     <Compile Include="Ultilities\ControlFormat.cs" />
     <Compile Include="Ultilities\Key.cs" />
+    <EmbeddedResource Include="Presentation\frmApDungHocPhi.resx">
+      <DependentUpon>frmApDungHocPhi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmThongTinSucKhoe.resx">
       <DependentUpon>frmThongTinSucKhoe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmThuHocPhi.resx">
+      <DependentUpon>frmThuHocPhi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmTiepNhan.resx">
       <DependentUpon>frmTiepNhan.cs</DependentUpon>

@@ -36,8 +36,8 @@
             this.btnThongTin_TaiKhoan = new DevComponents.DotNetBar.ButtonItem();
             this.btnDangXuat = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
-            this.btnHocPhi = new DevComponents.DotNetBar.ButtonItem();
-            this.btnBaoCao_HocPhi = new DevComponents.DotNetBar.ButtonItem();
+            this.btnApDungHocPhi = new DevComponents.DotNetBar.ButtonItem();
+            this.btnThuHocPhi = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.btnTemp = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar5 = new DevComponents.DotNetBar.RibbonBar();
@@ -127,8 +127,8 @@
             this.ribbonBar1.AutoOverflowEnabled = true;
             this.ribbonBar1.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnHocPhi,
-            this.btnBaoCao_HocPhi});
+            this.btnApDungHocPhi,
+            this.btnThuHocPhi});
             this.ribbonBar1.Location = new System.Drawing.Point(672, 0);
             this.ribbonBar1.Name = "ribbonBar1";
             this.ribbonBar1.Size = new System.Drawing.Size(119, 101);
@@ -136,23 +136,25 @@
             this.ribbonBar1.TabIndex = 3;
             this.ribbonBar1.Text = "Quản lý học phí";
             // 
-            // btnHocPhi
+            // btnApDungHocPhi
             // 
-            this.btnHocPhi.Image = global::QLNT.Properties.Resources.hocphi;
-            this.btnHocPhi.ImagePaddingHorizontal = 8;
-            this.btnHocPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnHocPhi.Name = "btnHocPhi";
-            this.btnHocPhi.SubItemsExpandWidth = 14;
-            this.btnHocPhi.Text = "Học phí";
+            this.btnApDungHocPhi.Image = global::QLNT.Properties.Resources.hocphi;
+            this.btnApDungHocPhi.ImagePaddingHorizontal = 8;
+            this.btnApDungHocPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnApDungHocPhi.Name = "btnApDungHocPhi";
+            this.btnApDungHocPhi.SubItemsExpandWidth = 14;
+            this.btnApDungHocPhi.Text = "Áp dụng học phí";
+            this.btnApDungHocPhi.Click += new System.EventHandler(this.btnApDungHocPhi_Click);
             // 
-            // btnBaoCao_HocPhi
+            // btnThuHocPhi
             // 
-            this.btnBaoCao_HocPhi.Image = global::QLNT.Properties.Resources.baocao;
-            this.btnBaoCao_HocPhi.ImagePaddingHorizontal = 8;
-            this.btnBaoCao_HocPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnBaoCao_HocPhi.Name = "btnBaoCao_HocPhi";
-            this.btnBaoCao_HocPhi.SubItemsExpandWidth = 14;
-            this.btnBaoCao_HocPhi.Text = "Báo cáo";
+            this.btnThuHocPhi.Image = global::QLNT.Properties.Resources.baocao;
+            this.btnThuHocPhi.ImagePaddingHorizontal = 8;
+            this.btnThuHocPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnThuHocPhi.Name = "btnThuHocPhi";
+            this.btnThuHocPhi.SubItemsExpandWidth = 14;
+            this.btnThuHocPhi.Text = "Thu học phí";
+            this.btnThuHocPhi.Click += new System.EventHandler(this.btnThuHocPhi_Click);
             // 
             // ribbonBar7
             // 
@@ -410,7 +412,7 @@
         private DevComponents.DotNetBar.RibbonBar ribbonBar2;
         private DevComponents.DotNetBar.ButtonItem btnDangXuat;
         private DevComponents.DotNetBar.RibbonBar ribbonBar1;
-        private DevComponents.DotNetBar.ButtonItem btnHocPhi;
+        private DevComponents.DotNetBar.ButtonItem btnApDungHocPhi;
         private DevComponents.DotNetBar.ButtonItem btnDiemDanh;
         private DevComponents.DotNetBar.ButtonItem btnPhieuBeNgoan;
         private DevComponents.DotNetBar.ButtonItem btnXepLop;
@@ -422,7 +424,7 @@
         private DevComponents.DotNetBar.Controls.ReflectionLabel reflectionLabel1;
         private DevComponents.DotNetBar.TabItem tabItem1;
         private DevComponents.DotNetBar.ButtonItem btnThongTin_TaiKhoan;
-        private DevComponents.DotNetBar.ButtonItem btnBaoCao_HocPhi;
+        private DevComponents.DotNetBar.ButtonItem btnThuHocPhi;
         private DevComponents.DotNetBar.ButtonItem btnSucKhoe_BaoCao;
         private DevComponents.DotNetBar.ButtonItem btnTraCuu;
         private DevComponents.DotNetBar.ButtonItem btnTimKiem;

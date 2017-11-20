@@ -43,8 +43,8 @@ namespace QLNT.Presentation
                     btnTraCuu.Enabled = false;
                     btnTiepNhan.Enabled = false;
                     btnXepLop.Enabled = false;
-                    btnHocPhi.Enabled = false;
-                    btnBaoCao_HocPhi.Enabled = false;
+                    btnApDungHocPhi.Enabled = false;
+                    btnThuHocPhi.Enabled = false;
                     break;
                 case Quyen.GiaoVu:
                     btnPhieuBeNgoan.Enabled = false;
@@ -193,6 +193,42 @@ namespace QLNT.Presentation
                 _frmXepLop.StartPosition = FormStartPosition.CenterParent;
                 tab.AttachedControl.Controls.Add(_frmXepLop);
                 _frmXepLop.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnApDungHocPhi_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Áp dụng học phí"))
+            {
+                TabItem tab = tabControl.CreateTab("Áp dụng học phí");
+                tab.PredefinedColor = eTabItemColor.Yellow;
+                frmApDungHocPhi _frmApDungHocPhi = new frmApDungHocPhi(tabControl, tab);
+                _frmApDungHocPhi.TopLevel = false;
+                _frmApDungHocPhi.Dock = DockStyle.Fill;
+                _frmApDungHocPhi.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmApDungHocPhi);
+                _frmApDungHocPhi.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnThuHocPhi_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Thu học phí"))
+            {
+                TabItem tab = tabControl.CreateTab("Thu học phí");
+                tab.PredefinedColor = eTabItemColor.Yellow;
+                frmThuHocPhi _frmThuHocPhi = new frmThuHocPhi(tabControl, tab);
+                _frmThuHocPhi.TopLevel = false;
+                _frmThuHocPhi.Dock = DockStyle.Fill;
+                _frmThuHocPhi.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmThuHocPhi);
+                _frmThuHocPhi.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
             }
             else
