@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvDanhSach = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSiSo = new System.Windows.Forms.TextBox();
@@ -39,7 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboLop = new System.Windows.Forms.ComboBox();
             this.cboNamHoc = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grLuaChon = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.rdoXepLop = new System.Windows.Forms.RadioButton();
             this.txtSiSo_LuaChon = new System.Windows.Forms.TextBox();
@@ -50,15 +49,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cboLopHoc_LuaChon = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnPutBackAll = new System.Windows.Forms.Button();
             this.dgvKetQua = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnPutBackAll = new System.Windows.Forms.Button();
             this.btnPutBack = new System.Windows.Forms.Button();
             this.btnPutForwardAll = new System.Windows.Forms.Button();
             this.btnPutForward = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grLuaChon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,19 +69,11 @@
             this.dgvDanhSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dgvDanhSach.BackgroundColor = System.Drawing.Color.White;
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSach.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT});
             this.dgvDanhSach.Location = new System.Drawing.Point(86, 181);
             this.dgvDanhSach.Name = "dgvDanhSach";
             this.dgvDanhSach.ReadOnly = true;
-            this.dgvDanhSach.Size = new System.Drawing.Size(458, 503);
+            this.dgvDanhSach.Size = new System.Drawing.Size(458, 454);
             this.dgvDanhSach.TabIndex = 0;
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -94,6 +86,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cboLop);
             this.groupBox1.Controls.Add(this.cboNamHoc);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(650, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(458, 173);
@@ -183,25 +176,26 @@
             this.cboNamHoc.TabIndex = 7;
             this.cboNamHoc.SelectedIndexChanged += new System.EventHandler(this.cboNamHoc_SelectedIndexChanged);
             // 
-            // groupBox2
+            // grLuaChon
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.rdoXepLop);
-            this.groupBox2.Controls.Add(this.txtSiSo_LuaChon);
-            this.groupBox2.Controls.Add(this.rdoChuyenLop);
-            this.groupBox2.Controls.Add(this.cboLoaiLop_LuaChon);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.cboNamHoc_LuaChon);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.cboLopHoc_LuaChon);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(86, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(458, 173);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Lựa chọn sắp xếp";
+            this.grLuaChon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.grLuaChon.Controls.Add(this.label8);
+            this.grLuaChon.Controls.Add(this.rdoXepLop);
+            this.grLuaChon.Controls.Add(this.txtSiSo_LuaChon);
+            this.grLuaChon.Controls.Add(this.rdoChuyenLop);
+            this.grLuaChon.Controls.Add(this.cboLoaiLop_LuaChon);
+            this.grLuaChon.Controls.Add(this.label7);
+            this.grLuaChon.Controls.Add(this.cboNamHoc_LuaChon);
+            this.grLuaChon.Controls.Add(this.label6);
+            this.grLuaChon.Controls.Add(this.cboLopHoc_LuaChon);
+            this.grLuaChon.Controls.Add(this.label4);
+            this.grLuaChon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grLuaChon.Location = new System.Drawing.Point(86, 2);
+            this.grLuaChon.Name = "grLuaChon";
+            this.grLuaChon.Size = new System.Drawing.Size(458, 173);
+            this.grLuaChon.TabIndex = 2;
+            this.grLuaChon.TabStop = false;
+            this.grLuaChon.Text = "Lựa chọn sắp xếp";
             // 
             // label8
             // 
@@ -216,9 +210,10 @@
             // rdoXepLop
             // 
             this.rdoXepLop.AutoSize = true;
-            this.rdoXepLop.Location = new System.Drawing.Point(97, 19);
+            this.rdoXepLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoXepLop.Location = new System.Drawing.Point(184, 12);
             this.rdoXepLop.Name = "rdoXepLop";
-            this.rdoXepLop.Size = new System.Drawing.Size(61, 17);
+            this.rdoXepLop.Size = new System.Drawing.Size(81, 24);
             this.rdoXepLop.TabIndex = 0;
             this.rdoXepLop.TabStop = true;
             this.rdoXepLop.Text = "Xếp lớp";
@@ -237,9 +232,10 @@
             // rdoChuyenLop
             // 
             this.rdoChuyenLop.AutoSize = true;
-            this.rdoChuyenLop.Location = new System.Drawing.Point(6, 19);
+            this.rdoChuyenLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoChuyenLop.Location = new System.Drawing.Point(271, 12);
             this.rdoChuyenLop.Name = "rdoChuyenLop";
-            this.rdoChuyenLop.Size = new System.Drawing.Size(78, 17);
+            this.rdoChuyenLop.Size = new System.Drawing.Size(106, 24);
             this.rdoChuyenLop.TabIndex = 0;
             this.rdoChuyenLop.TabStop = true;
             this.rdoChuyenLop.Text = "Chuyển lớp";
@@ -309,6 +305,45 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Lớp học";
             // 
+            // dgvKetQua
+            // 
+            this.dgvKetQua.AllowUserToAddRows = false;
+            this.dgvKetQua.AllowUserToDeleteRows = false;
+            this.dgvKetQua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.dgvKetQua.BackgroundColor = System.Drawing.Color.White;
+            this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvKetQua.Location = new System.Drawing.Point(650, 181);
+            this.dgvKetQua.Name = "dgvKetQua";
+            this.dgvKetQua.ReadOnly = true;
+            this.dgvKetQua.Size = new System.Drawing.Size(458, 454);
+            this.dgvKetQua.TabIndex = 0;
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnHuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuy.Image = global::QLNT.Properties.Resources.cancel;
+            this.btnHuy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHuy.Location = new System.Drawing.Point(600, 645);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(94, 33);
+            this.btnHuy.TabIndex = 1;
+            this.btnHuy.Text = "    Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.Image = global::QLNT.Properties.Resources.save;
+            this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLuu.Location = new System.Drawing.Point(500, 645);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(94, 33);
+            this.btnLuu.TabIndex = 1;
+            this.btnLuu.Text = "    Lưu";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            // 
             // btnPutBackAll
             // 
             this.btnPutBackAll.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -318,27 +353,7 @@
             this.btnPutBackAll.Size = new System.Drawing.Size(94, 54);
             this.btnPutBackAll.TabIndex = 1;
             this.btnPutBackAll.UseVisualStyleBackColor = true;
-            // 
-            // dgvKetQua
-            // 
-            this.dgvKetQua.AllowUserToAddRows = false;
-            this.dgvKetQua.AllowUserToDeleteRows = false;
-            this.dgvKetQua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.dgvKetQua.BackgroundColor = System.Drawing.Color.White;
-            this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKetQua.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.dgvKetQua.Location = new System.Drawing.Point(650, 181);
-            this.dgvKetQua.Name = "dgvKetQua";
-            this.dgvKetQua.ReadOnly = true;
-            this.dgvKetQua.Size = new System.Drawing.Size(458, 503);
-            this.dgvKetQua.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "STT";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.btnPutBackAll.Click += new System.EventHandler(this.btnPutBackAll_Click);
             // 
             // btnPutBack
             // 
@@ -378,8 +393,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 686);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grLuaChon);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnHuy);
+            this.Controls.Add(this.btnLuu);
             this.Controls.Add(this.btnPutBackAll);
             this.Controls.Add(this.btnPutBack);
             this.Controls.Add(this.btnPutForwardAll);
@@ -393,8 +410,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grLuaChon.ResumeLayout(false);
+            this.grLuaChon.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKetQua)).EndInit();
             this.ResumeLayout(false);
 
@@ -408,7 +425,7 @@
         private System.Windows.Forms.Button btnPutBack;
         private System.Windows.Forms.Button btnPutBackAll;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grLuaChon;
         private System.Windows.Forms.RadioButton rdoXepLop;
         private System.Windows.Forms.RadioButton rdoChuyenLop;
         private System.Windows.Forms.ComboBox cboLoaiLop;
@@ -427,8 +444,8 @@
         private System.Windows.Forms.ComboBox cboLopHoc_LuaChon;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridView dgvKetQua;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btnLuu;
+        private System.Windows.Forms.Button btnHuy;
     }
 }
