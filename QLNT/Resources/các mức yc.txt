@@ -1,0 +1,49 @@
+requirement concepts
+business level: 
+business requirements
+
+user level: 
+user requirements 
+business Rules 
+quality attributes
+
+product level: 
+constraints,  
+functional requirements, 
+nonfunctional requirements, 
+data requirements 
+requirements 
+specification 
+exxternal interfaces requirements
+
+tìm m?t m?u d?c t? yêu c?u và vi?t theo m?u dó
+
+let container = new RPaper();
+		container.name = "container";
+		container.layoutMode = {VMode: "TB", HMode: "LR"};
+		container.backgroundColor = "#edf1f5";
+		container.align = "center";
+		container.layer.style.overflow = "auto";
+		this.addPaper(container);
+
+		let content = new RSpliter();
+		content.name = "content";
+
+
+		container.addPaper(content);
+
+		content.ratioWidth = 0.5;
+		content.ratioHeight = 0.5;
+		content.layoutMode = {VMode: "TS", HMode: "CS"};
+		content.backgroundColor = "#000";
+		//content.maxWidth = 1000;
+		content.padding = 5;
+
+		let contentLeft = new RPaper();
+		contentLeft.margin = 50;
+		contentLeft.ratio = 0.5;
+		contentLeft.height = 1000;
+		contentLeft.backgroundColor = "#fff";
+		contentLeft.layoutMode = {VMode: "CH", HMode: "CS"};
+
+		content.addPaper(contentLeft);

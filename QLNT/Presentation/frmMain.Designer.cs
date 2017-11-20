@@ -57,6 +57,8 @@
             this.reflectionLabel1 = new DevComponents.DotNetBar.Controls.ReflectionLabel();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.btnTimKiem = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.panel1.SuspendLayout();
             this.ribbonPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
@@ -161,7 +163,9 @@
             this.ribbonBar7.AutoOverflowEnabled = true;
             this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnTemp});
+            this.btnTemp,
+            this.buttonItem1,
+            this.buttonItem3});
             this.ribbonBar7.Location = new System.Drawing.Point(455, 0);
             this.ribbonBar7.Name = "ribbonBar7";
             this.ribbonBar7.Size = new System.Drawing.Size(217, 101);
@@ -176,7 +180,7 @@
             this.btnTemp.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnTemp.Name = "btnTemp";
             this.btnTemp.SubItemsExpandWidth = 14;
-            this.btnTemp.Text = "Đăng xuất";
+            this.btnTemp.Text = "Thực đơn";
             // 
             // ribbonBar5
             // 
@@ -378,6 +382,24 @@
             this.btnTimKiem.SubItemsExpandWidth = 14;
             this.btnTimKiem.Text = "Tìm kiếm";
             // 
+            // buttonItem1
+            // 
+            this.buttonItem1.Image = ((System.Drawing.Image)(resources.GetObject("buttonItem1.Image")));
+            this.buttonItem1.ImagePaddingHorizontal = 8;
+            this.buttonItem1.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.buttonItem1.Name = "buttonItem1";
+            this.buttonItem1.SubItemsExpandWidth = 14;
+            this.buttonItem1.Text = "Món ăn";
+            // 
+            // buttonItem3
+            // 
+            this.buttonItem3.Image = ((System.Drawing.Image)(resources.GetObject("buttonItem3.Image")));
+            this.buttonItem3.ImagePaddingHorizontal = 8;
+            this.buttonItem3.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.buttonItem3.Name = "buttonItem3";
+            this.buttonItem3.SubItemsExpandWidth = 14;
+            this.buttonItem3.Text = "Nguyên liệu";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,5 +450,7 @@
         private DevComponents.DotNetBar.ButtonItem btnSucKhoe_BaoCao;
         private DevComponents.DotNetBar.ButtonItem btnTraCuu;
         private DevComponents.DotNetBar.ButtonItem btnTimKiem;
+        private DevComponents.DotNetBar.ButtonItem buttonItem1;
+        private DevComponents.DotNetBar.ButtonItem buttonItem3;
     }
 }

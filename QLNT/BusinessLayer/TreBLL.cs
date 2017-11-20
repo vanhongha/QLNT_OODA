@@ -63,6 +63,12 @@ namespace QLNT.BusinessLayer
             TreDAL.XoaTre(maTre);
         }
 
+        public static void XoaTre(List<string> listMaTre)
+        {
+            foreach (string maTre in listMaTre)
+                TreDAL.XoaTre(maTre);
+        }
+
         public static DataTable GetListTreTheoMaLop(string maLop)
         {
             return TreDAL.GetListTreTheoMaLop(maLop);
