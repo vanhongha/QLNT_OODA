@@ -314,7 +314,7 @@ namespace QLNT.Presentation
         {
             RemoveAllListMaTre();
             dgvKetQua.SelectAll();
-            SaveListMaTre(dgvDanhSach);
+            SaveListMaTre(dgvKetQua);
             PuttingBackHandle();
         }
 
