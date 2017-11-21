@@ -85,6 +85,21 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
         }
 
+        public static DataTable GetInfoDanhMuc(string maDanhMuc)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetInfoDanhMuc");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaDanhMuc", maDanhMuc);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
         public static List<LoaiChiPhi> GetListLoaiChiPhi()
         {
             DataAccessHelper db = new DataAccessHelper();
