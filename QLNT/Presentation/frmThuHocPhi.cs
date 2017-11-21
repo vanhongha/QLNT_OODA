@@ -22,5 +22,10 @@ namespace QLNT.Presentation
             tabControl = _tabControl;
             tab = _tab;
         }
+
+        private void frmThuHocPhi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

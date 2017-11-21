@@ -205,7 +205,7 @@ namespace QLNT.Presentation
             {
                 TabItem tab = tabControl.CreateTab("Áp dụng học phí");
                 tab.PredefinedColor = eTabItemColor.Yellow;
-                frmApDungHocPhi _frmApDungHocPhi = new frmApDungHocPhi(tabControl, tab);
+                frmDanhMucChiPhi _frmApDungHocPhi = new frmDanhMucChiPhi(tabControl, tab);
                 _frmApDungHocPhi.TopLevel = false;
                 _frmApDungHocPhi.Dock = DockStyle.Fill;
                 _frmApDungHocPhi.StartPosition = FormStartPosition.CenterParent;

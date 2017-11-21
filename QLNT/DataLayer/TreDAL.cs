@@ -12,7 +12,7 @@ namespace QLNT.DataLayer
             DataAccessHelper db = new DataAccessHelper();
             SqlCommand cmd = null;
             if (lop == null && string.IsNullOrEmpty(keyWord))
-                cmd = db.Command("GETTRE");
+                cmd = db.Command("GetTre");
             else if (lop == null && !string.IsNullOrEmpty(keyWord))
             {
                 cmd = db.Command("GETTRETHEOKEY");

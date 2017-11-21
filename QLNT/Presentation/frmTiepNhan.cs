@@ -136,6 +136,7 @@ namespace QLNT.Presentation
                     LayThongTinTre(maTre);
                     btnXoa.Enabled = true;
                     btnSua.Enabled = true;
+                    btnThem.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -202,6 +203,7 @@ namespace QLNT.Presentation
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            btnThem.Enabled = true;
             Init();
             CleanInput();
         }
@@ -245,5 +247,6 @@ namespace QLNT.Presentation
                 }
             }
         }
+
     }
 }
