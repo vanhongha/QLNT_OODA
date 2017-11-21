@@ -50,18 +50,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
+    <Compile Include="BusinessLayer\DanhMucChiPhiBLL.cs" />
     <Compile Include="BusinessLayer\LopBLL.cs" />
     <Compile Include="BusinessLayer\NamHocBLL.cs" />
     <Compile Include="BusinessLayer\PhieuTiepNhanBLL.cs" />
     <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
     <Compile Include="BusinessLayer\TreBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
+    <Compile Include="DataLayer\DanhMucChiPhiDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
     <Compile Include="DataLayer\LopDAL.cs" />
     <Compile Include="DataLayer\NamHocDAL.cs" />
     <Compile Include="DataLayer\PhieuTiepNhanDAL.cs" />
     <Compile Include="DataLayer\SucKhoeDAL.cs" />
     <Compile Include="DataLayer\TreDAL.cs" />
+    <Compile Include="Entities\DanhMucChiPhi.cs" />
+    <Compile Include="Entities\LoaiChiPhi.cs" />
     <Compile Include="Entities\LoaiLop.cs" />
     <Compile Include="Entities\Lop.cs" />
     <Compile Include="Entities\NamHoc.cs" />
@@ -70,17 +74,17 @@
     <Compile Include="Entities\TheoDoiNgay.cs" />
     <Compile Include="Entities\TheoDoiThang.cs" />
     <Compile Include="Entities\Tre.cs" />
-    <Compile Include="Presentation\frmApDungHocPhi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\frmApDungHocPhi.Designer.cs">
-      <DependentUpon>frmApDungHocPhi.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmDanhMucChiPhi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmDanhMucChiPhi.Designer.cs">
+      <DependentUpon>frmDanhMucChiPhi.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\frmDiemDanh.cs">
       <SubType>Form</SubType>
@@ -161,11 +165,11 @@
     <Compile Include="Ultilities\ControlFormat.cs" />
     <Compile Include="Ultilities\DataHandle.cs" />
     <Compile Include="Ultilities\Key.cs" />
-    <EmbeddedResource Include="Presentation\frmApDungHocPhi.resx">
-      <DependentUpon>frmApDungHocPhi.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmDanhMucChiPhi.resx">
+      <DependentUpon>frmDanhMucChiPhi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmDiemDanh.resx">
       <DependentUpon>frmDiemDanh.cs</DependentUpon>
