@@ -1,5 +1,9 @@
 ﻿using DevComponents.DotNetBar;
 using System.Windows.Forms;
+using System;
+using QLNT.Entities;
+using QLNT.BusinessLayer;
+using System.Data;
 
 namespace QLNT.Presentation
 {
@@ -18,6 +22,103 @@ namespace QLNT.Presentation
         public frmDiemDanh()
         {
             InitializeComponent();
+        }
+
+        private void frmDiemDanh_Load(object sender, System.EventArgs e)
+        {
+            Init();
+            loadListNamHoc();
+            loadDataGridView();
+        }
+        
+        private void loadDataGridView()
+        {
+            dgvDiemDanh.Columns.Clear();
+            if (!string.IsNullOrEmpty(cboLop.Text))
+            {
+                string datetime = dtNgayDiemDanh.Value.ToString("yyyy-MM-dd");
+                dgvDiemDanh.DataSource = DiemDanhBLL.LaySoDiemDanhLop(
+                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                    datetime.Split(' ')[0]);
+                DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+                checkColumn.Name = "HienDienCheckbox";
+                checkColumn.HeaderText = "Hiện Diện";
+                checkColumn.Width = 50;
+                checkColumn.ReadOnly = false;
+                checkColumn.FillWeight = 10; 
+                dgvDiemDanh.Columns.Add(checkColumn);
+                
+                dgvDiemDanh.Columns["HienDien"].Visible = false;
+                for (int i = 0; i < dgvDiemDanh.RowCount; i++)
+                {
+                    DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"];
+                    if (dgvDiemDanh.Rows[i].Cells["HienDien"].Value.ToString()=="1")
+                    {
+                        chkBoxCell.Value = "true";
+                    }
+                    else
+                    {
+                        chkBoxCell.Value = "false";
+                    }
+                }
+                
+            }
+
+
+
+        }
+
+        private void loadListNamHoc()
+        {
+            cboNamHoc.DisplayMember = "Text";
+            cboNamHoc.ValueMember = "Value";
+            foreach (NamHoc namHoc in LopBLL.GetListNienKhoa())
+            {
+                cboNamHoc.Items.Add(new { Text = namHoc.NienKhoa.Trim(), Value = namHoc.MaNamHoc.Trim() });
+            }
+        }
+
+        private void Init()
+        {
+            int year = DateTime.Now.Year;
+            DateTime date = new DateTime(year, 1,1);
+            dtNgayDiemDanh.MaxDate = date.AddYears(1);
+            dtNgayDiemDanh.MinDate = date;
+
+            
+            
+        }
+        private void LoadListLop()
+        {
+            cboLop.Items.Clear();
+            cboLop.DisplayMember = "Text";
+            cboLop.ValueMember = "Value";
+            if (cboNamHoc.SelectedItem != null)
+                foreach (Lop lop in LopBLL.GetListLop(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())))
+                    cboLop.Items.Add(new { Text = lop.TenLop.Trim(), Value = lop.MaLop.Trim() });
+
+            cboLop.Text = "";
+        }
+
+       
+
+        private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadListLop();
+            string namhoc = cboNamHoc.Text;
+            int year = Int32.Parse(namhoc.Split('-')[0]);
+            dtNgayDiemDanh.MinDate = new DateTime(year, 9, 5);
+            dtNgayDiemDanh.MaxDate = new DateTime(year + 1, 9, 5);
+        }
+
+        private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dtNgayDiemDanh_ValueChanged(object sender, EventArgs e)
+        {
+            loadDataGridView();
         }
     }
 }

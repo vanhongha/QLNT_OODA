@@ -28,177 +28,201 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.clMaHS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clTenHS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clHienDien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dtNgayDiemDanh = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.grpChonLop = new System.Windows.Forms.GroupBox();
+            this.cboNamHoc = new System.Windows.Forms.ComboBox();
+            this.cboLop = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvDiemDanh = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grpChonLop.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // panel1
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(507, 17);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(215, 23);
-            this.dateTimePicker1.TabIndex = 3;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.grpChonLop);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1157, 158);
+            this.panel1.TabIndex = 2;
             // 
-            // comboBox1
+            // groupBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(143, 16);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(178, 25);
-            this.comboBox1.TabIndex = 2;
+            this.groupBox1.Controls.Add(this.dtNgayDiemDanh);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(417, 13);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(357, 127);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Chọn ngày điểm danh";
+            // 
+            // dtNgayDiemDanh
+            // 
+            this.dtNgayDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtNgayDiemDanh.Location = new System.Drawing.Point(78, 47);
+            this.dtNgayDiemDanh.Name = "dtNgayDiemDanh";
+            this.dtNgayDiemDanh.Size = new System.Drawing.Size(272, 30);
+            this.dtNgayDiemDanh.TabIndex = 4;
+            this.dtNgayDiemDanh.ValueChanged += new System.EventHandler(this.dtNgayDiemDanh_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(394, 19);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 50);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Ngày điểm danh";
+            this.label2.Size = new System.Drawing.Size(63, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Ngày ";
+            // 
+            // grpChonLop
+            // 
+            this.grpChonLop.Controls.Add(this.cboNamHoc);
+            this.grpChonLop.Controls.Add(this.cboLop);
+            this.grpChonLop.Controls.Add(this.label3);
+            this.grpChonLop.Controls.Add(this.label1);
+            this.grpChonLop.Location = new System.Drawing.Point(13, 13);
+            this.grpChonLop.Margin = new System.Windows.Forms.Padding(4);
+            this.grpChonLop.Name = "grpChonLop";
+            this.grpChonLop.Padding = new System.Windows.Forms.Padding(4);
+            this.grpChonLop.Size = new System.Drawing.Size(379, 127);
+            this.grpChonLop.TabIndex = 14;
+            this.grpChonLop.TabStop = false;
+            this.grpChonLop.Text = "Chọn lớp";
+            // 
+            // cboNamHoc
+            // 
+            this.cboNamHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNamHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboNamHoc.FormattingEnabled = true;
+            this.cboNamHoc.Location = new System.Drawing.Point(113, 30);
+            this.cboNamHoc.Margin = new System.Windows.Forms.Padding(4);
+            this.cboNamHoc.Name = "cboNamHoc";
+            this.cboNamHoc.Size = new System.Drawing.Size(256, 33);
+            this.cboNamHoc.TabIndex = 11;
+            this.cboNamHoc.SelectedIndexChanged += new System.EventHandler(this.cboNamHoc_SelectedIndexChanged);
+            // 
+            // cboLop
+            // 
+            this.cboLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLop.FormattingEnabled = true;
+            this.cboLop.Location = new System.Drawing.Point(113, 71);
+            this.cboLop.Margin = new System.Windows.Forms.Padding(4);
+            this.cboLop.Name = "cboLop";
+            this.cboLop.Size = new System.Drawing.Size(256, 33);
+            this.cboLop.TabIndex = 10;
+            this.cboLop.SelectedIndexChanged += new System.EventHandler(this.cboLop_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(17, 81);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 25);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Lớp học";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 39);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lớp điểm danh";
+            this.label1.Size = new System.Drawing.Size(90, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Năm học";
             // 
-            // groupBox1
+            // panel2
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(868, 53);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
+            this.panel2.Controls.Add(this.dgvDiemDanh);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1157, 671);
+            this.panel2.TabIndex = 3;
             // 
-            // dataGridView1
+            // dgvDiemDanh
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clMaHS,
-            this.clTenHS,
-            this.clHienDien,
-            this.clGhiChu});
-            this.dataGridView1.Location = new System.Drawing.Point(11, 57);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(775, 375);
-            this.dataGridView1.TabIndex = 13;
-            // 
-            // clMaHS
-            // 
-            this.clMaHS.HeaderText = "Mã học sinh";
-            this.clMaHS.MinimumWidth = 50;
-            this.clMaHS.Name = "clMaHS";
-            this.clMaHS.ReadOnly = true;
-            this.clMaHS.Width = 200;
-            // 
-            // clTenHS
-            // 
-            this.clTenHS.HeaderText = "Tên học sinh";
-            this.clTenHS.MinimumWidth = 50;
-            this.clTenHS.Name = "clTenHS";
-            this.clTenHS.ReadOnly = true;
-            this.clTenHS.Width = 300;
-            // 
-            // clHienDien
-            // 
-            this.clHienDien.HeaderText = "Hiện diện/ Vắng";
-            this.clHienDien.Name = "clHienDien";
-            // 
-            // clGhiChu
-            // 
-            this.clGhiChu.HeaderText = "Ghi chú";
-            this.clGhiChu.MinimumWidth = 300;
-            this.clGhiChu.Name = "clGhiChu";
-            this.clGhiChu.Width = 400;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(126, 449);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(56, 19);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.dgvDiemDanh.AllowUserToAddRows = false;
+            this.dgvDiemDanh.AllowUserToDeleteRows = false;
+            this.dgvDiemDanh.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDiemDanh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDiemDanh.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvDiemDanh.Location = new System.Drawing.Point(0, 166);
+            this.dgvDiemDanh.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvDiemDanh.Name = "dgvDiemDanh";
+            this.dgvDiemDanh.ReadOnly = true;
+            this.dgvDiemDanh.Size = new System.Drawing.Size(1157, 505);
+            this.dgvDiemDanh.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(31, 449);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.button1.Location = new System.Drawing.Point(807, 31);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 19);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 109);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Lưu bảng điểm danh";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // frmDiemDanh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 545);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1157, 671);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDiemDanh";
             this.Text = "frmDiemDanh";
+            this.Load += new System.EventHandler(this.frmDiemDanh_Load);
+            this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.grpChonLop.ResumeLayout(false);
+            this.grpChonLop.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clMaHS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clTenHS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clHienDien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clGhiChu;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox grpChonLop;
+        private System.Windows.Forms.ComboBox cboNamHoc;
+        private System.Windows.Forms.ComboBox cboLop;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dgvDiemDanh;
+        private System.Windows.Forms.DateTimePicker dtNgayDiemDanh;
         private System.Windows.Forms.Button button1;
     }
 }

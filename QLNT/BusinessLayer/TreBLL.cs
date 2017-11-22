@@ -105,10 +105,5 @@ namespace QLNT.BusinessLayer
             }
             return true;
         }
-
-        public static int GetSoNgayDiHocTrongThang(string maTre, int thang, int nam)
-        {
-            return 20;
-        }
     }
 }
