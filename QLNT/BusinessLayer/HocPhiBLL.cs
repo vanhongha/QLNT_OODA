@@ -107,11 +107,6 @@ namespace QLNT.Entities
             return 0;
         }
 
-        public static void CapNhatChoTre(string maTre, decimal hocPhi)
-        {
-            HocPhiDAL.CapNhatHocPhiChoTre(maTre, hocPhi);
-        }
-
         public static HocPhi GetInfoHocPhi(string maHocPhi)
         {
             foreach(DataRow row in HocPhiDAL.GetInfoHocPhi(maHocPhi).Rows)
@@ -120,6 +115,45 @@ namespace QLNT.Entities
             }
 
             return new HocPhi();
+        }
+
+        public static DataTable GetListBienLai(string maTre)
+        {
+            return HocPhiDAL.GetListBienLai(maTre);
+        }
+
+        public static void ThemBienLai(BienLaiThuHocPhi bienLai)
+        {
+            HocPhiDAL.ThemBienLai(bienLai);
+            HocPhiDAL.CapNhatHocPhiChoTre(bienLai.MaTre, bienLai.SoTienConNo);
+        }
+
+        public static void CapNhatBienLai(BienLaiThuHocPhi bienLai)
+        {
+            HocPhiDAL.CapNhatBienLai(bienLai);
+        }
+
+        public static BienLaiThuHocPhi GetInfoBienLai(string maBienLai)
+        {
+            foreach(DataRow row in HocPhiDAL.GetInfoBienLai(maBienLai).Rows)
+            {
+                return new BienLaiThuHocPhi(row);
+            }
+
+            return new BienLaiThuHocPhi();
+        }
+
+        public static string GenerateMaBienLai()
+        {
+            string id = HocPhiDAL.GetLastBienLaiID().Trim();
+            if (id == "")
+            {
+                return "MABL000001";
+            }
+            int nextID = int.Parse(id.Remove(0, "MABL".Length)) + 1;
+            id = "00000" + nextID.ToString();
+            id = id.Substring(id.Length - 6, 6);
+            return "MABL" + id;
         }
     }
 }

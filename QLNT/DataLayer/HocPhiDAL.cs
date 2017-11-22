@@ -158,5 +158,85 @@ namespace QLNT.DataLayer
 
             return db.dt;
         }
+
+        public static DataTable GetListBienLai(string maTre)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetListBienLai");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static void ThemBienLai(BienLaiThuHocPhi bienLai)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("ThemBienLai");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaBienLai", bienLai.MaBienLai);
+            cmd.Parameters.AddWithValue("@MaTre", bienLai.MaTre);
+            cmd.Parameters.AddWithValue("@NguoiDong", bienLai.NguoiDong);
+            cmd.Parameters.AddWithValue("@NguoiThu", bienLai.NguoiThu);
+            cmd.Parameters.AddWithValue("@NgayThu", bienLai.NgayThu);
+            cmd.Parameters.AddWithValue("@SoTienThu", bienLai.SoTienThu);
+            cmd.Parameters.AddWithValue("@SoTienConNo", bienLai.SoTienConNo);
+            cmd.Parameters.AddWithValue("@GhiChu", bienLai.GhiChu);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void CapNhatBienLai(BienLaiThuHocPhi bienLai)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatBienLai");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaBienLai", bienLai.MaBienLai);
+            cmd.Parameters.AddWithValue("@NguoiDong", bienLai.NguoiDong);
+            cmd.Parameters.AddWithValue("@NguoiThu", bienLai.NguoiThu);
+            cmd.Parameters.AddWithValue("@NgayThu", bienLai.NgayThu);
+            cmd.Parameters.AddWithValue("@SoTienThu", bienLai.SoTienThu);
+            cmd.Parameters.AddWithValue("@SoTienConNo", bienLai.SoTienConNo);
+            cmd.Parameters.AddWithValue("@GhiChu", bienLai.GhiChu);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static DataTable GetInfoBienLai(string maBienLai)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetInfoBienLai");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaBienLai", maBienLai);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static string GetLastBienLaiID()
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            DataTable dt = db.GetDataTable("Select top 1 MaBienLai from BIENLAITHUHOCPHI order by MaBienLai desc");
+            foreach (DataRow row in dt.Rows)
+            {
+                return row.ItemArray[0].ToString();
+            }
+            return "";
+        }
     }
 }

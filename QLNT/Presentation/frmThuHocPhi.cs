@@ -19,6 +19,9 @@ namespace QLNT.Presentation
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
 
+        private string maTre = "";
+        private decimal hocPhiConNo = 0;
+
         public frmThuHocPhi(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
@@ -81,40 +84,125 @@ namespace QLNT.Presentation
         {
             if (cboLop.SelectedItem == null || cboNamHoc.SelectedItem == null)
             {
-               
+                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop("");
             }
             else
             {
-               
+                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
             }
 
-            //dgvTre.Columns[0].HeaderText = "STT";
-            //dgvTre.Columns[4].HeaderText = "Họ tên trẻ";
-            //dgvTre.Columns[5].HeaderText = "Giới tính";
-            //dgvTre.Columns[6].HeaderText = "Ngày sinh";
-            //dgvTre.Columns[7].HeaderText = "Cân nặng (kg)";
-            //dgvTre.Columns[8].HeaderText = "Chiều cao (cm)";
-            //dgvTre.Columns[9].HeaderText = "BMI";
-            //dgvTre.Columns[10].HeaderText = "Tình trạng";
-            //dgvTre.Columns[11].HeaderText = "Ghi chú";
+            dgvTre.Columns[0].HeaderText = "STT";
+            dgvTre.Columns[2].HeaderText = "Họ tên trẻ";
+            dgvTre.Columns[3].HeaderText = "Giới tính";
+            dgvTre.Columns[4].HeaderText = "Ngày sinh";
+            dgvTre.Columns[9].HeaderText = "Học phí còn nợ";
 
-            //dgvTre.Columns[0].Width = 50;
-            //dgvTre.Columns[4].Width = 260;
-            //dgvTre.Columns[5].Width = 100;
-            //dgvTre.Columns[6].Width = 120;
-            //dgvTre.Columns[7].Width = 150;
-            //dgvTre.Columns[8].Width = 150;
-            //dgvTre.Columns[9].Width = 120;
-            //dgvTre.Columns[10].Width = 200;
-            //dgvTre.Columns[10].Width = 300;
+            dgvTre.Columns[0].Width = 50;
+            dgvTre.Columns[2].Width = 260;
+            dgvTre.Columns[3].Width = 100;
+            dgvTre.Columns[4].Width = 120;
+            dgvTre.Columns[9].Width = 200;
 
-            //for (int i = 0; i < dgvTre.Rows.Count; i++)
-            //{
-            //    dgvTre.Rows[i].Cells[0].Value = i + 1;
-            //}
+            for (int i = 0; i < dgvTre.Rows.Count; i++)
+            {
+                dgvTre.Rows[i].Cells[0].Value = i + 1;
+            }
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "CanNang", "ChieuCao", "BMI", "TinhTrang", "GhiChu" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "HocPhiConNo" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
+        }
+
+        private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!cboLoaiLop.Text.Equals(""))
+            {
+                LoadListLop();
+                LoadDataGirdView();
+                ClearAllField();
+            }
+        }
+
+        private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!cboNamHoc.Text.Equals(""))
+            {
+                LoadListLop();
+                LoadDataGirdView();
+                ClearAllField();
+            }
+        }
+
+        private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDataGirdView();
+            ClearAllField();
+        }
+
+        private void ClearAllField()
+        {
+            txtTenTre.Clear();
+            txtNguoiDongTien.Clear();
+            txtNguoiThuTien.Clear();
+            txtSoTienDong.Clear();
+            txtSoTienConNo.Clear();
+            txtGhiChu.Clear();
+            dtNgayThu.Text = "";
+        }
+
+        private void dgvTre_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex != -1 && e.RowIndex != dgvTre.RowCount)
+            {
+                ClearAllField();
+                txtTenTre.Text = dgvTre.Rows[e.RowIndex].Cells["HoTenTre"].Value.ToString();
+                txtSoTienConNo.Text = dgvTre.Rows[e.RowIndex].Cells["HocPhiConNo"].Value.ToString();
+                maTre = dgvTre.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
+                hocPhiConNo = decimal.Parse(dgvTre.Rows[e.RowIndex].Cells["HocPhiConNo"].Value.ToString());
+                LoadListThongTinDongHocPhi();
+            }
+        }
+
+        private void LoadListThongTinDongHocPhi()
+        {
+            dgvBienLai.DataSource = HocPhiBLL.GetListBienLai(maTre);
+        }
+
+        private void txtSoTienDong_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSoTienDong.Text == "") return;
+            try
+            {
+                decimal soTienDong = decimal.Parse(txtSoTienDong.Text);
+                txtSoTienConNo.Text = (hocPhiConNo - soTienDong).ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi.");
+                txtSoTienDong.Clear();
+            }
+        }
+
+        private void btnLapBienLai_Click(object sender, EventArgs e)
+        {
+            if (txtTenTre.Text == "" || txtSoTienDong.Text == "" || txtNguoiDongTien.Text == "" || txtNguoiThuTien.Text == "") return;
+            BienLaiThuHocPhi bienLai = new BienLaiThuHocPhi();
+            bienLai.MaBienLai = HocPhiBLL.GenerateMaBienLai();
+            bienLai.MaTre = maTre;
+            bienLai.NguoiDong = txtNguoiDongTien.Text;
+            bienLai.NguoiThu = txtNguoiThuTien.Text;
+            bienLai.NgayThu = dtNgayThu.Value;
+            bienLai.SoTienThu = decimal.Parse(txtSoTienDong.Text);
+            bienLai.SoTienConNo = decimal.Parse(txtSoTienConNo.Text);
+            bienLai.GhiChu = txtGhiChu.Text;
+
+            HocPhiBLL.ThemBienLai(bienLai);
+            LoadDataGirdView();
+            LoadListThongTinDongHocPhi();
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
