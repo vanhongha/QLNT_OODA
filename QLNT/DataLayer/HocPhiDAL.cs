@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLNT.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,6 +41,101 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
 
             return db.dt;
+        }
+
+        public static void CapNhatHocPhi(HocPhi hocPhi)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatHocPhi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaHocPhi", hocPhi.MaHocPhi);
+            cmd.Parameters.AddWithValue("@TongTien", hocPhi.TongTien);
+            cmd.Parameters.AddWithValue("@TienDaDong", hocPhi.TienDaDong);
+            cmd.Parameters.AddWithValue("@TienConNo", hocPhi.TienConNo);
+            cmd.Parameters.AddWithValue("@TienNoThangTruoc", hocPhi.TienNoThangTruoc);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+        }
+
+        public static void ThemHocPhi(HocPhi hocPhi)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("ThemHocPhi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaHocPhi", hocPhi.MaHocPhi);
+            cmd.Parameters.AddWithValue("@MaTre", hocPhi.MaTre);
+            cmd.Parameters.AddWithValue("@Thang", hocPhi.Thang);
+            cmd.Parameters.AddWithValue("@Nam", hocPhi.Nam);
+            cmd.Parameters.AddWithValue("@TongTien", hocPhi.TongTien);
+            cmd.Parameters.AddWithValue("@TienDaDong", hocPhi.TienDaDong);
+            cmd.Parameters.AddWithValue("@TienConNo", hocPhi.TienConNo);
+            cmd.Parameters.AddWithValue("@TienNoThangTruoc", hocPhi.TienNoThangTruoc);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static string GetLastID()
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            DataTable dt = db.GetDataTable("Select top 1 MaHocPhi from HOCPHI order by MaHocPhi desc");
+            foreach (DataRow row in dt.Rows)
+            {
+                return row.ItemArray[0].ToString();
+            }
+            return "";
+        }
+
+        public static DataTable GetTienNoThang(string maTre, int thang, int nam)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetTienNoThang");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static void XoaChiTietHocPhi(ChiTietHocPhi chiTiet)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("XoaChiTietHocPhi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaHocPhi", chiTiet.MaHocPhi);
+            cmd.Parameters.AddWithValue("@MaDanhMuc", chiTiet.MaDanhMuc);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void ThemChiTietHocPhi(ChiTietHocPhi chiTiet)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("ThemChiTietHocPhi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaHocPhi", chiTiet.MaHocPhi);
+            cmd.Parameters.AddWithValue("@MaDanhMuc", chiTiet.MaDanhMuc);
+            cmd.Parameters.AddWithValue("@SoTien", chiTiet.SoTien);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
         }
     }
 }

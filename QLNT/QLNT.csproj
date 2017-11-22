@@ -66,6 +66,7 @@
     <Compile Include="DataLayer\PhieuTiepNhanDAL.cs" />
     <Compile Include="DataLayer\SucKhoeDAL.cs" />
     <Compile Include="DataLayer\TreDAL.cs" />
+    <Compile Include="Entities\ChiTietHocPhi.cs" />
     <Compile Include="Entities\DanhMucChiPhi.cs" />
     <Compile Include="Entities\HocPhi.cs" />
     <Compile Include="Entities\LoaiChiPhi.cs" />

@@ -4,6 +4,7 @@ using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
@@ -12,6 +13,9 @@ namespace QLNT.Presentation
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
+
+        private string maHocPhi = "";
+        private List<ChiTietHocPhi> listChiTietHocPhi = new List<ChiTietHocPhi>();
 
         public frmApDungHocPhi(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
@@ -25,8 +29,9 @@ namespace QLNT.Presentation
             initDataGridView();
             loadListNamHoc();
             loadListLoaiLop();
-            LoadDataGirdView();
+            LoadDataGridViewTre();
             LoadListChiPhi();
+            LoadListChiTietHocPhi();
         }
 
         private void initDataGridView()
@@ -79,46 +84,44 @@ namespace QLNT.Presentation
             cboLop.Text = "";
         }
 
-        private void LoadDataGirdView()
+        private void LoadDataGridViewTre()
         {
             if (cboLop.SelectedItem == null || cboThang.SelectedItem == null || cboNamHoc.SelectedItem == null)
             {
-                dgvTre.DataSource = SucKhoeBLL.GetListSucKhoe("", 0, "");
+                dgvTre.DataSource = HocPhiBLL.GetListHocPhiTheoThang("", 0, 0);
             }
             else
             {
-                dgvTre.DataSource = SucKhoeBLL.GetListSucKhoe(
+                dgvTre.DataSource = HocPhiBLL.GetListHocPhiTheoThang(
                     KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
-                    int.Parse(cboThang.SelectedItem.ToString()),
-                    KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                    int.Parse(cboThang.Text),
+                    LopBLL.GetNamHoc(int.Parse(cboThang.Text), KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())));
             }
 
-            //dgvTre.Columns[0].HeaderText = "STT";
-            //dgvTre.Columns[4].HeaderText = "Họ tên trẻ";
-            //dgvTre.Columns[5].HeaderText = "Giới tính";
-            //dgvTre.Columns[6].HeaderText = "Ngày sinh";
-            //dgvTre.Columns[7].HeaderText = "Cân nặng (kg)";
-            //dgvTre.Columns[8].HeaderText = "Chiều cao (cm)";
-            //dgvTre.Columns[9].HeaderText = "BMI";
-            //dgvTre.Columns[10].HeaderText = "Tình trạng";
-            //dgvTre.Columns[11].HeaderText = "Ghi chú";
+            dgvTre.Columns[0].HeaderText = "STT";
+            dgvTre.Columns[3].HeaderText = "Họ tên trẻ";
+            dgvTre.Columns[4].HeaderText = "Giới tính";
+            dgvTre.Columns[5].HeaderText = "Ngày sinh";
+            dgvTre.Columns[8].HeaderText = "Tổng tiền";
+            dgvTre.Columns[9].HeaderText = "Đã đóng";
+            dgvTre.Columns[10].HeaderText = "Còn nợ";
+            dgvTre.Columns[11].HeaderText = "Tiền nợ tháng trước";
 
-            //dgvTre.Columns[0].Width = 50;
-            //dgvTre.Columns[4].Width = 260;
-            //dgvTre.Columns[5].Width = 100;
-            //dgvTre.Columns[6].Width = 120;
-            //dgvTre.Columns[7].Width = 150;
-            //dgvTre.Columns[8].Width = 150;
-            //dgvTre.Columns[9].Width = 120;
-            //dgvTre.Columns[10].Width = 200;
-            //dgvTre.Columns[10].Width = 300;
+            dgvTre.Columns[0].Width = 50;
+            dgvTre.Columns[3].Width = 260;
+            dgvTre.Columns[4].Width = 100;
+            dgvTre.Columns[5].Width = 120;
+            dgvTre.Columns[8].Width = 150;
+            dgvTre.Columns[9].Width = 150;
+            dgvTre.Columns[10].Width = 150;
+            dgvTre.Columns[11].Width = 200;
 
             for (int i = 0; i < dgvTre.Rows.Count; i++)
             {
                 dgvTre.Rows[i].Cells[0].Value = i + 1;
             }
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "CanNang", "ChieuCao", "BMI", "TinhTrang", "GhiChu" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTien", "TienDaDong", "", "TienConNo", "TienNoThangTruoc" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
         }
 
@@ -139,7 +142,7 @@ namespace QLNT.Presentation
             if (!cboLoaiLop.Text.Equals(""))
             {
                 loadListLop();
-                LoadDataGirdView();
+                LoadDataGridViewTre();
             }
             LoadListThang();
         }
@@ -149,18 +152,18 @@ namespace QLNT.Presentation
             if (!cboNamHoc.Text.Equals(""))
             {
                 loadListLop();
-                LoadDataGirdView();
+                LoadDataGridViewTre();
             }
         }
 
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadDataGirdView();
+            LoadDataGridViewTre();
         }
 
         private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadDataGirdView();
+            LoadDataGridViewTre();
         }
 
         private void LoadListThang()
@@ -198,8 +201,123 @@ namespace QLNT.Presentation
             {
                 txtSoTien.Enabled = true;
             }
+            labelTheoNgay.Visible = danhMuc.TruTienKhiNghi == 1;
 
             txtSoTien.Text = danhMuc.SoTien.ToString();
+        }
+
+        private void dgvTre_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex != -1 || e.RowIndex != dgvTre.RowCount)
+            {
+                maHocPhi = dgvTre.Rows[e.RowIndex].Cells["MaHocPhi"].Value.ToString();
+
+                listChiTietHocPhi = HocPhiBLL.GetChiTietHocPhi(maHocPhi);
+                LoadListChiTietHocPhi();
+            }
+        }
+
+        private void LoadListChiTietHocPhi()
+        {
+            dgvChiTietHocPhi.DataSource = DataHandle.ListToDataTable(listChiTietHocPhi);
+
+            dgvChiTietHocPhi.Columns[0].HeaderText = "STT";
+            dgvChiTietHocPhi.Columns[3].HeaderText = "Tên chi phí";
+            dgvChiTietHocPhi.Columns[4].HeaderText = "Số tiền";
+
+            dgvChiTietHocPhi.Columns[0].Width = 50;
+            dgvChiTietHocPhi.Columns[3].Width = 250;
+            dgvChiTietHocPhi.Columns[4].Width = 100;
+
+            string[] listProp = { "STT", "TenChiPhi", "SoTien" };
+            ControlFormat.DataGridViewFormat(dgvChiTietHocPhi, listProp);
+        }
+
+        private void btnThemChiPhi_Click(object sender, EventArgs e)
+        {
+            if(txtSoTien.Text != "" && cboChiPhi.Text != "")
+            {
+                if (CheckExistDanhMucChiPhi(KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString()))) return;
+
+                ChiTietHocPhi chiTiet = new ChiTietHocPhi();
+                chiTiet.MaHocPhi = maHocPhi;
+                chiTiet.MaDanhMuc = KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString());
+                chiTiet.TenChiPhi = cboChiPhi.Text;
+                chiTiet.SoTien = decimal.Parse(txtSoTien.Text);
+
+                listChiTietHocPhi.Add(chiTiet);
+                LoadListChiTietHocPhi();
+            }
+        }
+
+        private bool CheckExistDanhMucChiPhi(string maDanhMuc)
+        {
+            foreach(ChiTietHocPhi chiTiet in listChiTietHocPhi)
+            {
+                if (maDanhMuc == chiTiet.MaDanhMuc)
+                    return true;
+            }
+            return false;
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dgvChiTietHocPhi.SelectedRows.Count; i++)
+            {
+                string maDanhMuc = dgvChiTietHocPhi.SelectedRows[i].Cells["MaDanhMuc"].Value.ToString();
+                foreach (ChiTietHocPhi chiTiet in listChiTietHocPhi.ToArray())
+                {
+                    if (chiTiet.MaDanhMuc == maDanhMuc)
+                        listChiTietHocPhi.Remove(chiTiet);
+                }
+            }
+            LoadListChiTietHocPhi();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshView();
+        }
+
+        private void RefreshView()
+        {
+            listChiTietHocPhi.Clear();
+            LoadListChiTietHocPhi();
+            LoadDataGridViewTre();
+            txtSoTien.Clear();
+            cboChiPhi.Text = "";
+        }
+
+        private void btnApDungHocPhi_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < dgvTre.SelectedRows.Count; i++)
+            {
+                HocPhi hocPhi = new HocPhi();
+                hocPhi.MaHocPhi = dgvTre.SelectedRows[i].Cells["MaHocPhi"].Value.ToString();
+                hocPhi.MaTre = dgvTre.SelectedRows[i].Cells["MaTre"].Value.ToString();
+                hocPhi.Thang = int.Parse(dgvTre.SelectedRows[i].Cells["Thang"].Value.ToString());
+                hocPhi.Nam = int.Parse(dgvTre.SelectedRows[i].Cells["Nam"].Value.ToString());
+                hocPhi.TongTien = HocPhiBLL.TinhTongTien(hocPhi.MaTre, hocPhi.Thang, hocPhi.Nam, listChiTietHocPhi);
+                hocPhi.TienDaDong = decimal.Parse(dgvTre.SelectedRows[i].Cells["TienDaDong"].Value.ToString());
+                hocPhi.TienConNo = hocPhi.TongTien - hocPhi.TienDaDong;
+                int nam = hocPhi.Nam;
+                int thang = hocPhi.Thang - 1;
+                if(thang == 0)
+                {
+                    thang = 12;
+                    nam -= 1;
+                } 
+                hocPhi.TienNoThangTruoc = HocPhiBLL.GetTienNoThang(hocPhi.MaTre, thang, nam);
+
+                HocPhiBLL.CapNhatHocPhi(hocPhi, listChiTietHocPhi);
+            }
+
+            RefreshView();
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
