@@ -14,7 +14,7 @@ namespace QLNT.Entities
         public static List<HocPhi> GetListHocPhiTheoThang(string maLop, int thang, int nam)
         {
             DataTable dt = HocPhiDAL.GetListHocPhiTheoThang(maLop, thang, nam);
-            List<HocPhi> list = new List<HocPhi>(); 
+            List<HocPhi> list = new List<HocPhi>();
             foreach (DataRow row in dt.Rows)
             {
                 list.Add(new HocPhi(row));
@@ -44,15 +44,20 @@ namespace QLNT.Entities
             }
 
             //Luu cac chi tiet hoc phi vua moi cap nhat
-            foreach(ChiTietHocPhi chiTiet in listChiTiet)
+            foreach (ChiTietHocPhi chiTiet in listChiTiet)
             {
                 DanhMucChiPhi danhMuc = DanhMucChiPhiBLL.GetInfoDanhMuc(chiTiet.MaDanhMuc);
                 ChiTietHocPhi chiTietHocPhi = (ChiTietHocPhi)chiTiet.Clone();
                 //cap nhat lai so tien trong list neu danh muc chi phi nay tinh tien theo so ngay di hoc
-                chiTietHocPhi.SoTien = danhMuc.TruTienKhiNghi == 1 ? chiTiet.SoTien * soNgayDiHoc : chiTietHocPhi.SoTien;
+                chiTietHocPhi.SoTien = danhMuc.TruTienKhiNghi == 1 ? danhMuc.SoTien * soNgayDiHoc : danhMuc.SoTien;
                 chiTietHocPhi.MaHocPhi = hocPhi.MaHocPhi;
                 HocPhiDAL.ThemChiTietHocPhi(chiTietHocPhi);
             }
+
+            //cap nhat lai hoc phi cho tre
+            decimal hocPhiCu = GetInfoHocPhi(hocPhi.MaHocPhi).TongTien;
+            decimal tongHocPhiConNo = GetTienNoHocPhi(hocPhi.MaTre) - hocPhiCu + hocPhi.TongTien;
+            HocPhiDAL.CapNhatHocPhiChoTre(hocPhi.MaTre, tongHocPhiConNo);
 
             //luu hoc phi
             HocPhiDAL.CapNhatHocPhi(hocPhi);
@@ -76,37 +81,45 @@ namespace QLNT.Entities
             return "MAHP" + id;
         }
 
-        public static decimal TinhTongTien(string maTre, int thang, int nam, List<ChiTietHocPhi> list)
+        public static decimal TinhTongTien(HocPhi hocPhi, List<ChiTietHocPhi> list)
         {
             decimal tong = 0;
-            int soNgayDiHoc = TreBLL.GetSoNgayDiHocTrongThang(maTre, thang, nam);
-            foreach(ChiTietHocPhi chiTiet in list)
+            int soNgayDiHoc = TreBLL.GetSoNgayDiHocTrongThang(hocPhi.MaTre, hocPhi.Thang, hocPhi.Nam);
+            foreach (ChiTietHocPhi chiTiet in list)
             {
                 DanhMucChiPhi danhMuc = DanhMucChiPhiBLL.GetInfoDanhMuc(chiTiet.MaDanhMuc);
 
                 //cap nhat lai so tien trong list neu danh muc chi phi nay tinh tien theo so ngay di hoc
-                tong += danhMuc.TruTienKhiNghi == 1 ? chiTiet.SoTien * soNgayDiHoc : chiTiet.SoTien;
+                tong += danhMuc.TruTienKhiNghi == 1 ? danhMuc.SoTien * soNgayDiHoc : danhMuc.SoTien;
             }
 
-            thang = thang - 1;
-            if(thang == 0)
-            {
-                thang = 12;
-                nam -= 1;
-            }
-
-            return tong + GetTienNoThang(maTre, thang, nam);
+            return tong;
         }
 
-        public static decimal GetTienNoThang(string maTre, int thang, int nam)
+        public static decimal GetTienNoHocPhi(string maTre)
         {
-            DataTable dt = HocPhiDAL.GetTienNoThang(maTre, thang, nam);
-            foreach(DataRow row in dt.Rows)
+            DataTable dt = HocPhiDAL.GetTienNoHocPhi(maTre);
+            foreach (DataRow row in dt.Rows)
             {
-                return decimal.Parse(row["TienConNo"].ToString());
+                return decimal.Parse(row["HocPhiConNo"].ToString());
             }
 
             return 0;
+        }
+
+        public static void CapNhatChoTre(string maTre, decimal hocPhi)
+        {
+            HocPhiDAL.CapNhatHocPhiChoTre(maTre, hocPhi);
+        }
+
+        public static HocPhi GetInfoHocPhi(string maHocPhi)
+        {
+            foreach(DataRow row in HocPhiDAL.GetInfoHocPhi(maHocPhi).Rows)
+            {
+                return new HocPhi(row);
+            }
+
+            return new HocPhi();
         }
     }
 }

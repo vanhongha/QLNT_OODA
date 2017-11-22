@@ -103,25 +103,19 @@ namespace QLNT.Presentation
             dgvTre.Columns[4].HeaderText = "Giới tính";
             dgvTre.Columns[5].HeaderText = "Ngày sinh";
             dgvTre.Columns[8].HeaderText = "Tổng tiền";
-            dgvTre.Columns[9].HeaderText = "Đã đóng";
-            dgvTre.Columns[10].HeaderText = "Còn nợ";
-            dgvTre.Columns[11].HeaderText = "Tiền nợ tháng trước";
 
             dgvTre.Columns[0].Width = 50;
             dgvTre.Columns[3].Width = 260;
             dgvTre.Columns[4].Width = 100;
             dgvTre.Columns[5].Width = 120;
             dgvTre.Columns[8].Width = 150;
-            dgvTre.Columns[9].Width = 150;
-            dgvTre.Columns[10].Width = 150;
-            dgvTre.Columns[11].Width = 200;
 
             for (int i = 0; i < dgvTre.Rows.Count; i++)
             {
                 dgvTre.Rows[i].Cells[0].Value = i + 1;
             }
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTien", "TienDaDong", "", "TienConNo", "TienNoThangTruoc" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTien" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
         }
 
@@ -297,9 +291,7 @@ namespace QLNT.Presentation
                 hocPhi.MaTre = dgvTre.SelectedRows[i].Cells["MaTre"].Value.ToString();
                 hocPhi.Thang = int.Parse(dgvTre.SelectedRows[i].Cells["Thang"].Value.ToString());
                 hocPhi.Nam = int.Parse(dgvTre.SelectedRows[i].Cells["Nam"].Value.ToString());
-                hocPhi.TongTien = HocPhiBLL.TinhTongTien(hocPhi.MaTre, hocPhi.Thang, hocPhi.Nam, listChiTietHocPhi);
-                hocPhi.TienDaDong = decimal.Parse(dgvTre.SelectedRows[i].Cells["TienDaDong"].Value.ToString());
-                hocPhi.TienConNo = hocPhi.TongTien - hocPhi.TienDaDong;
+                hocPhi.TongTien = HocPhiBLL.TinhTongTien(hocPhi, listChiTietHocPhi);
                 int nam = hocPhi.Nam;
                 int thang = hocPhi.Thang - 1;
                 if(thang == 0)
@@ -307,7 +299,6 @@ namespace QLNT.Presentation
                     thang = 12;
                     nam -= 1;
                 } 
-                hocPhi.TienNoThangTruoc = HocPhiBLL.GetTienNoThang(hocPhi.MaTre, thang, nam);
 
                 HocPhiBLL.CapNhatHocPhi(hocPhi, listChiTietHocPhi);
             }

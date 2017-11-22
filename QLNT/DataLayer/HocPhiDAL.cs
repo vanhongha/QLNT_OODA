@@ -51,9 +51,6 @@ namespace QLNT.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", hocPhi.MaHocPhi);
             cmd.Parameters.AddWithValue("@TongTien", hocPhi.TongTien);
-            cmd.Parameters.AddWithValue("@TienDaDong", hocPhi.TienDaDong);
-            cmd.Parameters.AddWithValue("@TienConNo", hocPhi.TienConNo);
-            cmd.Parameters.AddWithValue("@TienNoThangTruoc", hocPhi.TienNoThangTruoc);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
@@ -72,9 +69,6 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@Thang", hocPhi.Thang);
             cmd.Parameters.AddWithValue("@Nam", hocPhi.Nam);
             cmd.Parameters.AddWithValue("@TongTien", hocPhi.TongTien);
-            cmd.Parameters.AddWithValue("@TienDaDong", hocPhi.TienDaDong);
-            cmd.Parameters.AddWithValue("@TienConNo", hocPhi.TienConNo);
-            cmd.Parameters.AddWithValue("@TienNoThangTruoc", hocPhi.TienNoThangTruoc);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
@@ -92,15 +86,13 @@ namespace QLNT.DataLayer
             return "";
         }
 
-        public static DataTable GetTienNoThang(string maTre, int thang, int nam)
+        public static DataTable GetTienNoHocPhi(string maTre)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetTienNoThang");
+            SqlCommand cmd = db.Command("GetTienNoHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", maTre);
-            cmd.Parameters.AddWithValue("@Thang", thang);
-            cmd.Parameters.AddWithValue("@Nam", nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
@@ -136,6 +128,35 @@ namespace QLNT.DataLayer
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
             da.Fill(db.dt);
+        }
+
+        public static void CapNhatHocPhiChoTre(string maTre, decimal hocPhi)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatHocPhiChoTre");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@HocPhi", hocPhi);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static DataTable GetInfoHocPhi(string maHocPhi)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetInfoHocPhi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaHocPhi", maHocPhi);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
         }
     }
 }

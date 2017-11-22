@@ -57,16 +57,16 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvThongTinDongHocPhi = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvTre = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinDongHocPhi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -347,7 +347,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Controls.Add(this.dgvThongTinDongHocPhi);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 389);
@@ -355,17 +355,17 @@
             this.panel3.Size = new System.Drawing.Size(516, 169);
             this.panel3.TabIndex = 2;
             // 
-            // dataGridView2
+            // dgvThongTinDongHocPhi
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvThongTinDongHocPhi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(16, 46);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(483, 111);
-            this.dataGridView2.TabIndex = 1;
+            this.dgvThongTinDongHocPhi.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvThongTinDongHocPhi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvThongTinDongHocPhi.Location = new System.Drawing.Point(16, 46);
+            this.dgvThongTinDongHocPhi.Name = "dgvThongTinDongHocPhi";
+            this.dgvThongTinDongHocPhi.Size = new System.Drawing.Size(483, 111);
+            this.dgvThongTinDongHocPhi.TabIndex = 1;
             // 
             // label4
             // 
@@ -377,22 +377,22 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Thông tin đóng học phí";
             // 
-            // dataGridView1
+            // dgvTre
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 144);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(516, 245);
-            this.dataGridView1.TabIndex = 3;
+            this.dgvTre.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvTre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTre.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvTre.Location = new System.Drawing.Point(0, 144);
+            this.dgvTre.Name = "dgvTre";
+            this.dgvTre.Size = new System.Drawing.Size(516, 245);
+            this.dgvTre.TabIndex = 3;
             // 
             // frmThuHocPhi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 558);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvTre);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -408,8 +408,8 @@
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinDongHocPhi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -425,9 +425,9 @@
         private System.Windows.Forms.ComboBox cboNamHoc;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvThongTinDongHocPhi;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvTre;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label14;
