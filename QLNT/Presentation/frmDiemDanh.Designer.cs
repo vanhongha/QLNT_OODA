@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvDiemDanh = new System.Windows.Forms.DataGridView();
+            this.btnTaoBangMoi = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpChonLop.SuspendLayout();
@@ -49,6 +50,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnTaoBangMoi);
             this.panel1.Controls.Add(this.btnLuuDiemDanh);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.grpChonLop);
@@ -62,7 +64,7 @@
             // btnLuuDiemDanh
             // 
             this.btnLuuDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnLuuDiemDanh.Location = new System.Drawing.Point(807, 31);
+            this.btnLuuDiemDanh.Location = new System.Drawing.Point(973, 31);
             this.btnLuuDiemDanh.Name = "btnLuuDiemDanh";
             this.btnLuuDiemDanh.Size = new System.Drawing.Size(125, 109);
             this.btnLuuDiemDanh.TabIndex = 16;
@@ -187,6 +189,17 @@
             this.dgvDiemDanh.Size = new System.Drawing.Size(1157, 505);
             this.dgvDiemDanh.TabIndex = 0;
             // 
+            // btnTaoBangMoi
+            // 
+            this.btnTaoBangMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnTaoBangMoi.Location = new System.Drawing.Point(809, 31);
+            this.btnTaoBangMoi.Name = "btnTaoBangMoi";
+            this.btnTaoBangMoi.Size = new System.Drawing.Size(125, 109);
+            this.btnTaoBangMoi.TabIndex = 17;
+            this.btnTaoBangMoi.Text = "Tạo bảng mới hôm nay";
+            this.btnTaoBangMoi.UseVisualStyleBackColor = true;
+            this.btnTaoBangMoi.Click += new System.EventHandler(this.btnTaoBangMoi_Click);
+            // 
             // frmDiemDanh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -224,5 +237,6 @@
         private System.Windows.Forms.DataGridView dgvDiemDanh;
         private System.Windows.Forms.DateTimePicker dtNgayDiemDanh;
         private System.Windows.Forms.Button btnLuuDiemDanh;
+        private System.Windows.Forms.Button btnTaoBangMoi;
     }
 }

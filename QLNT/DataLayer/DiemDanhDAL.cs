@@ -30,6 +30,24 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
+        public static object TaoBangDiemDanhMoi(Lop lop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = null;
+
+            cmd = db.Command("TAO_BANG_DIEM_DANH_MOI");
+            cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
+
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
         public static DataTable LuuBangDiemDanh(TheoDoiNgay bangdiemdanh)
         {
             DataAccessHelper db = new DataAccessHelper();

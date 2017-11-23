@@ -30,7 +30,6 @@ namespace QLNT.Presentation
             loadListNamHoc();
             loadDataGridView();
         }
-        
         private void loadDataGridView()
         {
             dgvDiemDanh.Columns.Clear();
@@ -118,6 +117,7 @@ namespace QLNT.Presentation
 
         private void dtNgayDiemDanh_ValueChanged(object sender, EventArgs e)
         {
+            
             loadDataGridView();
         }
 
@@ -125,12 +125,12 @@ namespace QLNT.Presentation
         {
             for (int i = 0; i < dgvDiemDanh.Rows.Count; i++)
             {
-                string maTre = dgvDiemDanh.Rows[i].Cells["MaTre"].Value.ToString();
-                if (dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"].Value.ToString() == "true" ||
-                    dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"].Value.ToString() == "True")
-                    dgvDiemDanh.Rows[i].Cells["HienDien"].Value = "1";
-                else
+                
+                if (dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"].Value==null ||
+                    dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"].Value.ToString()=="False")
                     dgvDiemDanh.Rows[i].Cells["HienDien"].Value = "0";
+                else
+                    dgvDiemDanh.Rows[i].Cells["HienDien"].Value = "1";
             }
             LuuBangDiemDanh(dgvDiemDanh);
             
@@ -148,6 +148,26 @@ namespace QLNT.Presentation
                 DiemDanhBLL.LuuBangDiemDanh(bangdiemdanh);
             }
         
+        }
+
+        private void btnTaoBangMoi_Click(object sender, EventArgs e)
+        {
+            dgvDiemDanh.Columns.Clear();
+            if (!string.IsNullOrEmpty(cboLop.Text))
+            {
+                dgvDiemDanh.DataSource = DiemDanhBLL.TaoBangDiemDanhMoi(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())));
+                DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+                checkColumn.Name = "HienDienCheckbox";
+                checkColumn.HeaderText = "Hiện Diện";
+                checkColumn.Width = 50;
+                checkColumn.ReadOnly = false;
+                checkColumn.FillWeight = 10;
+                dgvDiemDanh.Columns.Add(checkColumn);
+
+                dgvDiemDanh.Columns["HienDien"].Visible = false;
+
+            }
+
         }
     }
 }
