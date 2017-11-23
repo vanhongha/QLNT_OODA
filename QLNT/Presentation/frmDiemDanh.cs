@@ -120,5 +120,34 @@ namespace QLNT.Presentation
         {
             loadDataGridView();
         }
+
+        private void btnLuuDiemDanh_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dgvDiemDanh.Rows.Count; i++)
+            {
+                string maTre = dgvDiemDanh.Rows[i].Cells["MaTre"].Value.ToString();
+                if (dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"].Value.ToString() == "true" ||
+                    dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"].Value.ToString() == "True")
+                    dgvDiemDanh.Rows[i].Cells["HienDien"].Value = "1";
+                else
+                    dgvDiemDanh.Rows[i].Cells["HienDien"].Value = "0";
+            }
+            LuuBangDiemDanh(dgvDiemDanh);
+            
+        }
+
+        private void LuuBangDiemDanh(DataGridView dgvDiemDanh)
+        {
+            for (int i = 0; i < dgvDiemDanh.Rows.Count; i++)
+            {
+                TheoDoiNgay bangdiemdanh = new TheoDoiNgay();
+                bangdiemdanh.MaTre = dgvDiemDanh.Rows[i].Cells["MaTre"].Value.ToString();
+                bangdiemdanh.NgayDiemDanh = dtNgayDiemDanh.Value.ToString("yyyy-MM-dd");
+                bangdiemdanh.HienDien = Int32.Parse(dgvDiemDanh.Rows[i].Cells["HienDien"].Value.ToString());
+                bangdiemdanh.NhanXet = dgvDiemDanh.Rows[i].Cells["NhanXet"].Value.ToString();
+                DiemDanhBLL.LuuBangDiemDanh(bangdiemdanh);
+            }
+        
+        }
     }
 }

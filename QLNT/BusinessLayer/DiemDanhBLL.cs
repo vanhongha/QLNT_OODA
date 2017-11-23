@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QLNT.Entities;
 using QLNT.DataLayer;
+using System.Data;
 
 namespace QLNT.BusinessLayer
 {
@@ -13,6 +14,18 @@ namespace QLNT.BusinessLayer
         public static object LaySoDiemDanhLop(Lop lop, string ngaydiemdanh)
         {
             return DiemDanhDAL.LaySoDiemDanhLop(lop, ngaydiemdanh);
+        }
+
+        public static bool LuuBangDiemDanh(TheoDoiNgay bangdiemdanh)
+        {
+            DataTable dt = DiemDanhDAL.LuuBangDiemDanh(bangdiemdanh);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.ItemArray[0].ToString().Trim() == "0")
+                    return true;
+            }
+
+            return false;
         }
     }
 }

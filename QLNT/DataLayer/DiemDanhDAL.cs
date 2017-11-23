@@ -29,5 +29,22 @@ namespace QLNT.DataLayer
 
             return db.dt;
         }
+
+        public static DataTable LuuBangDiemDanh(TheoDoiNgay bangdiemdanh)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LUU_BANG_DIEM_DANH");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", bangdiemdanh.MaTre);
+            cmd.Parameters.AddWithValue("@NgayDiemDanh", bangdiemdanh.NgayDiemDanh);
+            cmd.Parameters.AddWithValue("@HienDien", bangdiemdanh.HienDien);
+            cmd.Parameters.AddWithValue("@NhanXet", bangdiemdanh.NhanXet);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            return db.dt;
+        }
     }
 }

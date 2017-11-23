@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLuuDiemDanh = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtNgayDiemDanh = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvDiemDanh = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpChonLop.SuspendLayout();
@@ -49,7 +49,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnLuuDiemDanh);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.grpChonLop);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -58,6 +58,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1157, 158);
             this.panel1.TabIndex = 2;
+            // 
+            // btnLuuDiemDanh
+            // 
+            this.btnLuuDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnLuuDiemDanh.Location = new System.Drawing.Point(807, 31);
+            this.btnLuuDiemDanh.Name = "btnLuuDiemDanh";
+            this.btnLuuDiemDanh.Size = new System.Drawing.Size(125, 109);
+            this.btnLuuDiemDanh.TabIndex = 16;
+            this.btnLuuDiemDanh.Text = "Lưu bảng điểm danh";
+            this.btnLuuDiemDanh.UseVisualStyleBackColor = true;
+            this.btnLuuDiemDanh.Click += new System.EventHandler(this.btnLuuDiemDanh_Click);
             // 
             // groupBox1
             // 
@@ -173,19 +184,8 @@
             this.dgvDiemDanh.Location = new System.Drawing.Point(0, 166);
             this.dgvDiemDanh.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDiemDanh.Name = "dgvDiemDanh";
-            this.dgvDiemDanh.ReadOnly = true;
             this.dgvDiemDanh.Size = new System.Drawing.Size(1157, 505);
             this.dgvDiemDanh.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(807, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 109);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Lưu bảng điểm danh";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmDiemDanh
             // 
@@ -223,6 +223,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvDiemDanh;
         private System.Windows.Forms.DateTimePicker dtNgayDiemDanh;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLuuDiemDanh;
     }
 }

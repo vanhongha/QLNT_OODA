@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QLNT.Entities
 {
@@ -11,7 +12,7 @@ namespace QLNT.Entities
     {
         private string maTre;
         private string ngayDiemDanh;
-        private bool hienDien;
+        private int hienDien;
         private string nhanXet;
 
         public string MaTre
@@ -40,7 +41,7 @@ namespace QLNT.Entities
             }
         }
 
-        public bool HienDien
+        public int HienDien
         {
             get
             {
@@ -65,12 +66,12 @@ namespace QLNT.Entities
                 nhanXet = value;
             }
         }
-        public TheoDoiNgay(DataRow row)
+        public TheoDoiNgay(DataGridViewRow row)
         {
-            this.maTre = row["MaTre"].ToString();
-            this.ngayDiemDanh = row["Ngay"].ToString();
-            this.hienDien = bool.Parse(row["HienDien"].ToString());
-            this.nhanXet = row["NhanXet"].ToString();
+            this.maTre = row.Cells["MaTre"].ToString();
+            this.ngayDiemDanh = row.Cells["Ngay"].ToString();
+            this.hienDien = Int32.Parse(row.Cells["HienDien"].ToString());
+            this.nhanXet = row.Cells["NhanXet"].ToString();
             
         }
 
