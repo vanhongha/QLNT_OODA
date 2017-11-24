@@ -54,8 +54,10 @@
     <Compile Include="BusinessLayer\DiemDanhBLL.cs" />
     <Compile Include="BusinessLayer\LopBLL.cs" />
     <Compile Include="BusinessLayer\NamHocBLL.cs" />
+    <Compile Include="BusinessLayer\PhieuBeNgoanBLL.cs" />
     <Compile Include="BusinessLayer\PhieuTiepNhanBLL.cs" />
     <Compile Include="BusinessLayer\SucKhoeBLL.cs" />
+    <Compile Include="BusinessLayer\TaiKhoanBLL.cs" />
     <Compile Include="BusinessLayer\TreBLL.cs" />
     <Compile Include="DataLayer\DangNhapDAL.cs" />
     <Compile Include="DataLayer\DanhMucChiPhiDAL.cs" />
@@ -63,8 +65,10 @@
     <Compile Include="DataLayer\DiemDanhDAL.cs" />
     <Compile Include="DataLayer\LopDAL.cs" />
     <Compile Include="DataLayer\NamHocDAL.cs" />
+    <Compile Include="DataLayer\PhieuBeNgoanDAL.cs" />
     <Compile Include="DataLayer\PhieuTiepNhanDAL.cs" />
     <Compile Include="DataLayer\SucKhoeDAL.cs" />
+    <Compile Include="DataLayer\TaiKhoanDAL.cs" />
     <Compile Include="DataLayer\TreDAL.cs" />
     <Compile Include="Entities\DanhMucChiPhi.cs" />
     <Compile Include="Entities\LoaiChiPhi.cs" />
