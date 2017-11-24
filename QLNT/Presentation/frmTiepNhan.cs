@@ -84,6 +84,29 @@ namespace QLNT.Presentation
             rdbNam.Checked = true;
             rdbNu.Checked = false;
         }
+        private void LayThongTinTre(string maTre)
+        {
+            string gioiTinh;
+            DataTable dt = TreBLL.LayThongTinTre(maTre);
+            txtMaHocSinh.Text = dt.Rows[0]["MaTre"].ToString();
+            txtHoTen.Text = dt.Rows[0]["HoTenTre"].ToString();
+
+            gioiTinh = dt.Rows[0]["GioiTinh"].ToString();
+            if (gioiTinh == "Nam")
+                rdbNam.Checked = true;
+            else
+                rdbNu.Checked = true;
+
+            DateTime date = DateTime.ParseExact(Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            dateNgaySinh.Value = date;
+
+
+            txtHoTenMe.Text = dt.Rows[0]["HoTenMe"].ToString();
+            txtHoTenCha.Text = dt.Rows[0]["HoTenCha"].ToString();
+            txtSDT.Text = dt.Rows[0]["SDTLienLac"].ToString();
+            txtDiaChi.Text = dt.Rows[0]["DiaChi"].ToString();
+        }
         #endregion
 
         #region Events
@@ -122,9 +145,6 @@ namespace QLNT.Presentation
             }
 
         }
-
-
-        #endregion
         string maTre;
         private void dgvTiepNhan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -144,31 +164,6 @@ namespace QLNT.Presentation
                 MessageBox.Show(ex.Message, "Thông báo");
             }
         }
-
-        private void LayThongTinTre(string maTre)
-        {
-            string gioiTinh;
-            DataTable dt = TreBLL.LayThongTinTre(maTre);
-            txtMaHocSinh.Text = dt.Rows[0]["MaTre"].ToString();
-            txtHoTen.Text = dt.Rows[0]["HoTenTre"].ToString();
-
-            gioiTinh = dt.Rows[0]["GioiTinh"].ToString();
-            if (gioiTinh == "Nam")
-                rdbNam.Checked = true;
-            else
-                rdbNu.Checked = true;
-
-            DateTime date = DateTime.ParseExact(Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            
-            dateNgaySinh.Value = date;
-
-
-            txtHoTenMe.Text = dt.Rows[0]["HoTenMe"].ToString();
-            txtHoTenCha.Text = dt.Rows[0]["HoTenCha"].ToString();
-            txtSDT.Text = dt.Rows[0]["SDTLienLac"].ToString();
-            txtDiaChi.Text = dt.Rows[0]["DiaChi"].ToString();
-        }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
             try
@@ -235,7 +230,7 @@ namespace QLNT.Presentation
             DialogResult result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
-                string filePath = openFileDialog.FileName;          
+                string filePath = openFileDialog.FileName;
                 try
                 {
                     DataTable dt = DataHandle.ReadDataFromExcelFile(filePath);
@@ -247,6 +242,7 @@ namespace QLNT.Presentation
                 }
             }
         }
+        #endregion
 
     }
 }

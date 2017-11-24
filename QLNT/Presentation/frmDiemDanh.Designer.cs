@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTaoBangMoi = new System.Windows.Forms.Button();
             this.btnLuuDiemDanh = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtNgayDiemDanh = new System.Windows.Forms.DateTimePicker();
@@ -40,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvDiemDanh = new System.Windows.Forms.DataGridView();
-            this.btnTaoBangMoi = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpChonLop.SuspendLayout();
@@ -60,6 +60,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1157, 158);
             this.panel1.TabIndex = 2;
+            // 
+            // btnTaoBangMoi
+            // 
+            this.btnTaoBangMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnTaoBangMoi.Location = new System.Drawing.Point(809, 31);
+            this.btnTaoBangMoi.Name = "btnTaoBangMoi";
+            this.btnTaoBangMoi.Size = new System.Drawing.Size(125, 109);
+            this.btnTaoBangMoi.TabIndex = 17;
+            this.btnTaoBangMoi.Text = "Tạo bảng mới hôm nay";
+            this.btnTaoBangMoi.UseVisualStyleBackColor = true;
+            this.btnTaoBangMoi.Click += new System.EventHandler(this.btnTaoBangMoi_Click);
             // 
             // btnLuuDiemDanh
             // 
@@ -188,17 +199,6 @@
             this.dgvDiemDanh.Name = "dgvDiemDanh";
             this.dgvDiemDanh.Size = new System.Drawing.Size(1157, 505);
             this.dgvDiemDanh.TabIndex = 0;
-            // 
-            // btnTaoBangMoi
-            // 
-            this.btnTaoBangMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnTaoBangMoi.Location = new System.Drawing.Point(809, 31);
-            this.btnTaoBangMoi.Name = "btnTaoBangMoi";
-            this.btnTaoBangMoi.Size = new System.Drawing.Size(125, 109);
-            this.btnTaoBangMoi.TabIndex = 17;
-            this.btnTaoBangMoi.Text = "Tạo bảng mới hôm nay";
-            this.btnTaoBangMoi.UseVisualStyleBackColor = true;
-            this.btnTaoBangMoi.Click += new System.EventHandler(this.btnTaoBangMoi_Click);
             // 
             // frmDiemDanh
             // 
