@@ -37,7 +37,7 @@ namespace QLNT.Presentation
         private void getDataGridView()
         {
             dgvNguyenLieu.DataSource = NguyenLieuBLL.LayDanhSachNguyenLieu(TuKhoa);
-            string[] column = { "MaNguyenLieu", "TenNguyenLieu", "TenLoaiNL", "ChiSoDinhDuong", "SoLuongTon", "DonViTinh" };
+            string[] column = { "MaNguyenLieu", "TenNguyenLieu", "TenLoaiNL", "NangLuong", "DonViTinh" };
             Ultilities.ControlFormat.DataGridViewFormat(dgvNguyenLieu, column);
 
             dgvNguyenLieu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -47,12 +47,10 @@ namespace QLNT.Presentation
             dgvNguyenLieu.Columns[1].Width = 120;
             dgvNguyenLieu.Columns[2].HeaderText = "Loại nguyên liệu";
             dgvNguyenLieu.Columns[2].Width = 120;
-            dgvNguyenLieu.Columns[3].HeaderText = "Chỉ số dinh dưỡng";
+            dgvNguyenLieu.Columns[3].HeaderText = "Năng lượng";
             dgvNguyenLieu.Columns[3].Width = 100;
-            dgvNguyenLieu.Columns[4].HeaderText = "Số lượng tồn";
+            dgvNguyenLieu.Columns[4].HeaderText = "Đơn vị tính";
             dgvNguyenLieu.Columns[4].Width = 100;
-            dgvNguyenLieu.Columns[5].HeaderText = "Đơn vị tính";
-            dgvNguyenLieu.Columns[5].Width = 100;
             dgvNguyenLieu.ClearSelection();
 
         }
@@ -70,16 +68,14 @@ namespace QLNT.Presentation
         {
             txtTenNguyenLieu.Enabled = value;
             cboLoaiNguyenLieu.Enabled = value;
-            txtChiSoDinhDuong.Enabled = value;
-            txtSoLuongTon.Enabled = value;
+            txtNangLuong.Enabled = value;
         }
 
         private void XoaTrang()
         {
             txtMaNguyenLieu.Text = NguyenLieuBLL.SinhMaTuDong();
             txtTenNguyenLieu.Text = "";
-            txtChiSoDinhDuong.Text = "0";
-            txtSoLuongTon.Text = "0";
+            txtNangLuong.Text = "0";
             txtDonViTinh.Text = "g";
             cboLoaiNguyenLieu.Text = "";
             SetEnabledComponents(true);
@@ -92,14 +88,13 @@ namespace QLNT.Presentation
             txtMaNguyenLieu.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["MaNguyenLieu"].Value.ToString();
             txtTenNguyenLieu.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["TenNguyenLieu"].Value.ToString();
             cboLoaiNguyenLieu.SelectedText = dgvNguyenLieu.Rows[e.RowIndex].Cells["TenLoaiNL"].Value.ToString();
-            txtChiSoDinhDuong.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["ChiSoDinhDuong"].Value.ToString();
-            txtSoLuongTon.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["SoLuongTon"].Value.ToString();
+            txtNangLuong.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["NangLuong"].Value.ToString();
             txtDonViTinh.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["DonViTinh"].Value.ToString();
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            NguyenLieuBLL.LuuNguyenLieu(txtMaNguyenLieu.Text.Trim(),txtTenNguyenLieu.Text.Trim(), cboLoaiNguyenLieu.Text.Trim(), txtChiSoDinhDuong.Text.Trim(), txtSoLuongTon.Text.Trim(), txtDonViTinh.Text.Trim());
+            NguyenLieuBLL.LuuNguyenLieu(txtMaNguyenLieu.Text.Trim(),txtTenNguyenLieu.Text.Trim(), cboLoaiNguyenLieu.Text.Trim(), txtNangLuong.Text.Trim(), txtDonViTinh.Text.Trim());
             getDataGridView();
         }
 

@@ -13,7 +13,7 @@ namespace QLNT.BusinessLayer
 {
     class NguyenLieuBLL
     {
-        public static void LuuNguyenLieu(string maNL, string tenNL, string tenLoaiNL, string chiSoDD,string soLuongTon, string donViTinh)
+        public static void LuuNguyenLieu(string maNL, string tenNL, string tenLoaiNL, string chiSoDD, string donViTinh)
         {
             string _maNL = LayMaNguyenLieuTheoTen(tenNL);
             string _maLNL = LoaiNguyenLieuBLL.layMaLoaiNguyenLieuTheoTen(tenLoaiNL);
@@ -32,13 +32,13 @@ namespace QLNT.BusinessLayer
                 }
                 else
                 {
-                    NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, chiSoDD, soLuongTon, donViTinh);
+                    NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, chiSoDD, donViTinh);
                     CapNhatNguyenLieu(nguyenLieu);
                 } 
             }
             else
             {
-                NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, chiSoDD, soLuongTon, donViTinh);
+                NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, chiSoDD, donViTinh);
                 if(KiemTraMaNL(maNL))
                 {
                     CapNhatNguyenLieu(nguyenLieu);
@@ -64,11 +64,7 @@ namespace QLNT.BusinessLayer
             NguyenLieuDAL.CapNhatNguyenLieu(nguyenlieu);
         }
 
-        public static void CapNhatTonNguyenLieuTheoMa(string maNguyenLieu, int soLuongDung)
-        {
-            NguyenLieuDAL.CapNhatTonNguyenLieuTheoMa(maNguyenLieu,soLuongDung);
-        }
-
+       
         public static DataTable LayDanhSachNguyenLieu()
         {
             return NguyenLieuDAL.LayDanhSachNguyenLieu();
@@ -79,27 +75,9 @@ namespace QLNT.BusinessLayer
             return NguyenLieuDAL.LayDanhSachNguyenLieu(tuKhoa);
         }
 
-        public static DataTable LayDanhSachTenVaMaNguyenLieu()
-        {
-            return NguyenLieuDAL.LayDanhSachTenVaMaNguyenLieu();
-        }
-
         public static string LayMaNguyenLieuTheoTen(string tenNL)
         {
             return NguyenLieuDAL.LayMaNguyenLieuTheoTen(tenNL);
-        }
-        public static string LayDonViTinhTheoTen(string tenNL)
-        {
-            return NguyenLieuDAL.LayDonViTinhTheoTen(tenNL);
-        }
-        public static string LayCSDDTheoTen(string tenNL)
-        {
-            return NguyenLieuDAL.LayCSDDTheoTen(tenNL);
-        }
-
-        public static string LaySoLuongTonTheoMaNguyenLieu(string maNguyenLieu)
-        {
-            return NguyenLieuDAL.LaySoLuongTonTheoMaNguyenLieu(maNguyenLieu);
         }
 
         public static string SinhMaTuDong()
@@ -134,9 +112,10 @@ namespace QLNT.BusinessLayer
         {
             return NguyenLieuDAL.KiemTraMaNL(MaNL);
         }
-        public static bool CoTrongChiTietPhieuMua(string MaNL)
+
+        public static DataTable LayDanhSachTenVaMaNguyenLieu()
         {
-            return NguyenLieuDAL.CoTrongChiTietPhieuMua(MaNL);
+            return NguyenLieuDAL.LayDanhSachTenVaMaNguyenLieu();
         }
     }
 }

@@ -17,14 +17,13 @@ namespace QLNT.DataLayer
             try
             {
                 DataAccessHelper db = new DataAccessHelper();
-                SqlCommand cmd = db.Command("THEM_NGUYEN_LIEU");
+                SqlCommand cmd = db.Command("ThemNguyenLieu");
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MaNL", nguyenLieu.MaNguyenLieu);
                 cmd.Parameters.AddWithValue("@TenNL", nguyenLieu.TenNguyenLieu);
                 cmd.Parameters.AddWithValue("@MaLoaiNL", nguyenLieu.MaLoai);
-                cmd.Parameters.AddWithValue("@ChiSoDD", nguyenLieu.ChiSoDinhDuong);
-                cmd.Parameters.AddWithValue("@SoLuongTon", nguyenLieu.SoLuongTon);
+                cmd.Parameters.AddWithValue("@NangLuong", nguyenLieu.NangLuong);
                 cmd.Parameters.AddWithValue("@DonViTinh", nguyenLieu.DonViTinh);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -43,7 +42,7 @@ namespace QLNT.DataLayer
             try
             { 
                 DataAccessHelper db = new DataAccessHelper();
-                SqlCommand cmd = db.Command("XOA_NGUYEN_LIEU");
+                SqlCommand cmd = db.Command("XoaNguyenLieu");
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MaNL", maNL);
@@ -62,30 +61,14 @@ namespace QLNT.DataLayer
         public static void CapNhatNguyenLieu(NguyenLieu nguyenLieu)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CAP_NHAT_NGUYEN_LIEU");
+            SqlCommand cmd = db.Command("CapNhatNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNL", nguyenLieu.MaNguyenLieu);
             cmd.Parameters.AddWithValue("@TenNL", nguyenLieu.TenNguyenLieu);
             cmd.Parameters.AddWithValue("@MaLoaiNL", nguyenLieu.MaLoai);
-            cmd.Parameters.AddWithValue("@ChiSoDD", nguyenLieu.ChiSoDinhDuong);
-            cmd.Parameters.AddWithValue("@SoLuongTon", nguyenLieu.SoLuongTon);
+            cmd.Parameters.AddWithValue("@NangLuong", nguyenLieu.NangLuong);
             cmd.Parameters.AddWithValue("@DonViTinh", nguyenLieu.DonViTinh);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-        }
-
-        public static void CapNhatTonNguyenLieuTheoMa(string maNguyenLieu, int soLuongDung)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CAP_NHAT_SO_LUONG_NGUYEN_LIEU_THEO_MA");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaNguyenLieu", maNguyenLieu);
-            cmd.Parameters.AddWithValue("@SoLuongDung", soLuongDung);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -96,7 +79,7 @@ namespace QLNT.DataLayer
         public static DataTable LayDanhSachNguyenLieu()
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DANH_SACH_THONG_TIN_NGUYEN_LIEU");
+            SqlCommand cmd = db.Command("LayDanhSachThongTinNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -110,7 +93,7 @@ namespace QLNT.DataLayer
         public static DataTable LayDanhSachNguyenLieu(string tuKhoa)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("TIM_KIEM_NGUYEN_LIEU");
+            SqlCommand cmd = db.Command("TimKiemNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TuKhoa", tuKhoa);
@@ -122,56 +105,10 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
-        public static DataTable LayDanhSachTenVaMaNguyenLieu()
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DANH_SACH_TEN_VA_MA_NGUYEN_LIEU");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
-        }
-
         public static string LayMaNguyenLieuTheoTen(string tenNL)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_MA_NGUYEN_LIEU_THEO_TEN");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@TenNL", tenNL);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
-            {
-                return row.ItemArray[0].ToString();
-            }
-            return "";
-        }
-        public static string LayDonViTinhTheoTen(string tenNL)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DON_VI_TINH_THEO_TEN");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@TenNL", tenNL);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
-            {
-                return row.ItemArray[0].ToString();
-            }
-            return "";
-        }
-        public static string LayCSDDTheoTen(string tenNL)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_CSDD_THEO_TEN");
+            SqlCommand cmd = db.Command("LayMaNguyenLieuTheoTen");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenNL", tenNL);
@@ -185,22 +122,7 @@ namespace QLNT.DataLayer
             return "";
         }
 
-        public static string LaySoLuongTonTheoMaNguyenLieu(string maNguyenLieu)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_SO_LUONG_NGUYEN_LIEU_TON_TU_MA_NGUYEN_LIEU");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaNguyenLieu", maNguyenLieu);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
-            {
-                return row.ItemArray[0].ToString();
-            }
-            return "";
-        }
+        
         public static string LayMaCuoi()
         {
 
@@ -217,7 +139,7 @@ namespace QLNT.DataLayer
         public static bool KiemTraTenNL(string tenNL)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KIEM_TRA_TON_TAI_TEN_NGUYEN_LIEU");
+            SqlCommand cmd = db.Command("KiemTraTonTaiTenNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenNL", tenNL);
@@ -236,7 +158,7 @@ namespace QLNT.DataLayer
         {
 
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KIEM_TRA_TON_TAI_MA_NGUYEN_LIEU");
+            SqlCommand cmd = db.Command("KiemTraTonTaiMaNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNL", maNL);
@@ -250,22 +172,18 @@ namespace QLNT.DataLayer
             return false;
         }
 
-        public static bool CoTrongChiTietPhieuMua(string maNL)
+        public static DataTable LayDanhSachTenVaMaNguyenLieu()
         {
-
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KIEM_TRA_TON_TAI_MA_NGUYEN_LIEU_TRONG_CTPM");
+            SqlCommand cmd = db.Command("LayDanhSachTenVaMaNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaNL", maNL);
+
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
             da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
-            {
-                return true;
-            }
-            return false;
+
+            return db.dt;
         }
     }
 }

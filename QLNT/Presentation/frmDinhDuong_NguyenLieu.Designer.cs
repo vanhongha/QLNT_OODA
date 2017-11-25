@@ -34,7 +34,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtDonViTinh = new System.Windows.Forms.TextBox();
             this.dgvNguyenLieu = new System.Windows.Forms.DataGridView();
-            this.txtChiSoDinhDuong = new System.Windows.Forms.TextBox();
+            this.txtNangLuong = new System.Windows.Forms.TextBox();
             this.txtTenNguyenLieu = new System.Windows.Forms.TextBox();
             this.cboLoaiNguyenLieu = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,8 +48,6 @@
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoaTrang = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.lbl7 = new System.Windows.Forms.Label();
-            this.txtSoLuongTon = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNguyenLieu)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -127,15 +125,15 @@
             this.dgvNguyenLieu.TabIndex = 48;
             this.dgvNguyenLieu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNguyenLieu_CellClick);
             // 
-            // txtChiSoDinhDuong
+            // txtNangLuong
             // 
-            this.txtChiSoDinhDuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtChiSoDinhDuong.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtChiSoDinhDuong.Location = new System.Drawing.Point(850, 239);
-            this.txtChiSoDinhDuong.Margin = new System.Windows.Forms.Padding(4);
-            this.txtChiSoDinhDuong.Name = "txtChiSoDinhDuong";
-            this.txtChiSoDinhDuong.Size = new System.Drawing.Size(200, 26);
-            this.txtChiSoDinhDuong.TabIndex = 87;
+            this.txtNangLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtNangLuong.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.txtNangLuong.Location = new System.Drawing.Point(850, 239);
+            this.txtNangLuong.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNangLuong.Name = "txtNangLuong";
+            this.txtNangLuong.Size = new System.Drawing.Size(200, 26);
+            this.txtNangLuong.TabIndex = 87;
             // 
             // txtTenNguyenLieu
             // 
@@ -163,12 +161,12 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(764, 243);
+            this.label2.Location = new System.Drawing.Point(749, 243);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 19);
+            this.label2.Size = new System.Drawing.Size(92, 19);
             this.label2.TabIndex = 81;
-            this.label2.Text = "Chỉ số DD:";
+            this.label2.Text = "Năng lượng:";
             // 
             // label3
             // 
@@ -195,14 +193,12 @@
             this.groupBox2.Controls.Add(this.txtMaNguyenLieu);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.txtSoLuongTon);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.txtDonViTinh);
-            this.groupBox2.Controls.Add(this.txtChiSoDinhDuong);
+            this.groupBox2.Controls.Add(this.txtNangLuong);
             this.groupBox2.Controls.Add(this.txtTenNguyenLieu);
             this.groupBox2.Controls.Add(this.cboLoaiNguyenLieu);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.lbl7);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.dgvNguyenLieu);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -302,28 +298,6 @@
             this.label7.TabIndex = 90;
             this.label7.Text = "THÔNG TIN CHI TIẾT NGUYÊN LIỆU";
             // 
-            // lbl7
-            // 
-            this.lbl7.AutoSize = true;
-            this.lbl7.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl7.ForeColor = System.Drawing.Color.Navy;
-            this.lbl7.Location = new System.Drawing.Point(742, 276);
-            this.lbl7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl7.Name = "lbl7";
-            this.lbl7.Size = new System.Drawing.Size(100, 19);
-            this.lbl7.TabIndex = 83;
-            this.lbl7.Text = "Số lượng tồn:";
-            // 
-            // txtSoLuongTon
-            // 
-            this.txtSoLuongTon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtSoLuongTon.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtSoLuongTon.Location = new System.Drawing.Point(850, 274);
-            this.txtSoLuongTon.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSoLuongTon.Name = "txtSoLuongTon";
-            this.txtSoLuongTon.Size = new System.Drawing.Size(200, 26);
-            this.txtSoLuongTon.TabIndex = 89;
-            // 
             // frmDinhDuong_NguyenLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,7 +322,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDonViTinh;
         private System.Windows.Forms.DataGridView dgvNguyenLieu;
-        private System.Windows.Forms.TextBox txtChiSoDinhDuong;
+        private System.Windows.Forms.TextBox txtNangLuong;
         private System.Windows.Forms.TextBox txtTenNguyenLieu;
         private System.Windows.Forms.ComboBox cboLoaiNguyenLieu;
         private System.Windows.Forms.Label label2;
@@ -362,7 +336,5 @@
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtSoLuongTon;
-        private System.Windows.Forms.Label lbl7;
     }
 }

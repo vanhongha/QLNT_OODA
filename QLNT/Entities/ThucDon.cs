@@ -28,5 +28,12 @@ namespace QLNT.Entities
             get { return _ngayLap; }
             set { _ngayLap = value; }
         }
+
+        public ThucDon() { }
+        public ThucDon(string nguoiLap, DateTime ngayLap)
+        {
+            _nguoiLap = nguoiLap;
+            _ngayLap = ngayLap;
+        }
     }
 }

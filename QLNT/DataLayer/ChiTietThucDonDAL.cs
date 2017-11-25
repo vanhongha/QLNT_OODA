@@ -42,7 +42,7 @@ namespace QLNT.DataLayer
         public static DataTable LayDanhSachChiTietThucDon(string maThucDon)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DANH_SACH_CHI_TIET_THUC_DON_THEO_MA");
+            SqlCommand cmd = db.Command("LayDanhSachChiTietThucDonTheoMa");
             
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -57,7 +57,7 @@ namespace QLNT.DataLayer
         public static DataTable LayDanhSachTenVaMaMonAn()
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DANH_SACH_TEN_VA_MA_MON_AN");
+            SqlCommand cmd = db.Command("LayDanhSachTenVaMaMonAn");
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -70,7 +70,7 @@ namespace QLNT.DataLayer
         public static DataTable LayDanhSachMaMonAnTheoThucDon(string maThucDon)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DANH_SACH_MA_MON_AN_TRONG_THUC_DON");
+            SqlCommand cmd = db.Command("LayDanhSachMaMonAnTrongThucDon");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaThucDon", maThucDon);
@@ -84,7 +84,7 @@ namespace QLNT.DataLayer
         public static bool KiemTraMonAnTrongThucDon(string maThucDon, string maMonAn)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KIEM_TRA_TON_TAI_MON_AN_TRONG_THUC_DON");
+            SqlCommand cmd = db.Command("KiemTraTonTaiMonAnTrongThucDon");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaThucDon", maThucDon);

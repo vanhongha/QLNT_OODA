@@ -16,7 +16,7 @@ namespace QLNT.DataLayer
         public static DataTable layDanhSachLoaiNguyenLieu()
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_DANH_SACH_LOAI_NGUYEN_LIEU");
+            SqlCommand cmd = db.Command("LayDanhSachLoaiNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -31,7 +31,7 @@ namespace QLNT.DataLayer
         public static string layMaLoaiNguyenLieuTheoTen(string tenLoaiNL)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LAY_MA_LOAI_NGUYEN_LIEU_THEO_TEN");
+            SqlCommand cmd = db.Command("LayMaNguyenLieuTheoTen");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenLoaiNL", tenLoaiNL);

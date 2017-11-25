@@ -29,18 +29,11 @@ namespace QLNT.Entities
             set { _maLoai = value; }
         }
 
-        private string _chiSoDinhDuong;
-        public string ChiSoDinhDuong
+        private string _nangLuong;
+        public string NangLuong
         {
-            get { return _chiSoDinhDuong; }
-            set { _chiSoDinhDuong = value; }
-        }
-
-        private string _soLuongTon;
-        public string SoLuongTon
-        {
-            get { return _soLuongTon; }
-            set { _soLuongTon = value; }
+            get { return _nangLuong; }
+            set { _nangLuong = value; }
         }
 
         private string _donViTinh;
@@ -52,13 +45,12 @@ namespace QLNT.Entities
 
         public NguyenLieu() { }
 
-        public NguyenLieu(string MaNguyenLieu, string TenNguyenLieu, string MaLoai, string ChiSoDinhDuong, string SoLuongTon, string DonViTinh)
+        public NguyenLieu(string MaNguyenLieu, string TenNguyenLieu, string MaLoai, string NangLuong, string DonViTinh)
         {
             _maNguyenLieu = MaNguyenLieu;
             _tenNguyenLieu = TenNguyenLieu;
             _maLoai = MaLoai;
-            _chiSoDinhDuong = ChiSoDinhDuong;
-            _soLuongTon = SoLuongTon;
+            _nangLuong = NangLuong;
             _donViTinh = DonViTinh;
         }
     }

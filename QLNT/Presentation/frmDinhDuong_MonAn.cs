@@ -28,12 +28,32 @@ namespace QLNT.Presentation
             getDataGridViewMonAn();
             getCombobox();
         }
+
+        private void getDataGridViewMonAn()
+        {
+            dgvMonAn.DataSource = MonAnBLL.LayDanhSachMonAn();
+
+            string[] column = { "MaMonAn", "TenMonAn", "NangLuong" };
+            Ultilities.ControlFormat.DataGridViewFormat(dgvMonAn, column);
+            dgvMonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvMonAn.Columns[0].HeaderText = "Mã món ăn";
+            dgvMonAn.Columns[0].Width = 160;
+            dgvMonAn.Columns[1].HeaderText = "Tên món ăn";
+            dgvMonAn.Columns[1].Width = 160;
+            dgvMonAn.Columns[2].HeaderText = "Năng lượng (Kcal/gam)";
+            dgvMonAn.Columns[2].Width = 160;
+
+            dgvMonAn.ClearSelection();
+            dgvMonAn.CurrentCell = null;
+        }
+
         private void getDataGridViewChiTietMonAn(string maMon)
         {
 
             dgvChiTietMonAn.DataSource = ChiTietMonAnBLL.LayDanhSachChiTietMonAn(maMon);
 
-            string[] column = { "TenNguyenLieu", "SoLuong", "DonViTinh", "ChiSoDinhDuong" };
+            string[] column = {"TenNguyenLieu", "TenLoaiNL","SoLuong", "NangLuong"};
             Ultilities.ControlFormat.DataGridViewFormat(dgvChiTietMonAn, column);
 
             //dgvDanhSachMuaNL.ColumnCount.ToString();
@@ -42,31 +62,14 @@ namespace QLNT.Presentation
             dgvChiTietMonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvChiTietMonAn.Columns[0].HeaderText = "Tên Nguyên Liệu";
             dgvChiTietMonAn.Columns[0].Width = 140;
-            dgvChiTietMonAn.Columns[1].HeaderText = "Số/khối lượng";
-            dgvChiTietMonAn.Columns[1].Width = 110;
-            dgvChiTietMonAn.Columns[2].HeaderText = "Đơn vị tính";
-            dgvChiTietMonAn.Columns[2].Width = 90;
-            dgvChiTietMonAn.Columns[3].HeaderText = "Chỉ số dinh dưỡng";
+            dgvChiTietMonAn.Columns[1].HeaderText = "Loại Nguyên Liệu";
+            dgvChiTietMonAn.Columns[1].Width = 120;
+            dgvChiTietMonAn.Columns[2].HeaderText = "Khối Lượng (gam)";
+            dgvChiTietMonAn.Columns[2].Width = 120;
+            dgvChiTietMonAn.Columns[3].HeaderText = "Năng Lượng (Kcal/gam)";
             dgvChiTietMonAn.Columns[3].Width = 120;
             dgvChiTietMonAn.ClearSelection();
             XoaTrang();
-        }
-
-        private void getDataGridViewMonAn()
-        {
-            dgvMonAn.DataSource = MonAnBLL.LayDanhSachMonAn();
-
-            string[] column = { "MaMonAn", "TenMonAn" };
-            Ultilities.ControlFormat.DataGridViewFormat(dgvMonAn, column);
-            dgvMonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dgvMonAn.Columns[0].HeaderText = "Mã món ăn";
-            dgvMonAn.Columns[0].Width = 160;
-            dgvMonAn.Columns[1].HeaderText = "Tên món ăn";
-            dgvMonAn.Columns[1].Width = 200;
-
-            dgvMonAn.ClearSelection();
-            dgvMonAn.CurrentCell = null;
         }
 
         private void getCombobox()
@@ -79,20 +82,18 @@ namespace QLNT.Presentation
 
         private void XoaTrang()
         {
-            txtDonViTinh.Text = "";
-            txtCSDD.Text = "0";
-            txtSoLuong.Text = "10";
+            txtNangLuongChiTiet.Text = "0";
+            txtKhoiLuong.Text = "10";
             cboChonNguyenLieu.Text = "";
 
         }
 
         private void setTextInfo()
         {
-            txtDonViTinh.Text = "";
             txtMaMonAn.Text = "";
-            txtCSDD.Text = "";
+            txtNangLuongChiTiet.Text = "";
 
-            txtSoLuong.Text = "";
+            txtKhoiLuong.Text = "";
             txtTenMonAn.Text = "";
             cboChonNguyenLieu.Text = "";
         }
@@ -100,13 +101,14 @@ namespace QLNT.Presentation
         public void setEnabledComponent(bool value)
         {
             cboChonNguyenLieu.Enabled = value;
-            txtSoLuong.Enabled = value;
+            txtKhoiLuong.Enabled = value;
         }
 
         private void dgvMonAn_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtMaMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["MaMonAn"].Value.ToString().Trim();
             txtTenMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["TenMonAn"].Value.ToString().Trim();
+            txtNangLuong.Text = dgvMonAn.Rows[e.RowIndex].Cells["NangLuong"].Value.ToString().Trim();
             getDataGridViewChiTietMonAn(txtMaMonAn.Text);
         }
 
@@ -123,9 +125,8 @@ namespace QLNT.Presentation
                 return;
 
             cboChonNguyenLieu.Enabled = false;
-            txtSoLuong.Text = dgvChiTietMonAn.Rows[e.RowIndex].Cells["SoLuong"].Value.ToString().Trim();
-            txtDonViTinh.Text = dgvChiTietMonAn.Rows[e.RowIndex].Cells["DonViTinh"].Value.ToString().Trim();
-            txtCSDD.Text = dgvChiTietMonAn.Rows[e.RowIndex].Cells["ChiSoDinhDuong"].Value.ToString().Trim();
+            txtKhoiLuong.Text = dgvChiTietMonAn.Rows[e.RowIndex].Cells["SoLuong"].Value.ToString().Trim();
+            txtNangLuongChiTiet.Text = dgvChiTietMonAn.Rows[e.RowIndex].Cells["NangLuong"].Value.ToString().Trim();
         }
 
         private void btnXoaTrang_Click(object sender, EventArgs e)
@@ -152,7 +153,7 @@ namespace QLNT.Presentation
         {
             ChiTietMonAnBLL.LuuChiTietMonAn(txtMaMonAn.Text.Trim(), 
                 cboChonNguyenLieu.Text.Trim(), 
-                int.Parse(txtSoLuong.Text.Trim()));
+                int.Parse(txtKhoiLuong.Text.Trim()));
 
             getDataGridViewChiTietMonAn(txtMaMonAn.Text.Trim());
         }
