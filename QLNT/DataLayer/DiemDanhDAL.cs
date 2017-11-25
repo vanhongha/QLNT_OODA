@@ -30,6 +30,8 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
+        
+
         public static object TaoBangDiemDanhMoi(Lop lop)
         {
             DataAccessHelper db = new DataAccessHelper();

@@ -81,6 +81,7 @@
             this.btnLuuPhieu.TabIndex = 16;
             this.btnLuuPhieu.Text = "Lưu phiếu tháng này";
             this.btnLuuPhieu.UseVisualStyleBackColor = true;
+            this.btnLuuPhieu.Click += new System.EventHandler(this.btnLuuPhieu_Click);
             // 
             // groupBox1
             // 

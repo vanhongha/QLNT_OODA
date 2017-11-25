@@ -49,8 +49,6 @@ namespace QLNT.Presentation
         private void Init()
         {
             DateTime date = DateTime.Now;
-            dtThangLapPhieu.MaxDate = date.AddYears(1);
-            dtThangLapPhieu.MinDate = date;
 
             dtThangLapPhieu.Format = DateTimePickerFormat.Custom;
             dtThangLapPhieu.CustomFormat = "MM/yyyy";
@@ -97,32 +95,32 @@ namespace QLNT.Presentation
             dgvPhieuBeNgoan.Columns.Clear();
             if (!string.IsNullOrEmpty(cboLop.Text))
             {
-                string datetime = dtThangLapPhieu.Value.ToString("yyyy-MM");
-                dgvPhieuBeNgoan.DataSource = DiemDanhBLL.LaySoDiemDanhLop(
+                string datetime = dtThangLapPhieu.Text;
+                dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.LayPhieuBeNgoanTheoLop(
                     LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
-                    datetime.Split(' ')[0]);
+                    datetime);
 
-                DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-                checkColumn.Name = "HienDienCheckbox";
-                checkColumn.HeaderText = "Hiện Diện";
-                checkColumn.Width = 50;
-                checkColumn.ReadOnly = false;
-                checkColumn.FillWeight = 10;
-                dgvPhieuBeNgoan.Columns.Add(checkColumn);
 
-                dgvPhieuBeNgoan.Columns["HienDien"].Visible = false;
-                for (int i = 0; i < dgvPhieuBeNgoan.RowCount; i++)
+                TaoPhieuTrong();
+
+                for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                 {
-                    DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["HienDienCheckbox"];
-                    if (dgvPhieuBeNgoan.Rows[i].Cells["HienDien"].Value.ToString() == "1")
+                    for (int j = 1; j < 5; j++)
                     {
-                        chkBoxCell.Value = "true";
+                        DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu"+j];
+                        if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan"+j].Value.ToString() == "1")
+                            chkBoxCell.Value = "true";
+                        else
+                            chkBoxCell.Value = "false";
                     }
+                    if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value.ToString() == "1")
+                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "true";
                     else
-                    {
-                        chkBoxCell.Value = "false";
-                    }
+                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "false";
+
                 }
+
+               
             }
         }
 
@@ -131,17 +129,77 @@ namespace QLNT.Presentation
             dgvPhieuBeNgoan.Columns.Clear();
             if (!string.IsNullOrEmpty(cboLop.Text))
             {
-                dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())));
+                dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
+                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                    dtThangLapPhieu.Text);
+                TaoPhieuTrong();
+                
+            }
+        }
+
+        private void TaoPhieuTrong()
+        {
+            for (int i = 1; i < 5; i++)
+            {
                 DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-                checkColumn.Name = "HienDienCheckbox";
-                checkColumn.HeaderText = "Hiện Diện";
+                checkColumn.Name = "cbPhieu" + i;
+                checkColumn.HeaderText = "Phiếu Tuần " + i;
                 checkColumn.Width = 50;
                 checkColumn.ReadOnly = false;
                 checkColumn.FillWeight = 10;
                 dgvPhieuBeNgoan.Columns.Add(checkColumn);
+                dgvPhieuBeNgoan.Columns["PhieuBeNgoanTuan" + i].Visible = false;
+            }
+            DataGridViewCheckBoxColumn phieuthang = new DataGridViewCheckBoxColumn();
+            phieuthang.Name = "cbPhieuThang";
+            phieuthang.HeaderText = "Phiếu Tháng";
+            phieuthang.Width = 80;
+            phieuthang.ReadOnly = false;
+            phieuthang.FillWeight = 50;
+            phieuthang.DefaultCellStyle.BackColor = Color.LimeGreen;
+            dgvPhieuBeNgoan.Columns.Add(phieuthang);
+            dgvPhieuBeNgoan.Columns["PhieuBeNgoanThang"].Visible = false;
+        }
+        private void btnLuuPhieu_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
+            {
+                for (int j = 1; j < 5; j++)
+                {
+                    if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" +j].Value == null ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "False" ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "false")
+                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "0";
+                    else
+                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" +j].Value = "1";
+                }
+                if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value == null ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "False" ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "false")
+                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "0";
+                else
+                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "1";
 
-                dgvPhieuBeNgoan.Columns["HienDien"].Visible = false;
+            }
+            LuuPhieuBeNgoan(dgvPhieuBeNgoan);
+        }
 
+        private void LuuPhieuBeNgoan(DataGridView dgvPhieuBeNgoan)
+        {
+            for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
+            {
+                TheoDoiThang phieubengoan = new TheoDoiThang();
+                phieubengoan.MaTre = dgvPhieuBeNgoan.Rows[i].Cells["MaTre"].Value.ToString();
+                string ngaylapphieu= dtThangLapPhieu.Text;
+                phieubengoan.Nam = Int32.Parse(ngaylapphieu.Split('/')[1]);
+                phieubengoan.Thang = Int32.Parse(ngaylapphieu.Split('/')[0]);
+                phieubengoan.NhanXetThang = dgvPhieuBeNgoan.Rows[i].Cells["NhanXetThang"].Value.ToString();
+                phieubengoan.PhieuTuan1 = Int32.Parse(dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan1"].Value.ToString());
+                phieubengoan.PhieuTuan2 = Int32.Parse(dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan2"].Value.ToString());
+                phieubengoan.PhieuTuan3 = Int32.Parse(dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan3"].Value.ToString());
+                phieubengoan.PhieuTuan4 = Int32.Parse(dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan4"].Value.ToString());
+                phieubengoan.PhieuThang = Int32.Parse(dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value.ToString());
+                PhieuBeNgoanBLL.LuuPhieuBeNgoan(phieubengoan);
             }
         }
     }

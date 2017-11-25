@@ -9,29 +9,18 @@ namespace QLNT.Entities
 {
     class TheoDoiThang
     {
-        private string maTheoDoi;
+        
         private string maTre;
         private int thang;
         private int nam;
-        private bool phieuThang;
-        private bool phieuTuan1;
-        private bool phieuTuan2;
-        private bool phieuTuan3;
-        private bool phieuTuan4;
+        private int phieuThang;
+        private int phieuTuan1;
+        private int phieuTuan2;
+        private int phieuTuan3;
+        private int phieuTuan4;
         private string nhanXetThang;
 
-        public string MaTheoDoi
-        {
-            get
-            {
-                return maTheoDoi;
-            }
-
-            set
-            {
-                maTheoDoi = value;
-            }
-        }
+        
 
         public string MaTre
         {
@@ -72,7 +61,7 @@ namespace QLNT.Entities
             }
         }
 
-        public bool PhieuThang
+        public int PhieuThang
         {
             get
             {
@@ -85,7 +74,7 @@ namespace QLNT.Entities
             }
         }
 
-        public bool PhieuTuan1
+        public int PhieuTuan1
         {
             get
             {
@@ -98,7 +87,7 @@ namespace QLNT.Entities
             }
         }
 
-        public bool PhieuTuan2
+        public int PhieuTuan2
         {
             get
             {
@@ -111,7 +100,7 @@ namespace QLNT.Entities
             }
         }
 
-        public bool PhieuTuan3
+        public int PhieuTuan3
         {
             get
             {
@@ -124,7 +113,7 @@ namespace QLNT.Entities
             }
         }
 
-        public bool PhieuTuan4
+        public int PhieuTuan4
         {
             get
             {
@@ -151,15 +140,15 @@ namespace QLNT.Entities
         }
         public TheoDoiThang(DataRow row)
         {
-            this.maTheoDoi = row["MaTT"].ToString();
+            
             this.maTre = row["MaTre"].ToString();
             this.nam = int.Parse(row["Nam"].ToString());
             this.thang = int.Parse(row["Thang"].ToString());
-            this.phieuThang = bool.Parse(row["PhieuBeNgoanThang"].ToString());
-            this.phieuTuan1 = bool.Parse(row["PhieuBeNgoanTuan1"].ToString());
-            this.phieuTuan2 = bool.Parse(row["PhieuBeNgoanTuan2"].ToString());
-            this.phieuTuan3 = bool.Parse(row["PhieuBeNgoanTuan3"].ToString());
-            this.phieuTuan4 = bool.Parse(row["PhieuBeNgoanTuan4"].ToString());
+            this.phieuThang = int.Parse(row["PhieuBeNgoanThang"].ToString());
+            this.phieuTuan1 = int.Parse(row["PhieuBeNgoanTuan1"].ToString());
+            this.phieuTuan2 = int.Parse(row["PhieuBeNgoanTuan2"].ToString());
+            this.phieuTuan3 = int.Parse(row["PhieuBeNgoanTuan3"].ToString());
+            this.phieuTuan4 = int.Parse(row["PhieuBeNgoanTuan4"].ToString());
             this.nhanXetThang = row["NhanXetThang"].ToString();
         }
 
