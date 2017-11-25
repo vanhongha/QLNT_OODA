@@ -33,6 +33,14 @@ namespace QLNT.Entities
             set { maLoaiChiPhi = value; }
         }
 
+        private string tenLoaiChiPhi;
+
+        public string TenLoaiChiPhi
+        {
+            get { return tenLoaiChiPhi; }
+            set { tenLoaiChiPhi = value; }
+        }
+
         private decimal soTien;
 
         public decimal SoTien
@@ -56,14 +64,15 @@ namespace QLNT.Entities
             get { return ghiChu; }
             set { ghiChu = value; }
         }
- 
-        public DanhMucChiPhi() {  }
+
+        public DanhMucChiPhi() { }
 
         public DanhMucChiPhi(DataRow row)
         {
             this.maDanhMuc = row["MaDanhMuc"].ToString();
             this.tenChiPhi = row["TenChiPhi"].ToString();
             this.maLoaiChiPhi = row["MaLoaiChiPhi"].ToString();
+            this.tenLoaiChiPhi = row["TenLoaiChiPhi"].ToString();
             this.soTien = decimal.Parse(row["SoTien"].ToString());
             this.truTienKhiNghi = int.Parse(row["TruTienKhiNghi"].ToString());
             this.ghiChu = row["GhiChu"].ToString();

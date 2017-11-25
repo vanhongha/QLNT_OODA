@@ -54,6 +54,7 @@
     <Compile Include="BusinessLayer\DangNhapBLL.cs" />
     <Compile Include="BusinessLayer\DanhMucChiPhiBLL.cs" />
     <Compile Include="BusinessLayer\DiemDanhBLL.cs" />
+    <Compile Include="BusinessLayer\HocPhiBLL.cs" />
     <Compile Include="BusinessLayer\LoaiNguyenLieuBLL.cs" />
     <Compile Include="BusinessLayer\LopBLL.cs" />
     <Compile Include="BusinessLayer\MonAnBLL.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="DataLayer\DanhMucChiPhiDAL.cs" />
     <Compile Include="DataLayer\DataAccessHelper.cs" />
     <Compile Include="DataLayer\DiemDanhDAL.cs" />
+    <Compile Include="DataLayer\HocPhiDAL.cs" />
     <Compile Include="DataLayer\LoaiNguyenLieuDAL.cs" />
     <Compile Include="DataLayer\LopDAL.cs" />
     <Compile Include="DataLayer\MonAnDAL.cs" />
@@ -82,9 +84,12 @@
     <Compile Include="DataLayer\TaiKhoanDAL.cs" />
     <Compile Include="DataLayer\ThucDonDAL.cs" />
     <Compile Include="DataLayer\TreDAL.cs" />
+    <Compile Include="Entities\BienLaiThuHocPhi.cs" />
+    <Compile Include="Entities\ChiTietHocPhi.cs" />
     <Compile Include="Entities\ChiTietMonAn.cs" />
     <Compile Include="Entities\ChiTietThucDon.cs" />
     <Compile Include="Entities\DanhMucChiPhi.cs" />
+    <Compile Include="Entities\HocPhi.cs" />
     <Compile Include="Entities\LoaiChiPhi.cs" />
     <Compile Include="Entities\LoaiLop.cs" />
     <Compile Include="Entities\LoaiNguyenLieu.cs" />

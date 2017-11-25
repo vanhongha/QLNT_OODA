@@ -11,9 +11,15 @@ namespace QLNT.BusinessLayer
 {
     class DanhMucChiPhiBLL
     {
-        public static DataTable GetListDanhMucChiPhi()
+        public static List<DanhMucChiPhi> GetListDanhMucChiPhi()
         {
-            return DanhMucChiPhiDAL.GetListDanhMucChiPhi();
+            List<DanhMucChiPhi> list = new List<DanhMucChiPhi>();
+            DataTable dt = DanhMucChiPhiDAL.GetListDanhMucChiPhi();
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new DanhMucChiPhi(row));
+            }
+            return list;
         }
 
         public static string GenerateMaDanhMuc()
@@ -42,6 +48,17 @@ namespace QLNT.BusinessLayer
         public static void XoaDanhMucChiPhi(string maDanhMuc)
         {
             DanhMucChiPhiDAL.XoaDanhMucChiPhi(maDanhMuc);
+        }
+
+        public static DanhMucChiPhi GetInfoDanhMuc(string maDanhMuc)
+        {
+            DataTable dt = DanhMucChiPhiDAL.GetInfoDanhMuc(maDanhMuc);
+            foreach (DataRow row in dt.Rows)
+            {
+                return new DanhMucChiPhi(row);
+            }
+
+            return new DanhMucChiPhi();
         }
 
         public static List<LoaiChiPhi> GetListLoaiChiPhi()
