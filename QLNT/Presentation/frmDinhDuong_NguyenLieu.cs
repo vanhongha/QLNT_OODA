@@ -60,7 +60,6 @@ namespace QLNT.Presentation
         {
             cboLoaiNguyenLieu.DataSource = LoaiNguyenLieuBLL.layDanhSachLoaiNguyenLieu();
             cboLoaiNguyenLieu.DisplayMember = "TenLoaiNL";
-            cboLoaiNguyenLieu.ValueMember = "MaLoaiNL";
             cboLoaiNguyenLieu.Text = "";
         }
 
