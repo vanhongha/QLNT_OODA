@@ -21,5 +21,22 @@ namespace QLNT.DataLayer
             }
             return "";
         }
+
+        public static DataTable ThemPhieu(PhieuTiepNhanTre phieumoi)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("THEM_PHIEU_TIEP_NHAN");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", phieumoi.MaTre);
+            cmd.Parameters.AddWithValue("@MaPhieu", phieumoi.MaPhieu);
+            cmd.Parameters.AddWithValue("@NgayTiepNhanTre", phieumoi.NgayTiepNhan);
+            cmd.Parameters.AddWithValue("@NguoiTiepNhan", phieumoi.NguoiTiepNhan);
+            
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            return db.dt;
+        }
     }
 }

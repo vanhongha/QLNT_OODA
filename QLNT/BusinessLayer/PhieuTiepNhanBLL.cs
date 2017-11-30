@@ -23,5 +23,17 @@ namespace QLNT.BusinessLayer
             id = id.Substring(id.Length - 6, 6);
             return "MPTN" + id;
         }
+
+        public static bool ThemPhieu(PhieuTiepNhanTre phieumoi)
+        {
+            DataTable dt = PhieuTiepNhanDAL.ThemPhieu(phieumoi);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.ItemArray[0].ToString().Trim() == "0")
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

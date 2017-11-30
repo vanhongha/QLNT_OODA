@@ -73,7 +73,13 @@ namespace QLNT.Entities
             this.nguoiTiepNhan = row["NguoiTiepNhan"].ToString();
 
         }
-
+        public PhieuTiepNhanTre(string matre, string maphieu, string ngaytiepnhan, string nguoitiepnhan)
+        {
+            this.maTre = matre;
+            this.maPhieu = maphieu;
+            this.ngayTiepNhan = ngaytiepnhan;
+            this.nguoiTiepNhan = nguoitiepnhan;
+        }
         public PhieuTiepNhanTre()
         {
         }

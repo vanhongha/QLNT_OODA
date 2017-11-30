@@ -18,6 +18,7 @@ namespace QLNT.Presentation
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
 
+        #region Init
         public frmPhieuBeNgoan(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
@@ -36,16 +37,6 @@ namespace QLNT.Presentation
             loadListNamHoc();
         }
 
-        private void loadListNamHoc()
-        {
-            cboNamHoc.DisplayMember = "Text";
-            cboNamHoc.ValueMember = "Value";
-            foreach (NamHoc namHoc in LopBLL.GetListNienKhoa())
-            {
-                cboNamHoc.Items.Add(new { Text = namHoc.NienKhoa.Trim(), Value = namHoc.MaNamHoc.Trim() });
-            }
-        }
-
         private void Init()
         {
             DateTime date = DateTime.Now;
@@ -54,23 +45,16 @@ namespace QLNT.Presentation
             dtThangLapPhieu.CustomFormat = "MM/yyyy";
             dtThangLapPhieu.ShowUpDown = true;
         }
+        #endregion
 
-        private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
+        #region Function
+        private void loadListNamHoc()
         {
-            LoadListLop();
-            string namhoc = cboNamHoc.Text;
-            int year = Int32.Parse(namhoc.Split('-')[0]);
-            if ((new DateTime(year, 9, 5)) >= dtThangLapPhieu.MaxDate)
+            cboNamHoc.DisplayMember = "Text";
+            cboNamHoc.ValueMember = "Value";
+            foreach (NamHoc namHoc in LopBLL.GetListNienKhoa())
             {
-                dtThangLapPhieu.MaxDate = new DateTime(year + 1, 9, 5);
-                dtThangLapPhieu.MinDate = dtThangLapPhieu.MaxDate.AddYears(-1);
-                dtThangLapPhieu.Value = new DateTime(year, DateTime.Now.Month, 1);
-            }
-            if ((new DateTime(year + 1, 9, 5)) <= dtThangLapPhieu.MinDate)
-            {
-                dtThangLapPhieu.MinDate = new DateTime(year, 9, 5);
-                dtThangLapPhieu.MaxDate = dtThangLapPhieu.MinDate.AddYears(1);
-                dtThangLapPhieu.Value = new DateTime(year, DateTime.Now.Month, 1);
+                cboNamHoc.Items.Add(new { Text = namHoc.NienKhoa.Trim(), Value = namHoc.MaNamHoc.Trim() });
             }
         }
 
@@ -83,11 +67,6 @@ namespace QLNT.Presentation
                 foreach (Lop lop in LopBLL.GetListLop(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())))
                     cboLop.Items.Add(new { Text = lop.TenLop.Trim(), Value = lop.MaLop.Trim() });
             cboLop.Text = "";
-        }
-
-        private void dtThangLapPhieu_ValueChanged(object sender, EventArgs e)
-        {
-            loadDataGridView();
         }
 
         private void loadDataGridView()
@@ -107,8 +86,8 @@ namespace QLNT.Presentation
                 {
                     for (int j = 1; j < 5; j++)
                     {
-                        DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu"+j];
-                        if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan"+j].Value.ToString() == "1")
+                        DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j];
+                        if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value.ToString() == "1")
                             chkBoxCell.Value = "true";
                         else
                             chkBoxCell.Value = "false";
@@ -120,20 +99,18 @@ namespace QLNT.Presentation
 
                 }
 
-               
+
             }
         }
 
-        private void btnTaoPhieuMoi_Click(object sender, EventArgs e)
+        private void XoaPhieuCu()
         {
-            dgvPhieuBeNgoan.Columns.Clear();
-            if (!string.IsNullOrEmpty(cboLop.Text))
+            string ngaylapphieu = dtThangLapPhieu.Text;
+            for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
             {
-                dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
-                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
-                    dtThangLapPhieu.Text);
-                TaoPhieuTrong();
-                
+                PhieuBeNgoanBLL.XoaPhieuBeNgoan(dgvPhieuBeNgoan.Rows[i].Cells["MaTre"].Value.ToString(),
+                    ngaylapphieu.Split('/')[0],
+                    ngaylapphieu.Split('/')[1]);
             }
         }
 
@@ -160,29 +137,6 @@ namespace QLNT.Presentation
             dgvPhieuBeNgoan.Columns.Add(phieuthang);
             dgvPhieuBeNgoan.Columns["PhieuBeNgoanThang"].Visible = false;
         }
-        private void btnLuuPhieu_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
-            {
-                for (int j = 1; j < 5; j++)
-                {
-                    if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" +j].Value == null ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "False" ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "false")
-                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "0";
-                    else
-                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" +j].Value = "1";
-                }
-                if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value == null ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "False" ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "false")
-                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "0";
-                else
-                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "1";
-
-            }
-            LuuPhieuBeNgoan(dgvPhieuBeNgoan);
-        }
 
         private void LuuPhieuBeNgoan(DataGridView dgvPhieuBeNgoan)
         {
@@ -190,7 +144,7 @@ namespace QLNT.Presentation
             {
                 TheoDoiThang phieubengoan = new TheoDoiThang();
                 phieubengoan.MaTre = dgvPhieuBeNgoan.Rows[i].Cells["MaTre"].Value.ToString();
-                string ngaylapphieu= dtThangLapPhieu.Text;
+                string ngaylapphieu = dtThangLapPhieu.Text;
                 phieubengoan.Nam = Int32.Parse(ngaylapphieu.Split('/')[1]);
                 phieubengoan.Thang = Int32.Parse(ngaylapphieu.Split('/')[0]);
                 phieubengoan.NhanXetThang = dgvPhieuBeNgoan.Rows[i].Cells["NhanXetThang"].Value.ToString();
@@ -202,5 +156,74 @@ namespace QLNT.Presentation
                 PhieuBeNgoanBLL.LuuPhieuBeNgoan(phieubengoan);
             }
         }
+        #endregion
+
+        #region Events
+        private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadListLop();
+            string namhoc = cboNamHoc.Text;
+            int year = Int32.Parse(namhoc.Split('-')[0]);
+            if ((new DateTime(year, 9, 5)) >= dtThangLapPhieu.MaxDate)
+            {
+                dtThangLapPhieu.MaxDate = new DateTime(year + 1, 9, 5);
+                dtThangLapPhieu.MinDate = dtThangLapPhieu.MaxDate.AddYears(-1);
+                dtThangLapPhieu.Value = new DateTime(year, DateTime.Now.Month, 1);
+            }
+            if ((new DateTime(year + 1, 9, 5)) <= dtThangLapPhieu.MinDate)
+            {
+                dtThangLapPhieu.MinDate = new DateTime(year, 9, 5);
+                dtThangLapPhieu.MaxDate = dtThangLapPhieu.MinDate.AddYears(1);
+                dtThangLapPhieu.Value = new DateTime(year, DateTime.Now.Month, 1);
+            }
+        }
+
+        private void dtThangLapPhieu_ValueChanged(object sender, EventArgs e)
+        {
+            loadDataGridView();
+        }
+
+        private void btnTaoPhieuMoi_Click(object sender, EventArgs e)
+        {
+            dgvPhieuBeNgoan.Columns.Clear();
+            XoaPhieuCu();
+            if (!string.IsNullOrEmpty(cboLop.Text))
+            {
+                dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
+                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                    dtThangLapPhieu.Text);
+                TaoPhieuTrong();
+
+            }
+        }
+
+        private void btnLuuPhieu_Click(object sender, EventArgs e)
+        {
+            //Xoa cai cu
+            XoaPhieuCu();
+            //Tao cai moi
+            for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
+            {
+                for (int j = 1; j < 5; j++)
+                {
+                    if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value == null ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "False" ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "false")
+                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "0";
+                    else
+                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "1";
+                }
+                if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value == null ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "False" ||
+                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "false")
+                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "0";
+                else
+                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "1";
+
+            }
+            LuuPhieuBeNgoan(dgvPhieuBeNgoan);
+        }
+        #endregion
+
     }
 }

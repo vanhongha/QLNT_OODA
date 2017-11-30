@@ -28,5 +28,10 @@ namespace QLNT.Presentation
         {
             return PhieuBeNgoanDAL.LayPhieuBeNgoanTheoLop(lop, datetime);
         }
+
+        public static void XoaPhieuBeNgoan(string value, string v1, string v2)
+        {
+            PhieuBeNgoanDAL.XoaPhieuBeNgoan(value, v1, v2);
+        }
     }
 }

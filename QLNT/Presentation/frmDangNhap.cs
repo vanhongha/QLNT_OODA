@@ -36,6 +36,7 @@ namespace QLNT.Presentation
                 {
                     frmMain formMain = new frmMain();
                     frmMain.Quyen = (Quyen)Enum.Parse(typeof(Quyen), DangNhapBLL.XemDL("QUYEN", txtTaiKhoan.Text, txtMatKhau.Text).Rows[0][0].ToString());
+                    formMain.username = txtTaiKhoan.Text.Trim();
                     this.Hide();
                     formMain.ShowDialog();
                     this.Close();

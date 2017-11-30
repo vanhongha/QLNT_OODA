@@ -14,6 +14,7 @@ namespace QLNT.Presentation
 {
     public partial class frmMain : Form
     {
+        public string username;
         private static Quyen quyen;
 
         public static Quyen Quyen
@@ -102,6 +103,7 @@ namespace QLNT.Presentation
                 _frmTiepNhan.Dock = DockStyle.Fill;
                 _frmTiepNhan.StartPosition = FormStartPosition.CenterParent;
                 tab.AttachedControl.Controls.Add(_frmTiepNhan);
+                _frmTiepNhan.username = this.username;
                 _frmTiepNhan.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
             }

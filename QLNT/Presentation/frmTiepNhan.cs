@@ -20,6 +20,7 @@ namespace QLNT.Presentation
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
+        public string username;
 
         #region Init
         public frmTiepNhan()
@@ -42,8 +43,8 @@ namespace QLNT.Presentation
         {
             txtMaPhieu.Text = PhieuTiepNhanBLL.GenMaPhieu().ToString();
             txtMaHocSinh.Text = TreBLL.GenMaTre().ToString();
-            txtNgayTiepNhan.Text = DateTime.Now.ToString();
-            //txtNguoiTiepNhan.Text = DangNhapBLL.GetThongTinNguoiDung().Rows[3].ToString();
+            txtNgayTiepNhan.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            txtNguoiTiepNhan.Text = TaiKhoanBLL.GetTenNguoiDung(username);
             dateNgaySinh.MinDate = DateTime.Today.AddYears(-7);
             dateNgaySinh.MaxDate = DateTime.Today.AddYears(-2);
         }
@@ -128,9 +129,11 @@ namespace QLNT.Presentation
             txtDiaChi.Text,
             txtSDT.Text);
 
+            PhieuTiepNhanTre phieumoi = new PhieuTiepNhanTre(txtMaHocSinh.Text,txtMaPhieu.Text,txtNgayTiepNhan.Text,txtNguoiTiepNhan.Text);
+
             try
             {
-                if (TreBLL.ThemTre(hocsinhmoi))
+                if (TreBLL.ThemTre(hocsinhmoi) && PhieuTiepNhanBLL.ThemPhieu(phieumoi))
                 {
                     MessageBox.Show("Đã thêm trẻ thành công", "Thông báo", MessageBoxButtons.OK);
                     CleanInput();

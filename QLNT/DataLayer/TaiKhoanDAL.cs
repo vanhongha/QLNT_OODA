@@ -13,7 +13,7 @@ namespace QLNT.DataLayer
         public static DataTable GetTenNguoiDung(string tenDangNhap)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetTenNguoiDung");
+            SqlCommand cmd = db.Command("GETTHONGTINUSER");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenDangNhap", tenDangNhap);

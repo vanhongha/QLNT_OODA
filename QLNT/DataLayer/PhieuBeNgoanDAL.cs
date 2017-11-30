@@ -53,6 +53,20 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
+        public static void XoaPhieuBeNgoan(string value, string v1, string v2)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = null;
+
+            cmd = db.Command("XOA_PHIEU_BE_NGOAN");
+            cmd.Parameters.AddWithValue("@MaTre", value);
+            cmd.Parameters.AddWithValue("@Thang", v1);
+            cmd.Parameters.AddWithValue("@Nam", v2);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+        }
+
         public static object LayPhieuBeNgoanTheoLop(Lop lop, string datetime)
         {
             DataAccessHelper db = new DataAccessHelper();
