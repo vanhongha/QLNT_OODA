@@ -44,3 +44,4 @@ D:\SOURCE\QLNT_OODA\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmBieuDoSucKhoe.
 D:\SOURCE\QLNT_OODA\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmXepLop.resources
 D:\SOURCE\QLNT_OODA\QLNT_OODA\QLNT\obj\Debug\QLNT.Properties.Resources.resources
 D:\SOURCE\QLNT_OODA\QLNT_OODA\QLNT\obj\Debug\QLNT.csproj.GenerateResource.Cache
+D:\Project\QLNT_OODA\QLNT\obj\Debug\QLNT.Presentation.frmDinhDuong_ApDungThucDon.resources

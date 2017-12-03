@@ -49,12 +49,12 @@ namespace QLNT.Entities
             set { soTien = value; }
         }
 
-        private int truTienKhiNghi;
+        private int tinhTheoSoNgayDiHoc;
 
-        public int TruTienKhiNghi
+        public int TinhTheoSoNgayDiHoc
         {
-            get { return truTienKhiNghi; }
-            set { truTienKhiNghi = value; }
+            get { return tinhTheoSoNgayDiHoc; }
+            set { tinhTheoSoNgayDiHoc = value; }
         }
 
         private string ghiChu;
@@ -74,7 +74,7 @@ namespace QLNT.Entities
             this.maLoaiChiPhi = row["MaLoaiChiPhi"].ToString();
             this.tenLoaiChiPhi = row["TenLoaiChiPhi"].ToString();
             this.soTien = decimal.Parse(row["SoTien"].ToString());
-            this.truTienKhiNghi = int.Parse(row["TruTienKhiNghi"].ToString());
+            this.tinhTheoSoNgayDiHoc = int.Parse(row["TinhTheoSoNgayDiHoc"].ToString());
             this.ghiChu = row["GhiChu"].ToString();
         }
 

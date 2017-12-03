@@ -3,13 +3,6 @@ using QLNT.BusinessLayer;
 using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
@@ -200,9 +193,27 @@ namespace QLNT.Presentation
             LoadListThongTinDongHocPhi();
         }
 
+        private void dgvBienLai_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && e.RowIndex != dgvTre.RowCount)
+            {
+                ClearAllField();
+                txtTenTre.Text = dgvBienLai.Rows[e.RowIndex].Cells["HoTenTre"].Value.ToString();
+                txtNguoiThuTien.Text = dgvBienLai.Rows[e.RowIndex].Cells["NguoiThu"].Value.ToString();
+                txtNguoiDongTien.Text = dgvBienLai.Rows[e.RowIndex].Cells["NguoiDong"].Value.ToString();
+                dtNgayThu.Value = (DateTime)dgvBienLai.Rows[e.RowIndex].Cells["NgayThu"].Value;
+                txtGhiChu.Text = dgvBienLai.Rows[e.RowIndex].Cells["GhiChu"].Value.ToString();
+                txtSoTienDong.Text = dgvBienLai.Rows[e.RowIndex].Cells["SoTienThu"].Value.ToString();
+                txtSoTienConNo.Text = dgvBienLai.Rows[e.RowIndex].Cells["SoTienConNo"].Value.ToString();
+                maTre = dgvBienLai.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
+                hocPhiConNo = decimal.Parse(dgvBienLai.Rows[e.RowIndex].Cells["SoTienConNo"].Value.ToString());
+            }
+        }
+
         private void btnDong_Click(object sender, EventArgs e)
         {
 
         }
+       
     }
 }

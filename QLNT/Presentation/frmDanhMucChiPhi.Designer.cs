@@ -42,7 +42,7 @@
             this.txtGhiChu = new System.Windows.Forms.RichTextBox();
             this.txtSoTien = new System.Windows.Forms.TextBox();
             this.txtTenChiPhi = new System.Windows.Forms.TextBox();
-            this.chkTruTienKhiNghi = new System.Windows.Forms.CheckBox();
+            this.chkTinhTheoSoNgayDiHoc = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -142,7 +142,7 @@
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.txtSoTien);
             this.groupBox1.Controls.Add(this.txtTenChiPhi);
-            this.groupBox1.Controls.Add(this.chkTruTienKhiNghi);
+            this.groupBox1.Controls.Add(this.chkTinhTheoSoNgayDiHoc);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -181,6 +181,7 @@
             this.txtSoTien.Name = "txtSoTien";
             this.txtSoTien.Size = new System.Drawing.Size(245, 26);
             this.txtSoTien.TabIndex = 10;
+            this.txtSoTien.TextChanged += new System.EventHandler(this.txtSoTien_TextChanged);
             // 
             // txtTenChiPhi
             // 
@@ -190,15 +191,15 @@
             this.txtTenChiPhi.Size = new System.Drawing.Size(245, 26);
             this.txtTenChiPhi.TabIndex = 10;
             // 
-            // chkTruTienKhiNghi
+            // chkTinhTheoSoNgayDiHoc
             // 
-            this.chkTruTienKhiNghi.AutoSize = true;
-            this.chkTruTienKhiNghi.Location = new System.Drawing.Point(19, 224);
-            this.chkTruTienKhiNghi.Name = "chkTruTienKhiNghi";
-            this.chkTruTienKhiNghi.Size = new System.Drawing.Size(139, 24);
-            this.chkTruTienKhiNghi.TabIndex = 1;
-            this.chkTruTienKhiNghi.Text = "Trừ tiền khi nghỉ";
-            this.chkTruTienKhiNghi.UseVisualStyleBackColor = true;
+            this.chkTinhTheoSoNgayDiHoc.AutoSize = true;
+            this.chkTinhTheoSoNgayDiHoc.Location = new System.Drawing.Point(19, 224);
+            this.chkTinhTheoSoNgayDiHoc.Name = "chkTinhTheoSoNgayDiHoc";
+            this.chkTinhTheoSoNgayDiHoc.Size = new System.Drawing.Size(199, 24);
+            this.chkTinhTheoSoNgayDiHoc.TabIndex = 1;
+            this.chkTinhTheoSoNgayDiHoc.Text = "Tính theo số ngày đi học";
+            this.chkTinhTheoSoNgayDiHoc.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -267,6 +268,7 @@
             this.dgvDanhMuc.Size = new System.Drawing.Size(589, 597);
             this.dgvDanhMuc.TabIndex = 2;
             this.dgvDanhMuc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhMuc_CellClick);
+            this.dgvDanhMuc.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDanhMuc_DataBindingComplete);
             // 
             // frmDanhMucChiPhi
             // 
@@ -295,7 +297,7 @@
         private System.Windows.Forms.RichTextBox txtGhiChu;
         private System.Windows.Forms.TextBox txtSoTien;
         private System.Windows.Forms.TextBox txtTenChiPhi;
-        private System.Windows.Forms.CheckBox chkTruTienKhiNghi;
+        private System.Windows.Forms.CheckBox chkTinhTheoSoNgayDiHoc;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;

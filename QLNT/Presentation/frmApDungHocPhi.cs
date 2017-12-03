@@ -196,7 +196,7 @@ namespace QLNT.Presentation
             {
                 txtSoTien.Enabled = true;
             }
-            labelTheoNgay.Visible = danhMuc.TruTienKhiNghi == 1;
+            labelTheoNgay.Visible = danhMuc.TinhTheoSoNgayDiHoc == 1;
 
             txtSoTien.Text = danhMuc.SoTien.ToString();
         }

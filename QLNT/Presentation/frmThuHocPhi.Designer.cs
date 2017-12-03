@@ -71,17 +71,22 @@
             // 
             // dgvTre
             // 
+            this.dgvTre.AllowUserToAddRows = false;
+            this.dgvTre.AllowUserToDeleteRows = false;
             this.dgvTre.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvTre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTre.Location = new System.Drawing.Point(0, 144);
             this.dgvTre.Name = "dgvTre";
+            this.dgvTre.ReadOnly = true;
             this.dgvTre.Size = new System.Drawing.Size(516, 245);
             this.dgvTre.TabIndex = 7;
             this.dgvTre.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTre_CellClick);
             // 
             // dgvBienLai
             // 
+            this.dgvBienLai.AllowUserToAddRows = false;
+            this.dgvBienLai.AllowUserToDeleteRows = false;
             this.dgvBienLai.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -89,8 +94,10 @@
             this.dgvBienLai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBienLai.Location = new System.Drawing.Point(16, 46);
             this.dgvBienLai.Name = "dgvBienLai";
+            this.dgvBienLai.ReadOnly = true;
             this.dgvBienLai.Size = new System.Drawing.Size(483, 111);
             this.dgvBienLai.TabIndex = 1;
+            this.dgvBienLai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBienLai_CellClick);
             // 
             // panel3
             // 

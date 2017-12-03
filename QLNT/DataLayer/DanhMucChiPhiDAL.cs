@@ -46,7 +46,7 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@TenChiPhi", danhMuc.TenChiPhi);
             cmd.Parameters.AddWithValue("@MaLoaiChiPhi", danhMuc.MaLoaiChiPhi);
             cmd.Parameters.AddWithValue("@SoTien", danhMuc.SoTien);
-            cmd.Parameters.AddWithValue("@TruTienKhiNghi", danhMuc.TruTienKhiNghi);
+            cmd.Parameters.AddWithValue("@TinhTheoSoNgayDiHoc", danhMuc.TinhTheoSoNgayDiHoc);
             cmd.Parameters.AddWithValue("@GhiChu", danhMuc.GhiChu);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -64,7 +64,7 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@TenChiPhi", danhMuc.TenChiPhi);
             cmd.Parameters.AddWithValue("@MaLoaiChiPhi", danhMuc.MaLoaiChiPhi);
             cmd.Parameters.AddWithValue("@SoTien", danhMuc.SoTien);
-            cmd.Parameters.AddWithValue("@TruTienKhiNghi", danhMuc.TruTienKhiNghi);
+            cmd.Parameters.AddWithValue("@TinhTheoSoNgayDiHoc", danhMuc.TinhTheoSoNgayDiHoc);
             cmd.Parameters.AddWithValue("@GhiChu", danhMuc.GhiChu);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -138,6 +138,21 @@ namespace QLNT.DataLayer
             }
 
             return "";
+        }
+
+        public static DataTable KiemTraSuDungDanhMucChiPhi(string maDanhMuc)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("KiemTraSuDungDanhMucChiPhi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaDM", maDanhMuc);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
         }
     }
 }

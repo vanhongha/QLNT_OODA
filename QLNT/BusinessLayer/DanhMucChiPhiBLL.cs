@@ -70,5 +70,17 @@ namespace QLNT.BusinessLayer
         {
             return DanhMucChiPhiDAL.GetTenLoaiChiPhi(maLoai);
         }
+
+        //Hàm kiểm tra xem danh mục chi phí này có đang được sử dụng hay không
+        public static bool KiemTraSuDungDanhMucChiPhi(string maDanhMuc)
+        {
+            DataTable dt = DanhMucChiPhiDAL.KiemTraSuDungDanhMucChiPhi(maDanhMuc);
+            foreach(DataRow row in dt.Rows)
+            {
+                return int.Parse(row[0].ToString()) == 1;
+            }
+
+            return false;
+        }
     }
 }
