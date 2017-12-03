@@ -31,7 +31,7 @@ namespace QLNT.DataLayer
         public static string layMaLoaiNguyenLieuTheoTen(string tenLoaiNL)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayMaNguyenLieuTheoTen");
+            SqlCommand cmd = db.Command("LayMaLoaiNguyenLieuTheoTen");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenLoaiNL", tenLoaiNL);

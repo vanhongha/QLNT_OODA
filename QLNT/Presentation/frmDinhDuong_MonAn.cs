@@ -154,7 +154,7 @@ namespace QLNT.Presentation
             ChiTietMonAnBLL.LuuChiTietMonAn(txtMaMonAn.Text.Trim(), 
                 cboChonNguyenLieu.Text.Trim(), 
                 int.Parse(txtKhoiLuong.Text.Trim()));
-
+            getDataGridViewMonAn();
             getDataGridViewChiTietMonAn(txtMaMonAn.Text.Trim());
         }
 

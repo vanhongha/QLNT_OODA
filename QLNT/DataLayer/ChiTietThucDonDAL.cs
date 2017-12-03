@@ -14,7 +14,7 @@ namespace QLNT.DataLayer
         public static void ThemChiTietThucDon(string maThucDon, string maMonAn)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("THEM_CHI_TIET_THUC_DON");
+            SqlCommand cmd = db.Command("ThemChiTietThucDon");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaThucDon", maThucDon);
@@ -28,7 +28,7 @@ namespace QLNT.DataLayer
         public static void XoaChiTietThucDon(string maThucDon, string maMonAn)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("XOA_CHI_TIET_THUC_DON");
+            SqlCommand cmd = db.Command("XoaChiTietThucDon");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaThucDon", maThucDon);

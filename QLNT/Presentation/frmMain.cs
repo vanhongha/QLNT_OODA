@@ -308,5 +308,23 @@ namespace QLNT.Presentation
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
+
+        private void btnApDung_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Lịch ăn"))
+            {
+                TabItem tab = tabControl.CreateTab("Lịch ăn");
+                tab.PredefinedColor = eTabItemColor.Blue;
+                frmDinhDuong_ApDungThucDon _frmDinhDuong_ApDungThucDon = new frmDinhDuong_ApDungThucDon(tabControl, tab);
+                _frmDinhDuong_ApDungThucDon.TopLevel = false;
+                _frmDinhDuong_ApDungThucDon.Dock = DockStyle.Fill;
+                _frmDinhDuong_ApDungThucDon.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmDinhDuong_ApDungThucDon);
+                _frmDinhDuong_ApDungThucDon.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
 }

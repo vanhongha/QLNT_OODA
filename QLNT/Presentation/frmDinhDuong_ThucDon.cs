@@ -48,6 +48,8 @@ namespace QLNT.Presentation
             dgvThucDon.Columns[3].Width = 100;
             dgvThucDon.Columns[4].HeaderText = "Trạng thái";
             dgvThucDon.Columns[4].Width = 120;
+
+            dgvThucDon.ClearSelection();
         }
 
         private void getDataGridViewChiTietThucDon(string maThucDon)
@@ -65,6 +67,7 @@ namespace QLNT.Presentation
             dgvChiTietThucDon.Columns[2].Width = 120;
             dgvChiTietThucDon.Columns[3].HeaderText = "Năng lượng (Kcal/gam)";
             dgvChiTietThucDon.Columns[3].Width = 120;
+            dgvChiTietThucDon.ClearSelection();
         }
 
         private void getComboBoxMonAn()
@@ -112,12 +115,16 @@ namespace QLNT.Presentation
 
         private void btnLuuChiTiet_Click(object sender, EventArgs e)
         {
-
+            ChiTietThucDonBLL.ThemChiTietThucDon(txtMaThucDon.Text.Trim(), cboMonAn.SelectedValue.ToString().Trim());
+            getDataGridViewThucDon();
+            getDataGridViewChiTietThucDon(txtMaThucDon.Text.Trim());
         }
 
         private void btnXoaChiTiet_Click(object sender, EventArgs e)
         {
-
+            ChiTietThucDonBLL.XoaChiTietThucDon(txtMaThucDon.Text.Trim(), cboMonAn.SelectedValue.ToString().Trim());
+            getDataGridViewThucDon();
+            getDataGridViewChiTietThucDon(txtMaThucDon.Text.Trim());
         }
     }
 }

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvThucDon = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNguoiLap = new System.Windows.Forms.TextBox();
@@ -38,6 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnXoaChiTiet = new System.Windows.Forms.Button();
+            this.btnLuuChiTiet = new System.Windows.Forms.Button();
             this.lblWarning = new System.Windows.Forms.Label();
             this.btnReloadMonAn = new System.Windows.Forms.Button();
             this.txtMaThucDon2 = new System.Windows.Forms.TextBox();
@@ -46,11 +50,6 @@
             this.dgvChiTietThucDon = new System.Windows.Forms.DataGridView();
             this.cboMonAn = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnXoaChiTiet = new System.Windows.Forms.Button();
-            this.btnLuuChiTiet = new System.Windows.Forms.Button();
-            this.btnXoaTrangChiTiet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThucDon)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -90,6 +89,26 @@
             this.groupBox2.TabIndex = 86;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DANH SÁCH THỰC ĐƠN";
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Location = new System.Drawing.Point(310, 421);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(117, 34);
+            this.btnXoa.TabIndex = 107;
+            this.btnXoa.Text = "Xóa thực đơn";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.Location = new System.Drawing.Point(178, 421);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(124, 34);
+            this.btnLuu.TabIndex = 106;
+            this.btnLuu.Text = "Thêm thực đơn";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // label15
             // 
@@ -152,7 +171,6 @@
             // 
             this.groupBox1.Controls.Add(this.btnXoaChiTiet);
             this.groupBox1.Controls.Add(this.btnLuuChiTiet);
-            this.groupBox1.Controls.Add(this.btnXoaTrangChiTiet);
             this.groupBox1.Controls.Add(this.lblWarning);
             this.groupBox1.Controls.Add(this.btnReloadMonAn);
             this.groupBox1.Controls.Add(this.txtMaThucDon2);
@@ -169,6 +187,26 @@
             this.groupBox1.TabIndex = 85;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CHI TIẾT THỰC ĐƠN";
+            // 
+            // btnXoaChiTiet
+            // 
+            this.btnXoaChiTiet.Location = new System.Drawing.Point(315, 420);
+            this.btnXoaChiTiet.Name = "btnXoaChiTiet";
+            this.btnXoaChiTiet.Size = new System.Drawing.Size(102, 34);
+            this.btnXoaChiTiet.TabIndex = 110;
+            this.btnXoaChiTiet.Text = "Xóa";
+            this.btnXoaChiTiet.UseVisualStyleBackColor = true;
+            this.btnXoaChiTiet.Click += new System.EventHandler(this.btnXoaChiTiet_Click);
+            // 
+            // btnLuuChiTiet
+            // 
+            this.btnLuuChiTiet.Location = new System.Drawing.Point(207, 420);
+            this.btnLuuChiTiet.Name = "btnLuuChiTiet";
+            this.btnLuuChiTiet.Size = new System.Drawing.Size(102, 34);
+            this.btnLuuChiTiet.TabIndex = 109;
+            this.btnLuuChiTiet.Text = "Thêm";
+            this.btnLuuChiTiet.UseVisualStyleBackColor = true;
+            this.btnLuuChiTiet.Click += new System.EventHandler(this.btnLuuChiTiet_Click);
             // 
             // lblWarning
             // 
@@ -225,14 +263,14 @@
             this.dgvChiTietThucDon.AllowUserToAddRows = false;
             this.dgvChiTietThucDon.AllowUserToDeleteRows = false;
             this.dgvChiTietThucDon.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTietThucDon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTietThucDon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvChiTietThucDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietThucDon.Location = new System.Drawing.Point(6, 50);
             this.dgvChiTietThucDon.Name = "dgvChiTietThucDon";
@@ -246,7 +284,6 @@
             // 
             this.cboMonAn.BackColor = System.Drawing.SystemColors.Window;
             this.cboMonAn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMonAn.Enabled = false;
             this.cboMonAn.FormattingEnabled = true;
             this.cboMonAn.Location = new System.Drawing.Point(246, 375);
             this.cboMonAn.Name = "cboMonAn";
@@ -263,56 +300,6 @@
             this.label5.Size = new System.Drawing.Size(101, 20);
             this.label5.TabIndex = 42;
             this.label5.Text = "Tên món ăn: ";
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Location = new System.Drawing.Point(310, 421);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(117, 34);
-            this.btnXoa.TabIndex = 107;
-            this.btnXoa.Text = "Xóa thực đơn";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.Location = new System.Drawing.Point(178, 421);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(124, 34);
-            this.btnLuu.TabIndex = 106;
-            this.btnLuu.Text = "Thêm thực đơn";
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // btnXoaChiTiet
-            // 
-            this.btnXoaChiTiet.Location = new System.Drawing.Point(354, 420);
-            this.btnXoaChiTiet.Name = "btnXoaChiTiet";
-            this.btnXoaChiTiet.Size = new System.Drawing.Size(102, 34);
-            this.btnXoaChiTiet.TabIndex = 110;
-            this.btnXoaChiTiet.Text = "Xóa";
-            this.btnXoaChiTiet.UseVisualStyleBackColor = true;
-            this.btnXoaChiTiet.Click += new System.EventHandler(this.btnXoaChiTiet_Click);
-            // 
-            // btnLuuChiTiet
-            // 
-            this.btnLuuChiTiet.Location = new System.Drawing.Point(244, 420);
-            this.btnLuuChiTiet.Name = "btnLuuChiTiet";
-            this.btnLuuChiTiet.Size = new System.Drawing.Size(102, 34);
-            this.btnLuuChiTiet.TabIndex = 109;
-            this.btnLuuChiTiet.Text = "Lưu";
-            this.btnLuuChiTiet.UseVisualStyleBackColor = true;
-            this.btnLuuChiTiet.Click += new System.EventHandler(this.btnLuuChiTiet_Click);
-            // 
-            // btnXoaTrangChiTiet
-            // 
-            this.btnXoaTrangChiTiet.Location = new System.Drawing.Point(134, 420);
-            this.btnXoaTrangChiTiet.Name = "btnXoaTrangChiTiet";
-            this.btnXoaTrangChiTiet.Size = new System.Drawing.Size(102, 34);
-            this.btnXoaTrangChiTiet.TabIndex = 108;
-            this.btnXoaTrangChiTiet.Text = "Xóa Trắng";
-            this.btnXoaTrangChiTiet.UseVisualStyleBackColor = true;
-            this.btnXoaTrangChiTiet.Click += new System.EventHandler(this.btnXoaTrangChiTiet_Click);
             // 
             // frmDinhDuong_ThucDon
             // 
@@ -358,6 +345,5 @@
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoaChiTiet;
         private System.Windows.Forms.Button btnLuuChiTiet;
-        private System.Windows.Forms.Button btnXoaTrangChiTiet;
     }
 }
