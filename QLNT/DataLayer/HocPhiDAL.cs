@@ -155,13 +155,15 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
-        public static DataTable GetListBienLai(string maTre)
+        public static DataTable LayDanhSachBienLaiTheoThang(string maTre, int thang, int nam)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetListBienLai");
+            SqlCommand cmd = db.Command("LayDanhSachBienLaiTheoThang");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
@@ -190,19 +192,13 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
         }
 
-        public static void CapNhatBienLai(BienLaiThuHocPhi bienLai)
+        public static void XoaBienLai(string maBienLai)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatBienLai");
+            SqlCommand cmd = db.Command("XoaBienLai");
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaBienLai", bienLai.MaBienLai);
-            cmd.Parameters.AddWithValue("@NguoiDong", bienLai.NguoiDong);
-            cmd.Parameters.AddWithValue("@NguoiThu", bienLai.NguoiThu);
-            cmd.Parameters.AddWithValue("@NgayThu", bienLai.NgayThu);
-            cmd.Parameters.AddWithValue("@SoTienThu", bienLai.SoTienThu);
-            cmd.Parameters.AddWithValue("@SoTienConNo", bienLai.SoTienConNo);
-            cmd.Parameters.AddWithValue("@GhiChu", bienLai.GhiChu);
+            cmd.Parameters.AddWithValue("@MaBienLai", maBienLai);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();

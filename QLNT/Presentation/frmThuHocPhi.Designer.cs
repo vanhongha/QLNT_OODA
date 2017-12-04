@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvTre = new System.Windows.Forms.DataGridView();
-            this.dgvBienLai = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnXoaBienLai = new System.Windows.Forms.Button();
+            this.btnInBienLai = new System.Windows.Forms.Button();
+            this.cboThang = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.dgvBienLai = new System.Windows.Forms.DataGridView();
             this.btnDong = new System.Windows.Forms.Button();
             this.btnLapBienLai = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -61,8 +69,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBienLai)).BeginInit();
             this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBienLai)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,14 +84,115 @@
             this.dgvTre.AllowUserToAddRows = false;
             this.dgvTre.AllowUserToDeleteRows = false;
             this.dgvTre.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTre.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTre.Location = new System.Drawing.Point(0, 144);
+            this.dgvTre.MultiSelect = false;
             this.dgvTre.Name = "dgvTre";
             this.dgvTre.ReadOnly = true;
-            this.dgvTre.Size = new System.Drawing.Size(516, 245);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.GreenYellow;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTre.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvTre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTre.Size = new System.Drawing.Size(516, 165);
             this.dgvTre.TabIndex = 7;
             this.dgvTre.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTre_CellClick);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.groupBox1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 309);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(516, 249);
+            this.panel3.TabIndex = 6;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.panel5);
+            this.groupBox1.Controls.Add(this.cboThang);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dgvBienLai);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(489, 230);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thông tin đóng học phí";
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this.btnXoaBienLai);
+            this.panel5.Controls.Add(this.btnInBienLai);
+            this.panel5.Location = new System.Drawing.Point(231, 15);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(252, 40);
+            this.panel5.TabIndex = 12;
+            // 
+            // btnXoaBienLai
+            // 
+            this.btnXoaBienLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaBienLai.Location = new System.Drawing.Point(145, 7);
+            this.btnXoaBienLai.Name = "btnXoaBienLai";
+            this.btnXoaBienLai.Size = new System.Drawing.Size(102, 33);
+            this.btnXoaBienLai.TabIndex = 12;
+            this.btnXoaBienLai.Text = "Xóa biên lai";
+            this.btnXoaBienLai.UseVisualStyleBackColor = true;
+            this.btnXoaBienLai.Click += new System.EventHandler(this.btnXoaBienLai_Click);
+            // 
+            // btnInBienLai
+            // 
+            this.btnInBienLai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInBienLai.Location = new System.Drawing.Point(36, 7);
+            this.btnInBienLai.Name = "btnInBienLai";
+            this.btnInBienLai.Size = new System.Drawing.Size(103, 33);
+            this.btnInBienLai.TabIndex = 13;
+            this.btnInBienLai.Text = "In biên lai";
+            this.btnInBienLai.UseVisualStyleBackColor = true;
+            this.btnInBienLai.Click += new System.EventHandler(this.btnInBienLai_Click);
+            // 
+            // cboThang
+            // 
+            this.cboThang.FormattingEnabled = true;
+            this.cboThang.Location = new System.Drawing.Point(130, 25);
+            this.cboThang.Name = "cboThang";
+            this.cboThang.Size = new System.Drawing.Size(67, 28);
+            this.cboThang.TabIndex = 11;
+            this.cboThang.SelectedIndexChanged += new System.EventHandler(this.cboThang_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Lọc theo tháng";
             // 
             // dgvBienLai
             // 
@@ -92,32 +203,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBienLai.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvBienLai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBienLai.Location = new System.Drawing.Point(16, 46);
+            this.dgvBienLai.Location = new System.Drawing.Point(12, 61);
+            this.dgvBienLai.MultiSelect = false;
             this.dgvBienLai.Name = "dgvBienLai";
             this.dgvBienLai.ReadOnly = true;
-            this.dgvBienLai.Size = new System.Drawing.Size(483, 111);
-            this.dgvBienLai.TabIndex = 1;
-            this.dgvBienLai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBienLai_CellClick);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dgvBienLai);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 389);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(516, 169);
-            this.panel3.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Thông tin đóng học phí";
+            this.dgvBienLai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBienLai.Size = new System.Drawing.Size(471, 159);
+            this.dgvBienLai.TabIndex = 7;
             // 
             // btnDong
             // 
@@ -307,9 +399,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(16, 313);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 20);
+            this.label11.Size = new System.Drawing.Size(99, 20);
             this.label11.TabIndex = 1;
-            this.label11.Text = "Ghi chú";
+            this.label11.Text = "Nội dung thu";
             // 
             // label10
             // 
@@ -343,9 +435,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(16, 130);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 20);
+            this.label8.Size = new System.Drawing.Size(111, 20);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Người đóng tiền";
+            this.label8.Text = "Người nộp tiền";
             // 
             // label7
             // 
@@ -417,9 +509,11 @@
             this.Text = "frmThuHocPhi";
             this.Load += new System.EventHandler(this.frmThuHocPhi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBienLai)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBienLai)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -433,9 +527,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvTre;
-        private System.Windows.Forms.DataGridView dgvBienLai;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Button btnLapBienLai;
         private System.Windows.Forms.Panel panel4;
@@ -464,5 +556,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cboThang;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dgvBienLai;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnXoaBienLai;
+        private System.Windows.Forms.Button btnInBienLai;
     }
 }

@@ -3,6 +3,7 @@ using QLNT.BusinessLayer;
 using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
@@ -13,6 +14,7 @@ namespace QLNT.Presentation
         TabItem tab;
 
         private string maTre = "";
+        private string maHocPhi = "";
         private decimal hocPhiConNo = 0;
 
         public frmThuHocPhi(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
@@ -75,33 +77,47 @@ namespace QLNT.Presentation
 
         private void LoadDataGirdView()
         {
+            int thang = DateTime.Now.Month - 1;
+            int nam = DateTime.Now.Year;
+            if (thang == 0)
+            {
+                thang = 12;
+                nam -= 1;
+            } 
+
             if (cboLop.SelectedItem == null || cboNamHoc.SelectedItem == null)
             {
-                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop("");
+                dgvTre.DataSource = HocPhiBLL.GetListHocPhiTheoThang("", thang, nam);
             }
             else
             {
-                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
+                dgvTre.DataSource = HocPhiBLL.GetListHocPhiTheoThang(
+                    KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
+                    thang, nam);
             }
 
             dgvTre.Columns[0].HeaderText = "STT";
-            dgvTre.Columns[2].HeaderText = "Họ tên trẻ";
-            dgvTre.Columns[3].HeaderText = "Giới tính";
-            dgvTre.Columns[4].HeaderText = "Ngày sinh";
-            dgvTre.Columns[9].HeaderText = "Học phí còn nợ";
+            dgvTre.Columns[3].HeaderText = "Họ tên trẻ";
+            dgvTre.Columns[4].HeaderText = "Giới tính";
+            dgvTre.Columns[5].HeaderText = "Ngày sinh";
+            dgvTre.Columns[10].HeaderText = "Tổng tiền học phí";
+            dgvTre.Columns[11].HeaderText = "Số tiền đã đóng";
+            dgvTre.Columns[12].HeaderText = "Số tiền còn nợ";
 
             dgvTre.Columns[0].Width = 50;
-            dgvTre.Columns[2].Width = 260;
-            dgvTre.Columns[3].Width = 100;
-            dgvTre.Columns[4].Width = 120;
-            dgvTre.Columns[9].Width = 200;
+            dgvTre.Columns[3].Width = 300;
+            dgvTre.Columns[4].Width = 100;
+            dgvTre.Columns[5].Width = 140;
+            dgvTre.Columns[10].Width = 250;
+            dgvTre.Columns[11].Width = 250;
+            dgvTre.Columns[12].Width = 250;
 
             for (int i = 0; i < dgvTre.Rows.Count; i++)
             {
                 dgvTre.Rows[i].Cells[0].Value = i + 1;
             }
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "HocPhiConNo" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
         }
 
@@ -113,6 +129,7 @@ namespace QLNT.Presentation
                 LoadDataGirdView();
                 ClearAllField();
             }
+            LoadListThang();
         }
 
         private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,6 +148,31 @@ namespace QLNT.Presentation
             ClearAllField();
         }
 
+        private void LoadListThang()
+        {
+            NamHoc namHoc = LopBLL.GetInfoNamHoc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+
+            int thangBatDau = namHoc.NgayBatDau.Month;
+            int thangKetThuc = namHoc.NgayKetThuc.Month;
+
+            List<int> listThang = new List<int>();
+            listThang.Add(thangBatDau);
+
+            while (thangBatDau != thangKetThuc)
+            {
+                thangBatDau++;
+                if (thangBatDau > 12)
+                    thangBatDau = 1;
+                listThang.Add(thangBatDau);
+            }
+
+            cboThang.Items.Clear();
+            foreach (int thang in listThang)
+            {
+                cboThang.Items.Add(thang.ToString());
+            }
+        }
+
         private void ClearAllField()
         {
             txtTenTre.Clear();
@@ -140,6 +182,9 @@ namespace QLNT.Presentation
             txtSoTienConNo.Clear();
             txtGhiChu.Clear();
             dtNgayThu.Text = "";
+            maTre = "";
+            maHocPhi = "";
+            hocPhiConNo = 0;
         }
 
         private void dgvTre_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -148,72 +193,164 @@ namespace QLNT.Presentation
             {
                 ClearAllField();
                 txtTenTre.Text = dgvTre.Rows[e.RowIndex].Cells["HoTenTre"].Value.ToString();
-                txtSoTienConNo.Text = dgvTre.Rows[e.RowIndex].Cells["HocPhiConNo"].Value.ToString();
+                txtSoTienConNo.Text = dgvTre.Rows[e.RowIndex].Cells["SoTienConNo"].Value.ToString();
                 maTre = dgvTre.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
-                hocPhiConNo = decimal.Parse(dgvTre.Rows[e.RowIndex].Cells["HocPhiConNo"].Value.ToString());
+                maHocPhi = dgvTre.Rows[e.RowIndex].Cells["MaHocPhi"].Value.ToString();
+                hocPhiConNo = decimal.Parse(dgvTre.Rows[e.RowIndex].Cells["SoTienConNo"].Value.ToString());
                 LoadListThongTinDongHocPhi();
             }
         }
 
         private void LoadListThongTinDongHocPhi()
         {
-            dgvBienLai.DataSource = HocPhiBLL.GetListBienLai(maTre);
+            int thang;
+            if (cboThang.Text == "")
+                thang = 0;
+            else
+                thang = int.Parse(cboThang.Text);
+            dgvBienLai.DataSource = HocPhiBLL.LayDanhSachBienLaiTheoThang(maTre, thang, KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+
+            dgvBienLai.Columns[0].HeaderText = "Mã biên lai";
+            dgvBienLai.Columns[2].HeaderText = "Người nộp tiền";
+            dgvBienLai.Columns[3].HeaderText = "Người thu tiền";
+            dgvBienLai.Columns[4].HeaderText = "Ngày thu tiền";
+            dgvBienLai.Columns[5].HeaderText = "Số tiền thu";
+            dgvBienLai.Columns[6].HeaderText = "Số tiền còn nợ";
+            dgvBienLai.Columns[7].HeaderText = "Nội dung thu";
+
+            dgvBienLai.Columns[0].Width = 120;
+            dgvBienLai.Columns[2].Width = 200;
+            dgvBienLai.Columns[3].Width = 200;
+            dgvBienLai.Columns[4].Width = 150;
+            dgvBienLai.Columns[5].Width = 140;
+            dgvBienLai.Columns[6].Width = 140;
+            dgvBienLai.Columns[7].Width = 350;
+
+            string[] listProp = { "MaBienLai", "NguoiDong", "NguoiThu", "NgayThu", "SoTienThu", "SoTienConNo", "GhiChu" };
+            ControlFormat.DataGridViewFormat(dgvBienLai, listProp);
+
         }
 
         private void txtSoTienDong_TextChanged(object sender, EventArgs e)
         {
-            if (txtSoTienDong.Text == "") return;
+            if (txtSoTienDong.Text == "")
+            {
+                txtSoTienConNo.Text = hocPhiConNo.ToString();
+                return;
+            }
             try
             {
                 decimal soTienDong = decimal.Parse(txtSoTienDong.Text);
+                if(hocPhiConNo - soTienDong < 0)
+                {
+                    MessageBox.Show("Số tiền thu không được vượt quá số tiền nợ học phí.");
+                    txtSoTienDong.Clear();
+                    return;
+                }
                 txtSoTienConNo.Text = (hocPhiConNo - soTienDong).ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi.");
+                MessageBox.Show("Chỉ được nhập kí tự số.");
                 txtSoTienDong.Clear();
             }
         }
 
         private void btnLapBienLai_Click(object sender, EventArgs e)
         {
-            if (txtTenTre.Text == "" || txtSoTienDong.Text == "" || txtNguoiDongTien.Text == "" || txtNguoiThuTien.Text == "") return;
-            BienLaiThuHocPhi bienLai = new BienLaiThuHocPhi();
-            bienLai.MaBienLai = HocPhiBLL.GenerateMaBienLai();
-            bienLai.MaTre = maTre;
-            bienLai.NguoiDong = txtNguoiDongTien.Text;
-            bienLai.NguoiThu = txtNguoiThuTien.Text;
-            bienLai.NgayThu = dtNgayThu.Value;
-            bienLai.SoTienThu = decimal.Parse(txtSoTienDong.Text);
-            bienLai.SoTienConNo = decimal.Parse(txtSoTienConNo.Text);
-            bienLai.GhiChu = txtGhiChu.Text;
-
-            HocPhiBLL.ThemBienLai(bienLai);
-            LoadDataGirdView();
-            LoadListThongTinDongHocPhi();
-        }
-
-        private void dgvBienLai_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1 && e.RowIndex != dgvTre.RowCount)
+            if(txtTenTre.Text == "")
             {
+                MessageBox.Show("Phải chọn một trẻ để lập biên lai.");
+                return;
+            }
+            if(txtNguoiDongTien.Text == "")
+            {
+                MessageBox.Show("Tên người đóng tiền không được bỏ trống.");
+                return;
+            }
+            if(txtNguoiThuTien.Text == "")
+            {
+                MessageBox.Show("Tên người thu tiền không được bỏ trống");
+                return;
+            }
+            if(txtSoTienDong.Text == "")
+            {
+                MessageBox.Show("Số tiền đóng không được bỏ trống.");
+                return;
+            }
+            if(decimal.Parse(txtSoTienDong.Text) <= 0)
+            {
+                MessageBox.Show("Số tiền đóng phải lớn hơn 0.");
+                return;
+            }
+
+            try
+            {
+                BienLaiThuHocPhi bienLai = new BienLaiThuHocPhi();
+                bienLai.MaBienLai = HocPhiBLL.GenerateMaBienLai();
+                bienLai.MaTre = maTre;
+                bienLai.NguoiDong = txtNguoiDongTien.Text;
+                bienLai.NguoiThu = txtNguoiThuTien.Text;
+                bienLai.NgayThu = dtNgayThu.Value;
+                bienLai.SoTienThu = decimal.Parse(txtSoTienDong.Text);
+                bienLai.SoTienConNo = decimal.Parse(txtSoTienConNo.Text);
+                bienLai.GhiChu = txtGhiChu.Text;
+
+                HocPhiBLL.ThemBienLai(bienLai, maHocPhi);
+                MessageBox.Show("Thêm biên lai thành công!");
                 ClearAllField();
-                txtTenTre.Text = dgvBienLai.Rows[e.RowIndex].Cells["HoTenTre"].Value.ToString();
-                txtNguoiThuTien.Text = dgvBienLai.Rows[e.RowIndex].Cells["NguoiThu"].Value.ToString();
-                txtNguoiDongTien.Text = dgvBienLai.Rows[e.RowIndex].Cells["NguoiDong"].Value.ToString();
-                dtNgayThu.Value = (DateTime)dgvBienLai.Rows[e.RowIndex].Cells["NgayThu"].Value;
-                txtGhiChu.Text = dgvBienLai.Rows[e.RowIndex].Cells["GhiChu"].Value.ToString();
-                txtSoTienDong.Text = dgvBienLai.Rows[e.RowIndex].Cells["SoTienThu"].Value.ToString();
-                txtSoTienConNo.Text = dgvBienLai.Rows[e.RowIndex].Cells["SoTienConNo"].Value.ToString();
-                maTre = dgvBienLai.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
-                hocPhiConNo = decimal.Parse(dgvBienLai.Rows[e.RowIndex].Cells["SoTienConNo"].Value.ToString());
+                LoadDataGirdView();
+                LoadListThongTinDongHocPhi();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi.");
             }
         }
 
         private void btnDong_Click(object sender, EventArgs e)
         {
+            this.Close();
+            tabControl.Tabs.Remove(tab);
+        }
+
+        private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadListThongTinDongHocPhi();
+        }
+
+        private void btnXoaBienLai_Click(object sender, EventArgs e)
+        {
+            if(!HocPhiBLL.CoTheXoaBienLai((DateTime)dgvBienLai.SelectedRows[0].Cells["NgayThu"].Value, DateTime.Now))
+            {
+                MessageBox.Show("Không thể xóa biên lai này ra khỏi hệ thống.");
+                return;
+            }
+            try
+            {
+                BienLaiThuHocPhi bienLai = new BienLaiThuHocPhi();
+                bienLai.MaBienLai = dgvBienLai.SelectedRows[0].Cells["MaBienLai"].Value.ToString();
+                bienLai.MaTre = dgvBienLai.SelectedRows[0].Cells["MaTre"].Value.ToString();
+                bienLai.NguoiDong = dgvBienLai.SelectedRows[0].Cells["NguoiDong"].Value.ToString();
+                bienLai.NguoiThu = dgvBienLai.SelectedRows[0].Cells["NguoiThu"].Value.ToString();
+                bienLai.NgayThu = (DateTime)dgvBienLai.SelectedRows[0].Cells["NgayThu"].Value;
+                bienLai.SoTienThu = decimal.Parse(dgvBienLai.SelectedRows[0].Cells["SoTienThu"].Value.ToString());
+                bienLai.SoTienConNo = decimal.Parse(dgvBienLai.SelectedRows[0].Cells["SoTienConNo"].Value.ToString());
+                bienLai.GhiChu = dgvBienLai.SelectedRows[0].Cells["GhiChu"].Value.ToString();
+                HocPhiBLL.XoaBienLai(bienLai, maHocPhi);
+                MessageBox.Show("Đã xóa biên lai khỏi hệ thống!");
+
+                LoadListThongTinDongHocPhi();
+                LoadDataGirdView();
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnInBienLai_Click(object sender, EventArgs e)
+        {
 
         }
-       
     }
 }

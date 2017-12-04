@@ -132,29 +132,44 @@ namespace QLNT.Entities
             return 0;
         }
 
-        public static DataTable GetListBienLai(string maTre)
+        public static HocPhi LayThongTinHocPhi(string maHocPhi)
         {
-            return HocPhiDAL.GetListBienLai(maTre);
-        }
-
-        public static void ThemBienLai(BienLaiThuHocPhi bienLai)
-        {
-            HocPhiDAL.ThemBienLai(bienLai);
-        }
-
-        public static void CapNhatBienLai(BienLaiThuHocPhi bienLai)
-        {
-            HocPhiDAL.CapNhatBienLai(bienLai);
-        }
-
-        public static BienLaiThuHocPhi GetInfoBienLai(string maBienLai)
-        {
-            foreach (DataRow row in HocPhiDAL.GetInfoBienLai(maBienLai).Rows)
+            DataTable dt = HocPhiDAL.GetInfoHocPhi(maHocPhi);
+            foreach(DataRow row in dt.Rows)
             {
-                return new BienLaiThuHocPhi(row);
+                return new HocPhi(row);
             }
+            return new HocPhi();
+        }
 
-            return new BienLaiThuHocPhi();
+        public static DataTable LayDanhSachBienLaiTheoThang(string maTre, int thang, string maNamHoc)
+        {
+            int nam = LopBLL.GetNamHoc(thang, maNamHoc);
+            return HocPhiDAL.LayDanhSachBienLaiTheoThang(maTre, thang, nam);
+        }
+
+        public static void ThemBienLai(BienLaiThuHocPhi bienLai, string maHocPhi)
+        {
+            //Thêm biên lai
+            HocPhiDAL.ThemBienLai(bienLai);
+
+            //Cập nhật lại số tiền đã đóng và số tiền còn nợ của học phí tháng đó
+            HocPhi hocPhi = LayThongTinHocPhi(maHocPhi);
+            hocPhi.SoTienDaDong += bienLai.SoTienThu;
+            hocPhi.SoTienConNo = hocPhi.TongTienHocPhi - hocPhi.SoTienDaDong;
+            HocPhiDAL.CapNhatHocPhi(hocPhi);
+        }
+
+        public static void XoaBienLai(BienLaiThuHocPhi bienLai, string maHocPhi)
+        {
+            //Xóa biên lai
+            HocPhiDAL.XoaBienLai(bienLai.MaBienLai);
+
+            //Cập nhật lại học phí cho trẻ
+            HocPhi hocPhi = LayThongTinHocPhi(maHocPhi);
+            hocPhi.SoTienDaDong -= bienLai.SoTienThu;
+            hocPhi.SoTienConNo = hocPhi.TongTienHocPhi - hocPhi.SoTienDaDong;
+            HocPhiDAL.CapNhatHocPhi(hocPhi);
         }
 
         public static string GenerateMaBienLai()
@@ -168,6 +183,11 @@ namespace QLNT.Entities
             id = "00000" + nextID.ToString();
             id = id.Substring(id.Length - 6, 6);
             return "MABL" + id;
+        }
+
+        public static bool CoTheXoaBienLai(DateTime ngayThu, DateTime ngayXoa)
+        {
+            return ngayThu.Month == ngayXoa.Month && ngayThu.Year == ngayXoa.Year;
         }
     }
 }
