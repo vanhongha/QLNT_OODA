@@ -50,7 +50,11 @@ namespace QLNT.DataLayer
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", hocPhi.MaHocPhi);
-            cmd.Parameters.AddWithValue("@TongTien", hocPhi.TongTien);
+            cmd.Parameters.AddWithValue("@HocPhiThangNay", hocPhi.HocPhiThangNay);
+            cmd.Parameters.AddWithValue("@TienNoThangTruoc", hocPhi.TienNoThangTruoc);
+            cmd.Parameters.AddWithValue("@TongTienHocPhi", hocPhi.TongTienHocPhi);
+            cmd.Parameters.AddWithValue("@SoTienDaDong", hocPhi.SoTienDaDong);
+            cmd.Parameters.AddWithValue("@SoTienConNo", hocPhi.SoTienConNo);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
@@ -68,11 +72,32 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@MaTre", hocPhi.MaTre);
             cmd.Parameters.AddWithValue("@Thang", hocPhi.Thang);
             cmd.Parameters.AddWithValue("@Nam", hocPhi.Nam);
-            cmd.Parameters.AddWithValue("@TongTien", hocPhi.TongTien);
+            cmd.Parameters.AddWithValue("@HocPhiThangNay", hocPhi.HocPhiThangNay);
+            cmd.Parameters.AddWithValue("@TienNoThangTruoc", hocPhi.TienNoThangTruoc);
+            cmd.Parameters.AddWithValue("@TongTienHocPhi", hocPhi.TongTienHocPhi);
+            cmd.Parameters.AddWithValue("@SoTienDaDong", hocPhi.SoTienDaDong);
+            cmd.Parameters.AddWithValue("@SoTienConNo", hocPhi.SoTienConNo);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
             da.Fill(db.dt);
+        }
+
+        public static DataTable LaySoTienConNoCuaThang(int thang, int nam, string maTre)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LaySoTienConNoCuaThang");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
         }
 
         public static string GetLastID()
@@ -84,21 +109,6 @@ namespace QLNT.DataLayer
                 return row.ItemArray[0].ToString();
             }
             return "";
-        }
-
-        public static DataTable GetTienNoHocPhi(string maTre)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetTienNoHocPhi");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaTre", maTre);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
         }
 
         public static void XoaChiTietHocPhi(ChiTietHocPhi chiTiet)
@@ -124,20 +134,6 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@MaHocPhi", chiTiet.MaHocPhi);
             cmd.Parameters.AddWithValue("@MaDanhMuc", chiTiet.MaDanhMuc);
             cmd.Parameters.AddWithValue("@SoTien", chiTiet.SoTien);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-        }
-
-        public static void CapNhatHocPhiChoTre(string maTre, decimal hocPhi)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatHocPhiChoTre");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaTre", maTre);
-            cmd.Parameters.AddWithValue("@HocPhi", hocPhi);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();

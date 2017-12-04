@@ -102,20 +102,28 @@ namespace QLNT.Presentation
             dgvTre.Columns[3].HeaderText = "Họ tên trẻ";
             dgvTre.Columns[4].HeaderText = "Giới tính";
             dgvTre.Columns[5].HeaderText = "Ngày sinh";
-            dgvTre.Columns[8].HeaderText = "Tổng tiền";
+            dgvTre.Columns[8].HeaderText = "Học phí tháng này";
+            dgvTre.Columns[9].HeaderText = "Tiền nợ tháng trước";
+            dgvTre.Columns[10].HeaderText = "Tổng tiền học phí";
+            dgvTre.Columns[11].HeaderText = "Số tiền đã đóng";
+            dgvTre.Columns[12].HeaderText = "Số tiền còn nợ";
 
             dgvTre.Columns[0].Width = 50;
             dgvTre.Columns[3].Width = 260;
             dgvTre.Columns[4].Width = 100;
             dgvTre.Columns[5].Width = 120;
-            dgvTre.Columns[8].Width = 150;
+            dgvTre.Columns[8].Width = 140;
+            dgvTre.Columns[9].Width = 140;
+            dgvTre.Columns[10].Width = 140;
+            dgvTre.Columns[11].Width = 140;
+            dgvTre.Columns[12].Width = 140;
 
             for (int i = 0; i < dgvTre.Rows.Count; i++)
             {
                 dgvTre.Rows[i].Cells[0].Value = i + 1;
             }
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTien" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "HocPhiThangNay", "TienNoThangTruoc", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
         }
 
@@ -216,13 +224,16 @@ namespace QLNT.Presentation
         {
             dgvChiTietHocPhi.DataSource = DataHandle.ListToDataTable(listChiTietHocPhi);
 
-            dgvChiTietHocPhi.Columns[0].HeaderText = "STT";
             dgvChiTietHocPhi.Columns[3].HeaderText = "Tên chi phí";
             dgvChiTietHocPhi.Columns[4].HeaderText = "Số tiền";
 
-            dgvChiTietHocPhi.Columns[0].Width = 50;
             dgvChiTietHocPhi.Columns[3].Width = 250;
             dgvChiTietHocPhi.Columns[4].Width = 100;
+
+            for (int i = 0; i < dgvChiTietHocPhi.Rows.Count; i++)
+            {
+                dgvChiTietHocPhi.Rows[i].Cells[0].Value = i + 1;
+            }
 
             string[] listProp = { "STT", "TenChiPhi", "SoTien" };
             ControlFormat.DataGridViewFormat(dgvChiTietHocPhi, listProp);
@@ -232,7 +243,7 @@ namespace QLNT.Presentation
         {
             if (txtSoTien.Text != "" && cboChiPhi.Text != "")
             {
-                if (CheckExistDanhMucChiPhi(KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString()))) return;
+                if (KiemTraTonTaiDanhMucChiPhi(KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString()))) return;
 
                 ChiTietHocPhi chiTiet = new ChiTietHocPhi();
                 chiTiet.MaHocPhi = maHocPhi;
@@ -245,7 +256,7 @@ namespace QLNT.Presentation
             }
         }
 
-        private bool CheckExistDanhMucChiPhi(string maDanhMuc)
+        private bool KiemTraTonTaiDanhMucChiPhi(string maDanhMuc)
         {
             foreach (ChiTietHocPhi chiTiet in listChiTietHocPhi)
             {
@@ -285,23 +296,40 @@ namespace QLNT.Presentation
 
         private void btnApDungHocPhi_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dgvTre.SelectedRows.Count; i++)
+            if(dgvTre.SelectedRows.Count == 0)
             {
-                HocPhi hocPhi = new HocPhi();
-                hocPhi.MaHocPhi = dgvTre.SelectedRows[i].Cells["MaHocPhi"].Value.ToString();
-                hocPhi.MaTre = dgvTre.SelectedRows[i].Cells["MaTre"].Value.ToString();
-                hocPhi.Thang = int.Parse(dgvTre.SelectedRows[i].Cells["Thang"].Value.ToString());
-                hocPhi.Nam = int.Parse(dgvTre.SelectedRows[i].Cells["Nam"].Value.ToString());
-                hocPhi.TongTien = HocPhiBLL.TinhTongTien(hocPhi, listChiTietHocPhi);
-                int nam = hocPhi.Nam;
-                int thang = hocPhi.Thang - 1;
-                if (thang == 0)
+                MessageBox.Show("Phải chọn ít nhất một trẻ để áp dụng học phí.");
+                return;
+            }
+            if(!HocPhiBLL.CoTheCapNhatHocPhi(
+                int.Parse(dgvTre.SelectedRows[0].Cells["Thang"].Value.ToString()),
+                int.Parse(dgvTre.SelectedRows[0].Cells["Nam"].Value.ToString()),
+                DateTime.Now))
+            {
+                MessageBox.Show("Đã quá hạn hoặc chưa tới thời gian áp dụng học phí.");
+                return;
+            }
+            try
+            {
+                for (int i = 0; i < dgvTre.SelectedRows.Count; i++)
                 {
-                    thang = 12;
-                    nam -= 1;
-                }
+                    HocPhi hocPhi = new HocPhi();
+                    hocPhi.MaHocPhi = dgvTre.SelectedRows[i].Cells["MaHocPhi"].Value.ToString();
+                    hocPhi.MaTre = dgvTre.SelectedRows[i].Cells["MaTre"].Value.ToString();
+                    hocPhi.Thang = int.Parse(dgvTre.SelectedRows[i].Cells["Thang"].Value.ToString());
+                    hocPhi.Nam = int.Parse(dgvTre.SelectedRows[i].Cells["Nam"].Value.ToString());
+                    hocPhi.HocPhiThangNay = HocPhiBLL.TinhHocPhiThangNay(hocPhi, listChiTietHocPhi);
+                    hocPhi.TienNoThangTruoc = HocPhiBLL.LayTienNoHocPhiThangTruoc(hocPhi);
+                    hocPhi.TongTienHocPhi = hocPhi.HocPhiThangNay + hocPhi.TienNoThangTruoc;
+                    hocPhi.SoTienDaDong = decimal.Parse(dgvTre.SelectedRows[i].Cells["SoTienDaDong"].Value.ToString());
+                    hocPhi.SoTienConNo = hocPhi.TongTienHocPhi - hocPhi.SoTienDaDong;
 
-                HocPhiBLL.CapNhatHocPhi(hocPhi, listChiTietHocPhi);
+                    HocPhiBLL.CapNhatHocPhi(hocPhi, listChiTietHocPhi);
+                }
+                MessageBox.Show("Áp dụng học phí thanh công!");
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra.");
             }
 
             RefreshView();
@@ -309,7 +337,8 @@ namespace QLNT.Presentation
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            tabControl.Tabs.Remove(tab);
         }
     }
 }

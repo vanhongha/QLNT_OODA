@@ -65,14 +65,47 @@ namespace QLNT.Entities
             set { nam = value; }
         }
 
-        private decimal tongTien;
+        private decimal hocPhiThangNay;
 
-        public decimal TongTien
+        public decimal HocPhiThangNay
         {
-            get { return tongTien; }
-            set { tongTien = value; }
+            get { return hocPhiThangNay; }
+            set { hocPhiThangNay = value; }
         }
-        
+
+        private decimal tienNoThangTruoc;
+
+        public decimal TienNoThangTruoc
+        {
+            get { return tienNoThangTruoc; }
+            set { tienNoThangTruoc = value; }
+        }
+
+        private decimal tongTienHocPhi;
+
+        public decimal TongTienHocPhi
+        {
+            get { return tongTienHocPhi; }
+            set { tongTienHocPhi = value; }
+        }
+
+        private decimal soTienDaDong;
+
+        public decimal SoTienDaDong
+        {
+            get { return soTienDaDong; }
+            set { soTienDaDong = value; }
+        }
+
+        private decimal soTienConNo;
+
+        public decimal SoTienConNo
+        {
+            get { return soTienConNo; }
+            set { soTienConNo = value; }
+        }
+
+
         public HocPhi(DataRow row)
         {
             maHocPhi = row["MaHocPhi"].ToString();
@@ -82,7 +115,11 @@ namespace QLNT.Entities
             ngaySinh = (DateTime)row["NgaySinh"];
             thang = int.Parse(row["Thang"].ToString());
             nam = int.Parse(row["Nam"].ToString());
-            tongTien = decimal.Parse(row["TongTienNo"].ToString());
+            hocPhiThangNay = decimal.Parse(row["HocPhiThangNay"].ToString());
+            tienNoThangTruoc = decimal.Parse(row["TienNoThangTruoc"].ToString());
+            tongTienHocPhi = decimal.Parse(row["TongTienHocPhi"].ToString());
+            soTienDaDong = decimal.Parse(row["SoTienDaDong"].ToString());
+            soTienConNo = decimal.Parse(row["SoTienConNo"].ToString());
         }
 
         public HocPhi() { }

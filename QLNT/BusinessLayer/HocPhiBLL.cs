@@ -34,6 +34,23 @@ namespace QLNT.Entities
             return list;
         }
 
+        public static bool CoTheCapNhatHocPhi(int hocPhiThang, int hocPhiNam, DateTime ngayCapNhat)
+        {
+            int thangHopLe;
+            int namHopLe;
+            if(hocPhiThang == 12)
+            {
+                thangHopLe = 1;
+                namHopLe = hocPhiNam + 1;
+            } else
+            {
+                thangHopLe = hocPhiThang + 1;
+                namHopLe = hocPhiNam;
+            }
+
+            return ngayCapNhat.Month == thangHopLe && ngayCapNhat.Year == namHopLe;
+        }
+
         public static void CapNhatHocPhi(HocPhi hocPhi, List<ChiTietHocPhi> listChiTiet)
         {
             int soNgayDiHoc = TreBLL.GetSoNgayDiHocTrongThang(hocPhi.MaTre, hocPhi.Thang, hocPhi.Nam);
@@ -53,11 +70,6 @@ namespace QLNT.Entities
                 chiTietHocPhi.MaHocPhi = hocPhi.MaHocPhi;
                 HocPhiDAL.ThemChiTietHocPhi(chiTietHocPhi);
             }
-
-            //cap nhat lai hoc phi cho tre
-            decimal hocPhiCu = GetInfoHocPhi(hocPhi.MaHocPhi).TongTien;
-            decimal tongHocPhiConNo = GetTienNoHocPhi(hocPhi.MaTre) - hocPhiCu + hocPhi.TongTien;
-            HocPhiDAL.CapNhatHocPhiChoTre(hocPhi.MaTre, tongHocPhiConNo);
 
             //luu hoc phi
             HocPhiDAL.CapNhatHocPhi(hocPhi);
@@ -81,7 +93,7 @@ namespace QLNT.Entities
             return "MAHP" + id;
         }
 
-        public static decimal TinhTongTien(HocPhi hocPhi, List<ChiTietHocPhi> list)
+        public static decimal TinhHocPhiThangNay(HocPhi hocPhi, List<ChiTietHocPhi> list)
         {
             decimal tong = 0;
             int soNgayDiHoc = TreBLL.GetSoNgayDiHocTrongThang(hocPhi.MaTre, hocPhi.Thang, hocPhi.Nam);
@@ -96,25 +108,28 @@ namespace QLNT.Entities
             return tong;
         }
 
-        public static decimal GetTienNoHocPhi(string maTre)
+        public static decimal LayTienNoHocPhiThangTruoc(HocPhi hocPhi)
         {
-            DataTable dt = HocPhiDAL.GetTienNoHocPhi(maTre);
-            foreach (DataRow row in dt.Rows)
+            int thang = hocPhi.Thang;
+            int nam = hocPhi.Nam;
+
+            if(thang == 12)
             {
-                return decimal.Parse(row["HocPhiConNo"].ToString());
+                thang = 1;
+                nam += 1;
+            }
+            else
+            {
+                thang += 1;
+            }
+
+            DataTable dt = HocPhiDAL.LaySoTienConNoCuaThang(thang, nam, hocPhi.MaTre);
+            foreach(DataRow row in dt.Rows)
+            {
+                return decimal.Parse(row["SoTienConNo"].ToString());
             }
 
             return 0;
-        }
-
-        public static HocPhi GetInfoHocPhi(string maHocPhi)
-        {
-            foreach (DataRow row in HocPhiDAL.GetInfoHocPhi(maHocPhi).Rows)
-            {
-                return new HocPhi(row);
-            }
-
-            return new HocPhi();
         }
 
         public static DataTable GetListBienLai(string maTre)
@@ -125,7 +140,6 @@ namespace QLNT.Entities
         public static void ThemBienLai(BienLaiThuHocPhi bienLai)
         {
             HocPhiDAL.ThemBienLai(bienLai);
-            HocPhiDAL.CapNhatHocPhiChoTre(bienLai.MaTre, bienLai.SoTienConNo);
         }
 
         public static void CapNhatBienLai(BienLaiThuHocPhi bienLai)
