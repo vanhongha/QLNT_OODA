@@ -130,43 +130,89 @@ namespace QLNT.Presentation
                     listMaTre.Add(row.Cells["MaTre"].Value.ToString());
         }
 
+        // Có thêm ngày bắt đầu & ngày kết thúc là để khởi tạo thông tin sức khoẻ
+        void XepLop(List<string> listMaTre, string maLop, DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            if (TreBLL.XepLop(listMaTre, maLop))
+            {
+                KhoiTaoSucKhoe(listMaTre, ngayBatDau, ngayKetThuc);
+                LoadDGVDanhSach();
+                LoadDGVKetQua();
+                MessageBox.Show("Thêm " + listMaTre.Count + " trẻ vào lớp " +
+                    LopBLL.GetInfoLop(maLop).TenLop +
+                    " thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        // Có thêm ngày bắt đầu & ngày kết thúc là để khởi tạo thông tin sức khoẻ
+        void LenLop(List<string> listMaTre, string maLop, DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            if (TreBLL.ChuyenLop(listMaTre, maLop))
+            {
+                KhoiTaoSucKhoe(listMaTre, ngayBatDau, ngayKetThuc);
+                LoadDGVDanhSach();
+                LoadDGVKetQua();
+                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
+                    LopBLL.GetInfoLop(maLop).TenLop +
+                    " thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        // Trẻ có lớp rồi -> chuyển lớp
+        void ChuyenLop(List<string> listMaTre, string maLop)
+        {
+            if (TreBLL.ChuyenLop(listMaTre, maLop))
+            {
+                LoadDGVDanhSach();
+                LoadDGVKetQua();
+                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
+                    LopBLL.GetInfoLop(maLop).TenLop +
+                    " thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
         private void PuttingForwardHandle()
         {
             if (cboLop.SelectedItem != null)
             {
+                // Ngày bắt đầu của niên khóa cần chuyển đến
                 DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                // Ngày kết thúc của niên khóa cần chuyển đến
                 DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-                if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
+                if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))   // Kiểm tra nếu như ngày bắt đầu, kết thúc của niên khóa cần chuyển đến là hợp lệ
                 {
                     if (listMaTre.Count > 0)
                     {
+                        // ------------------ XẾP LỚP - Dành cho trẻ mới được thêm vào trường và chưa có lớp ------------------ //
                         if (rdoXepLop.Checked)
-                        {
-                            if (TreBLL.XepLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())))
-                            {
-                                LoadDGVDanhSach();
-                                LoadDGVKetQua();
-                                MessageBox.Show("Thêm " + listMaTre.Count + " trẻ vào lớp " +
-                                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())).TenLop +
-                                    " thành công!",
-                                    "Thông báo",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                            }
-                        }
+                            XepLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()), ngayBatDau, ngayKetThuc);                        
+                        // ------------------ CHUYỂN LỚP - LÊN LỚP ------------------ //
                         else
                         {
-                            if (TreBLL.ChuyenLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())))
-                            {
-                                LoadDGVDanhSach();
-                                LoadDGVKetQua();
-                                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
-                                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())).TenLop +
-                                    " thành công!",
-                                    "Thông báo",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                            }
+                            // Ngày bắt đầu của niên khóa đang được chọn
+                            DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
+                            // Ngày kết thúc của niên khóa đang được chọn
+                            DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
+                            
+                            // CHUYỂN LỚP
+                            // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
+                            // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
+                            if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))
+                                ChuyenLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
+                            
+                            // Ngược lại thì trẻ được LÊN LỚP
+                            else                            
+                                LenLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()), ngayBatDau, ngayKetThuc);
+                            
                         }
                     }
                 }
@@ -220,6 +266,14 @@ namespace QLNT.Presentation
                         "Thông báo",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+        }
+
+        private void KhoiTaoSucKhoe(List<string> listMatre, DateTime start, DateTime end)
+        {
+            List<ThangNam> listThangNam = DataHandle.GetThoiGianTrongKhoan(start, end);
+            foreach (ThangNam tn in listThangNam)
+                foreach (string maTre in listMatre)
+                    TreBLL.KhoiTaoSucKhoe(maTre, tn.thang, tn.nam);
         }
         #endregion
 

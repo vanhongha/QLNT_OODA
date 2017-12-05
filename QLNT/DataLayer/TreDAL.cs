@@ -176,5 +176,20 @@ namespace QLNT.DataLayer
             db.dt = new DataTable();
             da.Fill(db.dt);
         }
+
+        public static void KhoiTaoSucKhoe(string maTre, int thang, int nam)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("KhoiTaoSucKhoe");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
     }
 }

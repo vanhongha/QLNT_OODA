@@ -216,7 +216,7 @@
             // rdoXepLop
             // 
             this.rdoXepLop.AutoSize = true;
-            this.rdoXepLop.Location = new System.Drawing.Point(97, 19);
+            this.rdoXepLop.Location = new System.Drawing.Point(130, 19);
             this.rdoXepLop.Name = "rdoXepLop";
             this.rdoXepLop.Size = new System.Drawing.Size(61, 17);
             this.rdoXepLop.TabIndex = 0;
@@ -239,10 +239,10 @@
             this.rdoChuyenLop.AutoSize = true;
             this.rdoChuyenLop.Location = new System.Drawing.Point(6, 19);
             this.rdoChuyenLop.Name = "rdoChuyenLop";
-            this.rdoChuyenLop.Size = new System.Drawing.Size(78, 17);
+            this.rdoChuyenLop.Size = new System.Drawing.Size(118, 17);
             this.rdoChuyenLop.TabIndex = 0;
             this.rdoChuyenLop.TabStop = true;
-            this.rdoChuyenLop.Text = "Chuyển lớp";
+            this.rdoChuyenLop.Text = "Chuyển lớp/Lên lớp";
             this.rdoChuyenLop.UseVisualStyleBackColor = true;
             this.rdoChuyenLop.CheckedChanged += new System.EventHandler(this.rdoChuyenLop_CheckedChanged);
             // 

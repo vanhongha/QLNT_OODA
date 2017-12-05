@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace QLNT.Ultilities
 {
+    struct ThangNam
+    {
+        public int thang;
+        public int nam;
+    }
+
     class DataHandle
     {
         public static DataTable ReadDataFromExcelFile(string filePath)
@@ -138,6 +144,28 @@ namespace QLNT.Ultilities
             }
             //put a breakpoint here and check datatable
             return dataTable;
+        }
+
+        public static List<ThangNam> GetThoiGianTrongKhoan(DateTime start, DateTime end)
+        {
+            int tempThang = 0;
+            int tempNam = 0;
+            ThangNam tempThangNam;
+            DateTime runningDate = start;
+            List<ThangNam> listThangNam = new List<ThangNam>();
+
+            while(runningDate < end.AddMonths(1))
+            {
+                tempThang = runningDate.Month;
+                tempNam = runningDate.Year;
+                tempThangNam.thang = tempThang;
+                tempThangNam.nam = tempNam;
+                listThangNam.Add(tempThangNam);
+
+                runningDate = runningDate.AddMonths(1);
+            }
+
+            return listThangNam;
         }
     }
 }
