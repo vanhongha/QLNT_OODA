@@ -113,12 +113,14 @@ namespace QLNT.BusinessLayer
 
         public static void KhoiTaoSucKhoe(string maTre, int thang, int nam)
         {
-            TreDAL.KhoiTaoSucKhoe(maTre, thang, nam);
+            if(!SucKhoeBLL.KiemTraTonTaiSucKhoe(maTre, thang, nam))
+                SucKhoeBLL.KhoiTaoSucKhoe(maTre, thang, nam);
         }
 
         public static void KhoiTaoHocPhi(string maTre, int thang, int nam)
         {
-            TreDAL.KhoiTaoHocPhi(maTre, thang, nam);
+            if (!HocPhiBLL.KiemTraTonTaiHocPhi(maTre, thang, nam))
+                HocPhiBLL.KhoiTaoHocPhi(maTre, thang, nam);
         }
     }
 }

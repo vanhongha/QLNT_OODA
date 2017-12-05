@@ -141,5 +141,21 @@ namespace QLNT.BusinessLayer
             return listSucKhoe;
         }
 
+        public static void KhoiTaoSucKhoe(string maTre, int thang, int nam)
+        {
+            SucKhoeDAL.KhoiTaoSucKhoe(maTre, thang, nam);
+        }
+
+        public static bool KiemTraTonTaiSucKhoe(string maTre, int thang, int nam)
+        {
+            DataTable dt = SucKhoeDAL.KiemTraTonTaiSucKhoe(maTre, thang, nam);
+            foreach (DataRow row in dt.Rows)
+            {
+                return int.Parse(row[0].ToString()) == 1;
+            }
+
+            return false;
+        }
+
     }
 }

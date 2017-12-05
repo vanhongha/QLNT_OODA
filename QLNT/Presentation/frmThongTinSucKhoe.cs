@@ -3,6 +3,7 @@ using QLNT.BusinessLayer;
 using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
@@ -28,7 +29,6 @@ namespace QLNT.Presentation
             initDataGridView();
             loadListNamHoc();
             loadListLoaiLop();
-            initComboboxThang();
             LoadDataGirdView();
         }
 
@@ -76,15 +76,29 @@ namespace QLNT.Presentation
             txtSiSo.Text = "";
         }
 
-        private void initComboboxThang()
+        private void LoadListThang()
         {
-            for (int i = 1; i < 13; i++)
+            NamHoc namHoc = LopBLL.GetInfoNamHoc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+
+            int thangBatDau = namHoc.NgayBatDau.Month;
+            int thangKetThuc = namHoc.NgayKetThuc.Month;
+
+            List<int> listThang = new List<int>();
+            listThang.Add(thangBatDau);
+
+            while (thangBatDau != thangKetThuc)
             {
-                cboThang.Items.Add(i.ToString());
+                thangBatDau++;
+                if (thangBatDau > 12)
+                    thangBatDau = 1;
+                listThang.Add(thangBatDau);
             }
 
-            DateTime date = DateTime.Now;
-            cboThang.Text = date.Month.ToString();
+            cboThang.Items.Clear();
+            foreach (int thang in listThang)
+            {
+                cboThang.Items.Add(thang.ToString());
+            }
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,6 +109,7 @@ namespace QLNT.Presentation
                 LoadDataGirdView();
                 ClearAllField();
             }
+            LoadListThang();
         }
 
         private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)

@@ -75,9 +75,25 @@ namespace QLNT.Entities
             HocPhiDAL.CapNhatHocPhi(hocPhi);
         }
 
-        public static void ThemHocPhi(HocPhi hocPhi)
+        public static bool KiemTraTonTaiHocPhi(string maTre, int thang, int nam)
         {
-            HocPhiDAL.ThemHocPhi(hocPhi);
+            DataTable dt = HocPhiDAL.KiemTraTonTaiHocPhi(maTre, thang, nam);
+            foreach (DataRow row in dt.Rows)
+            {
+                return int.Parse(row[0].ToString()) == 1;
+            }
+
+            return false;
+        }
+
+        public static void KhoiTaoHocPhi(string maTre, int thang, int nam)
+        {
+            HocPhi hocPhi = new HocPhi();
+            hocPhi.MaHocPhi = GenerateMaHocPhi();
+            hocPhi.MaTre = maTre;
+            hocPhi.Thang = thang;
+            hocPhi.Nam = nam;
+            HocPhiDAL.KhoiTaoHocPhi(hocPhi);
         }
 
         public static string GenerateMaHocPhi()
