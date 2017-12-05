@@ -191,5 +191,10 @@ namespace QLNT.DataLayer
             db.dt = new DataTable();
             da.Fill(db.dt);
         }
+
+        public static void KhoiTaoHocPhi(string maTre, int thang, int nam)
+        {
+
+        }
     }
 }

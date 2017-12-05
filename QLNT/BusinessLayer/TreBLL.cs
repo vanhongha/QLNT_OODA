@@ -115,5 +115,10 @@ namespace QLNT.BusinessLayer
         {
             TreDAL.KhoiTaoSucKhoe(maTre, thang, nam);
         }
+
+        public static void KhoiTaoHocPhi(string maTre, int thang, int nam)
+        {
+            TreDAL.KhoiTaoHocPhi(maTre, thang, nam);
+        }
     }
 }

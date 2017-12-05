@@ -136,6 +136,7 @@ namespace QLNT.Presentation
             if (TreBLL.XepLop(listMaTre, maLop))
             {
                 KhoiTaoSucKhoe(listMaTre, ngayBatDau, ngayKetThuc);
+                KhoiTaoHocPhi(listMaTre, ngayBatDau, ngayKetThuc);
                 LoadDGVDanhSach();
                 LoadDGVKetQua();
                 MessageBox.Show("Thêm " + listMaTre.Count + " trẻ vào lớp " +
@@ -153,6 +154,7 @@ namespace QLNT.Presentation
             if (TreBLL.ChuyenLop(listMaTre, maLop))
             {
                 KhoiTaoSucKhoe(listMaTre, ngayBatDau, ngayKetThuc);
+                KhoiTaoHocPhi(listMaTre, ngayBatDau, ngayKetThuc);
                 LoadDGVDanhSach();
                 LoadDGVKetQua();
                 MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
@@ -274,6 +276,14 @@ namespace QLNT.Presentation
             foreach (ThangNam tn in listThangNam)
                 foreach (string maTre in listMatre)
                     TreBLL.KhoiTaoSucKhoe(maTre, tn.thang, tn.nam);
+        }
+
+        private void KhoiTaoHocPhi(List<string> listMatre, DateTime start, DateTime end)
+        {
+            List<ThangNam> listThangNam = DataHandle.GetThoiGianTrongKhoan(start, end);
+            foreach (ThangNam tn in listThangNam)
+                foreach (string maTre in listMatre)
+                    TreBLL.KhoiTaoHocPhi(maTre, tn.thang, tn.nam);
         }
         #endregion
 
