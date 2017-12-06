@@ -79,12 +79,12 @@ namespace QLNT.Presentation
             {
                 dgvKetQua.DataSource = TreBLL.GetListTre(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())));
 
-                dgvKetQua.Columns[1].HeaderText = "Họ tên trẻ";
-                dgvKetQua.Columns[2].HeaderText = "Ngày sinh";
+                dgvKetQua.Columns[2].HeaderText = "Họ tên trẻ";
+                dgvKetQua.Columns[3].HeaderText = "Ngày sinh";
 
                 dgvKetQua.Columns[0].Width = 50;
-                dgvKetQua.Columns[1].Width = 140;
-                dgvKetQua.Columns[2].Width = 120;
+                dgvKetQua.Columns[2].Width = 140;
+                dgvKetQua.Columns[3].Width = 120;
 
                 for (int i = 0; i < dgvKetQua.Rows.Count; i++)
                     dgvKetQua.Rows[i].Cells[0].Value = i + 1;
@@ -200,9 +200,9 @@ namespace QLNT.Presentation
                         // ------------------ CHUYỂN LỚP - LÊN LỚP ------------------ //
                         else
                         {
-                            // Ngày bắt đầu của niên khóa đang được chọn
+                            // Ngày bắt đầu của niên khóa đang được chọn (left)
                             DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
-                            // Ngày kết thúc của niên khóa đang được chọn
+                            // Ngày kết thúc của niên khóa đang được chọn (left)
                             DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
                             
                             // CHUYỂN LỚP
@@ -241,19 +241,23 @@ namespace QLNT.Presentation
                 {
                     if (listMaTre.Count > 0)
                     {
+                        // CHUYỂN LỚP - LÊN LỚP
                         if (rdoChuyenLop.Checked)
                         {
-                            if (TreBLL.ChuyenLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString())))
-                            {
-                                LoadDGVDanhSach();
-                                LoadDGVKetQua();
-                                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
-                                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString())).TenLop +
-                                    " thành công!",
-                                    "Thông báo",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                            }
+                            // Ngày bắt đầu của niên khóa đang được chọn (right)
+                            DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                            // Ngày kết thúc của niên khóa đang được chọn (right)
+                            DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                            
+                            // CHUYỂN LỚP
+                            // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
+                            // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
+                            if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))
+                                ChuyenLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString()));
+
+                            // Ngược lại thì trẻ được LÊN LỚP
+                            else
+                                LenLop(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString()), ngayBatDau, ngayKetThuc);
                         }
                     }
                 }
