@@ -61,15 +61,35 @@ namespace QLNT.Presentation
 
                     dgvDanhSach.Columns[1].HeaderText = "Họ tên trẻ";
                     dgvDanhSach.Columns[2].HeaderText = "Ngày sinh";
+                    dgvDanhSach.Columns[9].HeaderText = "Mã tình trạng";
 
                     dgvDanhSach.Columns[0].Width = 50;
                     dgvDanhSach.Columns[1].Width = 140;
                     dgvDanhSach.Columns[2].Width = 120;
+                    dgvDanhSach.Columns[9].Width = 120;
 
                     for (int i = 0; i < dgvDanhSach.Rows.Count; i++)
+                    {
                         dgvDanhSach.Rows[i].Cells[0].Value = i + 1;
+                        string maTinhTrang = dgvDanhSach.Rows[i].Cells[9].Value.ToString().Trim();
 
-                    string[] listProp = { "STT", "HoTenTre", "NgaySinh" };
+                        if (string.Compare(maTinhTrang, "0") == 0)
+                        {
+                            dgvDanhSach.Rows[i].Cells[9].Value = "Đang học";
+                            dgvDanhSach.Rows[i].DefaultCellStyle.BackColor = Color.AliceBlue;
+                        }
+                        else if (string.Compare(maTinhTrang, "1") == 0)
+                        {
+                            dgvDanhSach.Rows[i].Cells[9].Value = "Đã lên lớp";
+                            dgvDanhSach.Rows[i].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                        }
+                        else
+                        {
+                            dgvDanhSach.Rows[i].Cells[9].Value = "Đã thôi học";
+                            dgvDanhSach.Rows[i].DefaultCellStyle.BackColor = Color.HotPink;
+                        }
+                    }
+                    string[] listProp = { "STT", "HoTenTre", "NgaySinh", "MaTinhTrang" };
                     ControlFormat.DataGridViewFormat(dgvDanhSach, listProp);
                 }
             }
@@ -84,15 +104,35 @@ namespace QLNT.Presentation
 
                 dgvKetQua.Columns[2].HeaderText = "Họ tên trẻ";
                 dgvKetQua.Columns[3].HeaderText = "Ngày sinh";
+                dgvKetQua.Columns[9].HeaderText = "Mã tình trạng";
 
                 dgvKetQua.Columns[0].Width = 50;
                 dgvKetQua.Columns[2].Width = 140;
                 dgvKetQua.Columns[3].Width = 120;
+                dgvKetQua.Columns[9].Width = 120;
 
                 for (int i = 0; i < dgvKetQua.Rows.Count; i++)
+                {
                     dgvKetQua.Rows[i].Cells[0].Value = i + 1;
+                    string maTinhTrang = dgvKetQua.Rows[i].Cells[9].Value.ToString().Trim();
 
-                string[] listProp = { "STT", "HoTenTre", "NgaySinh" };
+                    if (string.Compare(maTinhTrang, "0") == 0)
+                    {
+                        dgvKetQua.Rows[i].Cells[9].Value = "Đang học";
+                        dgvKetQua.Rows[i].DefaultCellStyle.BackColor = Color.AliceBlue;
+                    }
+                    else if (string.Compare(maTinhTrang, "1") == 0)
+                    {
+                        dgvKetQua.Rows[i].Cells[9].Value = "Đã lên lớp";
+                        dgvKetQua.Rows[i].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                    }
+                    else
+                    {
+                        dgvKetQua.Rows[i].Cells[9].Value = "Đã thôi học";
+                        dgvKetQua.Rows[i].DefaultCellStyle.BackColor = Color.HotPink;
+                    }
+                }
+                string[] listProp = { "STT", "HoTenTre", "NgaySinh", "MaTinhTrang" };
                 ControlFormat.DataGridViewFormat(dgvKetQua, listProp);
             }
         }
@@ -152,20 +192,27 @@ namespace QLNT.Presentation
         }
 
         // Có thêm ngày bắt đầu & ngày kết thúc là để khởi tạo thông tin sức khoẻ
-        void LenLop(List<string> listMaTre, string maLop, DateTime ngayBatDau, DateTime ngayKetThuc)
+        void LenLop(List<string> listMaTre, string maLop, string maLopCu, DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-            if (TreBLL.ChuyenLop(listMaTre, maLop))
+            if (TreBLL.LenLop(listMaTre, maLop, maLopCu))
             {
                 KhoiTaoSucKhoe(listMaTre, ngayBatDau, ngayKetThuc);
                 KhoiTaoHocPhi(listMaTre, ngayBatDau, ngayKetThuc);
                 LoadDGVDanhSach();
                 LoadDGVKetQua();
-                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
+                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ lên lớp " +
                     LopBLL.GetInfoLop(maLop).TenLop +
                     " thành công!",
                     "Thông báo",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng không chọn trẻ đã được cho lên lớp!",
+                   "Thông báo",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning);
             }
         }
 
@@ -222,7 +269,7 @@ namespace QLNT.Presentation
 
                             // Ngược lại thì trẻ được LÊN LỚP
                             else
-                                LenLop(listMaTre, maLopLuaChon, ngayBatDau, ngayKetThuc);
+                                LenLop(listMaTre, maLop, maLopLuaChon, ngayBatDau, ngayKetThuc);
 
                             // Xếp lớp xong thì cập nhật sĩ số
                             LopBLL.CapNhatSiSo(maLop, dgvKetQua.Rows.Count);
@@ -272,7 +319,7 @@ namespace QLNT.Presentation
 
                             // Ngược lại thì trẻ được LÊN LỚP
                             else
-                                LenLop(listMaTre, maLopLuaChon, ngayBatDau, ngayKetThuc);
+                                LenLop(listMaTre, maLopLuaChon, maLop, ngayBatDau, ngayKetThuc);
 
                             // Xếp lớp xong thì cập nhật sĩ số
                             LopBLL.CapNhatSiSo(maLop, dgvKetQua.Rows.Count);

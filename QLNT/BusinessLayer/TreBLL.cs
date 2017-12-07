@@ -90,6 +90,27 @@ namespace QLNT.BusinessLayer
             return true;
         }
 
+        public static bool LenLop(List<string> listMaTre, string maLopMoi,string maLopCu)
+        {
+            foreach (string maTre in listMaTre)
+            {
+                if (string.Compare(TreDAL.GetTinhTrangTrongLop(maTre, maLopCu).Trim(), "0") == 0) 
+                {
+                    try
+                    {
+                        TreDAL.LenLop(maTre, maLopMoi);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else                
+                    return false;                
+            }
+            return true;
+        }
+
         public static bool ChuyenLop(List<string> listMaTre, string maLopMoi)
         {
             foreach (string maTre in listMaTre)

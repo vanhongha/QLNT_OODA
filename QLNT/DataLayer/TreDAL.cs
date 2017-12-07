@@ -39,7 +39,6 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
-
         public static DataTable GetListTreChuaCoLop()
         {
             DataAccessHelper db = new DataAccessHelper();
@@ -133,6 +132,25 @@ namespace QLNT.DataLayer
             return "";
         }
 
+        public static string GetTinhTrangTrongLop(string maTre, string maLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetTinhTrangTrongLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            foreach (DataRow row in db.dt.Rows)            
+                return row.ItemArray[0].ToString();
+            
+            return "0";
+        }
+
         public static DataTable GetListTreTheoMaLop(string maLop)
         {
             DataAccessHelper db = new DataAccessHelper();
@@ -177,6 +195,18 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
         }
 
+        public static void LenLop(string maTre, string maLopMoi)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LenLop");
 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@MaLop", maLopMoi);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
     }
 }
