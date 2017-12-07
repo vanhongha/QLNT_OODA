@@ -153,6 +153,35 @@ namespace QLNT.DataLayer
             }
             return "";
         }
-        
+
+        public static int GetSiSo(string maLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetSiSoLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            foreach (DataRow row in db.dt.Rows)
+            {
+                return int.Parse(row.ItemArray[0].ToString());
+            }
+            return -1;
+        }
+
+        public static void CapNhatSiSo(string maLop, int siSo)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatSiSoLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+            cmd.Parameters.AddWithValue("@SiSo", siSo);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
     }
 }

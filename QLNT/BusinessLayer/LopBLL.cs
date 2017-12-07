@@ -71,5 +71,15 @@ namespace QLNT.BusinessLayer
         {
             return LopDAL.getMaNamHoc(ngayHoc);
         }
+
+        public static int GetSiSo(string maLop)
+        {
+            return LopDAL.GetSiSo(maLop);
+        }
+
+        public static void CapNhatSiSo(string maLop, int siSo)
+        {
+            LopDAL.CapNhatSiSo(maLop, siSo);
+        }
     }
 }
