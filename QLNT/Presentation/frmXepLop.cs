@@ -209,7 +209,7 @@ namespace QLNT.Presentation
             }
             else
             {
-                MessageBox.Show("Vui lòng không chọn trẻ đã được cho lên lớp!",
+                MessageBox.Show("Vui lòng chọn trẻ còn trong lớp hiện tại!",
                    "Thông báo",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Warning);
@@ -217,9 +217,9 @@ namespace QLNT.Presentation
         }
 
         // Trẻ có lớp rồi -> chuyển lớp
-        void ChuyenLop(List<string> listMaTre, string maLop)
+        void ChuyenLop(List<string> listMaTre, string maLop, string maLopCu)
         {
-            if (TreBLL.ChuyenLop(listMaTre, maLop))
+            if (TreBLL.ChuyenLop(listMaTre, maLop, maLopCu))
             {
                 LoadDGVDanhSach();
                 LoadDGVKetQua();
@@ -230,6 +230,35 @@ namespace QLNT.Presentation
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+            else  
+                MessageBox.Show("Không chuyển lớp khi trẻ không còn học trong lớp!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            
+        }
+
+        void ThoiHoc(List<string> listMaTre, string maLop)
+        {
+            if (TreBLL.ThoiHoc(listMaTre, maLop))
+            {
+                LoadDGVDanhSach();
+                LoadDGVKetQua();
+                MessageBox.Show("Thôi học " + listMaTre.Count + " trẻ trong lớp " +
+                    LopBLL.GetInfoLop(maLop).TenLop +
+                    " thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Không thể thôi học trẻ đang không học!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
         }
 
         private void PuttingForwardHandle()
@@ -265,7 +294,7 @@ namespace QLNT.Presentation
                             // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
                             // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
                             if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))                     
-                                ChuyenLop(listMaTre, maLop);                              
+                                ChuyenLop(listMaTre, maLop, maLopLuaChon);                              
 
                             // Ngược lại thì trẻ được LÊN LỚP
                             else
@@ -315,7 +344,7 @@ namespace QLNT.Presentation
                             // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
                             // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
                             if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))
-                                ChuyenLop(listMaTre, maLopLuaChon);
+                                ChuyenLop(listMaTre, maLopLuaChon, maLop);
 
                             // Ngược lại thì trẻ được LÊN LỚP
                             else
@@ -456,6 +485,24 @@ namespace QLNT.Presentation
             PuttingBackHandle();
         }
 
+        private void btnThoiHoc_Click(object sender, EventArgs e)
+        {
+            // B1: thôi học những trẻ ở trong DGV danh sách (left) trước
+            if (cboLoaiLop_LuaChon.SelectedItem != null)
+            {
+                RemoveAllListMaTre();
+                SaveListMaTre(dgvDanhSach);
+                ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString()));
+            }
+
+            // B2: thôi học những trẻ ở trong DGV kết quả (right) trước
+            if (cboLop.SelectedItem != null)
+            {
+                RemoveAllListMaTre();
+                SaveListMaTre(dgvKetQua);
+                ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
+            }
+        }
         #endregion
 
 

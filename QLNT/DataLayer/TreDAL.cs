@@ -181,6 +181,21 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
         }
 
+        public static void ThoiHoc(string maTre, string maLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("ThoiHoc");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+        
+
         public static void ChuyenLop(string maTre, string maLopMoi)
         {
             DataAccessHelper db = new DataAccessHelper();

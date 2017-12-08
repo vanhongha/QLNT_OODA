@@ -17,7 +17,6 @@ namespace QLNT.BusinessLayer
             return TreDAL.GetListTre(lop, keyWord);
         }
 
-
         public static DataTable GetListTreChuaCoLop()
         {
             return TreDAL.GetListTreChuaCoLop();
@@ -39,11 +38,9 @@ namespace QLNT.BusinessLayer
         public static bool ThemTre(Tre hocsinhmoi)
         {
             DataTable dt = TreDAL.ThemTre(hocsinhmoi);
-            foreach (DataRow row in dt.Rows)
-            {
+            foreach (DataRow row in dt.Rows)            
                 if (row.ItemArray[0].ToString().Trim() == "0")
-                    return true;
-            }
+                    return true;            
 
             return false;
         }
@@ -111,21 +108,47 @@ namespace QLNT.BusinessLayer
             return true;
         }
 
-        public static bool ChuyenLop(List<string> listMaTre, string maLopMoi)
+        public static bool ChuyenLop(List<string> listMaTre, string maLopMoi, string maLopCu)
         {
             foreach (string maTre in listMaTre)
             {
-                try
+                if (string.Compare(TreDAL.GetTinhTrangTrongLop(maTre, maLopCu).Trim(), "0") == 0)
                 {
-                    TreDAL.ChuyenLop(maTre, maLopMoi);
+                    try
+                    {
+                        TreDAL.ChuyenLop(maTre, maLopMoi);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
+                else
                     return false;
-                }
             }
             return true;
         }
+
+        public static bool ThoiHoc(List<string> listMaTre, string maLop)
+        {
+            foreach (string maTre in listMaTre)
+            {
+                if (string.Compare(TreDAL.GetTinhTrangTrongLop(maTre, maLop).Trim(), "0") == 0)
+                {
+                    try
+                    {
+                        TreDAL.ThoiHoc(maTre, maLop);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                    return false;
+            }
+            return true;
+        }        
 
         public static int GetSoNgayDiHocTrongThang(string maTre, int thang, int nam)
         {

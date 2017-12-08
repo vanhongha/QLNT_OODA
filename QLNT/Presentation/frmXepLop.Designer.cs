@@ -50,11 +50,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cboLopHoc_LuaChon = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnPutBackAll = new System.Windows.Forms.Button();
             this.dgvKetQua = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPutBackAll = new System.Windows.Forms.Button();
             this.btnPutBack = new System.Windows.Forms.Button();
             this.btnPutForwardAll = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.btnThoiHoc = new System.Windows.Forms.Button();
             this.btnPutForward = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -71,10 +73,10 @@
             this.dgvDanhSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSach.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT});
-            this.dgvDanhSach.Location = new System.Drawing.Point(86, 181);
+            this.dgvDanhSach.Location = new System.Drawing.Point(12, 181);
             this.dgvDanhSach.Name = "dgvDanhSach";
             this.dgvDanhSach.ReadOnly = true;
-            this.dgvDanhSach.Size = new System.Drawing.Size(458, 503);
+            this.dgvDanhSach.Size = new System.Drawing.Size(516, 449);
             this.dgvDanhSach.TabIndex = 0;
             // 
             // STT
@@ -94,9 +96,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cboLop);
             this.groupBox1.Controls.Add(this.cboNamHoc);
-            this.groupBox1.Location = new System.Drawing.Point(650, 2);
+            this.groupBox1.Location = new System.Drawing.Point(670, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(458, 173);
+            this.groupBox1.Size = new System.Drawing.Size(521, 173);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lớp cần chuyển đến";
@@ -196,9 +198,9 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cboLopHoc_LuaChon);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(86, 2);
+            this.groupBox2.Location = new System.Drawing.Point(12, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(458, 173);
+            this.groupBox2.Size = new System.Drawing.Size(516, 173);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lựa chọn sắp xếp";
@@ -309,17 +311,6 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Lớp học";
             // 
-            // btnPutBackAll
-            // 
-            this.btnPutBackAll.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPutBackAll.Image = global::QLNT.Properties.Resources.icons8_double_left_50;
-            this.btnPutBackAll.Location = new System.Drawing.Point(550, 361);
-            this.btnPutBackAll.Name = "btnPutBackAll";
-            this.btnPutBackAll.Size = new System.Drawing.Size(94, 54);
-            this.btnPutBackAll.TabIndex = 1;
-            this.btnPutBackAll.UseVisualStyleBackColor = true;
-            this.btnPutBackAll.Click += new System.EventHandler(this.btnPutBackAll_Click);
-            // 
             // dgvKetQua
             // 
             this.dgvKetQua.AllowUserToAddRows = false;
@@ -329,10 +320,10 @@
             this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKetQua.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
-            this.dgvKetQua.Location = new System.Drawing.Point(650, 181);
+            this.dgvKetQua.Location = new System.Drawing.Point(670, 181);
             this.dgvKetQua.Name = "dgvKetQua";
             this.dgvKetQua.ReadOnly = true;
-            this.dgvKetQua.Size = new System.Drawing.Size(458, 503);
+            this.dgvKetQua.Size = new System.Drawing.Size(521, 449);
             this.dgvKetQua.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -341,13 +332,24 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
+            // btnPutBackAll
+            // 
+            this.btnPutBackAll.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPutBackAll.Image = global::QLNT.Properties.Resources.icons8_double_left_50;
+            this.btnPutBackAll.Location = new System.Drawing.Point(534, 361);
+            this.btnPutBackAll.Name = "btnPutBackAll";
+            this.btnPutBackAll.Size = new System.Drawing.Size(130, 54);
+            this.btnPutBackAll.TabIndex = 1;
+            this.btnPutBackAll.UseVisualStyleBackColor = true;
+            this.btnPutBackAll.Click += new System.EventHandler(this.btnPutBackAll_Click);
+            // 
             // btnPutBack
             // 
             this.btnPutBack.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnPutBack.Image = global::QLNT.Properties.Resources.icons8_back_50;
-            this.btnPutBack.Location = new System.Drawing.Point(550, 301);
+            this.btnPutBack.Location = new System.Drawing.Point(534, 301);
             this.btnPutBack.Name = "btnPutBack";
-            this.btnPutBack.Size = new System.Drawing.Size(94, 54);
+            this.btnPutBack.Size = new System.Drawing.Size(130, 54);
             this.btnPutBack.TabIndex = 1;
             this.btnPutBack.UseVisualStyleBackColor = true;
             this.btnPutBack.Click += new System.EventHandler(this.btnPutBack_Click);
@@ -356,20 +358,47 @@
             // 
             this.btnPutForwardAll.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnPutForwardAll.Image = global::QLNT.Properties.Resources.icons8_double_right_50;
-            this.btnPutForwardAll.Location = new System.Drawing.Point(550, 241);
+            this.btnPutForwardAll.Location = new System.Drawing.Point(534, 241);
             this.btnPutForwardAll.Name = "btnPutForwardAll";
-            this.btnPutForwardAll.Size = new System.Drawing.Size(94, 54);
+            this.btnPutForwardAll.Size = new System.Drawing.Size(130, 54);
             this.btnPutForwardAll.TabIndex = 1;
             this.btnPutForwardAll.UseVisualStyleBackColor = true;
             this.btnPutForwardAll.Click += new System.EventHandler(this.btnPutForwardAll_Click);
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDong.Image = global::QLNT.Properties.Resources.icons8_close_window_50;
+            this.btnDong.Location = new System.Drawing.Point(1075, 636);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(116, 57);
+            this.btnDong.TabIndex = 1;
+            this.btnDong.Text = "Đóng";
+            this.btnDong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDong.UseVisualStyleBackColor = true;
+            // 
+            // btnThoiHoc
+            // 
+            this.btnThoiHoc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnThoiHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoiHoc.Image = global::QLNT.Properties.Resources.icons8_delete_50;
+            this.btnThoiHoc.Location = new System.Drawing.Point(534, 552);
+            this.btnThoiHoc.Name = "btnThoiHoc";
+            this.btnThoiHoc.Size = new System.Drawing.Size(130, 78);
+            this.btnThoiHoc.TabIndex = 1;
+            this.btnThoiHoc.Text = "Thôi học";
+            this.btnThoiHoc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThoiHoc.UseVisualStyleBackColor = true;
+            this.btnThoiHoc.Click += new System.EventHandler(this.btnThoiHoc_Click);
             // 
             // btnPutForward
             // 
             this.btnPutForward.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnPutForward.Image = global::QLNT.Properties.Resources.icons8_forward_50;
-            this.btnPutForward.Location = new System.Drawing.Point(550, 181);
+            this.btnPutForward.Location = new System.Drawing.Point(534, 181);
             this.btnPutForward.Name = "btnPutForward";
-            this.btnPutForward.Size = new System.Drawing.Size(94, 54);
+            this.btnPutForward.Size = new System.Drawing.Size(130, 54);
             this.btnPutForward.TabIndex = 1;
             this.btnPutForward.UseVisualStyleBackColor = true;
             this.btnPutForward.Click += new System.EventHandler(this.btnPutForward_Click);
@@ -378,12 +407,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 686);
+            this.ClientSize = new System.Drawing.Size(1203, 698);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnPutBackAll);
             this.Controls.Add(this.btnPutBack);
             this.Controls.Add(this.btnPutForwardAll);
+            this.Controls.Add(this.btnDong);
+            this.Controls.Add(this.btnThoiHoc);
             this.Controls.Add(this.btnPutForward);
             this.Controls.Add(this.dgvKetQua);
             this.Controls.Add(this.dgvDanhSach);
@@ -431,5 +462,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridView dgvKetQua;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btnThoiHoc;
+        private System.Windows.Forms.Button btnDong;
     }
 }
