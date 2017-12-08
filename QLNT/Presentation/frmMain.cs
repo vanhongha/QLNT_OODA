@@ -326,5 +326,24 @@ namespace QLNT.Presentation
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
+
+        private void btnQLChung_Lop_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpenedTabs("Quản lý lớp"))
+            {
+                TabItem tab = tabControl.CreateTab("Quản lý lớp");
+                tab.PredefinedColor = eTabItemColor.Blue;
+                frmQLChung_Lop _frmQLChung_Lop = new frmQLChung_Lop(tabControl, tab);
+                _frmQLChung_Lop.TopLevel = false;
+                _frmQLChung_Lop.Dock = DockStyle.Fill;
+                _frmQLChung_Lop.StartPosition = FormStartPosition.CenterParent;
+                tab.AttachedControl.Controls.Add(_frmQLChung_Lop);
+                _frmQLChung_Lop.Show();
+                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+            }
+            else
+                tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
     }
+    
 }

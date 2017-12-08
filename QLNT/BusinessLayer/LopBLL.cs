@@ -26,7 +26,7 @@ namespace QLNT.BusinessLayer
             return LopDAL.GetListLop(maNamHoc, maLoaiLop);
         }
 
-        public static List<Lop> GetListLop(string maNamHoc)
+        public static List<Lop> GetListLop(string maNamHoc = null)
         {
             return LopDAL.GetListLop(maNamHoc);
         }

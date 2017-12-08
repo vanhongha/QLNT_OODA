@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.ribbonPanel4 = new DevComponents.DotNetBar.RibbonPanel();
+            this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
+            this.btnQLChung_Lop = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar2 = new DevComponents.DotNetBar.RibbonBar();
             this.btnThongTin_TaiKhoan = new DevComponents.DotNetBar.ButtonItem();
             this.btnDangXuat = new DevComponents.DotNetBar.ButtonItem();
@@ -82,6 +84,7 @@
             // ribbonPanel4
             // 
             this.ribbonPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonPanel4.Controls.Add(this.ribbonBar3);
             this.ribbonPanel4.Controls.Add(this.ribbonBar2);
             this.ribbonPanel4.Controls.Add(this.ribbonBar1);
             this.ribbonPanel4.Controls.Add(this.ribbonBar7);
@@ -93,6 +96,29 @@
             this.ribbonPanel4.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.ribbonPanel4.Size = new System.Drawing.Size(1197, 104);
             this.ribbonPanel4.TabIndex = 5;
+            // 
+            // ribbonBar3
+            // 
+            this.ribbonBar3.AutoOverflowEnabled = true;
+            this.ribbonBar3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ribbonBar3.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btnQLChung_Lop});
+            this.ribbonBar3.Location = new System.Drawing.Point(906, 0);
+            this.ribbonBar3.Name = "ribbonBar3";
+            this.ribbonBar3.Size = new System.Drawing.Size(106, 101);
+            this.ribbonBar3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.ribbonBar3.TabIndex = 5;
+            this.ribbonBar3.Text = "Quản lý chung";
+            // 
+            // btnQLChung_Lop
+            // 
+            this.btnQLChung_Lop.Image = global::QLNT.Properties.Resources.thongtin;
+            this.btnQLChung_Lop.ImagePaddingHorizontal = 8;
+            this.btnQLChung_Lop.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnQLChung_Lop.Name = "btnQLChung_Lop";
+            this.btnQLChung_Lop.SubItemsExpandWidth = 14;
+            this.btnQLChung_Lop.Text = "Lớp - Niên khóa";
+            this.btnQLChung_Lop.Click += new System.EventHandler(this.btnQLChung_Lop_Click);
             // 
             // ribbonBar2
             // 
@@ -481,5 +507,7 @@
         private DevComponents.DotNetBar.ButtonItem btnNguyenLieu;
         private DevComponents.DotNetBar.ButtonItem btnThuHocPhi;
         private DevComponents.DotNetBar.ButtonItem btnApDung;
+        private DevComponents.DotNetBar.RibbonBar ribbonBar3;
+        private DevComponents.DotNetBar.ButtonItem btnQLChung_Lop;
     }
 }

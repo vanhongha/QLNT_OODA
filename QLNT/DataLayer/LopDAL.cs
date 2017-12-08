@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QLNT.DataLayer
 {
@@ -23,12 +24,12 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
 
             List<NamHoc> listNamHoc = new List<NamHoc>();
-            foreach(DataRow row in db.dt.Rows)
+            foreach (DataRow row in db.dt.Rows)
             {
                 listNamHoc.Add(new NamHoc(row));
             }
             return listNamHoc;
-        } 
+        }
 
         public static List<LoaiLop> GetListLoaiLop()
         {
@@ -70,13 +71,22 @@ namespace QLNT.DataLayer
             return listLop;
         }
 
-        public static List<Lop> GetListLop(string maNamHoc)
+        public static List<Lop> GetListLop(string maNamHoc = null)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GETLISTLOP_NAM");
+            SqlCommand cmd;
 
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaNamHoc", maNamHoc);
+            if(maNamHoc == null)
+            {
+                cmd = db.Command("GetLop");
+                cmd.CommandType = CommandType.StoredProcedure;
+            }
+            else
+            {
+                cmd = db.Command("GETLISTLOP_NAM");
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MaNamHoc", maNamHoc);
+            }        
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
