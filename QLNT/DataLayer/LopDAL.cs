@@ -12,6 +12,17 @@ namespace QLNT.DataLayer
 {
     class LopDAL
     {
+        public static string GetLastID()
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            DataTable dt = db.GetDataTable("Select top 1 MaLop from LOP order by MaLop desc");
+            foreach (DataRow row in dt.Rows)
+            {
+                return row.ItemArray[0].ToString();
+            }
+            return "";
+        }
+
         public static List<NamHoc> GetListNienKhoa()
         {
             DataAccessHelper db = new DataAccessHelper();
@@ -28,6 +39,7 @@ namespace QLNT.DataLayer
             {
                 listNamHoc.Add(new NamHoc(row));
             }
+
             return listNamHoc;
         }
 
@@ -189,6 +201,38 @@ namespace QLNT.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
             cmd.Parameters.AddWithValue("@SiSo", siSo);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void CapNhatLop(string maLop, string tenLop, string maGV)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+            cmd.Parameters.AddWithValue("@TenLop", tenLop);
+            cmd.Parameters.AddWithValue("@MaGV", maGV);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void ThemLop(string maLop, string maLoaiLop, string maNamHoc, string maGV, string tenLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("THEMLOP");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+            cmd.Parameters.AddWithValue("@MaLoaiLop", maLoaiLop);
+            cmd.Parameters.AddWithValue("@MaNienKhoa", maNamHoc);
+            cmd.Parameters.AddWithValue("@MaGV", maGV);
+            cmd.Parameters.AddWithValue("@SiSo", 0);
+            cmd.Parameters.AddWithValue("@TenLop", tenLop);
+
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
             da.Fill(db.dt);

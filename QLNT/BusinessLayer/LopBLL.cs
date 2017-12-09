@@ -11,6 +11,17 @@ namespace QLNT.BusinessLayer
 {
     class LopBLL
     {
+        public static string GenMaLop()
+        {
+            string id = LopDAL.GetLastID().Trim();
+            if (id == "")            
+                return "MLOP000001";            
+            int nextID = int.Parse(id.Remove(0, "MLOP".Length)) + 1;
+            id = "00000" + nextID.ToString();
+            id = id.Substring(id.Length - 6, 6);
+            return "MLOP" + id;
+        }
+
         public static List<NamHoc> GetListNienKhoa()
         {
             return LopDAL.GetListNienKhoa();
@@ -80,6 +91,33 @@ namespace QLNT.BusinessLayer
         public static void CapNhatSiSo(string maLop, int siSo)
         {
             LopDAL.CapNhatSiSo(maLop, siSo);
+        }
+
+        public static bool CapNhatLop(string maLop, string tenLop, string maGV)
+        {
+            try
+            {
+                LopDAL.CapNhatLop(maLop, tenLop, maGV);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+            
+        }
+
+        public static bool ThemLop(string maLop, string maLoaiLop, string maNamHoc, string maGV, string tenLop)
+        {
+            try
+            {
+                LopDAL.ThemLop(maLop, maLoaiLop, maNamHoc, maGV, tenLop);
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DevComponents.DotNetBar;
 using QLNT.BusinessLayer;
+using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
 using System.Collections.Generic;
@@ -19,34 +20,52 @@ namespace QLNT.Presentation
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
 
+        private List<NamHoc> listNienKhoa;
+        private List<LoaiLop> listLoaiLop;
+        private List<Lop> listLop;
+
         public frmQLChung_Lop(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
             this.tabControl = _tabControl;
             this.tab = _tab;
         }
+
         private void frmQLChung_Lop_Load(object sender, EventArgs e)
         {
+            listNienKhoa = LopBLL.GetListNienKhoa();
+            listLoaiLop = LopBLL.GetListLoaiLop();
+            listLop = LopBLL.GetListLop();
+            InitDatagridView();
             Init();
         }
 
         #region Function
         void Init()
         {
-            rdoQLLop.Checked = true;
+            rdoQLLop.Checked = true;           
+            
             LoadDatagridView();
             LoadGroup("Lop");
-
             ComboboxLoad.LoaiLop(cboLoaiLop);
             ComboboxLoad.NienKhoa(cboNienKhoa);
+        }
+
+        void InitDatagridView()
+        {
+            foreach(Lop lop in listLop)
+            {
+                lop.MaLoaiLop = listLoaiLop.Where(c => c.MaLoaiLop == lop.MaLoaiLop).First().TenLoaiLop;
+                lop.MaNamHoc = listNienKhoa.Where(c => c.MaNamHoc == lop.MaNamHoc).First().NienKhoa;
+            }
         }
 
         void LoadDatagridView()
         {
             // QL lớp
-            if(rdoQLLop.Checked)
+            if (rdoQLLop.Checked)
             {
-                dgvDanhSach.DataSource = LopBLL.GetListLop();
+                dgvDanhSach.DataSource = listLop;
 
                 dgvDanhSach.Columns[0].HeaderText = "Mã lớp";
                 dgvDanhSach.Columns[1].HeaderText = "Tên lớp";
@@ -56,9 +75,9 @@ namespace QLNT.Presentation
                 dgvDanhSach.Columns[5].HeaderText = "Giáo viên";
             }
             // QL loại lớp
-            else if(rdoQLLoaiLop.Checked)
+            else if (rdoQLLoaiLop.Checked)
             {
-                dgvDanhSach.DataSource = LopBLL.GetListLoaiLop();
+                dgvDanhSach.DataSource = listLoaiLop;
 
                 dgvDanhSach.Columns[0].HeaderText = "Mã loại lớp";
                 dgvDanhSach.Columns[1].HeaderText = "Tên loại lớp";
@@ -66,7 +85,7 @@ namespace QLNT.Presentation
             // QL niên khóa
             else
             {
-                dgvDanhSach.DataSource = LopBLL.GetListNienKhoa();
+                dgvDanhSach.DataSource = listNienKhoa;
                 dgvDanhSach.Columns[0].HeaderText = "Mã niên khóa";
                 dgvDanhSach.Columns[1].HeaderText = "Tên niên khóa";
                 dgvDanhSach.Columns[2].HeaderText = "Thời gian bắt đầu";
@@ -110,24 +129,67 @@ namespace QLNT.Presentation
                     break;
             }
         }
+
+        void LamMoi()
+        {
+            txtMaLoaiLop.Text = "";
+            txtMaLop.Text = "";
+            txtMaNienKhoa.Text = "";
+            txtSiSo.Text = "";
+            txtTenLoaiLop.Text = "";
+            txtTenLop.Text = "";
+            txtTenNienKhoa.Text = "";
+            cboBaoMau1.Text = "";
+            cboBaoMau2.Text = "";
+            cboGiangVien.Text = "";
+            cboLoaiLop.Text = "";
+            cboNienKhoa.Text = "";
+            dtNgayBatDau.Text = "";
+            dtNgayKetThuc.Text = "";
+            cboLoaiLop.Enabled = true;
+            cboNienKhoa.Enabled = true;
+            dtNgayBatDau.Enabled = true;
+            dtNgayKetThuc.Enabled = true;
+            btnThem.Enabled = true;
+        }
+
+        void ThemLop(string maLop, string maLoaiLop, string maNienKhoa, string maGV, string tenLop)
+        {
+            if (LopBLL.ThemLop(maLop,
+                           maLoaiLop,
+                           maNienKhoa,
+                           maGV,
+                           tenLop))
+            {
+                MessageBox.Show("Thêm lớp thành công!",
+                     "Thông báo",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+                listLop = LopBLL.GetListLop();
+                LoadDatagridView();
+            }
+        }
         #endregion
 
         #region Event
         private void rdoQLLop_CheckedChanged(object sender, EventArgs e)
         {
             LoadDatagridView();
+            LamMoi();
             LoadGroup("Lop");
         }
 
         private void rdoQLLoaiLop_CheckedChanged(object sender, EventArgs e)
         {
             LoadDatagridView();
+            LamMoi();
             LoadGroup("LoaiLop");
         }
 
         private void rdoQLNienKhoa_CheckedChanged(object sender, EventArgs e)
         {
             LoadDatagridView();
+            LamMoi();
             LoadGroup("NienKhoa");
         }
 
@@ -146,6 +208,7 @@ namespace QLNT.Presentation
 
                     cboNienKhoa.Enabled = false;
                     cboLoaiLop.Enabled = false;
+                    btnThem.Enabled = false;
                 }
             }
             else if(rdoQLLoaiLop.Checked)
@@ -174,9 +237,71 @@ namespace QLNT.Presentation
             }
         }
 
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            LamMoi();
+        }
+
         private void btnDong_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            if(rdoQLLop.Checked)
+            {
+                if(LopBLL.CapNhatLop(txtMaLop.Text, txtTenLop.Text, cboGiangVien.Text))
+                {
+                    MessageBox.Show("Cập nhật lớp thành công!",
+                     "Thông báo",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+                    listLop = LopBLL.GetListLop();
+                    LoadDatagridView();
+                }
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (rdoQLLop.Checked)
+            {
+                if (!string.IsNullOrEmpty(txtTenLop.Text) && !string.IsNullOrEmpty(cboNienKhoa.Text) && !string.IsNullOrEmpty(cboGiangVien.Text))
+                {
+                    string maNienKhoa = KeyHandle.GetKeyFromCombobox(cboNienKhoa.SelectedItem.ToString());
+                    DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(maNienKhoa);
+                    DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(maNienKhoa); ;
+                    if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
+                    {
+                        ThemLop(LopBLL.GenMaLop(),
+                            KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
+                            maNienKhoa,
+                            cboGiangVien.Text,
+                            txtTenLop.Text);
+                    }
+                    else
+                    {
+                        DialogResult r = MessageBox.Show("Niên khóa hiện tại đang không còn hoạt động. Bạn có chắc là muốn tạo lớp này?",
+                            "Thông báo",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+                        if (r == DialogResult.Yes)
+                        {
+                            ThemLop(LopBLL.GenMaLop(),
+                              KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
+                              maNienKhoa,
+                              cboGiangVien.Text,
+                              txtTenLop.Text);
+                        }
+                    }
+                }
+                else
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin trước khi tạo lớp mới!",
+                           "Thông báo",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Warning);
+            }
         }
         #endregion
 
