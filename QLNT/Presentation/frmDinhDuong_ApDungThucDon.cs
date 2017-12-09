@@ -17,8 +17,10 @@ namespace QLNT.Presentation
     public partial class frmDinhDuong_ApDungThucDon : Form
     {
         DevComponents.DotNetBar.TabControl tabControl;
+        DataTable tableMonAn = new DataTable("MONAN");
         TabItem tab;
-        string maThucDon = "";
+        string[] arrMonAn = {};
+        string[] arrTre = {};
         public frmDinhDuong_ApDungThucDon(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace QLNT.Presentation
         private void frmDinhDuong_ApDungThucDon_Load(object sender, EventArgs e)
         {
             getComboboxLoaiLop();
+            getDataGridViewMonAn();
             dtpNgay_Loc.Value = DateTime.Today;
             cboBuoiAD.SelectedText = "Sáng";
         }
@@ -50,6 +53,29 @@ namespace QLNT.Presentation
             dgvLop.Columns[5].HeaderText = "Ghi Chú";
             dgvLop.Columns[5].Width = 100;
             dgvLop.ClearSelection();
+        }
+
+        public void getDataGridViewMonAn()
+        {
+            DataColumn column;
+            DataColumn[] key = new DataColumn[1];
+            column = new DataColumn();
+            column.ColumnName = "TenMonAn";
+            tableMonAn.Columns.Add(column);
+            key[0] = column;
+            tableMonAn.PrimaryKey = key;
+
+            column = new DataColumn();
+            column.ColumnName = "NangLuong";
+            tableMonAn.Columns.Add(column);
+            
+            dgvMonAn.DataSource = tableMonAn;
+            dgvMonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvMonAn.Columns[0].HeaderText = "Tên Món Ăn";
+            dgvMonAn.Columns[0].Width = 120;
+            dgvMonAn.Columns[1].HeaderText = "Năng Lượng";
+            dgvMonAn.Columns[1].Width = 120;
+            dgvMonAn.ClearSelection();
         }
 
         public void getComboboxLoaiLop()
@@ -77,34 +103,47 @@ namespace QLNT.Presentation
 
         public void getComboBoxMonAn()
         {
-            cboMonChinh.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            cboMonChinh.DisplayMember = "TenMonAn";
-            cboMonChinh.ValueMember = "MaMonAn";
+            cboTenMonAn.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboTenMonAn.DisplayMember = "TenMonAn";
+            cboTenMonAn.ValueMember = "MaMonAn";
+            cboTenMonAn.Text = "";
 
-            cboMonPhu1.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            cboMonPhu1.DisplayMember = "TenMonAn";
-            cboMonPhu1.ValueMember = "MaMonAn";
-            cboMonPhu1.Text = "";
+            //cboMonChinh.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            //cboMonChinh.DisplayMember = "TenMonAn";
+            //cboMonChinh.ValueMember = "MaMonAn";
+            //cboMonChinh.Text = "";
 
-            cboMonPhu2.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            cboMonPhu2.DisplayMember = "TenMonAn";
-            cboMonPhu2.ValueMember = "MaMonAn";
-            cboMonPhu2.Text = "";
+            //cboMonPhu1.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            //cboMonPhu1.DisplayMember = "TenMonAn";
+            //cboMonPhu1.ValueMember = "MaMonAn";
+            //cboMonPhu1.Text = "";
 
-            cboMonPhu3.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            cboMonPhu3.DisplayMember = "TenMonAn";
-            cboMonPhu3.ValueMember = "MaMonAn";
-            cboMonPhu3.Text = "";
+            //cboMonPhu2.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            //cboMonPhu2.DisplayMember = "TenMonAn";
+            //cboMonPhu2.ValueMember = "MaMonAn";
+            //cboMonPhu2.Text = "";
 
-            cboMonPhu4.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            cboMonPhu4.DisplayMember = "TenMonAn";
-            cboMonPhu4.ValueMember = "MaMonAn";
-            cboMonPhu4.Text = "";
+            //cboMonPhu3.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            //cboMonPhu3.DisplayMember = "TenMonAn";
+            //cboMonPhu3.ValueMember = "MaMonAn";
+            //cboMonPhu3.Text = "";
 
-            cboMonPhu5.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            cboMonPhu5.DisplayMember = "TenMonAn";
-            cboMonPhu5.ValueMember = "MaMonAn";
-            cboMonPhu5.Text = "";
+            //cboMonPhu4.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            //cboMonPhu4.DisplayMember = "TenMonAn";
+            //cboMonPhu4.ValueMember = "MaMonAn";
+            //cboMonPhu4.Text = "";
+
+            //cboMonPhu5.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            //cboMonPhu5.DisplayMember = "TenMonAn";
+            //cboMonPhu5.ValueMember = "MaMonAn";
+            //cboMonPhu5.Text = "";
+        }
+
+        private void getComboboxMonAnTheoTuKhoa(ComboBox cbo)
+        {
+            cbo.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn(cboBuoiAD.Text);
+            cbo.DisplayMember = "TenMonAn";
+            cbo.ValueMember = "MaMonAn";
         }
 
         private void setCheckBoxColumn()
@@ -130,6 +169,38 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             getDataGridViewLop(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+        }
+
+        private void cboMonChinh_TextChanged(object sender, EventArgs e)
+        {
+            //arrMonAn[0] = "";
+            //if (cboMonChinh.Text == "System.Data.DataRowView" || cboMonChinh.Text.Length > 100)
+            //{
+            //    return;
+            //}
+            //if (cboMonChinh.Text == "") { return; }
+            //if (MonAnBLL.LayMaMonAnTheoTen(cboMonChinh.Text.Trim()) == "")
+            //{
+            //    MessageBox.Show("Món ăn đã nhập không tồn tại", "Thông báo", MessageBoxButtons.OK);
+            //    return;
+            //}
+            //arrMonAn[0] = MonAnBLL.LayMaMonAnTheoTen(cboMonChinh.Text.Trim());
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            DataRow row = tableMonAn.NewRow();
+            row["TenMonAn"] = cboTenMonAn.Text.Trim();
+            row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(cboTenMonAn.Text.Trim());
+            tableMonAn.Rows.Add(row);
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            DataRow row = tableMonAn.NewRow();
+            row["TenMonAn"] = cboTenMonAn.Text.Trim();
+            row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(cboTenMonAn.Text.Trim());
+            tableMonAn.Rows.Remove(tableMonAn.Rows.Find(cboTenMonAn.Text.Trim()));
         }
     }
 }

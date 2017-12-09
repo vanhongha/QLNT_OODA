@@ -83,6 +83,7 @@ namespace QLNT.Presentation
 
         private void dgvNguyenLieu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex < 0) { return; }
             cboLoaiNguyenLieu.Text = "";
             txtMaNguyenLieu.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["MaNguyenLieu"].Value.ToString();
             txtTenNguyenLieu.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["TenNguyenLieu"].Value.ToString();

@@ -69,6 +69,11 @@ namespace QLNT.BusinessLayer
             return MonAnDAL.LayMaMonAnTheoTen(tenMonAn);
         }
 
+        public static string LayNangLuongMonAnTheoTen(string tenMonAn)
+        {
+            return MonAnDAL.LayNangLuongMonAnTheoTen(tenMonAn);
+        }
+
         public static DataTable LayDanhSachMonAn()
         {
             return MonAnDAL.LayDanhSachMonAn();

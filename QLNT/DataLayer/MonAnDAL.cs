@@ -63,8 +63,30 @@ namespace QLNT.DataLayer
         public static string LayMaMonAnTheoTen(string tenMonAn)
         {
             DataAccessHelper db = new DataAccessHelper();
-            string sql = "select MaMonAn from MONAN where TenMonAn = '" + tenMonAn + "'";
-            DataTable dt = db.GetDataTable(sql);
+            SqlCommand cmd = db.Command("LayMaMonAnTheoTen");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TenMonAn", tenMonAn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            foreach (DataRow row in db.dt.Rows)
+            {
+                return row.ItemArray[0].ToString();
+            }
+            return "";
+        }
+
+        public static string LayNangLuongMonAnTheoTen(string tenMonAn)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayNangLuongMonAnTheoTen");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TenMonAn", tenMonAn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
             foreach (DataRow row in db.dt.Rows)
             {
                 return row.ItemArray[0].ToString();
