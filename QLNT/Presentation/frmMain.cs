@@ -201,24 +201,6 @@ namespace QLNT.Presentation
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
         }
 
-        private void btnThucDon_Click(object sender, EventArgs e)
-        {
-            if (!CheckOpenedTabs("Thực đơn"))
-            {
-                TabItem tab = tabControl.CreateTab("Thực đơn");
-                tab.PredefinedColor = eTabItemColor.Blue;
-                frmDinhDuong_ThucDon _frmDinhDuong_ThucDon = new frmDinhDuong_ThucDon(tabControl, tab);
-                _frmDinhDuong_ThucDon.TopLevel = false;
-                _frmDinhDuong_ThucDon.Dock = DockStyle.Fill;
-                _frmDinhDuong_ThucDon.StartPosition = FormStartPosition.CenterParent;
-                tab.AttachedControl.Controls.Add(_frmDinhDuong_ThucDon);
-                _frmDinhDuong_ThucDon.Show();
-                tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
-            }
-            else
-                tabControl.TabIndex = tabControl.Tabs.Count - 1;
-        }
-
         private void btnMonAn_Click(object sender, EventArgs e)
         {
             if (!CheckOpenedTabs("Món ăn"))

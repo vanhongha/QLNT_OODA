@@ -43,7 +43,6 @@
             this.btnThuHocPhi = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar7 = new DevComponents.DotNetBar.RibbonBar();
             this.btnApDung = new DevComponents.DotNetBar.ButtonItem();
-            this.btnThucDon = new DevComponents.DotNetBar.ButtonItem();
             this.btnMonAn = new DevComponents.DotNetBar.ButtonItem();
             this.btnNguyenLieu = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar5 = new DevComponents.DotNetBar.RibbonBar();
@@ -203,7 +202,6 @@
             this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btnApDung,
-            this.btnThucDon,
             this.btnMonAn,
             this.btnNguyenLieu});
             this.ribbonBar7.Location = new System.Drawing.Point(398, 0);
@@ -222,16 +220,6 @@
             this.btnApDung.SubItemsExpandWidth = 14;
             this.btnApDung.Text = "Áp dụng thực đơn";
             this.btnApDung.Click += new System.EventHandler(this.btnApDung_Click);
-            // 
-            // btnThucDon
-            // 
-            this.btnThucDon.Image = ((System.Drawing.Image)(resources.GetObject("btnThucDon.Image")));
-            this.btnThucDon.ImagePaddingHorizontal = 8;
-            this.btnThucDon.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnThucDon.Name = "btnThucDon";
-            this.btnThucDon.SubItemsExpandWidth = 14;
-            this.btnThucDon.Text = "Thực đơn";
-            this.btnThucDon.Click += new System.EventHandler(this.btnThucDon_Click);
             // 
             // btnMonAn
             // 
@@ -479,7 +467,6 @@
         private System.Windows.Forms.Panel panel1;
         private DevComponents.DotNetBar.RibbonPanel ribbonPanel4;
         private DevComponents.DotNetBar.RibbonBar ribbonBar7;
-        private DevComponents.DotNetBar.ButtonItem btnThucDon;
         private DevComponents.DotNetBar.RibbonBar ribbonBar5;
         private DevComponents.DotNetBar.ButtonItem btnSucKhoe_ThongTin;
         private DevComponents.DotNetBar.RibbonBar ribbonBar4;

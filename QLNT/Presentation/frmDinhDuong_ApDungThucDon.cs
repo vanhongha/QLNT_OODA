@@ -27,8 +27,8 @@ namespace QLNT.Presentation
         private void frmDinhDuong_ApDungThucDon_Load(object sender, EventArgs e)
         {
             getComboboxLoaiLop();
-            getDataGridViewThucDon();
-            initForm();
+            dtpNgay_Loc.Value = DateTime.Today;
+            cboBuoiAD.SelectedText = "Sáng";
         }
 
         public void getDataGridViewLop(string maLop, int thang, int nam)
@@ -40,55 +40,16 @@ namespace QLNT.Presentation
 
             dgvLop.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvLop.Columns[1].HeaderText = "Mã Trẻ";
-            dgvLop.Columns[1].Width = 120;
+            dgvLop.Columns[1].Width = 100;
             dgvLop.Columns[2].HeaderText = "Tên Trẻ";
             dgvLop.Columns[2].Width = 120;
             dgvLop.Columns[3].HeaderText = "BMI";
-            dgvLop.Columns[3].Width = 70;
+            dgvLop.Columns[3].Width = 50;
             dgvLop.Columns[4].HeaderText = "Tình Trạng";
-            dgvLop.Columns[4].Width = 120;
+            //dgvLop.Columns[4].Width = 100;
             dgvLop.Columns[5].HeaderText = "Ghi Chú";
-            dgvLop.Columns[5].Width = 120;
+            dgvLop.Columns[5].Width = 100;
             dgvLop.ClearSelection();
-        }
-
-        private void getDataGridViewThucDon()
-        {
-            dgvThucDon.ClearSelection();
-            dgvThucDon.DataSource = ThucDonBLL.LayDanhSachThucDon();
-            string[] columns = { "MaThucDon", "NangLuong", "NguoiLap", "NgayLap", "TrangThai" };
-            Ultilities.ControlFormat.DataGridViewFormat(dgvThucDon, columns);
-
-            dgvThucDon.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvThucDon.Columns[0].HeaderText = "Mã thực đơn";
-            dgvThucDon.Columns[0].Width = 120;
-            dgvThucDon.Columns[1].HeaderText = "Năng lượng (Kcal/gam)";
-            dgvThucDon.Columns[1].Width = 120;
-            dgvThucDon.Columns[2].HeaderText = "Người lập";
-            dgvThucDon.Columns[2].Width = 100;
-            dgvThucDon.Columns[3].HeaderText = "Ngày lập";
-            dgvThucDon.Columns[3].Width = 100;
-            dgvThucDon.Columns[4].HeaderText = "Trạng thái";
-            dgvThucDon.Columns[4].Width = 120;
-            dgvThucDon.ClearSelection();
-        }
-
-        private void getDataGridViewChiTietThucDon(string maThucDon)
-        {
-            dgvChiTietThucDon.DataSource = ChiTietThucDonBLL.LayDanhSachChiTietThucDon(maThucDon);
-            string[] columns = { "MaThucDon", "MaMonAn", "TenMonAn", "NangLuong" };
-            Ultilities.ControlFormat.DataGridViewFormat(dgvChiTietThucDon, columns);
-
-            dgvChiTietThucDon.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvChiTietThucDon.Columns[0].HeaderText = "Mã thực đơn";
-            dgvChiTietThucDon.Columns[0].Width = 120;
-            dgvChiTietThucDon.Columns[1].HeaderText = "Mã Món Ăn";
-            dgvChiTietThucDon.Columns[1].Width = 120;
-            dgvChiTietThucDon.Columns[2].HeaderText = "Tên Món Ăn";
-            dgvChiTietThucDon.Columns[2].Width = 120;
-            dgvChiTietThucDon.Columns[3].HeaderText = "Năng lượng (Kcal/gam)";
-            dgvChiTietThucDon.Columns[3].Width = 120;
-            dgvChiTietThucDon.ClearSelection();
         }
 
         public void getComboboxLoaiLop()
@@ -96,6 +57,7 @@ namespace QLNT.Presentation
             cboLoaiLop.DataSource = LopBLL.GetListLoaiLop();
             cboLoaiLop.DisplayMember = "TenLoaiLop";
             cboLoaiLop.ValueMember = "MaLoaiLop";
+            getComboBoxMonAn();
         }
 
         public void getComboboxLop()
@@ -103,6 +65,46 @@ namespace QLNT.Presentation
             cboLop.DataSource = LopBLL.GetListLop(LopBLL.getMaNamHoc(dtpNgay_Loc.Value), cboLoaiLop.SelectedValue.ToString().Trim());
             cboLop.DisplayMember = "TenLop";
             cboLop.ValueMember = "MaLop";
+            try
+            {
+                //cboLop.SelectedText = cboLop.Items.
+            }
+            catch(Exception err)
+            {
+
+            }
+        }
+
+        public void getComboBoxMonAn()
+        {
+            cboMonChinh.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboMonChinh.DisplayMember = "TenMonAn";
+            cboMonChinh.ValueMember = "MaMonAn";
+
+            cboMonPhu1.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboMonPhu1.DisplayMember = "TenMonAn";
+            cboMonPhu1.ValueMember = "MaMonAn";
+            cboMonPhu1.Text = "";
+
+            cboMonPhu2.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboMonPhu2.DisplayMember = "TenMonAn";
+            cboMonPhu2.ValueMember = "MaMonAn";
+            cboMonPhu2.Text = "";
+
+            cboMonPhu3.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboMonPhu3.DisplayMember = "TenMonAn";
+            cboMonPhu3.ValueMember = "MaMonAn";
+            cboMonPhu3.Text = "";
+
+            cboMonPhu4.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboMonPhu4.DisplayMember = "TenMonAn";
+            cboMonPhu4.ValueMember = "MaMonAn";
+            cboMonPhu4.Text = "";
+
+            cboMonPhu5.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboMonPhu5.DisplayMember = "TenMonAn";
+            cboMonPhu5.ValueMember = "MaMonAn";
+            cboMonPhu5.Text = "";
         }
 
         private void setCheckBoxColumn()
@@ -113,12 +115,6 @@ namespace QLNT.Presentation
             checkBoxColumn.ReadOnly = false;
             dgvLop.Columns.Clear();
             dgvLop.Columns.Add(checkBoxColumn);
-        }
-
-        public void initForm()
-        {
-            dtpNgay_Loc.Value = DateTime.Today;
-            cboBuoiAD.SelectedText = "Sáng";
         }
 
         private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,14 +130,6 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             getDataGridViewLop(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
-        }
-
-        private void dgvThucDon_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.RowIndex > dgvThucDon.RowCount)
-                return;
-            maThucDon = dgvThucDon.Rows[e.RowIndex].Cells["MaThucDon"].Value.ToString();
-            getDataGridViewChiTietThucDon(maThucDon);
         }
     }
 }
