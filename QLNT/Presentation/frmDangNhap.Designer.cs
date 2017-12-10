@@ -102,6 +102,7 @@
             this.txtMatKhau.PasswordChar = '•';
             this.txtMatKhau.Size = new System.Drawing.Size(172, 24);
             this.txtMatKhau.TabIndex = 2;
+            this.txtMatKhau.Text = "admin";
             this.txtMatKhau.TextChanged += new System.EventHandler(this.txtMatKhau_TextChanged);
             this.txtMatKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatKhau_KeyDown);
             // 
@@ -116,6 +117,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(172, 24);
             this.txtTaiKhoan.TabIndex = 0;
+            this.txtTaiKhoan.Text = "admin";
             this.txtTaiKhoan.TextChanged += new System.EventHandler(this.txtTaiKhoan_TextChanged);
             // 
             // labelX2

@@ -111,5 +111,22 @@ namespace QLNT.BusinessLayer
         {
             return MonAnDAL.KiemTraMonAnTrongThucDon(maMonAn);
         }
+
+        public static DataTable initDgvMonAn(DataTable tableMonAn)
+        {
+            DataColumn column;
+            DataColumn[] key = new DataColumn[1];
+            column = new DataColumn();
+            column.ColumnName = "TenMonAn";
+            tableMonAn.Columns.Add(column);
+            key[0] = column;
+            tableMonAn.PrimaryKey = key;
+
+            column = new DataColumn();
+            column.ColumnName = "NangLuong";
+            tableMonAn.Columns.Add(column);
+
+            return tableMonAn;
+        }
     }
 }

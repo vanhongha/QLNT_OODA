@@ -12,7 +12,7 @@ namespace QLNT.DataLayer
 {
     class ThongTinThucDonDAL
     {
-        public static void ThemThongTinThucDon(ThongTinThucDon thongTinTD)
+        public static bool ThemThongTinThucDon(ThongTinThucDon thongTinTD)
         {
             try
             {
@@ -32,7 +32,32 @@ namespace QLNT.DataLayer
             }
             catch (Exception e)
             {
-                MessageBox.Show("Phát sinh lỗi khi thêm thông thực đơn, vui lòng kiểm tra thông tin và thử lại", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Phát sinh lỗi khi thêm thông thực đơn, vui lòng kiểm tra thông tin và thử lại" + e.Message, "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return true;
+        }
+
+        public static void XoaThongTinThucDon(string maTre, string buoiAD, DateTime ngayAD)
+        {
+            try
+            {
+                DataAccessHelper db = new DataAccessHelper();
+                SqlCommand cmd = db.Command("XoaThongTinThucDonTheoTre");
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@MaTre", maTre);
+                cmd.Parameters.AddWithValue("@BuoiApDung", buoiAD);
+                cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                db.dt = new DataTable();
+                da.Fill(db.dt);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Phát sinh lỗi khi xoá thông thực đơn, vui lòng kiểm tra thông tin và thử lại", "Thông báo", MessageBoxButtons.OK);
             }
 
         }
@@ -60,6 +85,44 @@ namespace QLNT.DataLayer
                 MessageBox.Show("Phát sinh lỗi khi thêm thông thực đơn, vui lòng kiểm tra thông tin và thử lại", "Thông báo", MessageBoxButtons.OK);
             }
 
+        }
+
+        public static DataTable LayDanhSachTreChuaXetThucDon(string maLop, int thang, int nam, string buoiAD, DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayDanhSachTreChuaXetThucDon");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
+            cmd.Parameters.AddWithValue("@BuoiApDung", buoiAD);
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static DataTable LayDanhSachTreDaXetThucDon(string maLop, int thang, int nam, string buoiAD, DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayDanhSachTreDaXetThucDon");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLop", maLop);
+            cmd.Parameters.AddWithValue("@Thang", thang);
+            cmd.Parameters.AddWithValue("@Nam", nam);
+            cmd.Parameters.AddWithValue("@BuoiApDung", buoiAD);
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
         }
 
     }

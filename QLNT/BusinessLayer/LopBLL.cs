@@ -62,11 +62,6 @@ namespace QLNT.BusinessLayer
             return new NamHoc();
         }
 
-        public static DataTable GetSucKhoeTheoLop(string maLop, int thang, int nam)
-        {
-            return LopDAL.GetSucKhoeTheoLop(maLop, thang, nam);
-        }
-
         public static int GetNamHoc(int thang, string maNamHoc)
         {
             NamHoc namHoc = LopBLL.GetInfoNamHoc(maNamHoc);

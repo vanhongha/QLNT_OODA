@@ -19,8 +19,8 @@ namespace QLNT.Presentation
         DevComponents.DotNetBar.TabControl tabControl;
         DataTable tableMonAn = new DataTable("MONAN");
         TabItem tab;
-        string[] arrMonAn = {};
-        string[] arrTre = {};
+        List<string> listMonAn = new List<string>();
+        List<string> listTre = new List<string>();
         public frmDinhDuong_ApDungThucDon(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
@@ -34,41 +34,51 @@ namespace QLNT.Presentation
             cboBuoiAD.SelectedText = "Sáng";
         }
 
-        public void getDataGridViewLop(string maLop, int thang, int nam)
+        public void getDataGridViewTreChuaXetThucDon(string maLop, int thang, int nam)
         {
-            setCheckBoxColumn();
-            dgvLop.DataSource = LopBLL.GetSucKhoeTheoLop(maLop, thang, nam);
+            setCheckBoxColumn(dgvTreChuaXetThucDon);
+            dgvTreChuaXetThucDon.DataSource = ThongTinThucDonBLL.LayDanhSachTreChuaXetThucDon(maLop, thang, nam, cboBuoiAD.Text.ToString().Trim(), dtpNgay_Loc.Value);
             string[] column = { "X", "MaTre", "HoTenTre", "BMI", "TinhTrang", "GhiChu" };
-            Ultilities.ControlFormat.DataGridViewFormat(dgvLop, column);
+            Ultilities.ControlFormat.DataGridViewFormat(dgvTreChuaXetThucDon, column);
 
-            dgvLop.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvLop.Columns[1].HeaderText = "Mã Trẻ";
-            dgvLop.Columns[1].Width = 100;
-            dgvLop.Columns[2].HeaderText = "Tên Trẻ";
-            dgvLop.Columns[2].Width = 120;
-            dgvLop.Columns[3].HeaderText = "BMI";
-            dgvLop.Columns[3].Width = 50;
-            dgvLop.Columns[4].HeaderText = "Tình Trạng";
+            dgvTreChuaXetThucDon.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvTreChuaXetThucDon.Columns[1].HeaderText = "Mã Trẻ";
+            dgvTreChuaXetThucDon.Columns[1].Width = 100;
+            dgvTreChuaXetThucDon.Columns[2].HeaderText = "Tên Trẻ";
+            dgvTreChuaXetThucDon.Columns[2].Width = 120;
+            dgvTreChuaXetThucDon.Columns[3].HeaderText = "BMI";
+            dgvTreChuaXetThucDon.Columns[3].Width = 50;
+            dgvTreChuaXetThucDon.Columns[4].HeaderText = "Tình Trạng";
             //dgvLop.Columns[4].Width = 100;
-            dgvLop.Columns[5].HeaderText = "Ghi Chú";
-            dgvLop.Columns[5].Width = 100;
-            dgvLop.ClearSelection();
+            dgvTreChuaXetThucDon.Columns[5].HeaderText = "Ghi Chú";
+            dgvTreChuaXetThucDon.Columns[5].Width = 100;
+            dgvTreChuaXetThucDon.ClearSelection();
+        }
+
+        public void getDataGridViewTreDaXetThucDon(string maLop, int thang, int nam)
+        {
+            setCheckBoxColumn(dgvTreDaXetThucDon);
+            dgvTreDaXetThucDon.DataSource = ThongTinThucDonBLL.LayDanhSachTreDaXetThucDon(maLop, thang, nam, cboBuoiAD.Text.ToString().Trim(), dtpNgay_Loc.Value);
+            string[] column = { "X", "MaTre", "HoTenTre", "BMI", "TinhTrang", "GhiChu" };
+            Ultilities.ControlFormat.DataGridViewFormat(dgvTreDaXetThucDon, column);
+
+            dgvTreDaXetThucDon.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvTreDaXetThucDon.Columns[1].HeaderText = "Mã Trẻ";
+            dgvTreDaXetThucDon.Columns[1].Width = 100;
+            dgvTreDaXetThucDon.Columns[2].HeaderText = "Tên Trẻ";
+            dgvTreDaXetThucDon.Columns[2].Width = 120;
+            dgvTreDaXetThucDon.Columns[3].HeaderText = "BMI";
+            dgvTreDaXetThucDon.Columns[3].Width = 50;
+            dgvTreDaXetThucDon.Columns[4].HeaderText = "Tình Trạng";
+            //dgvLop.Columns[4].Width = 100;
+            dgvTreDaXetThucDon.Columns[5].HeaderText = "Ghi Chú";
+            dgvTreDaXetThucDon.Columns[5].Width = 100;
+            dgvTreDaXetThucDon.ClearSelection();
         }
 
         public void getDataGridViewMonAn()
         {
-            DataColumn column;
-            DataColumn[] key = new DataColumn[1];
-            column = new DataColumn();
-            column.ColumnName = "TenMonAn";
-            tableMonAn.Columns.Add(column);
-            key[0] = column;
-            tableMonAn.PrimaryKey = key;
-
-            column = new DataColumn();
-            column.ColumnName = "NangLuong";
-            tableMonAn.Columns.Add(column);
-            
+            tableMonAn = MonAnBLL.initDgvMonAn(tableMonAn);
             dgvMonAn.DataSource = tableMonAn;
             dgvMonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvMonAn.Columns[0].HeaderText = "Tên Món Ăn";
@@ -146,29 +156,20 @@ namespace QLNT.Presentation
             cbo.ValueMember = "MaMonAn";
         }
 
-        private void setCheckBoxColumn()
+        private void setCheckBoxColumn(DataGridView dgv)
         {
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.Name = "X";
             checkBoxColumn.Width = 50;
             checkBoxColumn.ReadOnly = false;
-            dgvLop.Columns.Clear();
-            dgvLop.Columns.Add(checkBoxColumn);
-        }
-
-        private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            getComboboxLop();
-        }
-
-        private void dtpNgay_Loc_ValueChanged(object sender, EventArgs e)
-        {
-            getComboboxLop();
+            dgv.Columns.Clear();
+            dgv.Columns.Add(checkBoxColumn);
         }
 
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getDataGridViewLop(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
         }
 
         private void cboMonChinh_TextChanged(object sender, EventArgs e)
@@ -189,18 +190,94 @@ namespace QLNT.Presentation
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (tableMonAn.Rows.Find(cboTenMonAn.Text.Trim()) != null)
+            {
+                MessageBox.Show("Món ăn đã tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             DataRow row = tableMonAn.NewRow();
             row["TenMonAn"] = cboTenMonAn.Text.Trim();
             row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(cboTenMonAn.Text.Trim());
             tableMonAn.Rows.Add(row);
         }
 
+
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if(tableMonAn.Rows.Find(cboTenMonAn.Text.Trim())== null)
+            {
+                MessageBox.Show("Món ăn không tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             DataRow row = tableMonAn.NewRow();
             row["TenMonAn"] = cboTenMonAn.Text.Trim();
             row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(cboTenMonAn.Text.Trim());
             tableMonAn.Rows.Remove(tableMonAn.Rows.Find(cboTenMonAn.Text.Trim()));
+        }
+
+        private void dgvMonAn_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex < 0 || e.RowIndex > dgvMonAn.RowCount) { return; }
+            cboTenMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["TenMonAn"].Value.ToString().Trim();
+        }
+
+        private void dgvLop_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ThemThucDonChoTre(false);
+        }
+
+        private void btnAddAll_Click(object sender, EventArgs e)
+        {
+            ThemThucDonChoTre(true);
+        }
+
+        void ThemThucDonChoTre(bool isGetAll)
+        {
+            ThongTinThucDonBLL.getListTre(listTre, dgvTreChuaXetThucDon, isGetAll);
+            ThongTinThucDonBLL.getListMonAn(listMonAn, dgvMonAn);
+            if (!ThongTinThucDonBLL.LuuThongTinThucDon(listTre, listMonAn, cboBuoiAD.Text.ToString(), dtpNgay_Loc.Value)) { return; }
+            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+        }
+
+        void XoaThucDonCuaTre(bool isGetAll)
+        {
+            ThongTinThucDonBLL.getListTre(listTre, dgvTreDaXetThucDon, isGetAll);
+            if (!ThongTinThucDonBLL.HuyThongTinThucDon(listTre ,cboBuoiAD.Text.ToString(), dtpNgay_Loc.Value)) { return; }
+            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            XoaThucDonCuaTre(false);
+            MessageBox.Show(listTre.Count.ToString(), "Thông báo", MessageBoxButtons.OK);
+        }
+
+        private void btnRemoveAll_Click(object sender, EventArgs e)
+        {
+            XoaThucDonCuaTre(true);
+        }
+
+        private void cboBuoiAD_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+        }
+
+        private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getComboboxLop();
+        }
+
+        private void dtpNgay_Loc_ValueChanged(object sender, EventArgs e)
+        {
+            getComboboxLop();
         }
     }
 }

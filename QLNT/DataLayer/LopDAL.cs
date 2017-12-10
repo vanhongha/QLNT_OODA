@@ -142,23 +142,6 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
-        public static DataTable GetSucKhoeTheoLop(string maLop, int thang, int nam)
-        {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayDanhSachSucKhoeTheoLop");
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@MaLop", maLop);
-            cmd.Parameters.AddWithValue("@Thang", thang);
-            cmd.Parameters.AddWithValue("@Nam", nam);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
-        }
-
         public static string getMaNamHoc(DateTime ngayHoc)
         {
             DataAccessHelper db = new DataAccessHelper();
