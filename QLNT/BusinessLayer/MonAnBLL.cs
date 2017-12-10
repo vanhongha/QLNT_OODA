@@ -128,5 +128,18 @@ namespace QLNT.BusinessLayer
 
             return tableMonAn;
         }
+
+        public static DataTable setDateDgvMonAn(DataTable tableMonAn, DataTable data)
+        {
+            tableMonAn.Rows.Clear();
+            foreach (DataRow row in data.Rows)
+            {
+                DataRow newRow = tableMonAn.NewRow();
+                newRow["TenMonAn"] = row.ItemArray[0].ToString().Trim();
+                newRow["NangLuong"] = row.ItemArray[1].ToString().Trim();
+                tableMonAn.Rows.Add(newRow);
+            }
+            return tableMonAn;
+        }
     }
 }

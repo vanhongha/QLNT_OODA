@@ -53,7 +53,9 @@ namespace QLNT.BusinessLayer
                 }
             }
 
+            MessageBox.Show("Đã thêm thực đơn cho "+ listTre.Count + " trẻ", "Thông báo", MessageBoxButtons.OK);
             return true;
+
         }
 
         public static bool HuyThongTinThucDon(List<string> listTre, string buoiAD, DateTime ngayAD)
@@ -82,6 +84,7 @@ namespace QLNT.BusinessLayer
                 XoaThongTinThucDon(listTre[i], buoiAD, ngayAD);
             }
 
+            MessageBox.Show("Đã hủy thực đơn cho " + listTre.Count + " trẻ", "Thông báo", MessageBoxButtons.OK);
             return true;
         }
 
@@ -109,6 +112,31 @@ namespace QLNT.BusinessLayer
         public static DataTable LayDanhSachTreDaXetThucDon(string maLop, int thang, int nam, string buoiAD, DateTime ngayAD)
         {
             return ThongTinThucDonDAL.LayDanhSachTreDaXetThucDon(maLop, thang, nam, buoiAD, ngayAD);
+        }
+
+        public static DataTable LayThongTinThucDonTheoTre(string maTre, string buoiAD, DateTime ngayAD)
+        {
+            return ThongTinThucDonDAL.LayThongTinThucDonTheoTre(maTre, buoiAD, ngayAD);
+        }
+
+        public static DataTable LayDanhSachMonAnTheoBuoi(string buoiAD, DateTime ngayAD)
+        {
+            return ThongTinThucDonDAL.LayDanhSachMonAnTheoBuoi(buoiAD, ngayAD);
+        }
+
+        public static DataTable LayDanhSachMonAnTheoNgay(DateTime ngayAD)
+        {
+            return ThongTinThucDonDAL.LayDanhSachMonAnTheoNgay(ngayAD);
+        }
+
+        public static DataTable LayDanhSachNguyenLieuTheoBuoi(string buoiAD, DateTime ngayAD)
+        {
+            return ThongTinThucDonDAL.LayDanhSachNguyenLieuTheoBuoi(buoiAD, ngayAD);
+        }
+
+        public static DataTable LayDanhSachNguyenLieuTheoNgay(DateTime ngayAD)
+        {
+            return ThongTinThucDonDAL.LayDanhSachNguyenLieuTheoNgay(ngayAD);
         }
 
         public static void getListTre(List<string> listTre, DataGridView dgv, bool getAll)
@@ -142,6 +170,78 @@ namespace QLNT.BusinessLayer
             {
                 listMonAn.Add(MonAnBLL.LayMaMonAnTheoTen(dgv.Rows[i].Cells["TenMonAn"].Value.ToString().Trim()));
             }
+        }
+
+        public static bool isCheckedAll(DataGridView dgv)
+        {
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                if (!Convert.ToBoolean(dgv.Rows[i].Cells[0].Value))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static void checkAllDataGridView(DataGridView dgv, bool value)
+        {
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                dgv.Rows[i].Cells[0].Value = value;
+            }
+        }
+
+        public static string getTongNangLuong(DataGridView dgvMonAn)
+        {
+            int tongNL = 0;
+            for (int i = 0; i < dgvMonAn.RowCount; i++)
+            {
+                if(dgvMonAn.Rows[i].Cells["NangLuong"].Value.ToString() == "") { continue; }
+                tongNL += Convert.ToInt32(dgvMonAn.Rows[i].Cells["NangLuong"].Value.ToString());
+            }
+            return "Tổng năng lượng: " + tongNL;
+        }
+
+        public static bool xoaMonAnTrongBangMonAn(DataTable tableMonAn, string tenMonAn)
+        {
+            if (tenMonAn == "")
+            {
+                MessageBox.Show("Chưa chọn món ăn để xóa", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+            if (tableMonAn.Rows.Find(tenMonAn) == null)
+            {
+                MessageBox.Show("Món ăn không tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+            DataRow row = tableMonAn.NewRow();
+            row["TenMonAn"] = tenMonAn;
+            row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(tenMonAn);
+            tableMonAn.Rows.Remove(tableMonAn.Rows.Find(tenMonAn));
+
+            return true;
+        }
+
+        public static bool themMonAnTrongBangMonAn(DataTable tableMonAn, string tenMonAn)
+        {
+            if(tableMonAn.Rows.Count >= 6)
+            {
+                MessageBox.Show("Không thể thêm món\nChỉ được chọn tối đa 6 món ăn cho một bữa ăn", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+
+            if (tableMonAn.Rows.Find(tenMonAn) != null)
+            {
+                MessageBox.Show("Món ăn đã tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+            DataRow row = tableMonAn.NewRow();
+            row["TenMonAn"] = tenMonAn;
+            row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(tenMonAn);
+            tableMonAn.Rows.Add(row);
+
+            return true;
         }
     }
 }

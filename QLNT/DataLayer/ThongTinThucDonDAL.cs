@@ -125,5 +125,84 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
+        public static DataTable LayThongTinThucDonTheoTre(string maTre, string buoiAD, DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayThongTinThucDonTheoTre");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);;
+            cmd.Parameters.AddWithValue("@BuoiApDung", buoiAD);
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static DataTable LayDanhSachMonAnTheoBuoi(string buoiAD, DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayDanhSachMonAnTheoBuoi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BuoiApDung", buoiAD);
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static DataTable LayDanhSachMonAnTheoNgay(DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("S");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static DataTable LayDanhSachNguyenLieuTheoBuoi(string buoiAD, DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayDanhSachNguyenLieuTheoBuoi");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BuoiApDung", buoiAD);
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
+        public static DataTable LayDanhSachNguyenLieuTheoNgay(DateTime ngayAD)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayDanhSachNguyenLieuTheoNgay");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@NgayApDung", ngayAD);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            return db.dt;
+        }
+
     }
 }

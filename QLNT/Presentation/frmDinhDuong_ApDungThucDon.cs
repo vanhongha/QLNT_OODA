@@ -88,6 +88,40 @@ namespace QLNT.Presentation
             dgvMonAn.ClearSelection();
         }
 
+        public void getDataGridViewThongTinThucDonTheoMonAn()
+        {
+            dgvThongTinThucDon_MonAn.DataSource = ThongTinThucDonBLL.LayDanhSachMonAnTheoBuoi(cboBuoiAD.Text.ToString().Trim(), dtpNgay_Loc.Value);
+            string[] column = { "MaMonAn", "TenMonAn", "NangLuong", "SoLuong"};
+            Ultilities.ControlFormat.DataGridViewFormat(dgvThongTinThucDon_MonAn, column);
+
+            dgvThongTinThucDon_MonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvThongTinThucDon_MonAn.Columns[0].HeaderText = "Mã món ăn";
+            dgvThongTinThucDon_MonAn.Columns[0].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns[1].HeaderText = "Tên món ăn";
+            dgvThongTinThucDon_MonAn.Columns[1].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns[2].HeaderText = "Năng lượng";
+            dgvThongTinThucDon_MonAn.Columns[2].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns[3].HeaderText = "Tổng suất ăn";
+            dgvThongTinThucDon_MonAn.Columns[3].Width = 120;
+            dgvThongTinThucDon_MonAn.ClearSelection();
+        }
+
+        public void getDataGridViewThongTinThucDonTheoNguyenLieu()
+        {
+            dgvThongTinThucDon_NguyenLieu.DataSource = ThongTinThucDonBLL.LayDanhSachNguyenLieuTheoBuoi(cboBuoiAD.Text.ToString().Trim(), dtpNgay_Loc.Value);
+            string[] column = { "MaNguyenLieu", "TenNguyenLieu", "SoLuong" };
+            Ultilities.ControlFormat.DataGridViewFormat(dgvThongTinThucDon_NguyenLieu, column);
+
+            dgvThongTinThucDon_NguyenLieu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvThongTinThucDon_NguyenLieu.Columns[0].HeaderText = "Mã nguyên liệu";
+            dgvThongTinThucDon_NguyenLieu.Columns[0].Width = 120;
+            dgvThongTinThucDon_NguyenLieu.Columns[1].HeaderText = "Tên nguyên liệu";
+            dgvThongTinThucDon_NguyenLieu.Columns[1].Width = 120;
+            dgvThongTinThucDon_NguyenLieu.Columns[2].HeaderText = "Số lượng (gam)";
+            dgvThongTinThucDon_NguyenLieu.Columns[2].Width = 120;
+            dgvThongTinThucDon_NguyenLieu.ClearSelection();
+        }
+
         public void getComboboxLoaiLop()
         {
             cboLoaiLop.DataSource = LopBLL.GetListLoaiLop();
@@ -166,10 +200,17 @@ namespace QLNT.Presentation
             dgv.Columns.Add(checkBoxColumn);
         }
 
-        private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
+        private void getDataGridViewTre()
         {
             getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
             getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            ckbAll.Checked = false;
+            ckbAll_TreDaXetTD.Checked = false;
+        }
+
+        private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getDataGridViewTre();
         }
 
         private void cboMonChinh_TextChanged(object sender, EventArgs e)
@@ -190,40 +231,27 @@ namespace QLNT.Presentation
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (tableMonAn.Rows.Find(cboTenMonAn.Text.Trim()) != null)
+
+            if (ThongTinThucDonBLL.themMonAnTrongBangMonAn(tableMonAn, cboTenMonAn.Text.ToString().Trim()))
             {
-                MessageBox.Show("Món ăn đã tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
-                return;
+                lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
             }
-            DataRow row = tableMonAn.NewRow();
-            row["TenMonAn"] = cboTenMonAn.Text.Trim();
-            row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(cboTenMonAn.Text.Trim());
-            tableMonAn.Rows.Add(row);
         }
 
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if(tableMonAn.Rows.Find(cboTenMonAn.Text.Trim())== null)
+            if(ThongTinThucDonBLL.xoaMonAnTrongBangMonAn(tableMonAn, cboTenMonAn.Text.ToString().Trim()))
             {
-                MessageBox.Show("Món ăn không tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
-                return;
+                lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
             }
-            DataRow row = tableMonAn.NewRow();
-            row["TenMonAn"] = cboTenMonAn.Text.Trim();
-            row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(cboTenMonAn.Text.Trim());
-            tableMonAn.Rows.Remove(tableMonAn.Rows.Find(cboTenMonAn.Text.Trim()));
+            
         }
 
         private void dgvMonAn_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex < 0 || e.RowIndex > dgvMonAn.RowCount) { return; }
             cboTenMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["TenMonAn"].Value.ToString().Trim();
-        }
-
-        private void dgvLop_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -241,22 +269,23 @@ namespace QLNT.Presentation
             ThongTinThucDonBLL.getListTre(listTre, dgvTreChuaXetThucDon, isGetAll);
             ThongTinThucDonBLL.getListMonAn(listMonAn, dgvMonAn);
             if (!ThongTinThucDonBLL.LuuThongTinThucDon(listTre, listMonAn, cboBuoiAD.Text.ToString(), dtpNgay_Loc.Value)) { return; }
-            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
-            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTre();
+            getDataGridViewThongTinThucDonTheoMonAn();
+            getDataGridViewThongTinThucDonTheoNguyenLieu();
         }
 
         void XoaThucDonCuaTre(bool isGetAll)
         {
             ThongTinThucDonBLL.getListTre(listTre, dgvTreDaXetThucDon, isGetAll);
             if (!ThongTinThucDonBLL.HuyThongTinThucDon(listTre ,cboBuoiAD.Text.ToString(), dtpNgay_Loc.Value)) { return; }
-            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
-            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTre();
+            getDataGridViewThongTinThucDonTheoMonAn();
+            getDataGridViewThongTinThucDonTheoNguyenLieu();
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
             XoaThucDonCuaTre(false);
-            MessageBox.Show(listTre.Count.ToString(), "Thông báo", MessageBoxButtons.OK);
         }
 
         private void btnRemoveAll_Click(object sender, EventArgs e)
@@ -266,8 +295,9 @@ namespace QLNT.Presentation
 
         private void cboBuoiAD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
-            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+            getDataGridViewTre();
+            getDataGridViewThongTinThucDonTheoMonAn();
+            getDataGridViewThongTinThucDonTheoNguyenLieu();
         }
 
         private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,5 +309,39 @@ namespace QLNT.Presentation
         {
             getComboboxLop();
         }
+
+        private void ckbAll_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dgvTreChuaXetThucDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex < 0 || e.RowIndex > dgvTreChuaXetThucDon.RowCount) { return; }
+            dgvTreChuaXetThucDon.Rows[e.RowIndex].Cells[0].Value = !Convert.ToBoolean(dgvTreChuaXetThucDon.Rows[e.RowIndex].Cells[0].Value);
+            ckbAll.Checked = ThongTinThucDonBLL.isCheckedAll(dgvTreChuaXetThucDon);
+        }
+
+        private void ckbAll_Click(object sender, EventArgs e)
+        {
+            ThongTinThucDonBLL.checkAllDataGridView(dgvTreChuaXetThucDon, ckbAll.Checked);
+        }
+
+        private void ckbAll_TreDaXetTD_Click(object sender, EventArgs e)
+        {
+            ThongTinThucDonBLL.checkAllDataGridView(dgvTreDaXetThucDon, ckbAll_TreDaXetTD.Checked);
+        }
+
+        private void dgvTreDaXetThucDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex > dgvTreDaXetThucDon.RowCount) { return; }
+            dgvTreDaXetThucDon.Rows[e.RowIndex].Cells[0].Value = !Convert.ToBoolean(dgvTreDaXetThucDon.Rows[e.RowIndex].Cells[0].Value);
+            ckbAll_TreDaXetTD.Checked = ThongTinThucDonBLL.isCheckedAll(dgvTreDaXetThucDon);
+
+            tableMonAn = MonAnBLL.setDateDgvMonAn(tableMonAn,ThongTinThucDonBLL.LayThongTinThucDonTheoTre(dgvTreDaXetThucDon.Rows[e.RowIndex].Cells["MaTre"].Value.ToString().Trim(),cboBuoiAD.Text, dtpNgay_Loc.Value));
+            lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
+        }
+
+
     }
 }
