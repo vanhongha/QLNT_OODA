@@ -42,15 +42,15 @@ namespace QLNT.Presentation
 
             dgvNguyenLieu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvNguyenLieu.Columns[0].HeaderText = "Mã nguyên liệu";
-            dgvNguyenLieu.Columns[0].Width = 100;
+            dgvNguyenLieu.Columns[0].Width = 120;
             dgvNguyenLieu.Columns[1].HeaderText = "Tên nguyên liệu";
-            dgvNguyenLieu.Columns[1].Width = 120;
+            dgvNguyenLieu.Columns[1].Width = 140;
             dgvNguyenLieu.Columns[2].HeaderText = "Loại nguyên liệu";
             dgvNguyenLieu.Columns[2].Width = 120;
             dgvNguyenLieu.Columns[3].HeaderText = "Năng lượng";
-            dgvNguyenLieu.Columns[3].Width = 100;
+            dgvNguyenLieu.Columns[3].Width = 120;
             dgvNguyenLieu.Columns[4].HeaderText = "Đơn vị tính";
-            dgvNguyenLieu.Columns[4].Width = 100;
+            dgvNguyenLieu.Columns[4].Width = 120;
             dgvNguyenLieu.ClearSelection();
 
         }
@@ -65,6 +65,7 @@ namespace QLNT.Presentation
 
         private void SetEnabledComponents(bool value)
         {
+            lblNote.Visible = !value;
             txtTenNguyenLieu.Enabled = value;
             cboLoaiNguyenLieu.Enabled = value;
             txtNangLuong.Enabled = value;
@@ -75,22 +76,25 @@ namespace QLNT.Presentation
             txtMaNguyenLieu.Text = NguyenLieuBLL.SinhMaTuDong();
             txtTenNguyenLieu.Text = "";
             txtNangLuong.Text = "0";
-            txtDonViTinh.Text = "g";
+            txtDonViTinh.Text = "Kcal/gam";
             cboLoaiNguyenLieu.Text = "";
             SetEnabledComponents(true);
-            txtDonViTinh.Enabled = true;
         }
 
         private void dgvNguyenLieu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex < 0) { return; }
+            if (e.RowIndex < 0 || e.RowIndex  > dgvNguyenLieu.RowCount) { return; }
             cboLoaiNguyenLieu.Text = "";
             txtMaNguyenLieu.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["MaNguyenLieu"].Value.ToString();
             txtTenNguyenLieu.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["TenNguyenLieu"].Value.ToString();
             cboLoaiNguyenLieu.SelectedText = dgvNguyenLieu.Rows[e.RowIndex].Cells["TenLoaiNL"].Value.ToString();
             txtNangLuong.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["NangLuong"].Value.ToString();
             txtDonViTinh.Text = dgvNguyenLieu.Rows[e.RowIndex].Cells["DonViTinh"].Value.ToString();
+            
+            SetEnabledComponents(!NguyenLieuBLL.KiemTraTonTaiMaNguyenLieuTrongMonAn(txtMaNguyenLieu.Text));
+            
         }
+
 
         private void btnLuu_Click(object sender, EventArgs e)
         {

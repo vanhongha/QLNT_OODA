@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.lblWarning = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDinhDuong_MonAn));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnXoaTrangNL = new System.Windows.Forms.Button();
+            this.lblNote = new System.Windows.Forms.Label();
             this.btnXoaChiTiet = new System.Windows.Forms.Button();
             this.btnLuuChiTiet = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
@@ -60,20 +60,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonAn)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblWarning
-            // 
-            this.lblWarning.AutoSize = true;
-            this.lblWarning.ForeColor = System.Drawing.Color.Maroon;
-            this.lblWarning.Location = new System.Drawing.Point(183, 0);
-            this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(371, 16);
-            this.lblWarning.TabIndex = 84;
-            this.lblWarning.Text = "Không thể cập nhật chi tiết món ăn đã được thêm vào thực đơn";
-            this.lblWarning.Visible = false;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnXoaTrangNL);
+            this.groupBox1.Controls.Add(this.lblNote);
             this.groupBox1.Controls.Add(this.btnXoaChiTiet);
             this.groupBox1.Controls.Add(this.btnLuuChiTiet);
             this.groupBox1.Controls.Add(this.btnReload);
@@ -84,7 +73,6 @@
             this.groupBox1.Controls.Add(this.txtNangLuongChiTiet);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.lblWarning);
             this.groupBox1.Controls.Add(this.dgvChiTietMonAn);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
@@ -95,19 +83,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NGUYÊN LIỆU TỪNG MÓN";
             // 
-            // btnXoaTrangNL
+            // lblNote
             // 
-            this.btnXoaTrangNL.Location = new System.Drawing.Point(106, 417);
-            this.btnXoaTrangNL.Name = "btnXoaTrangNL";
-            this.btnXoaTrangNL.Size = new System.Drawing.Size(102, 34);
-            this.btnXoaTrangNL.TabIndex = 111;
-            this.btnXoaTrangNL.Text = "Xóa Trắng";
-            this.btnXoaTrangNL.UseVisualStyleBackColor = true;
-            this.btnXoaTrangNL.Click += new System.EventHandler(this.btnXoaTrangNL_Click);
+            this.lblNote.AutoSize = true;
+            this.lblNote.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNote.ForeColor = System.Drawing.Color.Crimson;
+            this.lblNote.Location = new System.Drawing.Point(250, 2);
+            this.lblNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(306, 14);
+            this.lblNote.TabIndex = 111;
+            this.lblNote.Text = "Không thể cập nhật chi tiết món ăn đã được thêm vào thực đơn";
             // 
             // btnXoaChiTiet
             // 
-            this.btnXoaChiTiet.Location = new System.Drawing.Point(322, 417);
+            this.btnXoaChiTiet.Location = new System.Drawing.Point(295, 417);
             this.btnXoaChiTiet.Name = "btnXoaChiTiet";
             this.btnXoaChiTiet.Size = new System.Drawing.Size(102, 34);
             this.btnXoaChiTiet.TabIndex = 110;
@@ -117,7 +107,7 @@
             // 
             // btnLuuChiTiet
             // 
-            this.btnLuuChiTiet.Location = new System.Drawing.Point(214, 417);
+            this.btnLuuChiTiet.Location = new System.Drawing.Point(187, 417);
             this.btnLuuChiTiet.Name = "btnLuuChiTiet";
             this.btnLuuChiTiet.Size = new System.Drawing.Size(102, 34);
             this.btnLuuChiTiet.TabIndex = 109;
@@ -129,18 +119,20 @@
             // 
             this.btnReload.BackColor = System.Drawing.Color.Lavender;
             this.btnReload.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnReload.Location = new System.Drawing.Point(392, 319);
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(413, 319);
             this.btnReload.Name = "btnReload";
             this.btnReload.Size = new System.Drawing.Size(32, 27);
             this.btnReload.TabIndex = 107;
             this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // cboChonNguyenLieu
             // 
             this.cboChonNguyenLieu.FormattingEnabled = true;
-            this.cboChonNguyenLieu.Location = new System.Drawing.Point(200, 321);
+            this.cboChonNguyenLieu.Location = new System.Drawing.Point(220, 321);
             this.cboChonNguyenLieu.Name = "cboChonNguyenLieu";
-            this.cboChonNguyenLieu.Size = new System.Drawing.Size(186, 24);
+            this.cboChonNguyenLieu.Size = new System.Drawing.Size(191, 24);
             this.cboChonNguyenLieu.TabIndex = 106;
             // 
             // label5
@@ -148,7 +140,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(102, 321);
+            this.label5.Location = new System.Drawing.Point(122, 321);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 19);
             this.label5.TabIndex = 105;
@@ -159,23 +151,23 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Gray;
-            this.label10.Location = new System.Drawing.Point(222, 386);
+            this.label10.Location = new System.Drawing.Point(242, 386);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(0, 18);
             this.label10.TabIndex = 103;
             // 
             // txtKhoiLuong
             // 
-            this.txtKhoiLuong.Location = new System.Drawing.Point(200, 351);
+            this.txtKhoiLuong.Location = new System.Drawing.Point(220, 351);
             this.txtKhoiLuong.Name = "txtKhoiLuong";
-            this.txtKhoiLuong.Size = new System.Drawing.Size(223, 22);
+            this.txtKhoiLuong.Size = new System.Drawing.Size(225, 22);
             this.txtKhoiLuong.TabIndex = 101;
             this.txtKhoiLuong.Text = "0";
             // 
             // txtNangLuongChiTiet
             // 
             this.txtNangLuongChiTiet.Enabled = false;
-            this.txtNangLuongChiTiet.Location = new System.Drawing.Point(200, 380);
+            this.txtNangLuongChiTiet.Location = new System.Drawing.Point(220, 380);
             this.txtNangLuongChiTiet.Name = "txtNangLuongChiTiet";
             this.txtNangLuongChiTiet.Size = new System.Drawing.Size(225, 22);
             this.txtNangLuongChiTiet.TabIndex = 100;
@@ -186,7 +178,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(102, 351);
+            this.label7.Location = new System.Drawing.Point(122, 351);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 19);
             this.label7.TabIndex = 99;
@@ -197,7 +189,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(102, 380);
+            this.label6.Location = new System.Drawing.Point(122, 380);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 19);
             this.label6.TabIndex = 98;
@@ -208,14 +200,14 @@
             this.dgvChiTietMonAn.AllowUserToAddRows = false;
             this.dgvChiTietMonAn.AllowUserToDeleteRows = false;
             this.dgvChiTietMonAn.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTietMonAn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTietMonAn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvChiTietMonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietMonAn.Location = new System.Drawing.Point(28, 32);
             this.dgvChiTietMonAn.Name = "dgvChiTietMonAn";
@@ -369,8 +361,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvChiTietMonAn;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -392,8 +382,8 @@
         private System.Windows.Forms.TextBox txtMaMonAn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnXoaTrangNL;
         private System.Windows.Forms.TextBox txtNangLuong;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNote;
     }
 }

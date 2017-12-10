@@ -342,6 +342,9 @@ namespace QLNT.Presentation
             lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
         }
 
-
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            getComboBoxMonAn();
+        }
     }
 }

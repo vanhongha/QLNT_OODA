@@ -113,6 +113,11 @@ namespace QLNT.BusinessLayer
             return NguyenLieuDAL.KiemTraMaNL(MaNL);
         }
 
+        public static bool KiemTraTonTaiMaNguyenLieuTrongMonAn(string maNL)
+        {
+            return NguyenLieuDAL.KiemTraTonTaiMaNguyenLieuTrongMonAn(maNL);
+        }
+
         public static DataTable LayDanhSachTenVaMaNguyenLieu()
         {
             return NguyenLieuDAL.LayDanhSachTenVaMaNguyenLieu();

@@ -218,7 +218,7 @@
             this.btnApDung.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnApDung.Name = "btnApDung";
             this.btnApDung.SubItemsExpandWidth = 14;
-            this.btnApDung.Text = "Áp dụng thực đơn";
+            this.btnApDung.Text = "Thực đơn";
             this.btnApDung.Click += new System.EventHandler(this.btnApDung_Click);
             // 
             // btnMonAn

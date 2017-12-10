@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDinhDuong_ApDungThucDon));
             this.cboBuoiAD = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,29 +40,30 @@
             this.dgvTreChuaXetThucDon = new System.Windows.Forms.DataGridView();
             this.ckbAll = new System.Windows.Forms.CheckBox();
             this.gbx = new System.Windows.Forms.GroupBox();
+            this.ckbAll_TreDaXetTD = new System.Windows.Forms.CheckBox();
+            this.dgvTreDaXetThucDon = new System.Windows.Forms.DataGridView();
+            this.btnRemoveAll = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnAddAll = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnReload = new System.Windows.Forms.Button();
             this.cboTenMonAn = new System.Windows.Forms.ComboBox();
             this.btnXoa = new System.Windows.Forms.Button();
             this.dgvMonAn = new System.Windows.Forms.DataGridView();
             this.btnThem = new System.Windows.Forms.Button();
             this.lblTongNangLuong = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnAddAll = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnRemoveAll = new System.Windows.Forms.Button();
-            this.dgvTreDaXetThucDon = new System.Windows.Forms.DataGridView();
-            this.ckbAll_TreDaXetTD = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.dgvThongTinThucDon_NguyenLieu = new System.Windows.Forms.DataGridView();
             this.dgvThongTinThucDon_MonAn = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreChuaXetThucDon)).BeginInit();
             this.gbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTreDaXetThucDon)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonAn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTreDaXetThucDon)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_NguyenLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_MonAn)).BeginInit();
@@ -78,7 +80,7 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboBuoiAD.Location = new System.Drawing.Point(114, 37);
+            this.cboBuoiAD.Location = new System.Drawing.Point(157, 37);
             this.cboBuoiAD.Name = "cboBuoiAD";
             this.cboBuoiAD.Size = new System.Drawing.Size(121, 24);
             this.cboBuoiAD.TabIndex = 101;
@@ -89,7 +91,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(12, 9);
+            this.label4.Location = new System.Drawing.Point(55, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 16);
             this.label4.TabIndex = 104;
@@ -100,7 +102,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(15, 36);
+            this.label5.Location = new System.Drawing.Point(58, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 16);
             this.label5.TabIndex = 102;
@@ -110,7 +112,7 @@
             // 
             this.dtpNgay_Loc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgay_Loc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgay_Loc.Location = new System.Drawing.Point(114, 10);
+            this.dtpNgay_Loc.Location = new System.Drawing.Point(157, 10);
             this.dtpNgay_Loc.Name = "dtpNgay_Loc";
             this.dtpNgay_Loc.Size = new System.Drawing.Size(121, 22);
             this.dtpNgay_Loc.TabIndex = 100;
@@ -122,7 +124,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(295, 40);
+            this.label2.Location = new System.Drawing.Point(338, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 16);
             this.label2.TabIndex = 112;
@@ -139,7 +141,7 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboLoaiLop.Location = new System.Drawing.Point(341, 8);
+            this.cboLoaiLop.Location = new System.Drawing.Point(384, 8);
             this.cboLoaiLop.Name = "cboLoaiLop";
             this.cboLoaiLop.Size = new System.Drawing.Size(121, 24);
             this.cboLoaiLop.TabIndex = 109;
@@ -150,7 +152,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(272, 11);
+            this.label1.Location = new System.Drawing.Point(315, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 16);
             this.label1.TabIndex = 110;
@@ -167,7 +169,7 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboLop.Location = new System.Drawing.Point(341, 37);
+            this.cboLop.Location = new System.Drawing.Point(384, 37);
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(121, 24);
             this.cboLop.TabIndex = 114;
@@ -212,13 +214,78 @@
             this.gbx.ForeColor = System.Drawing.SystemColors.Highlight;
             this.gbx.Location = new System.Drawing.Point(3, 67);
             this.gbx.Name = "gbx";
-            this.gbx.Size = new System.Drawing.Size(567, 484);
+            this.gbx.Size = new System.Drawing.Size(559, 484);
             this.gbx.TabIndex = 105;
             this.gbx.TabStop = false;
             this.gbx.Text = "XÉT THỰC ĐƠN";
             // 
+            // ckbAll_TreDaXetTD
+            // 
+            this.ckbAll_TreDaXetTD.AutoSize = true;
+            this.ckbAll_TreDaXetTD.Location = new System.Drawing.Point(26, 280);
+            this.ckbAll_TreDaXetTD.Name = "ckbAll_TreDaXetTD";
+            this.ckbAll_TreDaXetTD.Size = new System.Drawing.Size(15, 14);
+            this.ckbAll_TreDaXetTD.TabIndex = 135;
+            this.ckbAll_TreDaXetTD.UseVisualStyleBackColor = true;
+            this.ckbAll_TreDaXetTD.Click += new System.EventHandler(this.ckbAll_TreDaXetTD_Click);
+            // 
+            // dgvTreDaXetThucDon
+            // 
+            this.dgvTreDaXetThucDon.AllowUserToAddRows = false;
+            this.dgvTreDaXetThucDon.AllowUserToDeleteRows = false;
+            this.dgvTreDaXetThucDon.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvTreDaXetThucDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTreDaXetThucDon.Location = new System.Drawing.Point(6, 273);
+            this.dgvTreDaXetThucDon.Name = "dgvTreDaXetThucDon";
+            this.dgvTreDaXetThucDon.RowHeadersVisible = false;
+            this.dgvTreDaXetThucDon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTreDaXetThucDon.Size = new System.Drawing.Size(546, 203);
+            this.dgvTreDaXetThucDon.TabIndex = 134;
+            this.dgvTreDaXetThucDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTreDaXetThucDon_CellClick);
+            // 
+            // btnRemoveAll
+            // 
+            this.btnRemoveAll.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAll.Image")));
+            this.btnRemoveAll.Location = new System.Drawing.Point(335, 230);
+            this.btnRemoveAll.Name = "btnRemoveAll";
+            this.btnRemoveAll.Size = new System.Drawing.Size(51, 34);
+            this.btnRemoveAll.TabIndex = 133;
+            this.btnRemoveAll.UseVisualStyleBackColor = true;
+            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(153, 230);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(51, 34);
+            this.btnAdd.TabIndex = 130;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnAddAll
+            // 
+            this.btnAddAll.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAll.Image")));
+            this.btnAddAll.Location = new System.Drawing.Point(210, 230);
+            this.btnAddAll.Name = "btnAddAll";
+            this.btnAddAll.Size = new System.Drawing.Size(51, 34);
+            this.btnAddAll.TabIndex = 131;
+            this.btnAddAll.UseVisualStyleBackColor = true;
+            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
+            this.btnRemove.Location = new System.Drawing.Point(277, 230);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(51, 34);
+            this.btnRemove.TabIndex = 132;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnReload);
             this.groupBox3.Controls.Add(this.cboTenMonAn);
             this.groupBox3.Controls.Add(this.btnXoa);
             this.groupBox3.Controls.Add(this.dgvMonAn);
@@ -234,6 +301,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "CHỌN MÓN ĂN";
             // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.Lavender;
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(506, 17);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(32, 28);
+            this.btnReload.TabIndex = 145;
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // cboTenMonAn
             // 
             this.cboTenMonAn.AccessibleDescription = "";
@@ -246,9 +325,9 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboTenMonAn.Location = new System.Drawing.Point(404, 19);
+            this.cboTenMonAn.Location = new System.Drawing.Point(396, 19);
             this.cboTenMonAn.Name = "cboTenMonAn";
-            this.cboTenMonAn.Size = new System.Drawing.Size(123, 24);
+            this.cboTenMonAn.Size = new System.Drawing.Size(110, 24);
             this.cboTenMonAn.TabIndex = 144;
             // 
             // btnXoa
@@ -301,75 +380,11 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label29.Location = new System.Drawing.Point(331, 21);
+            this.label29.Location = new System.Drawing.Point(334, 23);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(67, 16);
             this.label29.TabIndex = 129;
             this.label29.Text = "Tên món: ";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(155, 230);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(51, 34);
-            this.btnAdd.TabIndex = 130;
-            this.btnAdd.Text = ">";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnAddAll
-            // 
-            this.btnAddAll.Location = new System.Drawing.Point(212, 230);
-            this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(51, 34);
-            this.btnAddAll.TabIndex = 131;
-            this.btnAddAll.Text = ">>";
-            this.btnAddAll.UseVisualStyleBackColor = true;
-            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(269, 230);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(51, 34);
-            this.btnRemove.TabIndex = 132;
-            this.btnRemove.Text = "<";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnRemoveAll
-            // 
-            this.btnRemoveAll.Location = new System.Drawing.Point(326, 230);
-            this.btnRemoveAll.Name = "btnRemoveAll";
-            this.btnRemoveAll.Size = new System.Drawing.Size(51, 34);
-            this.btnRemoveAll.TabIndex = 133;
-            this.btnRemoveAll.Text = "<<";
-            this.btnRemoveAll.UseVisualStyleBackColor = true;
-            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
-            // 
-            // dgvTreDaXetThucDon
-            // 
-            this.dgvTreDaXetThucDon.AllowUserToAddRows = false;
-            this.dgvTreDaXetThucDon.AllowUserToDeleteRows = false;
-            this.dgvTreDaXetThucDon.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgvTreDaXetThucDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTreDaXetThucDon.Location = new System.Drawing.Point(6, 273);
-            this.dgvTreDaXetThucDon.Name = "dgvTreDaXetThucDon";
-            this.dgvTreDaXetThucDon.RowHeadersVisible = false;
-            this.dgvTreDaXetThucDon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTreDaXetThucDon.Size = new System.Drawing.Size(546, 203);
-            this.dgvTreDaXetThucDon.TabIndex = 134;
-            this.dgvTreDaXetThucDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTreDaXetThucDon_CellClick);
-            // 
-            // ckbAll_TreDaXetTD
-            // 
-            this.ckbAll_TreDaXetTD.AutoSize = true;
-            this.ckbAll_TreDaXetTD.Location = new System.Drawing.Point(26, 280);
-            this.ckbAll_TreDaXetTD.Name = "ckbAll_TreDaXetTD";
-            this.ckbAll_TreDaXetTD.Size = new System.Drawing.Size(15, 14);
-            this.ckbAll_TreDaXetTD.TabIndex = 135;
-            this.ckbAll_TreDaXetTD.UseVisualStyleBackColor = true;
-            this.ckbAll_TreDaXetTD.Click += new System.EventHandler(this.ckbAll_TreDaXetTD_Click);
             // 
             // groupBox1
             // 
@@ -385,6 +400,24 @@
             this.groupBox1.TabIndex = 136;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "THÔNG TIN THỰC ĐƠN  ĐÃ XÉT";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(438, 364);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 34);
+            this.button2.TabIndex = 138;
+            this.button2.Text = "Xuất danh sách ăn";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(438, 324);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 34);
+            this.button1.TabIndex = 137;
+            this.button1.Text = "Báo cáo nhà bếp";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // dgvThongTinThucDon_NguyenLieu
             // 
@@ -414,24 +447,6 @@
             this.dgvThongTinThucDon_MonAn.Size = new System.Drawing.Size(541, 155);
             this.dgvThongTinThucDon_MonAn.TabIndex = 135;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(438, 324);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 34);
-            this.button1.TabIndex = 137;
-            this.button1.Text = "Báo cáo nhà bếp";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(438, 364);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 34);
-            this.button2.TabIndex = 138;
-            this.button2.Text = "Xuất danh sách ăn";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // frmDinhDuong_ApDungThucDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,10 +470,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreChuaXetThucDon)).EndInit();
             this.gbx.ResumeLayout(false);
             this.gbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTreDaXetThucDon)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonAn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTreDaXetThucDon)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_NguyenLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_MonAn)).EndInit();
@@ -498,5 +513,6 @@
         private System.Windows.Forms.DataGridView dgvThongTinThucDon_MonAn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReload;
     }
 }

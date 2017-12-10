@@ -134,11 +134,16 @@ namespace QLNT.DataLayer
 
         public static bool KiemTraMonAnTrongThucDon(string maMonAn)
         {
-
             DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("select * from CHITIET_THUCDON where MaMonAn = '" + maMonAn.Trim() + "'");
+            SqlCommand cmd = db.Command("KiemTraTonTaiMonAnTrongThucDon");
 
-            foreach (DataRow row in dt.Rows)
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaMonAn", maMonAn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+
+            foreach (DataRow row in db.dt.Rows)
             {
                 return true;
             }

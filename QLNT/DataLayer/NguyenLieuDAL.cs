@@ -172,6 +172,24 @@ namespace QLNT.DataLayer
             return false;
         }
 
+        public static bool KiemTraTonTaiMaNguyenLieuTrongMonAn(string maNL)
+        {
+
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("KiemTraTonTaiMaNguyenLieuTrongMonAn");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaNL", maNL);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            foreach (DataRow row in db.dt.Rows)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static DataTable LayDanhSachTenVaMaNguyenLieu()
         {
             DataAccessHelper db = new DataAccessHelper();
