@@ -22,6 +22,28 @@ namespace QLNT.BusinessLayer
             return "MLOP" + id;
         }
 
+        public static string GenMaLoaiLop()
+        {
+            string id = LopDAL.GetLastLoaiLopID().Trim();
+            if (id == "")
+                return "MLLOP00001";
+            int nextID = int.Parse(id.Remove(0, "MLLOP".Length)) + 1;
+            id = "0000" + nextID.ToString();
+            id = id.Substring(id.Length - 5, 5);
+            return "MLLOP" + id;
+        }
+
+        public static string GenMaNienKhoa()
+        {
+            string id = LopDAL.GetLastIDNienKhoa().Trim();
+            if (id == "")
+                return "MANH000001";
+            int nextID = int.Parse(id.Remove(0, "MANH".Length)) + 1;
+            id = "00000" + nextID.ToString();
+            id = id.Substring(id.Length - 6, 6);
+            return "MANH" + id;
+        }
+        
         public static List<NamHoc> GetListNienKhoa()
         {
             return LopDAL.GetListNienKhoa();
@@ -109,6 +131,58 @@ namespace QLNT.BusinessLayer
                 LopDAL.ThemLop(maLop, maLoaiLop, maNamHoc, maGV, tenLop);
             }
             catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ThemLoaiLop(string maLoaiLop, string tenLoaiLop)
+        {
+            try
+            {
+                LopDAL.ThemLoaiLop(maLoaiLop, tenLoaiLop);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool CapNhatLoaiLop(string maLoaiLop, string tenLoaiLop)
+        {
+            try
+            {
+                LopDAL.CapNhatLoaiLop(maLoaiLop, tenLoaiLop);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool CapNhatNienKhoa(string maNienKhoa, string tenNienKhoa)
+        {
+            try
+            {
+                LopDAL.CapNhatNienKhoa(maNienKhoa, tenNienKhoa);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ThemNienKhoa(string maNienKhoa, string tenNienKhoa, DateTime tgBatDau, DateTime tgKetThuc)
+        {
+            try
+            {
+                LopDAL.ThemNienKhoa(maNienKhoa, tenNienKhoa, tgBatDau, tgKetThuc);
+            }
+            catch (Exception ex)
             {
                 return false;
             }

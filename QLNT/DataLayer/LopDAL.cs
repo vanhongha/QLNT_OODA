@@ -22,6 +22,28 @@ namespace QLNT.DataLayer
             }
             return "";
         }
+        
+        public static string GetLastLoaiLopID()
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            DataTable dt = db.GetDataTable("Select top 1 MaLoaiLop from LOAILOP order by MaLoaiLop desc");
+            foreach (DataRow row in dt.Rows)
+            {
+                return row.ItemArray[0].ToString();
+            }
+            return "";
+        }
+
+        public static string GetLastIDNienKhoa()
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            DataTable dt = db.GetDataTable("Select top 1 MaNamHoc from NAMHOC order by MaNamHoc desc");
+            foreach (DataRow row in dt.Rows)
+            {
+                return row.ItemArray[0].ToString();
+            }
+            return "";
+        }
 
         public static List<NamHoc> GetListNienKhoa()
         {
@@ -215,6 +237,64 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@MaGV", maGV);
             cmd.Parameters.AddWithValue("@SiSo", 0);
             cmd.Parameters.AddWithValue("@TenLop", tenLop);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void ThemLoaiLop(string maLoaiLop, string tenLoaiLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("ThemLoaiLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLoaiLop", maLoaiLop);
+            cmd.Parameters.AddWithValue("@TenLoaiLop", tenLoaiLop);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void CapNhatLoaiLop(string maLoaiLop, string tenLoaiLop)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatLoaiLop");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaLoaiLop", maLoaiLop);
+            cmd.Parameters.AddWithValue("@TenLoaiLop", tenLoaiLop);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void CapNhatNienKhoa(string maNienKhoa, string tenNienKhoa)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("CapNhatNienKhoa");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaNamHoc", maNienKhoa);
+            cmd.Parameters.AddWithValue("@NamHoc", tenNienKhoa);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+        }
+
+        public static void ThemNienKhoa(string maNienKhoa, string tenNienKhoa, DateTime tgBatDau, DateTime tgKetThuc)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("ThemNienKhoa");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaNamHoc", maNienKhoa);
+            cmd.Parameters.AddWithValue("@NamHoc", tenNienKhoa);
+            cmd.Parameters.AddWithValue("@NgayBatDau", tgBatDau);
+            cmd.Parameters.AddWithValue("@NgayKetThuc", tgKetThuc);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();

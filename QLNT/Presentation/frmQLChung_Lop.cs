@@ -36,7 +36,7 @@ namespace QLNT.Presentation
             listNienKhoa = LopBLL.GetListNienKhoa();
             listLoaiLop = LopBLL.GetListLoaiLop();
             listLop = LopBLL.GetListLop();
-            InitDatagridView();
+            LoadValueInDGV();
             Init();
         }
 
@@ -51,17 +51,19 @@ namespace QLNT.Presentation
             ComboboxLoad.NienKhoa(cboNienKhoa);
         }
 
-        void InitDatagridView()
+        // Lấy mã => đõ ra value trong mấy cột của datagridview
+        void LoadValueInDGV()
         {
             foreach(Lop lop in listLop)
             {
-                lop.MaLoaiLop = listLoaiLop.Where(c => c.MaLoaiLop == lop.MaLoaiLop).First().TenLoaiLop;
-                lop.MaNamHoc = listNienKhoa.Where(c => c.MaNamHoc == lop.MaNamHoc).First().NienKhoa;
+                lop.MaLoaiLop = listLoaiLop.FirstOrDefault(c => c.MaLoaiLop == lop.MaLoaiLop).TenLoaiLop;
+                lop.MaNamHoc = listNienKhoa.FirstOrDefault(c => c.MaNamHoc == lop.MaNamHoc).NienKhoa;
             }
         }
 
         void LoadDatagridView()
         {
+            //LoadValueInDGV();
             // QL lớp
             if (rdoQLLop.Checked)
             {
@@ -169,6 +171,32 @@ namespace QLNT.Presentation
                 LoadDatagridView();
             }
         }
+
+        void ThemLoaiLop(string maLoaiLop, string tenLoaiLop)
+        {
+            if (LopBLL.ThemLoaiLop(maLoaiLop, tenLoaiLop))
+            {
+                MessageBox.Show("Thêm loại lớp thành công!",
+                     "Thông báo",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+                listLoaiLop = LopBLL.GetListLoaiLop();
+                LoadDatagridView();
+            }
+        }
+
+        void ThemNienKhoa(string maNienKhoa, string tenNienKhoa, DateTime tgBatDau, DateTime tgKetThuc)
+        {
+            if (LopBLL.ThemNienKhoa(maNienKhoa, tenNienKhoa, tgBatDau, tgKetThuc))
+            {
+                MessageBox.Show("Thêm niên khóa thành công!",
+                     "Thông báo",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+                listNienKhoa = LopBLL.GetListNienKhoa();
+                LoadDatagridView();
+            }
+        }
         #endregion
 
         #region Event
@@ -208,7 +236,6 @@ namespace QLNT.Presentation
 
                     cboNienKhoa.Enabled = false;
                     cboLoaiLop.Enabled = false;
-                    btnThem.Enabled = false;
                 }
             }
             else if(rdoQLLoaiLop.Checked)
@@ -235,6 +262,8 @@ namespace QLNT.Presentation
                     dtNgayKetThuc.Enabled = false;
                 }
             }
+
+            btnThem.Enabled = false;
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -261,6 +290,34 @@ namespace QLNT.Presentation
                     LoadDatagridView();
                 }
             }
+            else if(rdoQLLoaiLop.Checked)
+            {
+                if(LopBLL.CapNhatLoaiLop(txtMaLoaiLop.Text, txtTenLoaiLop.Text))
+                {
+                    MessageBox.Show("Cập nhật loại lớp thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    listLoaiLop = LopBLL.GetListLoaiLop();
+                    listLop = LopBLL.GetListLop();
+                    LoadDatagridView();
+                }
+            }
+            else
+            {
+                if (LopBLL.CapNhatNienKhoa(txtMaNienKhoa.Text, txtTenNienKhoa.Text))
+                {
+                    MessageBox.Show("Cập nhật niên khóa thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    listNienKhoa = LopBLL.GetListNienKhoa();
+                    listLop = LopBLL.GetListLop();
+                    LoadDatagridView();
+                }
+            }
+
+            LoadValueInDGV();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -287,13 +344,11 @@ namespace QLNT.Presentation
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
                         if (r == DialogResult.Yes)
-                        {
                             ThemLop(LopBLL.GenMaLop(),
                               KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
                               maNienKhoa,
                               cboGiangVien.Text,
-                              txtTenLop.Text);
-                        }
+                              txtTenLop.Text);                        
                     }
                 }
                 else
@@ -301,6 +356,34 @@ namespace QLNT.Presentation
                            "Thông báo",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Warning);
+            }
+            else if(rdoQLLoaiLop.Checked)
+            {
+                if(!string.IsNullOrEmpty(txtTenLoaiLop.Text))                
+                    ThemLoaiLop(LopBLL.GenMaLoaiLop(), txtTenLoaiLop.Text);                
+                else
+                    MessageBox.Show("Vui lòng điền đầy tên loại lớp trước khi tạo loại lớp mới!",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(txtTenNienKhoa.Text))
+                {
+                    if (dtNgayBatDau.Value.Date > dtNgayKetThuc.Value.Date)
+                        MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc!",
+                          "Thông báo",
+                          MessageBoxButtons.OK,
+                          MessageBoxIcon.Warning);
+                    else
+                        ThemNienKhoa(LopBLL.GenMaNienKhoa(), txtTenNienKhoa.Text, dtNgayBatDau.Value.Date, dtNgayKetThuc.Value.Date);
+                }
+                else
+                    MessageBox.Show("Vui lòng điền tên niên khóa!",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
             }
         }
         #endregion
