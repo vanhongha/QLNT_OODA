@@ -17,9 +17,9 @@ namespace QLNT.BusinessLayer
             return TreDAL.GetListTre(lop, keyWord);
         }
 
-        public static DataTable GetListTreChuaCoLop()
+        public static DataTable GetListTreChuaCoLop(int tuoiMin, int tuoiMax)
         {
-            return TreDAL.GetListTreChuaCoLop();
+            return TreDAL.GetListTreChuaCoLop(tuoiMin, tuoiMax);
         }
 
         public static string GenMaTre()

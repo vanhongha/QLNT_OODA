@@ -39,12 +39,16 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
-        public static DataTable GetListTreChuaCoLop()
+        public static DataTable GetListTreChuaCoLop(int tuoiMin, int tuoiMax)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = null;
-            cmd = db.Command("GetListTreChuaCoLop");
+            SqlCommand cmd = db.Command("GetListTreChuaCoLop");
+
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TuoiMin", tuoiMin);
+            cmd.Parameters.AddWithValue("@TuoiMax", tuoiMax);
+
+          
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
             da.Fill(db.dt);

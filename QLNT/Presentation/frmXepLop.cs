@@ -37,7 +37,19 @@ namespace QLNT.Presentation
         {
             if (rdoXepLop.Checked)
             {
-                dgvDanhSach.DataSource = TreBLL.GetListTreChuaCoLop();
+                switch(KeyHandle.GetKeyFromCombobox(cboDoTuoi.SelectedItem.ToString()))
+                {
+                    case "mam":
+                        dgvDanhSach.DataSource = TreBLL.GetListTreChuaCoLop(3, 4);
+                        break;
+                    case "choi":
+                        dgvDanhSach.DataSource = TreBLL.GetListTreChuaCoLop(4, 5);
+                        break;
+                    case "la":
+                        dgvDanhSach.DataSource = TreBLL.GetListTreChuaCoLop(5, 6);
+                        break;
+                }
+            
                 dgvDanhSach.Columns[1].HeaderText = "Họ tên trẻ";
                 dgvDanhSach.Columns[2].HeaderText = "Ngày sinh";
 
@@ -147,6 +159,20 @@ namespace QLNT.Presentation
         {
             ComboboxLoad.LoaiLop(cboLoaiLop);
             ComboboxLoad.LoaiLop(cboLoaiLop_LuaChon);
+        }
+
+        private void LoadListDoTuoi()
+        {
+            cboDoTuoi.DisplayMember = "Text";
+            cboDoTuoi.ValueMember = "Value";
+
+            var items = new[] {
+                new { Text = "3-4 tuổi", Value = "mam" },
+                new { Text = "4-5 tuổi", Value = "choi" },
+                new { Text = "5-6 tuổi", Value = "la" },
+            };
+
+            cboDoTuoi.DataSource = items;           
         }
 
         private void RemoveAllListMaTre()
@@ -396,6 +422,7 @@ namespace QLNT.Presentation
             LoadDGVDanhSach();
             LoadListNamHoc();
             LoadListLoaiLop();
+            LoadListDoTuoi();
         }
 
         private void rdoChuyenLop_CheckedChanged(object sender, EventArgs e)
@@ -404,6 +431,7 @@ namespace QLNT.Presentation
             cboLopHoc_LuaChon.Enabled = true;
             cboNamHoc_LuaChon.Enabled = true;
             txtSiSo_LuaChon.Enabled = true;
+            cboDoTuoi.Enabled = false;
 
             LoadDGVDanhSach();
         }
@@ -413,12 +441,13 @@ namespace QLNT.Presentation
             cboLoaiLop_LuaChon.Text = null;
             cboLopHoc_LuaChon.Text = null;
             cboNamHoc_LuaChon.Text = null;
-            txtSiSo_LuaChon.Text = null;
+            txtSiSo_LuaChon.Text = null;       
 
             cboLoaiLop_LuaChon.Enabled = false;
             cboLopHoc_LuaChon.Enabled = false;
             cboNamHoc_LuaChon.Enabled = false;
             txtSiSo_LuaChon.Enabled = false;
+            cboDoTuoi.Enabled = true;
 
             LoadDGVDanhSach();
         }
@@ -504,7 +533,5 @@ namespace QLNT.Presentation
             }
         }
         #endregion
-
-
     }
 }
