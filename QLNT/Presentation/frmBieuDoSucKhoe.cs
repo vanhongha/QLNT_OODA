@@ -275,5 +275,20 @@ namespace QLNT.Presentation
         {
             UpdateChartData();
         }
+
+        private void btnInBaoCao_Click(object sender, System.EventArgs e)
+        {
+            if (dgvChiTietSucKhoe.SelectedRows.Count > 0)
+            {
+                int thang = int.Parse(dgvChiTietSucKhoe.SelectedRows[0].Cells["Thang"].Value.ToString());
+                int nam = int.Parse(dgvChiTietSucKhoe.SelectedRows[0].Cells["Nam"].Value.ToString());
+                Form frmBaoCaoSucKhoe = new frmBaoCaoSucKhoe(maTre, thang, nam);
+                frmBaoCaoSucKhoe.ShowDialog();
+            } 
+            else
+            {
+                MessageBox.Show("Chọn một tháng trong chi tiết sức khỏe để in báo cáo.");
+            }
+        }
     }
 }

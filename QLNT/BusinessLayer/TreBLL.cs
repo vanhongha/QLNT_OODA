@@ -152,7 +152,20 @@ namespace QLNT.BusinessLayer
 
         public static int GetSoNgayDiHocTrongThang(string maTre, int thang, int nam)
         {
-            return 20;
+            DataTable dt = TreDAL.LayTongSoNgayDiHocTrongThang(maTre, thang, nam);
+            try
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    return int.Parse(row["SoNgayDiHoc"].ToString());
+                }
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi lấy tổng số ngày đi học trong tháng.");
+            }
+
+            return 0;
         }
 
         public static void KhoiTaoSucKhoe(string maTre, int thang, int nam)

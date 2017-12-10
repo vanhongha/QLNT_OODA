@@ -350,7 +350,8 @@ namespace QLNT.Presentation
 
         private void btnInBienLai_Click(object sender, EventArgs e)
         {
-
+            Form frmBienLai = new frmBienLaiHocPhi(dgvBienLai.SelectedRows[0].Cells["MaBienLai"].Value.ToString());
+            frmBienLai.ShowDialog();
         }
     }
 }

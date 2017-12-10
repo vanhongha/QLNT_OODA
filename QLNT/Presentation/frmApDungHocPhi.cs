@@ -211,7 +211,7 @@ namespace QLNT.Presentation
 
         private void dgvTre_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1 || e.RowIndex != dgvTre.RowCount)
+            if (e.RowIndex != -1 && e.RowIndex != dgvTre.RowCount)
             {
                 maHocPhi = dgvTre.Rows[e.RowIndex].Cells["MaHocPhi"].Value.ToString();
 
