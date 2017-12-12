@@ -98,10 +98,7 @@ namespace QLNT.Presentation
             else
                 rdbNu.Checked = true;
 
-            DateTime date = DateTime.ParseExact(Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            dateNgaySinh.Value = date;
-
+            dateNgaySinh.Text = Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
 
             txtHoTenMe.Text = dt.Rows[0]["HoTenMe"].ToString();
             txtHoTenCha.Text = dt.Rows[0]["HoTenCha"].ToString();
@@ -119,6 +116,14 @@ namespace QLNT.Presentation
                 || txtDiaChi.Text.Length > 100)
             {
                 MessageBox.Show("Các trường họ tên không được quá dài (ít hơn 50 ký tự)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if ( String.IsNullOrEmpty(txtHoTen.Text)
+                || String.IsNullOrEmpty(txtHoTenCha.Text)
+                || String.IsNullOrEmpty(txtHoTenMe.Text)
+                || String.IsNullOrEmpty(txtDiaChi.Text))
+            {
+                MessageBox.Show("Phải nhập đầy đủ trưởng thông tin. Không có ghi rõ: 'Không có'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             Tre hocsinhmoi = new Tre(txtMaHocSinh.Text, txtHoTen.Text,
@@ -186,8 +191,6 @@ namespace QLNT.Presentation
                 tre.TenMe = txtHoTenMe.Text;
                 tre.DiaChi = txtDiaChi.Text;
                 tre.DienThoai = txtSDT.Text;
-
-                MessageBox.Show(tre.MaTre);
 
                 TreBLL.CapNhatThongTinTre(tre);
                 MessageBox.Show("Cập nhật thành công", "Thông báo");

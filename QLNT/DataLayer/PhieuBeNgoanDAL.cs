@@ -56,14 +56,17 @@ namespace QLNT.DataLayer
         public static void XoaPhieuBeNgoan(string value, string v1, string v2)
         {
             DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = null;
-
-            cmd = db.Command("XOA_PHIEU_BE_NGOAN");
-            cmd.Parameters.AddWithValue("@MaTre", value);
-            cmd.Parameters.AddWithValue("@Thang", v1);
-            cmd.Parameters.AddWithValue("@Nam", v2);
-
+            SqlCommand cmd = db.Command("XOA_PHIEU_BE_NGOAN");
+            
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", value);
+            cmd.Parameters.AddWithValue("@Thang", Int32.Parse(v1));
+            cmd.Parameters.AddWithValue("@Nam", Int32.Parse(v2));
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            db.dt = new DataTable();
+            da.Fill(db.dt);
 
         }
 

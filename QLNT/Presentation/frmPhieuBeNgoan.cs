@@ -79,7 +79,6 @@ namespace QLNT.Presentation
                     LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
                     datetime);
 
-
                 TaoPhieuTrong();
 
                 for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
@@ -136,6 +135,7 @@ namespace QLNT.Presentation
             phieuthang.DefaultCellStyle.BackColor = Color.LimeGreen;
             dgvPhieuBeNgoan.Columns.Add(phieuthang);
             dgvPhieuBeNgoan.Columns["PhieuBeNgoanThang"].Visible = false;
+
         }
 
         private void LuuPhieuBeNgoan(DataGridView dgvPhieuBeNgoan)
@@ -185,43 +185,61 @@ namespace QLNT.Presentation
 
         private void btnTaoPhieuMoi_Click(object sender, EventArgs e)
         {
-            dgvPhieuBeNgoan.Columns.Clear();
-            XoaPhieuCu();
-            if (!string.IsNullOrEmpty(cboLop.Text))
+            try
             {
-                dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
-                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
-                    dtThangLapPhieu.Text);
-                TaoPhieuTrong();
-
+                XoaPhieuCu();
+                dgvPhieuBeNgoan.Columns.Clear();
+                if (!string.IsNullOrEmpty(cboLop.Text))
+                {
+                    dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
+                        LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                        dtThangLapPhieu.Text);
+                    TaoPhieuTrong();
+                    MessageBox.Show("Một phiếu mới hoàn toàn vừa được tạo", "Thông báo");
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
+
         }
 
         private void btnLuuPhieu_Click(object sender, EventArgs e)
         {
-            //Xoa cai cu
-            XoaPhieuCu();
-            //Tao cai moi
-            for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
+            try
             {
-                for (int j = 1; j < 5; j++)
+                //Xoa cai cu
+                XoaPhieuCu();
+                //Tao cai moi
+                
+                for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                 {
-                    if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value == null ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "False" ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "false")
-                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "0";
+                    
+                    for (int j = 1; j < 5; j++)
+                    {
+                        if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value == null ||
+                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "False" ||
+                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value.ToString() == "false")
+                            dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "0";
+                        else
+                            dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "1";
+                    }
+                    if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value == null ||
+                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "False" ||
+                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "false")
+                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "0";
                     else
-                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value = "1";
-                }
-                if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value == null ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "False" ||
-                    dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value.ToString() == "false")
-                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "0";
-                else
-                    dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "1";
+                        dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value = "1";
 
+                }
+                LuuPhieuBeNgoan(dgvPhieuBeNgoan);
+                MessageBox.Show("Phiếu được lưu thành công", "Thông báo");
             }
-            LuuPhieuBeNgoan(dgvPhieuBeNgoan);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi");
+            }
         }
         #endregion
 

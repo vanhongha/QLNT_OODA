@@ -75,6 +75,7 @@ namespace QLNT.Presentation
 
         private void btnLuuDiemDanh_Click(object sender, EventArgs e)
         {
+            XoaPhieuCu();
             for (int i = 0; i < dgvDiemDanh.Rows.Count; i++)
             {
 
@@ -90,10 +91,13 @@ namespace QLNT.Presentation
         }
         private void btnTaoBangMoi_Click(object sender, EventArgs e)
         {
+            XoaPhieuCu();
             dgvDiemDanh.Columns.Clear();
             if (!string.IsNullOrEmpty(cboLop.Text))
             {
-                dgvDiemDanh.DataSource = DiemDanhBLL.TaoBangDiemDanhMoi(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())));
+                dgvDiemDanh.DataSource = DiemDanhBLL.TaoBangDiemDanhMoi(
+                    LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                    dtNgayDiemDanh.Text);
                 DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
                 checkColumn.Name = "HienDienCheckbox";
                 checkColumn.HeaderText = "Hiện Diện";
@@ -103,10 +107,13 @@ namespace QLNT.Presentation
                 dgvDiemDanh.Columns.Add(checkColumn);
 
                 dgvDiemDanh.Columns["HienDien"].Visible = false;
+                MessageBox.Show("Một phiếu mới hoàn toàn vừa được tạo", "Thông báo");
 
             }
 
         }
+
+        
         #endregion
 
         #region Function 
@@ -171,6 +178,17 @@ namespace QLNT.Presentation
                 bangdiemdanh.HienDien = Int32.Parse(dgvDiemDanh.Rows[i].Cells["HienDien"].Value.ToString());
                 bangdiemdanh.NhanXet = dgvDiemDanh.Rows[i].Cells["NhanXet"].Value.ToString();
                 DiemDanhBLL.LuuBangDiemDanh(bangdiemdanh);
+            }
+        }
+        private void XoaPhieuCu()
+        {
+            string ngaylapphieu = dtNgayDiemDanh.Text;
+            for (int i = 0; i < dgvDiemDanh.Rows.Count; i++)
+            {
+                DiemDanhBLL.XoaBangDiemDanh(dgvDiemDanh.Rows[i].Cells["MaTre"].Value.ToString(),
+                    ngaylapphieu.Split('/')[0],
+                    ngaylapphieu.Split('/')[1],
+                    ngaylapphieu.Split('/')[2]);
             }
         }
         #endregion

@@ -28,9 +28,14 @@ namespace QLNT.BusinessLayer
             return false;
         }
 
-        public static object TaoBangDiemDanhMoi(Lop lop)
+        public static object TaoBangDiemDanhMoi(Lop lop, string ngaydiemdanh)
         {
-            return DiemDanhDAL.TaoBangDiemDanhMoi(lop);
+            return DiemDanhDAL.TaoBangDiemDanhMoi(lop, ngaydiemdanh);
+        }
+
+        public static void XoaBangDiemDanh(string matre, string day, string month, string year)
+        {
+            DiemDanhDAL.XoaBangDiemDanh(matre, day, month, year);
         }
     }
 }
