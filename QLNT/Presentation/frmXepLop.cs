@@ -220,56 +220,91 @@ namespace QLNT.Presentation
         // Có thêm ngày bắt đầu & ngày kết thúc là để khởi tạo thông tin sức khoẻ
         void LenLop(List<string> listMaTre, string maLop, string maLopCu, DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-            if (TreBLL.LenLop(listMaTre, maLop, maLopCu))
+            int treDuocChuyen = 0;
+            int treKhongDuocChuyen = 0;
+            foreach (string maTre in listMaTre)
             {
-                KhoiTaoSucKhoe(listMaTre, ngayBatDau, ngayKetThuc);
-                KhoiTaoHocPhi(listMaTre, ngayBatDau, ngayKetThuc);
+                if (LenLop(maTre, maLop, maLopCu))
+                {
+                    KhoiTaoSucKhoe(maTre, ngayBatDau, ngayKetThuc);
+                    KhoiTaoHocPhi(maTre, ngayBatDau, ngayKetThuc);
+                    treDuocChuyen++;
+                }
+                else                
+                    treKhongDuocChuyen++;
+            }
+
+            if (treKhongDuocChuyen > 0)
+                MessageBox.Show("Không lên lớp được cho " + treKhongDuocChuyen + " trẻ, vì không còn học trong lớp!",
+                      "Thông báo",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Warning);
+
+            if (treDuocChuyen > 0)
+            {
                 LoadDGVDanhSach();
                 LoadDGVKetQua();
-                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ lên lớp " +
-                    LopBLL.GetInfoLop(maLop).TenLop +
-                    " thành công!",
-                    "Thông báo",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn trẻ còn trong lớp hiện tại!",
+
+                MessageBox.Show("Chuyển " + treDuocChuyen + " trẻ lên lớp " +
+                   LopBLL.GetInfoLop(maLop).TenLop +
+                   " thành công!",
                    "Thông báo",
                    MessageBoxButtons.OK,
-                   MessageBoxIcon.Warning);
-            }
+                   MessageBoxIcon.Information);
+            }   
+        }
+
+        bool LenLop(string maTre, string maLopCu, string maLopMoi)
+        {
+            return TreBLL.LenLop(maTre, maLopCu, maLopMoi);
         }
 
         // Trẻ có lớp rồi -> chuyển lớp
         void ChuyenLop(List<string> listMaTre, string maLop, string maLopCu)
         {
-            if (TreBLL.ChuyenLop(listMaTre, maLop, maLopCu))
+            if (string.Compare(maLop, maLopCu) != 0)
             {
-                LoadDGVDanhSach();
-                LoadDGVKetQua();
-                MessageBox.Show("Chuyển " + listMaTre.Count + " trẻ vào lớp " +
-                    LopBLL.GetInfoLop(maLop).TenLop +
-                    " thành công!",
-                    "Thông báo",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                int treDuocChuyen = 0;
+                int treKhongDuocChuyen = 0;
+                foreach (string maTre in listMaTre)
+                {
+                    if (ChuyenLop(maTre, maLop, maLopCu))
+                        treDuocChuyen++;
+                    else
+                        treKhongDuocChuyen++;
+
+                }
+
+                if (treKhongDuocChuyen > 0)
+                    MessageBox.Show("Không chuyển được lớp cho " + treKhongDuocChuyen + " trẻ, vì không còn học trong lớp!",
+                          "Thông báo",
+                          MessageBoxButtons.OK,
+                          MessageBoxIcon.Warning);
+
+                if (treDuocChuyen > 0)
+                {
+                    LoadDGVDanhSach();
+                    LoadDGVKetQua();
+
+                    MessageBox.Show("Chuyển " + treDuocChuyen + " trẻ vào lớp " +
+                       LopBLL.GetInfoLop(maLop).TenLop +
+                       " thành công!",
+                       "Thông báo",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+                }
             }
-            else  
-                MessageBox.Show("Không chuyển lớp khi trẻ không còn học trong lớp!",
-                    "Thông báo",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            
+        }
+
+        bool ChuyenLop(string maTre, string maLop, string maLopCu)
+        {
+            return TreBLL.ChuyenLop(maTre, maLop, maLopCu);
         }
 
         void ThoiHoc(List<string> listMaTre, string maLop)
         {
             if (TreBLL.ThoiHoc(listMaTre, maLop))
-            {
-                LoadDGVDanhSach();
-                LoadDGVKetQua();
+            {                
                 MessageBox.Show("Thôi học " + listMaTre.Count + " trẻ trong lớp " +
                     LopBLL.GetInfoLop(maLop).TenLop +
                     " thành công!",
@@ -279,7 +314,7 @@ namespace QLNT.Presentation
             }
             else
             {
-                MessageBox.Show("Không thể thôi học trẻ đang không học!",
+                MessageBox.Show("Không thể thôi học trẻ đang không học ở lớp " + LopBLL.GetInfoLop(maLop).TenLop,
                     "Thông báo",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -405,12 +440,26 @@ namespace QLNT.Presentation
                     TreBLL.KhoiTaoSucKhoe(maTre, tn.thang, tn.nam);
         }
 
+        private void KhoiTaoSucKhoe(string maTre, DateTime start, DateTime end)
+        {
+            List<ThangNam> listThangNam = DataHandle.GetThoiGianTrongKhoan(start, end);
+            foreach (ThangNam tn in listThangNam)
+                TreBLL.KhoiTaoSucKhoe(maTre, tn.thang, tn.nam);
+        }
+
         private void KhoiTaoHocPhi(List<string> listMatre, DateTime start, DateTime end)
         {
             List<ThangNam> listThangNam = DataHandle.GetThoiGianTrongKhoan(start, end);
             foreach (ThangNam tn in listThangNam)
                 foreach (string maTre in listMatre)
                     TreBLL.KhoiTaoHocPhi(maTre, tn.thang, tn.nam);
+        }
+
+        private void KhoiTaoHocPhi(string maTre, DateTime start, DateTime end)
+        {
+            List<ThangNam> listThangNam = DataHandle.GetThoiGianTrongKhoan(start, end);
+            foreach (ThangNam tn in listThangNam)
+                TreBLL.KhoiTaoHocPhi(maTre, tn.thang, tn.nam);
         }
         #endregion
 
@@ -433,7 +482,7 @@ namespace QLNT.Presentation
             txtSiSo_LuaChon.Enabled = true;
             cboDoTuoi.Enabled = false;
 
-            LoadDGVDanhSach();
+            dgvDanhSach.DataSource = null;
         }
 
         private void rdoXepLop_CheckedChanged(object sender, EventArgs e)
@@ -516,22 +565,39 @@ namespace QLNT.Presentation
 
         private void btnThoiHoc_Click(object sender, EventArgs e)
         {
-            // B1: thôi học những trẻ ở trong DGV danh sách (left) trước
-            if (cboLoaiLop_LuaChon.SelectedItem != null)
+            DialogResult result = MessageBox.Show("Bạn có chắc là thôi học những trẻ đã được chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
+            if (result == DialogResult.Yes)
             {
-                RemoveAllListMaTre();
-                SaveListMaTre(dgvDanhSach);
-                ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString()));
-            }
+                // B1: thôi học những trẻ ở trong DGV danh sách (left) trước
+                if (cboLoaiLop_LuaChon.SelectedItem != null)
+                {
+                    RemoveAllListMaTre();
+                    SaveListMaTre(dgvDanhSach);
+                    ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString()));
+                }
 
-            // B2: thôi học những trẻ ở trong DGV kết quả (right) trước
-            if (cboLop.SelectedItem != null)
-            {
-                RemoveAllListMaTre();
-                SaveListMaTre(dgvKetQua);
-                ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
+                // B2: thôi học những trẻ ở trong DGV kết quả (right) trước
+                if (cboLop.SelectedItem != null)
+                {
+                    RemoveAllListMaTre();
+                    SaveListMaTre(dgvKetQua);
+                    ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
+                }
+
+                LoadDGVDanhSach();
+                LoadDGVKetQua();
             }
+            else
+                MessageBox.Show("Đã hủy thôi học!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);          
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            tabControl.Tabs.Remove(tab);
         }
         #endregion
+
+
     }
 }

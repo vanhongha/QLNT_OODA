@@ -108,6 +108,24 @@ namespace QLNT.BusinessLayer
             return true;
         }
 
+        public static bool LenLop(string maTre, string maLopMoi, string maLopCu)
+        {
+            if (string.Compare(TreDAL.GetTinhTrangTrongLop(maTre, maLopCu).Trim(), "0") == 0)
+            {
+                try
+                {
+                    TreDAL.LenLop(maTre, maLopMoi);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+                return false;
+            return true;
+        }
+
         public static bool ChuyenLop(List<string> listMaTre, string maLopMoi, string maLopCu)
         {
             foreach (string maTre in listMaTre)
@@ -126,6 +144,24 @@ namespace QLNT.BusinessLayer
                 else
                     return false;
             }
+            return true;
+        }
+
+        public static bool ChuyenLop(string maTre, string maLopMoi, string maLopCu)
+        {
+            if (string.Compare(TreDAL.GetTinhTrangTrongLop(maTre, maLopCu).Trim(), "0") == 0)
+            {
+                try
+                {
+                    TreDAL.ChuyenLop(maTre, maLopMoi);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+                return false;
             return true;
         }
 

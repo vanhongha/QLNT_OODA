@@ -48,6 +48,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cboNamHoc_LuaChon = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cboDoTuoi = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.cboLopHoc_LuaChon = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvKetQua = new System.Windows.Forms.DataGridView();
@@ -58,8 +60,6 @@
             this.btnDong = new System.Windows.Forms.Button();
             this.btnThoiHoc = new System.Windows.Forms.Button();
             this.btnPutForward = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cboDoTuoi = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -294,6 +294,27 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Loại lớp:";
             // 
+            // cboDoTuoi
+            // 
+            this.cboDoTuoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDoTuoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDoTuoi.FormattingEnabled = true;
+            this.cboDoTuoi.Location = new System.Drawing.Point(216, 46);
+            this.cboDoTuoi.Name = "cboDoTuoi";
+            this.cboDoTuoi.Size = new System.Drawing.Size(170, 28);
+            this.cboDoTuoi.TabIndex = 6;
+            this.cboDoTuoi.SelectedIndexChanged += new System.EventHandler(this.cboLopHoc_LuaChon_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(119, 49);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(91, 20);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Lọc độ tuổi:";
+            // 
             // cboLopHoc_LuaChon
             // 
             this.cboLopHoc_LuaChon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -381,6 +402,7 @@
             this.btnDong.Text = "Đóng";
             this.btnDong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // btnThoiHoc
             // 
@@ -406,27 +428,6 @@
             this.btnPutForward.TabIndex = 1;
             this.btnPutForward.UseVisualStyleBackColor = true;
             this.btnPutForward.Click += new System.EventHandler(this.btnPutForward_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(119, 49);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 20);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Lọc độ tuổi:";
-            // 
-            // cboDoTuoi
-            // 
-            this.cboDoTuoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDoTuoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboDoTuoi.FormattingEnabled = true;
-            this.cboDoTuoi.Location = new System.Drawing.Point(216, 46);
-            this.cboDoTuoi.Name = "cboDoTuoi";
-            this.cboDoTuoi.Size = new System.Drawing.Size(170, 28);
-            this.cboDoTuoi.TabIndex = 6;
-            this.cboDoTuoi.SelectedIndexChanged += new System.EventHandler(this.cboLopHoc_LuaChon_SelectedIndexChanged);
             // 
             // frmXepLop
             // 
