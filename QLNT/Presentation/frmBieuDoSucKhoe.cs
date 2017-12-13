@@ -123,6 +123,10 @@ namespace QLNT.Presentation
 
             string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
+
+            dgvTre.ClearSelection();
+            maTre = "";
+            UpdateChartData();
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -244,26 +248,27 @@ namespace QLNT.Presentation
             string[] listProp = { "Thang", "Nam", "CanNang", "ChieuCao", "TinhTrang", "GhiChu" };
             ControlFormat.DataGridViewFormat(dgvChiTietSucKhoe, listProp);
 
+            dgvChiTietSucKhoe.ClearSelection();
+
             UpdateChartData();
         }
 
         private void UpdateChartData()
         {
+            series.Points.Clear();
+            title.Text = rdoCanNang.Checked ? "Biểu đồ cân nặng" : "Biểu đồ chiều cao";
+            if (maTre == "") return;
             List<SucKhoe> listSucKhoe = SucKhoeBLL.GetListSucKhoeTheoThang(
                     maTre,
                     int.Parse(cboTuThang.SelectedItem.ToString()),
                     int.Parse(cboDenThang.SelectedItem.ToString()),
                     KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
 
-            series.Points.Clear();
-
             foreach (SucKhoe sucKhoe in listSucKhoe)
             {
                 series.Points.AddXY(sucKhoe.Thang.ToString() + "/" + sucKhoe.Nam.ToString(),
                     rdoCanNang.Checked ? sucKhoe.CanNang : sucKhoe.ChieuCao);
             }
-
-            title.Text = rdoCanNang.Checked ? "Biểu đồ cân nặng" : "Biểu đồ chiều cao";
         } 
 
         private void rdoCanNang_CheckedChanged(object sender, System.EventArgs e)
@@ -289,6 +294,12 @@ namespace QLNT.Presentation
             {
                 MessageBox.Show("Chọn một tháng trong chi tiết sức khỏe để in báo cáo.");
             }
+        }
+
+        private void btnDong_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+            tabControl.Tabs.Remove(tab);
         }
     }
 }

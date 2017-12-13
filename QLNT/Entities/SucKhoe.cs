@@ -55,25 +55,25 @@ namespace QLNT.Entities
         }
 
 
-        private float canNang;
+        private double canNang;
 
-        public float CanNang
+        public double CanNang
         {
             get { return canNang; }
             set { canNang = value; }
         }
 
-        private float chieuCao;
+        private double chieuCao;
 
-        public float ChieuCao
+        public double ChieuCao
         {
             get { return chieuCao; }
             set { chieuCao = value; }
         }
 
-        private float bmi;
+        private double bmi;
 
-        public float BMI
+        public double BMI
         {
             get { return bmi; }
             set { bmi = value; }
@@ -103,9 +103,9 @@ namespace QLNT.Entities
             this.hoTenTre = row["HoTenTre"].ToString();
             this.gioiTinh = row["GioiTinh"].ToString();
             this.ngaySinh = (DateTime)row["NgaySinh"];
-            this.chieuCao = float.Parse(row["ChieuCao"].ToString());
-            this.canNang = float.Parse(row["CanNang"].ToString());
-            this.bmi = float.Parse(row["BMI"].ToString());
+            this.chieuCao = double.Parse(row["ChieuCao"].ToString());
+            this.canNang = double.Parse(row["CanNang"].ToString());
+            this.bmi = double.Parse(row["BMI"].ToString());
             this.tinhTrang = row["TinhTrang"].ToString();
             this.ghiChu = row["GhiChu"].ToString();
         }

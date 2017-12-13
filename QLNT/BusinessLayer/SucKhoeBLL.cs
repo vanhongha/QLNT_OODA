@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QLNT.BusinessLayer
 {
@@ -16,17 +17,17 @@ namespace QLNT.BusinessLayer
             return SucKhoeDAL.GetListSucKhoe(maLop, thang, LopBLL.GetNamHoc(thang, maNamHoc));
         }
 
-        public static float CalculateBMI(float canNang, float chieuCao)
+        public static double CalculateBMI(double canNang, double chieuCao)
         {
-            float bmi = 0;
+            double bmi = 0;
             if (canNang == 0 || chieuCao == 0)
                 return bmi;
-            bmi = canNang / (float) Math.Pow(chieuCao / 100, 2);
-            bmi = (float) Math.Round(bmi, 2);
+            bmi = canNang / Math.Pow(chieuCao / 100, 2);
+            bmi = Math.Round(bmi, 2);
             return bmi;
         }
 
-        public static string TinhTrangDuaTrenBMI(float bmi, string gioiTinh, DateTime ngaySinh)
+        public static string TinhTrangDuaTrenBMI(double bmi, string gioiTinh, DateTime ngaySinh)
         {
             int namSinh = ngaySinh.Year;
             int tuoi = DateTime.Now.Year - namSinh;
@@ -110,6 +111,12 @@ namespace QLNT.BusinessLayer
                         return "Binh thường";
                 }
 
+        }
+
+        public static bool CoTheCapNhatSucKhoe(int thang, string maNamHoc)
+        {
+            int nam = LopBLL.GetNamHoc(thang, maNamHoc);
+            return thang == DateTime.Now.Month && nam == DateTime.Now.Year;
         }
 
         public static bool CapNhatSucKhoe(SucKhoe sucKhoe)

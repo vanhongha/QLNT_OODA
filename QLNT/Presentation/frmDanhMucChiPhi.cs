@@ -69,6 +69,8 @@ namespace QLNT.Presentation
             dgvDanhMuc.Columns["SoTien"].Width = 100;
             dgvDanhMuc.Columns["GhiChu"].Width = 650;
 
+            dgvDanhMuc.ClearSelection();
+            dgvDanhMuc.CurrentCell = null;
             ClearAllField();
         }
 
@@ -162,7 +164,7 @@ namespace QLNT.Presentation
                 MessageBox.Show("Số tiền không được để trống.");
                 return;
             }
-            if (KeyHandle.GetKeyFromCombobox(cboLoaiChiPhi.SelectedItem.ToString()) == "")
+            if (cboLoaiChiPhi.SelectedItem == null || KeyHandle.GetKeyFromCombobox(cboLoaiChiPhi.SelectedItem.ToString()) == "")
             {
                 MessageBox.Show("Loại chi phí không được để trống.");
                 return;
@@ -191,6 +193,7 @@ namespace QLNT.Presentation
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             ClearAllField();
+            dgvDanhMuc.ClearSelection();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

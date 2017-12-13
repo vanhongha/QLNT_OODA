@@ -12,16 +12,18 @@ namespace QLNT.Presentation
     {
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
+        private string username;
 
         private string maTre = "";
         private string maHocPhi = "";
         private decimal hocPhiConNo = 0;
 
-        public frmThuHocPhi(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
+        public frmThuHocPhi(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab, string _username)
         {
             InitializeComponent();
             tabControl = _tabControl;
             tab = _tab;
+            username = _username;
         }
 
         private void frmThuHocPhi_Load(object sender, EventArgs e)
@@ -30,6 +32,8 @@ namespace QLNT.Presentation
             LoadListNamHoc();
             LoadListLoaiLop();
             LoadDataGirdView();
+            lbNgayThu.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtNguoiThuTien.Text = TaiKhoanBLL.GetTenNguoiDung(username);
         }
 
         private void InitDataGridView()
@@ -119,6 +123,8 @@ namespace QLNT.Presentation
 
             string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
+
+            dgvTre.ClearSelection();
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,11 +183,9 @@ namespace QLNT.Presentation
         {
             txtTenTre.Clear();
             txtNguoiDongTien.Clear();
-            txtNguoiThuTien.Clear();
             txtSoTienDong.Clear();
             txtSoTienConNo.Clear();
             txtGhiChu.Clear();
-            dtNgayThu.Text = "";
             maTre = "";
             maHocPhi = "";
             hocPhiConNo = 0;
@@ -229,6 +233,7 @@ namespace QLNT.Presentation
             string[] listProp = { "MaBienLai", "NguoiDong", "NguoiThu", "NgayThu", "SoTienThu", "SoTienConNo", "GhiChu" };
             ControlFormat.DataGridViewFormat(dgvBienLai, listProp);
 
+            dgvBienLai.ClearSelection();
         }
 
         private void txtSoTienDong_TextChanged(object sender, EventArgs e)
@@ -291,16 +296,20 @@ namespace QLNT.Presentation
                 bienLai.MaTre = maTre;
                 bienLai.NguoiDong = txtNguoiDongTien.Text;
                 bienLai.NguoiThu = txtNguoiThuTien.Text;
-                bienLai.NgayThu = dtNgayThu.Value;
+                bienLai.NgayThu = DateTime.Now;
                 bienLai.SoTienThu = decimal.Parse(txtSoTienDong.Text);
                 bienLai.SoTienConNo = decimal.Parse(txtSoTienConNo.Text);
                 bienLai.GhiChu = txtGhiChu.Text;
 
                 HocPhiBLL.ThemBienLai(bienLai, maHocPhi);
                 MessageBox.Show("Thêm biên lai thành công!");
-                ClearAllField();
+                
                 LoadDataGirdView();
+                cboThang.Text = DateTime.Now.Month.ToString();
                 LoadListThongTinDongHocPhi();
+                txtNguoiDongTien.Clear();
+                txtSoTienDong.Clear();
+                txtGhiChu.Clear();
             }
             catch(Exception ex)
             {
@@ -321,6 +330,11 @@ namespace QLNT.Presentation
 
         private void btnXoaBienLai_Click(object sender, EventArgs e)
         {
+            if(dgvBienLai.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Phải chọn một biên lai.");
+                return;
+            }
             if(!HocPhiBLL.CoTheXoaBienLai((DateTime)dgvBienLai.SelectedRows[0].Cells["NgayThu"].Value, DateTime.Now))
             {
                 MessageBox.Show("Không thể xóa biên lai này ra khỏi hệ thống.");
@@ -342,6 +356,7 @@ namespace QLNT.Presentation
 
                 LoadListThongTinDongHocPhi();
                 LoadDataGirdView();
+                ClearAllField();
             } catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
@@ -350,8 +365,14 @@ namespace QLNT.Presentation
 
         private void btnInBienLai_Click(object sender, EventArgs e)
         {
+            if(dgvBienLai.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Phải chọn một biên lai.");
+                return;
+            }
             Form frmBienLai = new frmBienLaiHocPhi(dgvBienLai.SelectedRows[0].Cells["MaBienLai"].Value.ToString());
             frmBienLai.ShowDialog();
         }
+
     }
 }

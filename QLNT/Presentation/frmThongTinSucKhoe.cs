@@ -172,6 +172,9 @@ namespace QLNT.Presentation
 
             string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "CanNang", "ChieuCao", "BMI", "TinhTrang", "GhiChu" };
             ControlFormat.DataGridViewFormat(dgvSucKhoe, listProp);
+
+            dgvSucKhoe.ClearSelection();
+            maTre = "";
         }
 
         private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,15 +187,23 @@ namespace QLNT.Presentation
         {
             if (e.RowIndex != -1 && e.RowIndex != dgvSucKhoe.RowCount)
             {
-                maTre = dgvSucKhoe.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
-                gioiTinh = dgvSucKhoe.Rows[e.RowIndex].Cells["GioiTinh"].Value.ToString();
-                ngaySinh = (DateTime) dgvSucKhoe.Rows[e.RowIndex].Cells["NgaySinh"].Value;
-                txtCanNang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["CanNang"].Value.ToString();
-                txtChieuCao.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["ChieuCao"].Value.ToString();
-                txtBMI.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["BMI"].Value.ToString();
-                txtTinhTrang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["TinhTrang"].Value.ToString();
-                txtGhiChu.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["GhiChu"].Value.ToString();
-                btnCapNhat.Enabled = true;
+                try
+                {
+                    maTre = dgvSucKhoe.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
+                    gioiTinh = dgvSucKhoe.Rows[e.RowIndex].Cells["GioiTinh"].Value.ToString();
+                    ngaySinh = (DateTime)dgvSucKhoe.Rows[e.RowIndex].Cells["NgaySinh"].Value;
+                    txtTenTre.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["HoTenTre"].Value.ToString();
+                    txtCanNang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["CanNang"].Value.ToString();
+                    txtChieuCao.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["ChieuCao"].Value.ToString();
+                    txtBMI.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["BMI"].Value.ToString();
+                    txtTinhTrang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["TinhTrang"].Value.ToString();
+                    txtGhiChu.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["GhiChu"].Value.ToString();
+                    btnCapNhat.Enabled = true;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi. " + ex.Message);
+                }
             }
         }
 
@@ -205,7 +216,7 @@ namespace QLNT.Presentation
             }
             try
             {
-                float.Parse(txtCanNang.Text);
+                double.Parse(txtCanNang.Text);
             }
             catch(Exception ex)
             {
@@ -216,8 +227,8 @@ namespace QLNT.Presentation
 
             if(txtChieuCao.Text != "")
             {
-                float canNang = float.Parse(txtCanNang.Text);
-                float chieuCao = float.Parse(txtChieuCao.Text);
+                double canNang = double.Parse(txtCanNang.Text);
+                double chieuCao = double.Parse(txtChieuCao.Text);
                 txtBMI.Text = SucKhoeBLL.CalculateBMI(canNang, chieuCao).ToString();
             }
         }
@@ -231,7 +242,7 @@ namespace QLNT.Presentation
             }
             try
             {
-                float.Parse(txtChieuCao.Text);
+                double.Parse(txtChieuCao.Text);
             }
             catch (Exception ex)
             {
@@ -242,8 +253,8 @@ namespace QLNT.Presentation
 
             if (txtCanNang.Text != "")
             {
-                float canNang = float.Parse(txtCanNang.Text);
-                float chieuCao = float.Parse(txtChieuCao.Text);
+                double canNang = double.Parse(txtCanNang.Text);
+                double chieuCao = double.Parse(txtChieuCao.Text);
                 txtBMI.Text = SucKhoeBLL.CalculateBMI(canNang, chieuCao).ToString();
             }
         }
@@ -255,20 +266,35 @@ namespace QLNT.Presentation
                 txtTinhTrang.Clear();
             } else
             {
-                float bmi = float.Parse(txtBMI.Text);
+                double bmi = double.Parse(txtBMI.Text);
                 txtTinhTrang.Text = SucKhoeBLL.TinhTrangDuaTrenBMI(bmi, gioiTinh, ngaySinh);
             }
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if(txtCanNang.Text == "")
+            {
+                MessageBox.Show("Cân nặng không được để trống.");
+                return;
+            }
+            if(txtChieuCao.Text == "")
+            {
+                MessageBox.Show("Chiều cao không được để trống.");
+                return;
+            }
+            if(!SucKhoeBLL.CoTheCapNhatSucKhoe(int.Parse(cboThang.Text), KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())))
+            {
+                MessageBox.Show("Chỉ được cập nhật sức khỏe ở tháng hiện tại.");
+                return;
+            }
             SucKhoe sucKhoe = new SucKhoe();
             sucKhoe.MaTre = maTre;
             sucKhoe.Thang = int.Parse(cboThang.Text);
             sucKhoe.Nam = LopBLL.GetNamHoc(sucKhoe.Thang, KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-            sucKhoe.CanNang = txtCanNang.Text.Trim() == "" ? 0 : float.Parse(txtCanNang.Text);
-            sucKhoe.ChieuCao = txtChieuCao.Text.Trim() == "" ? 0 : float.Parse(txtChieuCao.Text);
-            sucKhoe.BMI = txtBMI.Text.Trim() == "" ? 0 : float.Parse(txtBMI.Text);
+            sucKhoe.CanNang = txtCanNang.Text.Trim() == "" ? 0 : double.Parse(txtCanNang.Text);
+            sucKhoe.ChieuCao = txtChieuCao.Text.Trim() == "" ? 0 : double.Parse(txtChieuCao.Text);
+            sucKhoe.BMI = txtBMI.Text.Trim() == "" ? 0 : double.Parse(txtBMI.Text);
             sucKhoe.TinhTrang = txtTinhTrang.Text;
             sucKhoe.GhiChu = txtGhiChu.Text;
             if (SucKhoeBLL.CapNhatSucKhoe(sucKhoe))
@@ -295,6 +321,8 @@ namespace QLNT.Presentation
             txtBMI.Clear();
             txtTinhTrang.Clear();
             txtGhiChu.Clear();
+            txtTenTre.Clear();
+            btnCapNhat.Enabled = false;
         }
     }
 }

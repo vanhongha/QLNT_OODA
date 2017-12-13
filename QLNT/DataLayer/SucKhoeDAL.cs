@@ -62,7 +62,7 @@ namespace QLNT.DataLayer
                 return new SucKhoe(row);
             }
 
-            return null;
+            return new SucKhoe();
         }
 
         public static DataTable KiemTraTonTaiSucKhoe(string maTre, int thang, int nam)

@@ -125,6 +125,8 @@ namespace QLNT.Presentation
 
             string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "HocPhiThangNay", "TienNoThangTruoc", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
+
+            dgvTre.ClearSelection();
         }
 
         private void LoadListChiPhi()
@@ -237,14 +239,27 @@ namespace QLNT.Presentation
 
             string[] listProp = { "STT", "TenChiPhi", "SoTien" };
             ControlFormat.DataGridViewFormat(dgvChiTietHocPhi, listProp);
+
+            dgvChiTietHocPhi.ClearSelection();
         }
 
         private void btnThemChiPhi_Click(object sender, EventArgs e)
         {
-            if (txtSoTien.Text != "" && cboChiPhi.Text != "")
+            if (cboChiPhi.SelectedItem == null || cboChiPhi.Text == "")
             {
-                if (KiemTraTonTaiDanhMucChiPhi(KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString()))) return;
+                MessageBox.Show("Vui lòng chọn chi phí.");
+                return;
+            }
+            if (txtSoTien.Text == "")
+            {
+                MessageBox.Show("Số tiền không được để trống.");
+                return;
+            }
 
+            if (KiemTraTonTaiDanhMucChiPhi(KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString()))) return;
+
+            try
+            {
                 ChiTietHocPhi chiTiet = new ChiTietHocPhi();
                 chiTiet.MaHocPhi = maHocPhi;
                 chiTiet.MaDanhMuc = KeyHandle.GetKeyFromCombobox(cboChiPhi.SelectedItem.ToString());
@@ -253,6 +268,10 @@ namespace QLNT.Presentation
 
                 listChiTietHocPhi.Add(chiTiet);
                 LoadListChiTietHocPhi();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra. " + ex.Message);
             }
         }
 
@@ -268,6 +287,11 @@ namespace QLNT.Presentation
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if(dgvChiTietHocPhi.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Phải chọn ít nhất một chi phí để xóa.");
+                return;
+            }
             for (int i = 0; i < dgvChiTietHocPhi.SelectedRows.Count; i++)
             {
                 string maDanhMuc = dgvChiTietHocPhi.SelectedRows[i].Cells["MaDanhMuc"].Value.ToString();
@@ -306,7 +330,7 @@ namespace QLNT.Presentation
                 int.Parse(dgvTre.SelectedRows[0].Cells["Nam"].Value.ToString()),
                 DateTime.Now))
             {
-                MessageBox.Show("Đã quá hạn hoặc chưa tới thời gian áp dụng học phí.");
+                MessageBox.Show("Chỉ có thể cập nhật học phí cho tháng trước của ngày hiện tại.");
                 return;
             }
             try
@@ -339,6 +363,11 @@ namespace QLNT.Presentation
         {
             this.Close();
             tabControl.Tabs.Remove(tab);
+        }
+
+        private void dgvChiTietHocPhi_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cboChiPhi.Text = dgvChiTietHocPhi.SelectedRows[0].Cells["TenChiPhi"].Value.ToString();
         }
     }
 }

@@ -279,7 +279,7 @@ namespace QLNT.Presentation
             {
                 TabItem tab = tabControl.CreateTab("Thu học phí");
                 tab.PredefinedColor = eTabItemColor.Blue;
-                frmThuHocPhi _frmThuHocPhi = new frmThuHocPhi(tabControl, tab);
+                frmThuHocPhi _frmThuHocPhi = new frmThuHocPhi(tabControl, tab, username);
                 _frmThuHocPhi.TopLevel = false;
                 _frmThuHocPhi.Dock = DockStyle.Fill;
                 _frmThuHocPhi.StartPosition = FormStartPosition.CenterParent;
