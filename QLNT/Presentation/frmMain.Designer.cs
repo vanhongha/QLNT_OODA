@@ -168,7 +168,7 @@
             // 
             // btnDanhMucChiPhi
             // 
-            this.btnDanhMucChiPhi.Image = global::QLNT.Properties.Resources.hocphi;
+            this.btnDanhMucChiPhi.Image = ((System.Drawing.Image)(resources.GetObject("btnDanhMucChiPhi.Image")));
             this.btnDanhMucChiPhi.ImagePaddingHorizontal = 8;
             this.btnDanhMucChiPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnDanhMucChiPhi.Name = "btnDanhMucChiPhi";
@@ -178,7 +178,7 @@
             // 
             // btnApDungHocPhi
             // 
-            this.btnApDungHocPhi.Image = global::QLNT.Properties.Resources.baocao;
+            this.btnApDungHocPhi.Image = ((System.Drawing.Image)(resources.GetObject("btnApDungHocPhi.Image")));
             this.btnApDungHocPhi.ImagePaddingHorizontal = 8;
             this.btnApDungHocPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnApDungHocPhi.Name = "btnApDungHocPhi";
@@ -188,7 +188,7 @@
             // 
             // btnThuHocPhi
             // 
-            this.btnThuHocPhi.Image = global::QLNT.Properties.Resources.baocao;
+            this.btnThuHocPhi.Image = ((System.Drawing.Image)(resources.GetObject("btnThuHocPhi.Image")));
             this.btnThuHocPhi.ImagePaddingHorizontal = 8;
             this.btnThuHocPhi.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnThuHocPhi.Name = "btnThuHocPhi";
@@ -257,7 +257,7 @@
             // 
             // btnSucKhoe_ThongTin
             // 
-            this.btnSucKhoe_ThongTin.Image = global::QLNT.Properties.Resources.suckhoe;
+            this.btnSucKhoe_ThongTin.Image = ((System.Drawing.Image)(resources.GetObject("btnSucKhoe_ThongTin.Image")));
             this.btnSucKhoe_ThongTin.ImagePaddingHorizontal = 8;
             this.btnSucKhoe_ThongTin.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnSucKhoe_ThongTin.Name = "btnSucKhoe_ThongTin";
