@@ -10,7 +10,7 @@ namespace QLNT.Entities
     {
         private string _maMon;
         private string _maNL;
-        private int _soLuong;
+        private float _soLuong;
 
         public string MaMon
         {
@@ -38,7 +38,7 @@ namespace QLNT.Entities
             }
         }
 
-        public int SoLuong
+        public float SoLuong
         {
             get
             {
@@ -51,7 +51,7 @@ namespace QLNT.Entities
             }
         }
         public ChiTietMonAn() { }
-        public ChiTietMonAn(string maMonAn, string maNguyenLieu, int soLuong)
+        public ChiTietMonAn(string maMonAn, string maNguyenLieu, float soLuong)
         {
             _maMon = maMonAn;
             _maNL = maNguyenLieu;

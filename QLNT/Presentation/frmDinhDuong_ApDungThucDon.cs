@@ -24,6 +24,8 @@ namespace QLNT.Presentation
         public frmDinhDuong_ApDungThucDon(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
+            tabControl = _tabControl;
+            tab = _tab;
         }
 
         private void frmDinhDuong_ApDungThucDon_Load(object sender, EventArgs e)
@@ -135,14 +137,6 @@ namespace QLNT.Presentation
             cboLop.DataSource = LopBLL.GetListLop(LopBLL.getMaNamHoc(dtpNgay_Loc.Value), cboLoaiLop.SelectedValue.ToString().Trim());
             cboLop.DisplayMember = "TenLop";
             cboLop.ValueMember = "MaLop";
-            try
-            {
-                //cboLop.SelectedText = cboLop.Items.
-            }
-            catch(Exception err)
-            {
-
-            }
         }
 
         public void getComboBoxMonAn()
@@ -151,36 +145,6 @@ namespace QLNT.Presentation
             cboTenMonAn.DisplayMember = "TenMonAn";
             cboTenMonAn.ValueMember = "MaMonAn";
             cboTenMonAn.Text = "";
-
-            //cboMonChinh.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            //cboMonChinh.DisplayMember = "TenMonAn";
-            //cboMonChinh.ValueMember = "MaMonAn";
-            //cboMonChinh.Text = "";
-
-            //cboMonPhu1.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            //cboMonPhu1.DisplayMember = "TenMonAn";
-            //cboMonPhu1.ValueMember = "MaMonAn";
-            //cboMonPhu1.Text = "";
-
-            //cboMonPhu2.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            //cboMonPhu2.DisplayMember = "TenMonAn";
-            //cboMonPhu2.ValueMember = "MaMonAn";
-            //cboMonPhu2.Text = "";
-
-            //cboMonPhu3.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            //cboMonPhu3.DisplayMember = "TenMonAn";
-            //cboMonPhu3.ValueMember = "MaMonAn";
-            //cboMonPhu3.Text = "";
-
-            //cboMonPhu4.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            //cboMonPhu4.DisplayMember = "TenMonAn";
-            //cboMonPhu4.ValueMember = "MaMonAn";
-            //cboMonPhu4.Text = "";
-
-            //cboMonPhu5.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
-            //cboMonPhu5.DisplayMember = "TenMonAn";
-            //cboMonPhu5.ValueMember = "MaMonAn";
-            //cboMonPhu5.Text = "";
         }
 
         private void getComboboxMonAnTheoTuKhoa(ComboBox cbo)
@@ -195,7 +159,7 @@ namespace QLNT.Presentation
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.Name = "X";
             checkBoxColumn.Width = 50;
-            checkBoxColumn.ReadOnly = false;
+            checkBoxColumn.ReadOnly = true;
             dgv.Columns.Clear();
             dgv.Columns.Add(checkBoxColumn);
         }
@@ -212,22 +176,7 @@ namespace QLNT.Presentation
         {
             getDataGridViewTre();
         }
-
-        private void cboMonChinh_TextChanged(object sender, EventArgs e)
-        {
-            //arrMonAn[0] = "";
-            //if (cboMonChinh.Text == "System.Data.DataRowView" || cboMonChinh.Text.Length > 100)
-            //{
-            //    return;
-            //}
-            //if (cboMonChinh.Text == "") { return; }
-            //if (MonAnBLL.LayMaMonAnTheoTen(cboMonChinh.Text.Trim()) == "")
-            //{
-            //    MessageBox.Show("Món ăn đã nhập không tồn tại", "Thông báo", MessageBoxButtons.OK);
-            //    return;
-            //}
-            //arrMonAn[0] = MonAnBLL.LayMaMonAnTheoTen(cboMonChinh.Text.Trim());
-        }
+        
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -345,6 +294,12 @@ namespace QLNT.Presentation
         private void btnReload_Click(object sender, EventArgs e)
         {
             getComboBoxMonAn();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            tabControl.Tabs.Remove(tab);
         }
     }
 }

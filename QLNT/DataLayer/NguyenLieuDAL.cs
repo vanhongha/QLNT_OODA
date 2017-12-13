@@ -203,5 +203,23 @@ namespace QLNT.DataLayer
 
             return db.dt;
         }
+
+        public static float LayNangLuongNguyenLieuTheoMa(string maNL)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("LayNangLuongNguyenLieuTheoMa");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaNguyenLieu", maNL);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            foreach (DataRow row in db.dt.Rows)
+            {
+                return float.Parse(row.ItemArray[0].ToString());
+            }
+            return 0;
+
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace QLNT.BusinessLayer
 {
     class ChiTietMonAnBLL
     {
-        public static void LuuChiTietMonAn(string maMonAn, string tenNguyenLieu, int soLuong)
+        public static void LuuChiTietMonAn(string maMonAn, string tenNguyenLieu, string soLuong)
         {
             string _maNL = NguyenLieuBLL.LayMaNguyenLieuTheoTen(tenNguyenLieu);
             if (maMonAn == "")
@@ -27,13 +27,15 @@ namespace QLNT.BusinessLayer
                 return;
             }
 
-            if(soLuong == 0)
+            if(soLuong == "")
             {
-                MessageBox.Show("Số lượng không thể bỏ trống", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Khối lượng không được để trống", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
 
-            ChiTietMonAn chiTiet = new ChiTietMonAn(maMonAn, _maNL, soLuong);
+
+
+            ChiTietMonAn chiTiet = new ChiTietMonAn(maMonAn, _maNL, float.Parse(soLuong));
             if (KiemTraMaNL(maMonAn,_maNL))
             {
                 CapNhatChiTietMonAn(chiTiet);
@@ -66,6 +68,35 @@ namespace QLNT.BusinessLayer
         public static bool KiemTraMaNL(string maMon, string MaNL)
         {
             return ChiTietMonAnDAL.KiemTraMaNL(maMon, MaNL);
+        }
+
+        public static float TinhNangLuong(TextBox txtKhoiLuong, string tenNguyenLieu)
+        {
+            string maNL = NguyenLieuBLL.LayMaNguyenLieuTheoTen(tenNguyenLieu);
+            if (maNL == "")
+            {
+                MessageBox.Show("chưa chọn nguyên liệu \nvui lòng chọn một nguyên liệu trước", "Thông báo", MessageBoxButtons.OK);
+                txtKhoiLuong.Text = "";
+                return 0;
+            }
+
+            if(txtKhoiLuong.Text == "")
+            {
+                return 0;
+            }
+            float _khoiLuong = 0;
+            try
+            {
+                _khoiLuong = float.Parse(txtKhoiLuong.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Khối lượng phải là số thực", "Lỗi nhập", MessageBoxButtons.OK);
+                txtKhoiLuong.Text = "";
+                return 0;
+            }
+
+            return NguyenLieuBLL.LayNangLuongNguyenLieuTheoMa(maNL);
         }
     }
 }

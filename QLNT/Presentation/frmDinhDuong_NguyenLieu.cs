@@ -23,7 +23,9 @@ namespace QLNT.Presentation
         public frmDinhDuong_NguyenLieu(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
-            
+            tabControl = _tabControl;
+            tab = _tab;
+
         }
 
         private void frmDinhDuong_NguyenLieu_Load(object sender, EventArgs e)
@@ -128,6 +130,12 @@ namespace QLNT.Presentation
             lblSoKetQua.Visible = true;
             lblSoKetQua.Text = dgvNguyenLieu.RowCount.ToString();
             XoaTrang();
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            tabControl.Tabs.Remove(tab);
         }
     }
 }
