@@ -12,25 +12,25 @@ namespace QLNT.BusinessLayer
 {
     class ChiTietMonAnBLL
     {
-        public static void LuuChiTietMonAn(string maMonAn, string tenNguyenLieu, string soLuong)
+        public static bool LuuChiTietMonAn(string maMonAn, string tenNguyenLieu, string soLuong)
         {
             string _maNL = NguyenLieuBLL.LayMaNguyenLieuTheoTen(tenNguyenLieu);
             if (maMonAn == "")
             {
                 MessageBox.Show("Chưa chọn món ăn để cập nhật", "Thông báo", MessageBoxButtons.OK);
-                return;
+                return false;
             }
 
             if(_maNL == "")
             {
                 MessageBox.Show("Vui lòng chọn một nguyên liệu", "Thông báo", MessageBoxButtons.OK);
-                return;
+                return false;
             }
 
             if(soLuong == "")
             {
                 MessageBox.Show("Khối lượng không được để trống", "Thông báo", MessageBoxButtons.OK);
-                return;
+                return false;
             }
 
 
@@ -43,6 +43,8 @@ namespace QLNT.BusinessLayer
             {
                 ThemChiTietMonAn(chiTiet);
             }
+
+            return true;
         }
         public static void ThemChiTietMonAn(ChiTietMonAn chiTietMonAn)
         {
@@ -72,6 +74,11 @@ namespace QLNT.BusinessLayer
 
         public static float TinhNangLuong(TextBox txtKhoiLuong, string tenNguyenLieu)
         {
+            if(txtKhoiLuong.Text == "")
+            {
+                return 0;
+            }
+
             string maNL = NguyenLieuBLL.LayMaNguyenLieuTheoTen(tenNguyenLieu);
             if (maNL == "")
             {
@@ -80,10 +87,6 @@ namespace QLNT.BusinessLayer
                 return 0;
             }
 
-            if(txtKhoiLuong.Text == "")
-            {
-                return 0;
-            }
             float _khoiLuong = 0;
             try
             {
@@ -96,7 +99,7 @@ namespace QLNT.BusinessLayer
                 return 0;
             }
 
-            return NguyenLieuBLL.LayNangLuongNguyenLieuTheoMa(maNL);
+            return NguyenLieuBLL.LayNangLuongNguyenLieuTheoMa(maNL)*_khoiLuong;
         }
     }
 }

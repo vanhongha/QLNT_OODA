@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDinhDuong_MonAn));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblNote = new System.Windows.Forms.Label();
             this.btnXoaChiTiet = new System.Windows.Forms.Button();
@@ -44,8 +44,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dgvChiTietMonAn = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtNangLuong = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoaTrang = new System.Windows.Forms.Button();
@@ -55,7 +53,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dgvMonAn = new System.Windows.Forms.DataGridView();
             this.closeBtn = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -101,6 +98,7 @@
             this.lblNote.Size = new System.Drawing.Size(306, 14);
             this.lblNote.TabIndex = 111;
             this.lblNote.Text = "Không thể cập nhật chi tiết món ăn đã được thêm vào thực đơn";
+            this.lblNote.Visible = false;
             // 
             // btnXoaChiTiet
             // 
@@ -208,28 +206,25 @@
             this.dgvChiTietMonAn.AllowUserToAddRows = false;
             this.dgvChiTietMonAn.AllowUserToDeleteRows = false;
             this.dgvChiTietMonAn.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTietMonAn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTietMonAn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvChiTietMonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvChiTietMonAn.Location = new System.Drawing.Point(28, 32);
+            this.dgvChiTietMonAn.Location = new System.Drawing.Point(16, 32);
             this.dgvChiTietMonAn.Name = "dgvChiTietMonAn";
             this.dgvChiTietMonAn.ReadOnly = true;
             this.dgvChiTietMonAn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChiTietMonAn.Size = new System.Drawing.Size(531, 258);
+            this.dgvChiTietMonAn.Size = new System.Drawing.Size(559, 258);
             this.dgvChiTietMonAn.TabIndex = 44;
             this.dgvChiTietMonAn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiTietMonAn_CellClick);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.txtNangLuong);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnXoa);
             this.groupBox2.Controls.Add(this.btnLuu);
             this.groupBox2.Controls.Add(this.btnXoaTrang);
@@ -246,26 +241,6 @@
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "MÓN ĂN";
-            // 
-            // txtNangLuong
-            // 
-            this.txtNangLuong.Enabled = false;
-            this.txtNangLuong.Location = new System.Drawing.Point(142, 379);
-            this.txtNangLuong.Name = "txtNangLuong";
-            this.txtNangLuong.Size = new System.Drawing.Size(204, 22);
-            this.txtNangLuong.TabIndex = 106;
-            this.txtNangLuong.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(55, 380);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 19);
-            this.label1.TabIndex = 105;
-            this.label1.Text = "Năng lượng";
             // 
             // btnXoa
             // 
@@ -340,11 +315,11 @@
             this.dgvMonAn.AllowUserToDeleteRows = false;
             this.dgvMonAn.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvMonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMonAn.Location = new System.Drawing.Point(21, 32);
+            this.dgvMonAn.Location = new System.Drawing.Point(17, 32);
             this.dgvMonAn.Name = "dgvMonAn";
             this.dgvMonAn.ReadOnly = true;
             this.dgvMonAn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMonAn.Size = new System.Drawing.Size(518, 258);
+            this.dgvMonAn.Size = new System.Drawing.Size(528, 258);
             this.dgvMonAn.TabIndex = 45;
             this.dgvMonAn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMonAn_CellClick);
             // 
@@ -360,17 +335,6 @@
             this.closeBtn.TabIndex = 138;
             this.closeBtn.TabStop = false;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(346, 381);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 19);
-            this.label4.TabIndex = 107;
-            this.label4.Text = "Kcal";
             // 
             // label8
             // 
@@ -439,12 +403,9 @@
         private System.Windows.Forms.TextBox txtMaMonAn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtNangLuong;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.PictureBox closeBtn;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
     }
 }

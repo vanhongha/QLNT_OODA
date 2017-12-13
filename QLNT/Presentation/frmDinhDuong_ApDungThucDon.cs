@@ -301,5 +301,15 @@ namespace QLNT.Presentation
             this.Close();
             tabControl.Tabs.Remove(tab);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("chức năng này sẽ sớm được cập nhật", "Thông báo", MessageBoxButtons.OK);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("chức năng này sẽ sớm được cập nhật", "Thông báo", MessageBoxButtons.OK);
+        }
     }
 }

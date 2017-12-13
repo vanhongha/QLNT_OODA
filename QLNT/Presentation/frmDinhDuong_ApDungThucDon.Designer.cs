@@ -414,6 +414,7 @@
             this.button2.TabIndex = 138;
             this.button2.Text = "Xuất danh sách ăn";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -423,6 +424,7 @@
             this.button1.TabIndex = 137;
             this.button1.Text = "Báo cáo nhà bếp";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dgvThongTinThucDon_NguyenLieu
             // 

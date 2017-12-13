@@ -29,6 +29,7 @@ namespace QLNT.Presentation
         {
             getDataGridViewMonAn();
             getCombobox();
+            setEnableChiTietMonAn(false);
         }
 
         private void getDataGridViewMonAn()
@@ -86,24 +87,28 @@ namespace QLNT.Presentation
         {
             txtMaMonAn.Text = MonAnBLL.SinhMaTuDong();
             txtTenMonAn.Text = "";
-            txtNangLuong.Text = "";
         }
 
         private void XoaTrangChiTiet()
         {
             txtNangLuongChiTiet.Text = "0";
-            txtKhoiLuong.Text = "10";
+            txtKhoiLuong.Text = "";
             cboChonNguyenLieu.Text = "";
 
+        }
+
+        public void setEnableChiTietMonAn(bool value)
+        {
+            txtKhoiLuong.Enabled = value;
+            cboChonNguyenLieu.Enabled = value;
+            btnLuuChiTiet.Enabled = value;
+            btnXoaChiTiet.Enabled = value;
         }
 
         private void SetEnabledComponents(bool value)
         {
             lblNote.Visible = !value;
-            txtKhoiLuong.Enabled = value;
-            cboChonNguyenLieu.Enabled = value;
-            btnLuuChiTiet.Enabled = value;
-            btnXoaChiTiet.Enabled = value;
+            setEnableChiTietMonAn(value);
         }
 
         private void setTextInfo()
@@ -124,7 +129,6 @@ namespace QLNT.Presentation
             }
             txtMaMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["MaMonAn"].Value.ToString().Trim();
             txtTenMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["TenMonAn"].Value.ToString().Trim();
-            txtNangLuong.Text = dgvMonAn.Rows[e.RowIndex].Cells["NangLuong"].Value.ToString().Trim();
             getDataGridViewChiTietMonAn(txtMaMonAn.Text);
 
             XoaTrangChiTiet();
@@ -169,17 +173,22 @@ namespace QLNT.Presentation
 
         private void btnLuuChiTiet_Click(object sender, EventArgs e)
         {
-            ChiTietMonAnBLL.LuuChiTietMonAn(txtMaMonAn.Text.Trim(), 
-                cboChonNguyenLieu.Text.Trim(), txtKhoiLuong.Text);
-            getDataGridViewMonAn();
-            getDataGridViewChiTietMonAn(txtMaMonAn.Text.Trim());
+            if(ChiTietMonAnBLL.LuuChiTietMonAn(txtMaMonAn.Text.Trim(), 
+                cboChonNguyenLieu.Text.Trim(), txtKhoiLuong.Text))
+            {
+                getDataGridViewMonAn();
+                getDataGridViewChiTietMonAn(txtMaMonAn.Text.Trim());
+            }
+            
         }
 
         private void btnXoaChiTiet_Click(object sender, EventArgs e)
         {
             ChiTietMonAnBLL.XoaChiTietMonAn(txtMaMonAn.Text.Trim(), cboChonNguyenLieu.Text.Trim());
             XoaTrangChiTiet();
+            getDataGridViewMonAn();
             getDataGridViewChiTietMonAn(txtMaMonAn.Text.Trim());
+            
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -195,7 +204,7 @@ namespace QLNT.Presentation
 
         private void txtKhoiLuong_TextChanged(object sender, EventArgs e)
         {
-            txtNangLuong.Text = ChiTietMonAnBLL.TinhNangLuong(txtKhoiLuong, cboChonNguyenLieu.Text.ToString()).ToString();
+            txtNangLuongChiTiet.Text = ChiTietMonAnBLL.TinhNangLuong(txtKhoiLuong, cboChonNguyenLieu.Text.ToString()).ToString();
             
         }
     }
