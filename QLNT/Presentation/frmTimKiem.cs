@@ -1,6 +1,8 @@
 ﻿using DevComponents.DotNetBar;
 using QLNT.BusinessLayer;
 using QLNT.Entities;
+using QLNT.Ultilities;
+using System;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
@@ -62,7 +64,7 @@ namespace QLNT.Presentation
             dgvKetQua.Columns[0].HeaderText = "Mã trẻ";
             dgvKetQua.Columns[1].HeaderText = "Họ tên trẻ";
             dgvKetQua.Columns[2].HeaderText = "Ngày sinh";
-            dgvKetQua.Columns[3].HeaderText = "Giới tính";  
+            dgvKetQua.Columns[3].HeaderText = "Giới tính";
             dgvKetQua.Columns[4].HeaderText = "Họ tên cha";
             dgvKetQua.Columns[5].HeaderText = "Họ tên mẹ";
             dgvKetQua.Columns[6].HeaderText = "Địa chỉ";
@@ -76,6 +78,9 @@ namespace QLNT.Presentation
             dgvKetQua.Columns[5].Width = 150;
             dgvKetQua.Columns[6].Width = 200;
             dgvKetQua.Columns[7].Width = 100;
+
+            string[] listProp = { "MaTre", "HoTenTre", "NgaySinh", "GioiTinh", "HoTenCha", "HoTenMe", "DiaChi", "SDTLienLac" };
+            ControlFormat.DataGridViewFormat(dgvKetQua, listProp);
         }
 
         private void LoadListLop()
@@ -116,7 +121,8 @@ namespace QLNT.Presentation
         }
         private void txtKeyWord_TextChanged(object sender, System.EventArgs e)
         {
-            loadDataGirdView();
+            if (chkTimTheoKey.Checked)
+                loadDataGirdView();
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -127,8 +133,48 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             loadDataGirdView();
+            MessageBox.Show("cbo lop");
+        }
+
+        private void btnDong_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+            tabControl.Tabs.Remove(tab);
+        }
+
+        private void btnCapNhat_Click(object sender, System.EventArgs e)
+        {
+            Tre tempTre = new Tre(txtMaTre.Text,
+                txtHoTen.Text,
+                rdoNam.Checked ? 1 : 0,
+                dtNgaySinh.Value,
+                txtHoTenCha.Text,
+                txtHoTenMe.Text,
+                txtDiaChi.Text,
+                txtSDT.Text);
+
+            if (TreBLL.CapNhatThongTinTre(tempTre))
+            {
+                MessageBox.Show("Cập nhật thông tin trẻ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDataGirdView();
+            }
+        }
+
+        private void dgvKetQua_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && e.RowIndex != dgvKetQua.RowCount)
+            {
+                txtMaTre.Text = dgvKetQua.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
+                txtHoTen.Text = dgvKetQua.Rows[e.RowIndex].Cells["HoTenTre"].Value.ToString();
+                txtHoTenCha.Text = dgvKetQua.Rows[e.RowIndex].Cells["HoTenCha"].Value.ToString();
+                txtHoTenMe.Text = dgvKetQua.Rows[e.RowIndex].Cells["HoTenMe"].Value.ToString();
+                txtDiaChi.Text = dgvKetQua.Rows[e.RowIndex].Cells["DiaChi"].Value.ToString();
+                txtSDT.Text = dgvKetQua.Rows[e.RowIndex].Cells["SDTLienLac"].Value.ToString();
+                dtNgaySinh.Value = Convert.ToDateTime(dgvKetQua.Rows[e.RowIndex].Cells["NgaySinh"].Value.ToString());
+                rdoNam.Checked = Convert.ToInt32(dgvKetQua.Rows[e.RowIndex].Cells["GioiTinh"].Value) == 1;
+                rdoNu.Checked = Convert.ToInt32(dgvKetQua.Rows[e.RowIndex].Cells["GioiTinh"].Value) == 0;
+            }       
         }
         #endregion
-
     }
 }

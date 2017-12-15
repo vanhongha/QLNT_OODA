@@ -295,6 +295,9 @@
     <EmbeddedResource Include="Presentation\frmBieuDoSucKhoe.resx">
       <DependentUpon>frmBieuDoSucKhoe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmTimKiem.resx">
+      <DependentUpon>frmTimKiem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmXepLop.resx">
       <DependentUpon>frmXepLop.cs</DependentUpon>
     </EmbeddedResource>
@@ -412,6 +415,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img_nguyenlieu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restart-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

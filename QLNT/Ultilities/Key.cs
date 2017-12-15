@@ -8,6 +8,12 @@ public enum Quyen
     NhaBep = 3
 }
 
+public enum GioiTinh
+{
+    Nu = 0,
+    Nam = 1
+}
+
 public class KeyHandle
 {
     public static string GetKeyFromCombobox(string value)

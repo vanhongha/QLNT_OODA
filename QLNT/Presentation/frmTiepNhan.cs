@@ -87,19 +87,19 @@ namespace QLNT.Presentation
         }
         private void LayThongTinTre(string maTre)
         {
-            string gioiTinh;
+            int gioiTinh;
             DataTable dt = TreBLL.LayThongTinTre(maTre);
             txtMaHocSinh.Text = dt.Rows[0]["MaTre"].ToString();
             txtHoTen.Text = dt.Rows[0]["HoTenTre"].ToString();
 
-            gioiTinh = dt.Rows[0]["GioiTinh"].ToString();
-            if (gioiTinh == "Nam")
+            gioiTinh = Convert.ToInt32(dt.Rows[0]["GioiTinh"]);
+
+            if (gioiTinh == 1)
                 rdbNam.Checked = true;
             else
                 rdbNu.Checked = true;
 
-            dateNgaySinh.Text = Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
-
+            dateNgaySinh.Value = Convert.ToDateTime(dt.Rows[0]["NgaySinh"].ToString());
             txtHoTenMe.Text = dt.Rows[0]["HoTenMe"].ToString();
             txtHoTenCha.Text = dt.Rows[0]["HoTenCha"].ToString();
             txtSDT.Text = dt.Rows[0]["SDTLienLac"].ToString();
@@ -127,7 +127,7 @@ namespace QLNT.Presentation
                 return;
             }
             Tre hocsinhmoi = new Tre(txtMaHocSinh.Text, txtHoTen.Text,
-            rdbNam.Checked == true ? "Nam" : "Nu",
+            rdbNam.Checked == true ? (int)GioiTinh.Nam : (int)GioiTinh.Nu,
             dateNgaySinh.Value,
             txtHoTenCha.Text,
             txtHoTenMe.Text,
@@ -149,6 +149,7 @@ namespace QLNT.Presentation
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin cần thiết!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -182,9 +183,9 @@ namespace QLNT.Presentation
                 tre.HoTen = txtHoTen.Text;
 
                 if (rdbNam.Checked)
-                    tre.GioiTinh = "Nam";
+                    tre.GioiTinh = (int)GioiTinh.Nam;
                 else
-                    tre.GioiTinh = "Nu";
+                    tre.GioiTinh = (int)GioiTinh.Nu;
 
                 tre.NgaySinh = dateNgaySinh.Value;
                 tre.TenCha = txtHoTenCha.Text;

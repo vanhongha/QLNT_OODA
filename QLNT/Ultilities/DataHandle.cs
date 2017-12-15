@@ -73,7 +73,7 @@ namespace QLNT.Ultilities
                 {
                     Tre tre = new Tre(TreBLL.GenMaTre().ToString(),
                         data.Rows[i][0].ToString().Trim(),  // Họ tên
-                        data.Rows[i][1].ToString().Trim(),   // Giới tính,
+                        (int)data.Rows[i][1],   // Giới tính,
                         DateTime.Parse(data.Rows[i][2].ToString().Trim()), // Ngày sinh
                         data.Rows[i][3].ToString().Trim(),  // Họ tên cha
                         data.Rows[i][4].ToString().Trim(),  // Họ tên mẹ

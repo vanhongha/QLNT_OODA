@@ -50,11 +50,18 @@ namespace QLNT.BusinessLayer
             return TreDAL.LayThongTinTre(maTre);
         }
 
-        public static void CapNhatThongTinTre(Tre tre)
+        public static bool CapNhatThongTinTre(Tre tre)
         {
-            TreDAL.CapNhatThongTinTre(tre);
+            try
+            {
+                TreDAL.CapNhatThongTinTre(tre);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
-
         public static void XoaTre(string maTre)
         {
             TreDAL.XoaTre(maTre);
