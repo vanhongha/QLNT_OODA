@@ -37,6 +37,7 @@ namespace QLNT.Presentation
         {
             Init();
             loadDataGridView();
+            showData();
         }
 
         private void Init()
@@ -47,6 +48,14 @@ namespace QLNT.Presentation
             txtNguoiTiepNhan.Text = TaiKhoanBLL.GetTenNguoiDung(username);
             dateNgaySinh.MinDate = DateTime.Today.AddYears(-7);
             dateNgaySinh.MaxDate = DateTime.Today.AddYears(-2);
+
+            DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
+            gioiTinhColumn.Name = "GioiTinhCol";
+            gioiTinhColumn.HeaderText = "Giới tính";
+            gioiTinhColumn.ReadOnly = false;
+            gioiTinhColumn.FillWeight = 10;
+            dgvTiepNhan.Columns.Add(gioiTinhColumn);
+            
         }
 
         #endregion
@@ -55,23 +64,34 @@ namespace QLNT.Presentation
         private void loadDataGridView()
         {
             dgvTiepNhan.DataSource = TreBLL.GetListTre();
-            dgvTiepNhan.Columns[0].HeaderText = "Mã trẻ";
-            dgvTiepNhan.Columns[1].HeaderText = "Họ tên trẻ";
-            dgvTiepNhan.Columns[2].HeaderText = "Ngày sinh";
-            dgvTiepNhan.Columns[3].HeaderText = "Giới tính";
-            dgvTiepNhan.Columns[4].HeaderText = "Họ tên cha";
-            dgvTiepNhan.Columns[5].HeaderText = "Họ tên mẹ";
-            dgvTiepNhan.Columns[6].HeaderText = "Địa chỉ";
-            dgvTiepNhan.Columns[7].HeaderText = "SDT";
+            dgvTiepNhan.Columns["MaTre"].HeaderText = "Mã trẻ";
+            dgvTiepNhan.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
+            dgvTiepNhan.Columns["NgaySinh"].HeaderText = "Ngày sinh";
+            dgvTiepNhan.Columns["GioiTinh"].Visible = false;
+            dgvTiepNhan.Columns["HoTenCha"].HeaderText = "Họ tên cha";
+            dgvTiepNhan.Columns["HoTenMe"].HeaderText = "Họ tên mẹ";
+            dgvTiepNhan.Columns["DiaChi"].HeaderText = "Địa chỉ";
+            dgvTiepNhan.Columns["SDTLienLac"].HeaderText = "Số điện thoại";
 
-            dgvTiepNhan.Columns[0].Width = 100;
-            dgvTiepNhan.Columns[1].Width = 150;
-            dgvTiepNhan.Columns[2].Width = 120;
-            dgvTiepNhan.Columns[3].Width = 80;
-            dgvTiepNhan.Columns[4].Width = 150;
-            dgvTiepNhan.Columns[5].Width = 150;
-            dgvTiepNhan.Columns[6].Width = 200;
-            dgvTiepNhan.Columns[7].Width = 100;
+            dgvTiepNhan.Columns["MaTre"].FillWeight = 5;
+            dgvTiepNhan.Columns["HoTenTre"].FillWeight = 8;
+            dgvTiepNhan.Columns["NgaySinh"].FillWeight = 5;
+            dgvTiepNhan.Columns["GioiTinhCol"].FillWeight = 2;
+            dgvTiepNhan.Columns["HoTenCha"].Visible = false;
+            dgvTiepNhan.Columns["HoTenMe"].Visible = false;
+            dgvTiepNhan.Columns["DiaChi"].FillWeight = 10;
+            dgvTiepNhan.Columns["SDTLienLac"].FillWeight = 5;
+
+            
+            dgvTiepNhan.Columns["MaTre"].DisplayIndex = 0;
+            dgvTiepNhan.Columns["HoTenTre"].DisplayIndex = 1;
+            dgvTiepNhan.Columns["NgaySinh"].DisplayIndex = 2;
+            dgvTiepNhan.Columns["GioiTinhCol"].DisplayIndex = 3;
+            dgvTiepNhan.Columns["SDTLienLac"].DisplayIndex = 4;
+
+        }
+
+        private void showData() {
 
         }
         private void CleanInput()
@@ -254,6 +274,15 @@ namespace QLNT.Presentation
         private void btnXepLop_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvTiepNhan_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < dgvTiepNhan.Rows.Count; i++)
+            {
+                dgvTiepNhan.Rows[i].Cells["GioiTinhCol"].Value =
+                    int.Parse(dgvTiepNhan.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
+            }
         }
     }
 }

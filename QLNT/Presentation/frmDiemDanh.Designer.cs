@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvDiemDanh = new System.Windows.Forms.DataGridView();
+            this.lbThongBao = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpChonLop.SuspendLayout();
@@ -179,6 +180,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lbThongBao);
             this.panel2.Controls.Add(this.dgvDiemDanh);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -194,11 +196,24 @@
             this.dgvDiemDanh.BackgroundColor = System.Drawing.Color.White;
             this.dgvDiemDanh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiemDanh.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvDiemDanh.Location = new System.Drawing.Point(0, 166);
+            this.dgvDiemDanh.Location = new System.Drawing.Point(0, 183);
             this.dgvDiemDanh.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDiemDanh.Name = "dgvDiemDanh";
-            this.dgvDiemDanh.Size = new System.Drawing.Size(1157, 505);
+            this.dgvDiemDanh.Size = new System.Drawing.Size(1157, 488);
             this.dgvDiemDanh.TabIndex = 0;
+            // 
+            // lbThongBao
+            // 
+            this.lbThongBao.AutoSize = true;
+            this.lbThongBao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lbThongBao.Location = new System.Drawing.Point(24, 162);
+            this.lbThongBao.Name = "lbThongBao";
+            this.lbThongBao.Size = new System.Drawing.Size(102, 20);
+            this.lbThongBao.TabIndex = 1;
+            this.lbThongBao.Text = "Thông báo:";
+            this.lbThongBao.Visible = false;
+            this.lbThongBao.Click += new System.EventHandler(this.label4_Click);
             // 
             // frmDiemDanh
             // 
@@ -218,6 +233,7 @@
             this.grpChonLop.ResumeLayout(false);
             this.grpChonLop.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).EndInit();
             this.ResumeLayout(false);
 
@@ -238,5 +254,6 @@
         private System.Windows.Forms.DateTimePicker dtNgayDiemDanh;
         private System.Windows.Forms.Button btnLuuDiemDanh;
         private System.Windows.Forms.Button btnTaoBangMoi;
+        private System.Windows.Forms.Label lbThongBao;
     }
 }

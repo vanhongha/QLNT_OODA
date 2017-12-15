@@ -40,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbThongBao = new System.Windows.Forms.Label();
             this.dgvPhieuBeNgoan = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // btnTaoPhieuMoi
             // 
+            this.btnTaoPhieuMoi.Enabled = false;
             this.btnTaoPhieuMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnTaoPhieuMoi.Location = new System.Drawing.Point(809, 31);
             this.btnTaoPhieuMoi.Name = "btnTaoPhieuMoi";
@@ -74,6 +76,7 @@
             // 
             // btnLuuPhieu
             // 
+            this.btnLuuPhieu.Enabled = false;
             this.btnLuuPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnLuuPhieu.Location = new System.Drawing.Point(973, 31);
             this.btnLuuPhieu.Name = "btnLuuPhieu";
@@ -153,6 +156,7 @@
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(256, 33);
             this.cboLop.TabIndex = 10;
+            this.cboLop.SelectedIndexChanged += new System.EventHandler(this.cboLop_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -178,6 +182,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lbThongBao);
             this.panel2.Controls.Add(this.dgvPhieuBeNgoan);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -186,6 +191,18 @@
             this.panel2.Size = new System.Drawing.Size(1135, 587);
             this.panel2.TabIndex = 5;
             // 
+            // lbThongBao
+            // 
+            this.lbThongBao.AutoSize = true;
+            this.lbThongBao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lbThongBao.Location = new System.Drawing.Point(66, 162);
+            this.lbThongBao.Name = "lbThongBao";
+            this.lbThongBao.Size = new System.Drawing.Size(102, 20);
+            this.lbThongBao.TabIndex = 1;
+            this.lbThongBao.Text = "Thông báo:";
+            this.lbThongBao.Visible = false;
+            // 
             // dgvPhieuBeNgoan
             // 
             this.dgvPhieuBeNgoan.AllowUserToAddRows = false;
@@ -193,10 +210,10 @@
             this.dgvPhieuBeNgoan.BackgroundColor = System.Drawing.Color.White;
             this.dgvPhieuBeNgoan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPhieuBeNgoan.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvPhieuBeNgoan.Location = new System.Drawing.Point(0, 166);
+            this.dgvPhieuBeNgoan.Location = new System.Drawing.Point(0, 183);
             this.dgvPhieuBeNgoan.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPhieuBeNgoan.Name = "dgvPhieuBeNgoan";
-            this.dgvPhieuBeNgoan.Size = new System.Drawing.Size(1135, 421);
+            this.dgvPhieuBeNgoan.Size = new System.Drawing.Size(1135, 404);
             this.dgvPhieuBeNgoan.TabIndex = 0;
             // 
             // frmPhieuBeNgoan
@@ -217,6 +234,7 @@
             this.grpChonLop.ResumeLayout(false);
             this.grpChonLop.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuBeNgoan)).EndInit();
             this.ResumeLayout(false);
 
@@ -237,5 +255,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvPhieuBeNgoan;
+        private System.Windows.Forms.Label lbThongBao;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DevComponents.DotNetBar;
 using QLNT.BusinessLayer;
 using QLNT.Entities;
+using QLNT.Ultilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,27 +79,33 @@ namespace QLNT.Presentation
                 dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.LayPhieuBeNgoanTheoLop(
                     LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
                     datetime);
-
-                TaoPhieuTrong();
-
-                for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
+                if (dgvPhieuBeNgoan.RowCount <= 0)
                 {
-                    for (int j = 1; j < 5; j++)
-                    {
-                        DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j];
-                        if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value.ToString() == "1")
-                            chkBoxCell.Value = "true";
-                        else
-                            chkBoxCell.Value = "false";
-                    }
-                    if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value.ToString() == "1")
-                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "true";
-                    else
-                        dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "false";
-
+                    lbThongBao.Text = "Tháng " + dtThangLapPhieu.Value.ToString("MM-yyyy") + " chưa tạo phiếu bé ngoan";
+                    lbThongBao.Visible = true;
                 }
+                else
+                {
+                    lbThongBao.Visible = false;
+                    TaoPhieuTrong();
 
+                    for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
+                    {
+                        for (int j = 1; j < 5; j++)
+                        {
+                            DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j];
+                            if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanTuan" + j].Value.ToString() == "1")
+                                chkBoxCell.Value = "true";
+                            else
+                                chkBoxCell.Value = "false";
+                        }
+                        if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value.ToString() == "1")
+                            dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "true";
+                        else
+                            dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "false";
 
+                    }
+                }
             }
         }
 
@@ -187,16 +194,28 @@ namespace QLNT.Presentation
         {
             try
             {
-                XoaPhieuCu();
-                dgvPhieuBeNgoan.Columns.Clear();
-                if (!string.IsNullOrEmpty(cboLop.Text))
+                DialogResult confirm = new DialogResult();
+                if (dgvPhieuBeNgoan.RowCount > 0)
                 {
-                    dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
-                        LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
-                        dtThangLapPhieu.Text);
-                    TaoPhieuTrong();
-                    MessageBox.Show("Một phiếu mới hoàn toàn vừa được tạo", "Thông báo");
+                    confirm = MessageBox.Show("Tháng này đã có dữ liệu. Bạn có chắc muốn xóa để tạo mới hoàn toàn?",
+                        "Cân nhắc", MessageBoxButtons.YesNo);
                 }
+                if (confirm == DialogResult.Yes || dgvPhieuBeNgoan.RowCount <= 0)
+                {
+                    XoaPhieuCu();
+                    dgvPhieuBeNgoan.Columns.Clear();
+                    if (!string.IsNullOrEmpty(cboLop.Text))
+                    {
+                        dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.TaoPhieuBeNgoanMoi(
+                            LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                            dtThangLapPhieu.Text);
+                        TaoPhieuTrong();
+                        MessageBox.Show("Một phiếu mới hoàn toàn vừa được tạo", "Thông báo");
+                    }
+                }
+                else if (confirm == DialogResult.No)
+                { return; }
+
             }
             catch (Exception ex)
             {
@@ -212,10 +231,10 @@ namespace QLNT.Presentation
                 //Xoa cai cu
                 XoaPhieuCu();
                 //Tao cai moi
-                
+
                 for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                 {
-                    
+
                     for (int j = 1; j < 5; j++)
                     {
                         if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value == null ||
@@ -235,6 +254,7 @@ namespace QLNT.Presentation
                 }
                 LuuPhieuBeNgoan(dgvPhieuBeNgoan);
                 MessageBox.Show("Phiếu được lưu thành công", "Thông báo");
+                loadDataGridView();
             }
             catch (Exception ex)
             {
@@ -243,5 +263,30 @@ namespace QLNT.Presentation
         }
         #endregion
 
+        private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataGridView();
+
+            DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+            DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+
+            if (LopBLL.GetSiSo(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())) > 0
+            && Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
+            {
+                btnTaoPhieuMoi.Enabled = true;
+                btnLuuPhieu.Enabled = true;
+            }
+            else if (LopBLL.GetSiSo(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())) <= 0)
+            {
+                lbThongBao.Text += "\nLớp không có học sinh, không thể tạo phiếu mới";
+                lbThongBao.Visible = true;
+            }
+            else if (!Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
+            {
+                lbThongBao.Text += "\nNiên khóa đã qua, không thể tạo phiếu mới";
+                lbThongBao.Visible = true;
+            }
+
+        }
     }
 }
