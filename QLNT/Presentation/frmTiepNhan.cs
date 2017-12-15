@@ -128,7 +128,7 @@ namespace QLNT.Presentation
             }
             Tre hocsinhmoi = new Tre(txtMaHocSinh.Text, txtHoTen.Text,
             rdbNam.Checked == true ? (int)GioiTinh.Nam : (int)GioiTinh.Nu,
-            dateNgaySinh.Value,
+            Convert.ToDateTime(dateNgaySinh.Value.ToShortDateString()),
             txtHoTenCha.Text,
             txtHoTenMe.Text,
             txtDiaChi.Text,
@@ -251,5 +251,9 @@ namespace QLNT.Presentation
         }
         #endregion
 
+        private void btnXepLop_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

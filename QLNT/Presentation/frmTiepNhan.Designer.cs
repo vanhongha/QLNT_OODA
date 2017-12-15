@@ -412,6 +412,7 @@
             this.btnXepLop.TabIndex = 30;
             this.btnXepLop.Text = "Xếp lớp ngay";
             this.btnXepLop.UseVisualStyleBackColor = true;
+            this.btnXepLop.Click += new System.EventHandler(this.btnXepLop_Click);
             // 
             // btnXoa
             // 
