@@ -30,9 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.rdoNu = new System.Windows.Forms.RadioButton();
             this.rdoNam = new System.Windows.Forms.RadioButton();
             this.txtDiaChi = new System.Windows.Forms.RichTextBox();
+            this.txtSDT = new System.Windows.Forms.TextBox();
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.txtHoTenMe = new System.Windows.Forms.TextBox();
             this.txtHoTenCha = new System.Windows.Forms.TextBox();
@@ -41,6 +43,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,13 +57,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.chkTimTheoKey = new System.Windows.Forms.CheckBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dgvKetQua = new System.Windows.Forms.DataGridView();
             this.btnDong = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
-            this.dtNgaySinh = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvKetQua = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpKey.SuspendLayout();
@@ -112,6 +112,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin trẻ được chọn";
             // 
+            // dtNgaySinh
+            // 
+            this.dtNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtNgaySinh.Location = new System.Drawing.Point(81, 72);
+            this.dtNgaySinh.Name = "dtNgaySinh";
+            this.dtNgaySinh.Size = new System.Drawing.Size(231, 26);
+            this.dtNgaySinh.TabIndex = 26;
+            // 
             // rdoNu
             // 
             this.rdoNu.AutoSize = true;
@@ -141,6 +150,15 @@
             this.txtDiaChi.Size = new System.Drawing.Size(232, 62);
             this.txtDiaChi.TabIndex = 24;
             this.txtDiaChi.Text = "";
+            // 
+            // txtSDT
+            // 
+            this.txtSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSDT.Location = new System.Drawing.Point(230, 101);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(169, 26);
+            this.txtSDT.TabIndex = 4;
+            this.txtSDT.TextChanged += new System.EventHandler(this.txtKeyWord_TextChanged);
             // 
             // txtHoTen
             // 
@@ -218,6 +236,16 @@
             this.label7.Size = new System.Drawing.Size(71, 20);
             this.label7.TabIndex = 20;
             this.label7.Text = "Giới tính:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(179, 104);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(45, 20);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "SDT:";
             // 
             // label6
             // 
@@ -358,29 +386,6 @@
             this.chkTimTheoKey.UseVisualStyleBackColor = true;
             this.chkTimTheoKey.CheckedChanged += new System.EventHandler(this.chkTimTheoKey_CheckedChanged);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgvKetQua);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 208);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1233, 428);
-            this.panel2.TabIndex = 1;
-            // 
-            // dgvKetQua
-            // 
-            this.dgvKetQua.AllowUserToAddRows = false;
-            this.dgvKetQua.AllowUserToDeleteRows = false;
-            this.dgvKetQua.BackgroundColor = System.Drawing.Color.White;
-            this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKetQua.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvKetQua.Location = new System.Drawing.Point(0, 0);
-            this.dgvKetQua.Name = "dgvKetQua";
-            this.dgvKetQua.ReadOnly = true;
-            this.dgvKetQua.Size = new System.Drawing.Size(1233, 428);
-            this.dgvKetQua.TabIndex = 0;
-            this.dgvKetQua.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKetQua_CellClick);
-            // 
             // btnDong
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -409,33 +414,29 @@
             this.btnCapNhat.UseVisualStyleBackColor = true;
             this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
-            // dtNgaySinh
+            // panel2
             // 
-            this.dtNgaySinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtNgaySinh.Location = new System.Drawing.Point(81, 72);
-            this.dtNgaySinh.Name = "dtNgaySinh";
-            this.dtNgaySinh.Size = new System.Drawing.Size(231, 26);
-            this.dtNgaySinh.TabIndex = 26;
+            this.panel2.Controls.Add(this.dgvKetQua);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 208);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1233, 428);
+            this.panel2.TabIndex = 1;
             // 
-            // label11
+            // dgvKetQua
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(179, 104);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(45, 20);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "SDT:";
-            // 
-            // txtSDT
-            // 
-            this.txtSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(230, 101);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(169, 26);
-            this.txtSDT.TabIndex = 4;
-            this.txtSDT.TextChanged += new System.EventHandler(this.txtKeyWord_TextChanged);
+            this.dgvKetQua.AllowUserToAddRows = false;
+            this.dgvKetQua.AllowUserToDeleteRows = false;
+            this.dgvKetQua.BackgroundColor = System.Drawing.Color.White;
+            this.dgvKetQua.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvKetQua.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvKetQua.Location = new System.Drawing.Point(0, 0);
+            this.dgvKetQua.Name = "dgvKetQua";
+            this.dgvKetQua.ReadOnly = true;
+            this.dgvKetQua.Size = new System.Drawing.Size(1233, 428);
+            this.dgvKetQua.TabIndex = 0;
+            this.dgvKetQua.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKetQua_CellClick);
+            this.dgvKetQua.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvKetQua_DataBindingComplete);
             // 
             // frmTimKiem
             // 

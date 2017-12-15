@@ -36,6 +36,14 @@ namespace QLNT.Presentation
         {
             grpChonLop.Enabled = false;
             grpKey.Enabled = false;
+
+            DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
+            gioiTinhColumn.Name = "GioiTinhCol";
+            gioiTinhColumn.HeaderText = "Giới tính";
+            gioiTinhColumn.Width = 150;
+            gioiTinhColumn.ReadOnly = false;
+            gioiTinhColumn.FillWeight = 10;
+            dgvKetQua.Columns.Add(gioiTinhColumn);
         }
 
         private void loadListNamHoc()
@@ -61,25 +69,32 @@ namespace QLNT.Presentation
             else
                 dgvKetQua.DataSource = TreBLL.GetListTre(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())), txtKeyWord.Text);
 
-            dgvKetQua.Columns[0].HeaderText = "Mã trẻ";
-            dgvKetQua.Columns[1].HeaderText = "Họ tên trẻ";
-            dgvKetQua.Columns[2].HeaderText = "Ngày sinh";
-            dgvKetQua.Columns[3].HeaderText = "Giới tính";
-            dgvKetQua.Columns[4].HeaderText = "Họ tên cha";
-            dgvKetQua.Columns[5].HeaderText = "Họ tên mẹ";
-            dgvKetQua.Columns[6].HeaderText = "Địa chỉ";
-            dgvKetQua.Columns[7].HeaderText = "SDT";
+            dgvKetQua.Columns["MaTre"].DisplayIndex = 0;
+            dgvKetQua.Columns["HoTenTre"].DisplayIndex = 1;
+            dgvKetQua.Columns["NgaySinh"].DisplayIndex = 2;
+            dgvKetQua.Columns["GioiTinhCol"].DisplayIndex = 3; 
+            dgvKetQua.Columns["HoTenCha"].DisplayIndex = 4;
+            dgvKetQua.Columns["HoTenMe"].DisplayIndex = 5;
+            dgvKetQua.Columns["DiaChi"].DisplayIndex = 6;
+            dgvKetQua.Columns["SDTLienLac"].DisplayIndex = 7;
 
-            dgvKetQua.Columns[0].Width = 100;
-            dgvKetQua.Columns[1].Width = 150;
-            dgvKetQua.Columns[2].Width = 120;
-            dgvKetQua.Columns[3].Width = 80;
-            dgvKetQua.Columns[4].Width = 150;
-            dgvKetQua.Columns[5].Width = 150;
-            dgvKetQua.Columns[6].Width = 200;
-            dgvKetQua.Columns[7].Width = 100;
+            dgvKetQua.Columns["MaTre"].HeaderText = "Mã trẻ";
+            dgvKetQua.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
+            dgvKetQua.Columns["NgaySinh"].HeaderText = "Ngày sinh";
+            dgvKetQua.Columns["HoTenCha"].HeaderText = "Họ tên cha";
+            dgvKetQua.Columns["HoTenMe"].HeaderText = "Họ tên mẹ";
+            dgvKetQua.Columns["DiaChi"].HeaderText = "Địa chỉ";
+            dgvKetQua.Columns["SDTLienLac"].HeaderText = "SDT";
 
-            string[] listProp = { "MaTre", "HoTenTre", "NgaySinh", "GioiTinh", "HoTenCha", "HoTenMe", "DiaChi", "SDTLienLac" };
+            dgvKetQua.Columns["MaTre"].Width = 100;
+            dgvKetQua.Columns["HoTenTre"].Width = 150;
+            dgvKetQua.Columns["NgaySinh"].Width = 120;
+            dgvKetQua.Columns["HoTenCha"].Width = 150;
+            dgvKetQua.Columns["HoTenMe"].Width = 150;
+            dgvKetQua.Columns["DiaChi"].Width = 200;
+            dgvKetQua.Columns["SDTLienLac"].Width = 100;
+
+            string[] listProp = { "MaTre", "HoTenTre", "NgaySinh", "GioiTinhCol", "HoTenCha", "HoTenMe", "DiaChi", "SDTLienLac" };
             ControlFormat.DataGridViewFormat(dgvKetQua, listProp);
         }
 
@@ -176,5 +191,14 @@ namespace QLNT.Presentation
             }       
         }
         #endregion
+
+        private void dgvKetQua_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < dgvKetQua.Rows.Count; i++)
+            {
+                dgvKetQua.Rows[i].Cells["GioiTinhCol"].Value =
+                    int.Parse(dgvKetQua.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
+            }
+        }
     }
 }
