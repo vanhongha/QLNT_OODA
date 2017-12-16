@@ -48,7 +48,7 @@ namespace QLNT.BusinessLayer
                     {
                         continue;
                     }
-                    ThongTinThucDon thongTinTD = new ThongTinThucDon(listTre[i], buoiAD, ngayAD, listMonAn[j], loaiAD[j]);
+                    Entities.ThongTinThucDon thongTinTD = new Entities.ThongTinThucDon(listTre[i], buoiAD, ngayAD, listMonAn[j], loaiAD[j]);
                     if (!ThemThongTinThucDon(thongTinTD)) { return false; }
                 }
             }
@@ -88,7 +88,7 @@ namespace QLNT.BusinessLayer
             return true;
         }
 
-        public static bool ThemThongTinThucDon(ThongTinThucDon thongTinTD)
+        public static bool ThemThongTinThucDon(Entities.ThongTinThucDon thongTinTD)
         {
             return ThongTinThucDonDAL.ThemThongTinThucDon(thongTinTD);
         }
@@ -97,7 +97,7 @@ namespace QLNT.BusinessLayer
         {
             ThongTinThucDonDAL.XoaThongTinThucDon(maTre, buoiAD, ngayAD);
         }
-        public static void XoaThongTinThucDon(ThongTinThucDon thongTinTD)
+        public static void XoaThongTinThucDon(Entities.ThongTinThucDon thongTinTD)
         {
             ThongTinThucDonDAL.XoaThongTinThucDon(thongTinTD);
         }

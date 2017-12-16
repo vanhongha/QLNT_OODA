@@ -304,12 +304,14 @@ namespace QLNT.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("chức năng này sẽ sớm được cập nhật", "Thông báo", MessageBoxButtons.OK);
+            Form frmBaoCaoNhaBep = new frmDinhDuong_BaoCaoNhaBep(cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value);
+            frmBaoCaoNhaBep.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("chức năng này sẽ sớm được cập nhật", "Thông báo", MessageBoxButtons.OK);
+            Form frmBaoCaoSuatAn = new frmDinhDuong_BaoCaoSuatAn( cboLop.SelectedValue.ToString().Trim(),cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value);
+            frmBaoCaoSuatAn.ShowDialog();
         }
     }
 }

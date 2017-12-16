@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBienLaiHocPhi));
             this.GetInfoBienlaiHocPhiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bienLaiHocPhiDataSet = new QLNT.BienLaiHocPhiDataSet();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -52,14 +53,14 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "BienLaiHocPhiDataSet";
-            reportDataSource1.Value = this.GetInfoBienlaiHocPhiBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            reportDataSource2.Name = "BienLaiHocPhiDataSet";
+            reportDataSource2.Value = this.GetInfoBienlaiHocPhiBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "QLNT.Presentation.BienLaiThuHocPhi.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(761, 814);
+            this.reportViewer1.Size = new System.Drawing.Size(359, 596);
             this.reportViewer1.TabIndex = 0;
             // 
             // bienLaiHocPhiDataSetBindingSource
@@ -75,10 +76,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 814);
+            this.ClientSize = new System.Drawing.Size(361, 531);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmBienLaiHocPhi";
-            this.Text = "Biên lai học phí";
+            this.Text = resources.GetString("$this.Text");
             this.Load += new System.EventHandler(this.frmBienLaiHocPhi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GetInfoBienlaiHocPhiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bienLaiHocPhiDataSet)).EndInit();

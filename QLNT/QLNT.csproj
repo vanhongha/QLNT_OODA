@@ -153,6 +153,18 @@
     <Compile Include="Presentation\frmDinhDuong_ApDungThucDon.Designer.cs">
       <DependentUpon>frmDinhDuong_ApDungThucDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmDinhDuong_BaoCaoNhaBep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_BaoCaoNhaBep.Designer.cs">
+      <DependentUpon>frmDinhDuong_BaoCaoNhaBep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_BaoCaoSuatAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmDinhDuong_BaoCaoSuatAn.Designer.cs">
+      <DependentUpon>frmDinhDuong_BaoCaoSuatAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmDinhDuong_MonAn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,11 +249,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SucKhoeDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ThucDonDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThucDonDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Ultilities\Checking.cs" />
     <Compile Include="Ultilities\ComboboxLoad.cs" />
     <Compile Include="Ultilities\ControlFormat.cs" />
     <Compile Include="Ultilities\DataHandle.cs" />
     <Compile Include="Ultilities\Key.cs" />
+    <EmbeddedResource Include="Presentation\BaoCaoNhaBep.rdlc" />
     <EmbeddedResource Include="Presentation\BaoCaoSucKhoe.rdlc" />
     <EmbeddedResource Include="Presentation\BienLaiThuHocPhi.rdlc" />
     <EmbeddedResource Include="Presentation\frmApDungHocPhi.resx">
@@ -264,6 +282,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmDinhDuong_ApDungThucDon.resx">
       <DependentUpon>frmDinhDuong_ApDungThucDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmDinhDuong_BaoCaoNhaBep.resx">
+      <DependentUpon>frmDinhDuong_BaoCaoNhaBep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmDinhDuong_BaoCaoSuatAn.resx">
+      <DependentUpon>frmDinhDuong_BaoCaoSuatAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmDinhDuong_MonAn.resx">
       <DependentUpon>frmDinhDuong_MonAn.cs</DependentUpon>
@@ -295,12 +319,10 @@
     <EmbeddedResource Include="Presentation\frmBieuDoSucKhoe.resx">
       <DependentUpon>frmBieuDoSucKhoe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\frmTimKiem.resx">
-      <DependentUpon>frmTimKiem.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmXepLop.resx">
       <DependentUpon>frmXepLop.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\BaoCaoSuatAn.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -336,6 +358,17 @@
     </None>
     <None Include="SucKhoeDataSet.xss">
       <DependentUpon>SucKhoeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ThucDonDataSet.xsc">
+      <DependentUpon>ThucDonDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ThucDonDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThucDonDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ThucDonDataSet.xss">
+      <DependentUpon>ThucDonDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -415,9 +448,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img_nguyenlieu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-restart-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

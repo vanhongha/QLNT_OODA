@@ -12,7 +12,7 @@ namespace QLNT.DataLayer
 {
     class ThongTinThucDonDAL
     {
-        public static bool ThemThongTinThucDon(ThongTinThucDon thongTinTD)
+        public static bool ThemThongTinThucDon(Entities.ThongTinThucDon thongTinTD)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace QLNT.DataLayer
 
         }
 
-        public static void XoaThongTinThucDon(ThongTinThucDon thongTinTD)
+        public static void XoaThongTinThucDon(Entities.ThongTinThucDon thongTinTD)
         {
             try
             {
