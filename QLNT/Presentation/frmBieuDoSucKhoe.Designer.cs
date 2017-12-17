@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.dgvTre = new System.Windows.Forms.DataGridView();
             this.cboLoaiLop = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,6 +56,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnInBaoCaoTheoThang = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietSucKhoe)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -71,29 +72,29 @@
             // 
             this.dgvTre.AllowUserToAddRows = false;
             this.dgvTre.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvTre.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTre.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvTre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTre.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvTre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTre.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTre.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvTre.Location = new System.Drawing.Point(15, 143);
             this.dgvTre.MultiSelect = false;
             this.dgvTre.Name = "dgvTre";
@@ -175,7 +176,7 @@
             this.cboDenThang.FormattingEnabled = true;
             this.cboDenThang.Location = new System.Drawing.Point(360, 79);
             this.cboDenThang.Name = "cboDenThang";
-            this.cboDenThang.Size = new System.Drawing.Size(69, 28);
+            this.cboDenThang.Size = new System.Drawing.Size(44, 28);
             this.cboDenThang.TabIndex = 2;
             this.cboDenThang.SelectedIndexChanged += new System.EventHandler(this.cboDenThang_SelectedIndexChanged);
             // 
@@ -186,7 +187,7 @@
             this.cboTuThang.FormattingEnabled = true;
             this.cboTuThang.Location = new System.Drawing.Point(360, 37);
             this.cboTuThang.Name = "cboTuThang";
-            this.cboTuThang.Size = new System.Drawing.Size(69, 28);
+            this.cboTuThang.Size = new System.Drawing.Size(44, 28);
             this.cboTuThang.TabIndex = 2;
             this.cboTuThang.SelectedIndexChanged += new System.EventHandler(this.cboTuThang_SelectedIndexChanged);
             // 
@@ -230,7 +231,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(263, 45);
+            this.label4.Location = new System.Drawing.Point(275, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 0;
@@ -260,7 +261,7 @@
             this.dgvChiTietSucKhoe.Name = "dgvChiTietSucKhoe";
             this.dgvChiTietSucKhoe.ReadOnly = true;
             this.dgvChiTietSucKhoe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChiTietSucKhoe.Size = new System.Drawing.Size(412, 121);
+            this.dgvChiTietSucKhoe.Size = new System.Drawing.Size(571, 121);
             this.dgvChiTietSucKhoe.TabIndex = 2;
             this.dgvChiTietSucKhoe.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvChiTietSucKhoe_ColumnAdded);
             // 
@@ -274,7 +275,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox1.Location = new System.Drawing.Point(571, 351);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(469, 197);
+            this.groupBox1.Size = new System.Drawing.Size(628, 197);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chi tiết sức khỏe";
@@ -289,13 +290,13 @@
             this.panel3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel3.Location = new System.Drawing.Point(7, 26);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(456, 165);
+            this.panel3.Size = new System.Drawing.Size(615, 165);
             this.panel3.TabIndex = 0;
             // 
             // btnInBaoCao
             // 
             this.btnInBaoCao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInBaoCao.Location = new System.Drawing.Point(338, 130);
+            this.btnInBaoCao.Location = new System.Drawing.Point(497, 130);
             this.btnInBaoCao.Name = "btnInBaoCao";
             this.btnInBaoCao.Size = new System.Drawing.Size(115, 32);
             this.btnInBaoCao.TabIndex = 3;
@@ -308,11 +309,11 @@
             this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
             this.chart.Location = new System.Drawing.Point(27, 131);
             this.chart.Name = "chart";
-            this.chart.Size = new System.Drawing.Size(412, 148);
+            this.chart.Size = new System.Drawing.Size(571, 148);
             this.chart.TabIndex = 4;
             this.chart.Text = "Biểu đồ cân nặng";
             // 
@@ -320,7 +321,7 @@
             // 
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDong.Location = new System.Drawing.Point(925, 553);
+            this.btnDong.Location = new System.Drawing.Point(1084, 553);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(115, 32);
             this.btnDong.TabIndex = 5;
@@ -371,7 +372,7 @@
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Highlight;
             this.groupBox3.Location = new System.Drawing.Point(571, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(469, 333);
+            this.groupBox3.Size = new System.Drawing.Size(628, 333);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Biểu đồ";
@@ -381,6 +382,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnInBaoCaoTheoThang);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.rdoChieuCao);
             this.panel2.Controls.Add(this.rdoCanNang);
@@ -393,14 +395,24 @@
             this.panel2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(456, 296);
+            this.panel2.Size = new System.Drawing.Size(615, 296);
             this.panel2.TabIndex = 0;
+            // 
+            // btnInBaoCaoTheoThang
+            // 
+            this.btnInBaoCaoTheoThang.Location = new System.Drawing.Point(410, 37);
+            this.btnInBaoCaoTheoThang.Name = "btnInBaoCaoTheoThang";
+            this.btnInBaoCaoTheoThang.Size = new System.Drawing.Size(115, 70);
+            this.btnInBaoCaoTheoThang.TabIndex = 3;
+            this.btnInBaoCaoTheoThang.Text = "In báo cáo theo tháng";
+            this.btnInBaoCaoTheoThang.UseVisualStyleBackColor = true;
+            this.btnInBaoCaoTheoThang.Click += new System.EventHandler(this.btnInBaoCaoTheoThang_Click);
             // 
             // frmBieuDoSucKhoe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 597);
+            this.ClientSize = new System.Drawing.Size(1220, 597);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnDong);
@@ -449,5 +461,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnInBaoCaoTheoThang;
     }
 }

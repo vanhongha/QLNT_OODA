@@ -2,6 +2,7 @@
 using QLNT.BusinessLayer;
 using QLNT.Entities;
 using QLNT.Ultilities;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -321,6 +322,31 @@ namespace QLNT.Presentation
             }
         }
 
+        private void btnInBaoCaoTheoThang_Click(object sender, System.EventArgs e)
+        {
+            DateTime tgBatDau = DateTime.Now;
+            DateTime tgKetThuc = DateTime.Now;
+
+            int thangBatDau = Convert.ToInt32(cboTuThang.Text);
+            int thangKetThuc = Convert.ToInt32(cboDenThang.Text);
+
+            int namBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())).Year;
+            int namKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())).Year;
+
+            if (thangBatDau >= 8 && thangBatDau <= 12)
+                tgBatDau = new DateTime(namBatDau, thangBatDau, 1);
+            else if (thangBatDau >= 1 && thangBatDau <= 5)
+                tgBatDau = new DateTime(namKetThuc, thangBatDau, 1);
+
+            if (thangKetThuc >= 8 && thangKetThuc <= 12)
+                tgKetThuc = new DateTime(namBatDau, thangKetThuc, 28);
+            else if (thangKetThuc >= 1 && thangKetThuc <= 5)
+                tgKetThuc = new DateTime(namKetThuc, thangKetThuc, 28);
+
+            Form frmBaoCaoSucKhoe = new frmBaoCaoSucKhoeTheoThang(maTre, tgBatDau, tgKetThuc);
+            frmBaoCaoSucKhoe.ShowDialog();
+        }
+
         private void btnDong_Click(object sender, System.EventArgs e)
         {
             this.Close();
@@ -348,8 +374,9 @@ namespace QLNT.Presentation
             base.OnClick(e);
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
+
         #endregion
 
-
+    
     }
 }
