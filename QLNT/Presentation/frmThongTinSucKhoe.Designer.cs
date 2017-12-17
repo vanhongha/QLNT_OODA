@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboLoaiLop = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,6 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cboNamHoc = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lbMessage = new System.Windows.Forms.Label();
             this.txtTenTre = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtGhiChu = new System.Windows.Forms.RichTextBox();
@@ -57,16 +59,16 @@
             this.btnDong = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dgvSucKhoe = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lbMessage = new System.Windows.Forms.Label();
+            this.dgvSucKhoe = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSucKhoe)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSucKhoe)).BeginInit();
             this.SuspendLayout();
             // 
             // cboLoaiLop
@@ -193,6 +195,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.lbMessage);
             this.groupBox1.Controls.Add(this.txtTenTre);
             this.groupBox1.Controls.Add(this.label11);
@@ -214,6 +218,28 @@
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết sức khỏe";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label12.Location = new System.Drawing.Point(354, 110);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(33, 25);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "kg";
+            // 
+            // lbMessage
+            // 
+            this.lbMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbMessage.AutoSize = true;
+            this.lbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMessage.ForeColor = System.Drawing.Color.Red;
+            this.lbMessage.Location = new System.Drawing.Point(20, 26);
+            this.lbMessage.Name = "lbMessage";
+            this.lbMessage.Size = new System.Drawing.Size(0, 17);
+            this.lbMessage.TabIndex = 3;
             // 
             // txtTenTre
             // 
@@ -272,7 +298,7 @@
             this.txtChieuCao.Location = new System.Drawing.Point(146, 158);
             this.txtChieuCao.Name = "txtChieuCao";
             this.txtChieuCao.ReadOnly = true;
-            this.txtChieuCao.Size = new System.Drawing.Size(244, 30);
+            this.txtChieuCao.Size = new System.Drawing.Size(199, 30);
             this.txtChieuCao.TabIndex = 6;
             this.txtChieuCao.TextChanged += new System.EventHandler(this.txtChieuCao_TextChanged);
             // 
@@ -282,7 +308,7 @@
             this.txtCanNang.Location = new System.Drawing.Point(146, 105);
             this.txtCanNang.Name = "txtCanNang";
             this.txtCanNang.ReadOnly = true;
-            this.txtCanNang.Size = new System.Drawing.Size(244, 30);
+            this.txtCanNang.Size = new System.Drawing.Size(199, 30);
             this.txtCanNang.TabIndex = 6;
             this.txtCanNang.TextChanged += new System.EventHandler(this.txtCanNang_TextChanged);
             // 
@@ -379,41 +405,6 @@
             this.panel1.Size = new System.Drawing.Size(1077, 636);
             this.panel1.TabIndex = 1;
             // 
-            // dgvSucKhoe
-            // 
-            this.dgvSucKhoe.AllowUserToAddRows = false;
-            this.dgvSucKhoe.AllowUserToDeleteRows = false;
-            this.dgvSucKhoe.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvSucKhoe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSucKhoe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvSucKhoe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSucKhoe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSucKhoe.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dgvSucKhoe.Location = new System.Drawing.Point(0, 0);
-            this.dgvSucKhoe.MultiSelect = false;
-            this.dgvSucKhoe.Name = "dgvSucKhoe";
-            this.dgvSucKhoe.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvSucKhoe.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvSucKhoe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSucKhoe.ShowCellErrors = false;
-            this.dgvSucKhoe.ShowCellToolTips = false;
-            this.dgvSucKhoe.ShowEditingIcon = false;
-            this.dgvSucKhoe.ShowRowErrors = false;
-            this.dgvSucKhoe.Size = new System.Drawing.Size(555, 440);
-            this.dgvSucKhoe.TabIndex = 26;
-            this.dgvSucKhoe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucKhoe_CellClick);
-            this.dgvSucKhoe.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvSucKhoe_ColumnAdded);
-            this.dgvSucKhoe.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSucKhoe_DataBindingComplete);
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -442,16 +433,51 @@
             this.panel3.Size = new System.Drawing.Size(555, 440);
             this.panel3.TabIndex = 0;
             // 
-            // lbMessage
+            // dgvSucKhoe
             // 
-            this.lbMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbMessage.AutoSize = true;
-            this.lbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMessage.ForeColor = System.Drawing.Color.Red;
-            this.lbMessage.Location = new System.Drawing.Point(20, 26);
-            this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Size = new System.Drawing.Size(0, 17);
-            this.lbMessage.TabIndex = 3;
+            this.dgvSucKhoe.AllowUserToAddRows = false;
+            this.dgvSucKhoe.AllowUserToDeleteRows = false;
+            this.dgvSucKhoe.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvSucKhoe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSucKhoe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvSucKhoe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSucKhoe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSucKhoe.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvSucKhoe.Location = new System.Drawing.Point(0, 0);
+            this.dgvSucKhoe.MultiSelect = false;
+            this.dgvSucKhoe.Name = "dgvSucKhoe";
+            this.dgvSucKhoe.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvSucKhoe.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvSucKhoe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSucKhoe.ShowCellErrors = false;
+            this.dgvSucKhoe.ShowCellToolTips = false;
+            this.dgvSucKhoe.ShowEditingIcon = false;
+            this.dgvSucKhoe.ShowRowErrors = false;
+            this.dgvSucKhoe.Size = new System.Drawing.Size(555, 440);
+            this.dgvSucKhoe.TabIndex = 26;
+            this.dgvSucKhoe.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSucKhoe_CellClick);
+            this.dgvSucKhoe.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvSucKhoe_ColumnAdded);
+            this.dgvSucKhoe.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSucKhoe_DataBindingComplete);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label13.Location = new System.Drawing.Point(351, 163);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(38, 25);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "cm";
             // 
             // frmThongTinSucKhoe
             // 
@@ -468,9 +494,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSucKhoe)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSucKhoe)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -507,5 +533,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbMessage;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }

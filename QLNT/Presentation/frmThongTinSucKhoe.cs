@@ -62,7 +62,10 @@ namespace QLNT.Presentation
             {
                 cboNamHoc.Items.Add(new { Text = namHoc.NienKhoa.Trim(), Value = namHoc.MaNamHoc.Trim() });
             }
-            cboNamHoc.SelectedIndex = cboNamHoc.Items.Count - 1;
+            if(cboNamHoc.Items.Count > 0)
+            {
+                cboNamHoc.SelectedIndex = cboNamHoc.Items.Count - 1;
+            }
         }
 
         private void loadListLoaiLop()
@@ -73,7 +76,10 @@ namespace QLNT.Presentation
             {
                 cboLoaiLop.Items.Add(new { Text = loaiLop.TenLoaiLop.Trim(), Value = loaiLop.MaLoaiLop.Trim() });
             }
-            cboLoaiLop.SelectedIndex = 0;
+            if(cboLoaiLop.Items.Count > 0)
+            {
+                cboLoaiLop.SelectedIndex = 0;
+            }
         }
 
         private void loadListLop()
@@ -409,6 +415,5 @@ namespace QLNT.Presentation
             }
         }
         #endregion
-
     }
 }

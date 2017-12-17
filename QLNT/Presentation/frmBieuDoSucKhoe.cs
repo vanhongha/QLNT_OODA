@@ -17,11 +17,6 @@ namespace QLNT.Presentation
         private Series series = new Series("SeriesLineChart");
         private Title title = new Title("Title");
 
-        public frmBieuDoSucKhoe()
-        {
-            InitializeComponent();
-        }
-
         public frmBieuDoSucKhoe(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             tabControl = _tabControl;
@@ -29,15 +24,7 @@ namespace QLNT.Presentation
             InitializeComponent();
         }
 
-        private void frmBieuDoSucKhoe_Load(object sender, System.EventArgs e)
-        {
-            InitDataGridView();
-            InitTypeChart();
-            LoadListNamHoc();
-            LoadListLoaiLop();
-            LoadDataGridView();
-        }
-
+        #region Init
         private void InitDataGridView()
         {
             DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
@@ -46,6 +33,14 @@ namespace QLNT.Presentation
             sttColumn.Width = 50;
             sttColumn.ReadOnly = true;
             dgvTre.Columns.Add(sttColumn);
+
+            DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
+            gioiTinhColumn.Name = "GioiTinhCol";
+            gioiTinhColumn.HeaderText = "Giới tính";
+            gioiTinhColumn.Width = 150;
+            gioiTinhColumn.ReadOnly = false;
+            gioiTinhColumn.FillWeight = 10;
+            dgvTre.Columns.Add(gioiTinhColumn);
         }
 
         private void InitTypeChart()
@@ -60,7 +55,9 @@ namespace QLNT.Presentation
             title.Font = new System.Drawing.Font("Microsoft Sans Serif", 15, System.Drawing.FontStyle.Bold);
             chart.Titles.Add(title);
         }
+        #endregion
 
+        #region Function
         private void LoadListNamHoc()
         {
             cboNamHoc.DisplayMember = "Text";
@@ -69,89 +66,11 @@ namespace QLNT.Presentation
             {
                 cboNamHoc.Items.Add(new { Text = namHoc.NienKhoa.Trim(), Value = namHoc.MaNamHoc.Trim() });
             }
-        }
 
-        private void LoadListLoaiLop()
-        {
-            cboLoaiLop.DisplayMember = "Text";
-            cboLoaiLop.ValueMember = "Value";
-            foreach (LoaiLop loaiLop in LopBLL.GetListLoaiLop())
+            if(cboNamHoc.Items.Count > 0)
             {
-                cboLoaiLop.Items.Add(new { Text = loaiLop.TenLoaiLop.Trim(), Value = loaiLop.MaLoaiLop.Trim() });
+                cboNamHoc.SelectedIndex = cboNamHoc.Items.Count - 1;
             }
-        }
-
-        private void LoadListLop()
-        {
-            cboLop.Items.Clear();
-            cboLop.DisplayMember = "Text";
-            cboLop.ValueMember = "Value";
-            foreach (Lop lop in LopBLL.GetListLop(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()),
-                KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString())))
-            {
-                cboLop.Items.Add(new { Text = lop.TenLop.Trim(), Value = lop.MaLop.Trim() });
-            }
-            cboLop.Text = "";
-        }
-
-        private void LoadDataGridView()
-        {
-            if (cboLop.SelectedItem == null)
-            {
-                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop("");
-            }
-            else
-            {
-                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop(
-                    KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
-            }
-
-            dgvTre.Columns[0].HeaderText = "STT";
-            dgvTre.Columns[2].HeaderText = "Họ tên trẻ";
-            dgvTre.Columns[3].HeaderText = "Ngày sinh";
-            dgvTre.Columns[4].HeaderText = "Giới tính";
-
-            dgvTre.Columns[0].Width = 50;
-            dgvTre.Columns[2].Width = 200;
-            dgvTre.Columns[3].Width = 120;
-            dgvTre.Columns[4].Width = 100;
-
-            for (int i = 0; i < dgvTre.Rows.Count; i++)
-            {
-                dgvTre.Rows[i].Cells[0].Value = i + 1;
-            }
-
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh" };
-            ControlFormat.DataGridViewFormat(dgvTre, listProp);
-
-            dgvTre.ClearSelection();
-            maTre = "";
-            UpdateChartData();
-        }
-
-        private void cboNamHoc_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (!cboLoaiLop.Text.Equals(""))
-            {
-                LoadListLop();
-                LoadDataGridView();
-            }
-
-            LoadListThang();
-        }
-
-        private void cboLoaiLop_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (!cboNamHoc.Text.Equals(""))
-            {
-                LoadListLop();
-                LoadDataGridView();
-            }
-        }
-
-        private void cboLop_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            LoadDataGridView();
         }
 
         private void LoadListThang()
@@ -182,45 +101,64 @@ namespace QLNT.Presentation
             cboDenThang.Text = namHoc.NgayKetThuc.Month.ToString();
         }
 
-        private void cboTuThang_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void LoadListLoaiLop()
         {
-            NamHoc namHoc = LopBLL.GetInfoNamHoc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-
-            int thangBatDau = int.Parse(cboTuThang.SelectedItem.ToString());
-            int thangKetThuc = namHoc.NgayKetThuc.Month;
-
-            List<int> listThang = new List<int>();
-
-            while (thangBatDau != thangKetThuc)
+            cboLoaiLop.DisplayMember = "Text";
+            cboLoaiLop.ValueMember = "Value";
+            foreach (LoaiLop loaiLop in LopBLL.GetListLoaiLop())
             {
-                thangBatDau++;
-                if (thangBatDau > 12)
-                    thangBatDau = 1;
-                listThang.Add(thangBatDau);
+                cboLoaiLop.Items.Add(new { Text = loaiLop.TenLoaiLop.Trim(), Value = loaiLop.MaLoaiLop.Trim() });
             }
 
-            cboDenThang.Items.Clear();
-            foreach (int thang in listThang)
+            if(cboLoaiLop.Items.Count > 0)
             {
-                cboDenThang.Items.Add(thang.ToString());
+                cboLoaiLop.SelectedIndex = 0;
             }
         }
 
-        private void cboDenThang_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void LoadListLop()
         {
-            if (cboDenThang.SelectedItem.ToString() != "" && maTre != "")
+            cboLop.Items.Clear();
+            cboLop.DisplayMember = "Text";
+            cboLop.ValueMember = "Value";
+            foreach (Lop lop in LopBLL.GetListLop(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()),
+                KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString())))
             {
-                LoadListChiTietSucKhoe();
+                cboLop.Items.Add(new { Text = lop.TenLop.Trim(), Value = lop.MaLop.Trim() });
             }
+            cboLop.Text = "";
         }
 
-        private void dgvTre_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void LoadDataGridView()
         {
-            if (e.RowIndex != -1 && e.RowIndex != dgvTre.RowCount)
+            if (cboLop.SelectedItem == null)
             {
-                maTre = dgvTre.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
-                LoadListChiTietSucKhoe();
+                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop("");
             }
+            else
+            {
+                dgvTre.DataSource = TreBLL.GetListTreTheoMaLop(
+                    KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
+            }
+
+            dgvTre.Columns["HoTenTre"].DisplayIndex = 1;
+            dgvTre.Columns["NgaySinh"].DisplayIndex = 2;
+            dgvTre.Columns["GioiTinhCol"].DisplayIndex = 3;
+
+            dgvTre.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
+            dgvTre.Columns["NgaySinh"].HeaderText = "Ngày sinh";
+            dgvTre.Columns["GioiTinhCol"].HeaderText = "Giới tính";
+
+            dgvTre.Columns["HoTenTre"].Width = 200;
+            dgvTre.Columns["NgaySinh"].Width = 120;
+            dgvTre.Columns["GioiTinhCol"].Width = 80;
+
+            string[] listProp = { "STT", "HoTenTre", "GioiTinhCol", "NgaySinh" };
+            ControlFormat.DataGridViewFormat(dgvTre, listProp);
+
+            dgvTre.ClearSelection();
+            maTre = "";
+            UpdateChartData();
         }
 
         private void LoadListChiTietSucKhoe()
@@ -269,7 +207,84 @@ namespace QLNT.Presentation
                 series.Points.AddXY(sucKhoe.Thang.ToString() + "/" + sucKhoe.Nam.ToString(),
                     rdoCanNang.Checked ? sucKhoe.CanNang : sucKhoe.ChieuCao);
             }
-        } 
+        }
+        #endregion
+
+        #region Event
+        private void frmBieuDoSucKhoe_Load(object sender, System.EventArgs e)
+        {
+            InitDataGridView();
+            InitTypeChart();
+            LoadListNamHoc();
+            LoadListLoaiLop();
+            LoadDataGridView();
+        }
+
+        private void cboNamHoc_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (!cboLoaiLop.Text.Equals(""))
+            {
+                LoadListLop();
+                LoadDataGridView();
+            }
+
+            LoadListThang();
+        }
+
+        private void cboLoaiLop_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (!cboNamHoc.Text.Equals(""))
+            {
+                LoadListLop();
+                LoadDataGridView();
+            }
+        }
+
+        private void cboLop_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            LoadDataGridView();
+        }
+
+        private void cboTuThang_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            NamHoc namHoc = LopBLL.GetInfoNamHoc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+
+            int thangBatDau = int.Parse(cboTuThang.SelectedItem.ToString());
+            int thangKetThuc = namHoc.NgayKetThuc.Month;
+
+            List<int> listThang = new List<int>();
+
+            while (thangBatDau != thangKetThuc)
+            {
+                thangBatDau++;
+                if (thangBatDau > 12)
+                    thangBatDau = 1;
+                listThang.Add(thangBatDau);
+            }
+
+            cboDenThang.Items.Clear();
+            foreach (int thang in listThang)
+            {
+                cboDenThang.Items.Add(thang.ToString());
+            }
+        }
+
+        private void cboDenThang_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (cboDenThang.SelectedItem.ToString() != "" && maTre != "")
+            {
+                LoadListChiTietSucKhoe();
+            }
+        }
+
+        private void dgvTre_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && e.RowIndex != dgvTre.RowCount)
+            {
+                maTre = dgvTre.Rows[e.RowIndex].Cells["MaTre"].Value.ToString();
+                LoadListChiTietSucKhoe();
+            }
+        }
 
         private void rdoCanNang_CheckedChanged(object sender, System.EventArgs e)
         {
@@ -301,5 +316,30 @@ namespace QLNT.Presentation
             this.Close();
             tabControl.Tabs.Remove(tab);
         }
+
+        private void dgvTre_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < dgvTre.Rows.Count; i++)
+            {
+                dgvTre.Rows[i].Cells["STT"].Value = i + 1;
+                dgvTre.Rows[i].Cells["GioiTinhCol"].Value =
+                     int.Parse(dgvTre.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
+            }
+        }
+
+        private void dgvTre_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            base.OnClick(e);
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void dgvChiTietSucKhoe_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            base.OnClick(e);
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+        #endregion
+
+
     }
 }
