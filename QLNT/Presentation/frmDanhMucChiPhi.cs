@@ -27,6 +27,7 @@ namespace QLNT.Presentation
             LoadDataGridView();
         }
 
+        #region Init
         private void initDataGridView()
         {
             DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
@@ -44,7 +45,9 @@ namespace QLNT.Presentation
             checkColumn.FillWeight = 10;
             dgvDanhMuc.Columns.Add(checkColumn);
         }
+        #endregion
 
+        #region Function
         private void LoadDataGridView()
         {
             dgvDanhMuc.DataSource = DanhMucChiPhiBLL.GetListDanhMucChiPhi();
@@ -66,8 +69,8 @@ namespace QLNT.Presentation
 
             dgvDanhMuc.Columns["TenChiPhi"].Width = 300;
             dgvDanhMuc.Columns["TenLoaiChiPhi"].Width = 200;
-            dgvDanhMuc.Columns["SoTien"].Width = 100;
-            dgvDanhMuc.Columns["GhiChu"].Width = 650;
+            dgvDanhMuc.Columns["SoTien"].Width = 120;
+            dgvDanhMuc.Columns["GhiChu"].Width = 550;
 
             dgvDanhMuc.ClearSelection();
             dgvDanhMuc.CurrentCell = null;
@@ -84,6 +87,22 @@ namespace QLNT.Presentation
             }
         }
 
+        private void ClearAllField()
+        {
+            txtTenChiPhi.Clear();
+            txtSoTien.Clear();
+            cboLoaiChiPhi.Text = "";
+            chkTinhTheoSoNgayDiHoc.Checked = false;
+            txtGhiChu.Clear();
+            maDanhMuc = "";
+
+            btnThem.Enabled = true;
+            btnXoa.Enabled = false;
+            btnCapNhat.Enabled = false;
+        }
+        #endregion
+
+        #region Event
         private void dgvDanhMuc_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (int i = 0; i < dgvDanhMuc.Rows.Count; i++)
@@ -109,8 +128,15 @@ namespace QLNT.Presentation
                 btnCapNhat.Enabled = true;
                 btnXoa.Enabled = true;
                 btnThem.Enabled = false;
+                lbMessage.Visible = false;
 
                 maDanhMuc = dgvDanhMuc.Rows[e.RowIndex].Cells["MaDanhMuc"].Value.ToString();
+
+                if(DanhMucChiPhiBLL.KiemTraSuDungDanhMucChiPhi(maDanhMuc))
+                {
+                    btnXoa.Enabled = false;
+                    lbMessage.Visible = true;
+                }
             }
         }
 
@@ -216,20 +242,6 @@ namespace QLNT.Presentation
             }
         }
 
-        private void ClearAllField()
-        {
-            txtTenChiPhi.Clear();
-            txtSoTien.Clear();
-            cboLoaiChiPhi.Text = "";
-            chkTinhTheoSoNgayDiHoc.Checked = false;
-            txtGhiChu.Clear();
-            maDanhMuc = "";
-
-            btnThem.Enabled = true;
-            btnXoa.Enabled = false;
-            btnCapNhat.Enabled = false;
-        }
-
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -261,5 +273,6 @@ namespace QLNT.Presentation
                 txtSoTien.Text = "";
             }
         }
+        #endregion
     }
 }
