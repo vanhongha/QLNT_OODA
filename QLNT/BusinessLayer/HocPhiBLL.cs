@@ -34,21 +34,39 @@ namespace QLNT.Entities
             return list;
         }
 
-        public static bool CoTheCapNhatHocPhi(int hocPhiThang, int hocPhiNam, DateTime ngayCapNhat)
+        //return -1 nếu quá thời gian áp dụng
+        //return 0 nếu tới thời gian áp dụng
+        //return 1 nếu chưa tới thời gian áp dụng
+        public static int CoTheCapNhatHocPhi(int hocPhiThang, int hocPhiNam, DateTime ngayCapNhat)
         {
-            int thangHopLe;
-            int namHopLe;
-            if(hocPhiThang == 12)
+            //tháng có thể cập nhật được học phí
+            //ví dụ: muốn cập nhật học phí tháng 11/2017 thì thời gian cập nhật hợp lệ là 12/2017
+            //vì khi trẻ học xong tháng 11 thì mới có đầy đủ các thông tin về ngày đi học để tính học phí
+            int thangHopLe = hocPhiThang + 1;
+            int namHopLe = hocPhiNam;
+            if(thangHopLe > 12)
             {
                 thangHopLe = 1;
-                namHopLe = hocPhiNam + 1;
-            } else
-            {
-                thangHopLe = hocPhiThang + 1;
-                namHopLe = hocPhiNam;
+                namHopLe += 1;
             }
 
-            return ngayCapNhat.Month == thangHopLe && ngayCapNhat.Year == namHopLe;
+            if(namHopLe < ngayCapNhat.Year)
+            {
+                return -1;
+            }
+            else if(namHopLe > ngayCapNhat.Year)
+            {
+                return 1;
+            }
+            else if(thangHopLe < ngayCapNhat.Month)
+            {
+                return -1;
+            }
+            else if(thangHopLe > ngayCapNhat.Month)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         public static void CapNhatHocPhi(HocPhi hocPhi, List<ChiTietHocPhi> listChiTiet)

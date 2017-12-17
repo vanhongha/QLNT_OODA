@@ -20,13 +20,6 @@ namespace QLNT.Presentation
             tab = _tab;
         }
 
-        private void frmDanhMucChiPhi_Load(object sender, EventArgs e)
-        {
-            initDataGridView();
-            LoadComboboxLoaiChiPhi();
-            LoadDataGridView();
-        }
-
         #region Init
         private void initDataGridView()
         {
@@ -91,7 +84,7 @@ namespace QLNT.Presentation
         {
             txtTenChiPhi.Clear();
             txtSoTien.Clear();
-            cboLoaiChiPhi.Text = "";
+            cboLoaiChiPhi.SelectedIndex = -1;
             chkTinhTheoSoNgayDiHoc.Checked = false;
             txtGhiChu.Clear();
             maDanhMuc = "";
@@ -103,6 +96,13 @@ namespace QLNT.Presentation
         #endregion
 
         #region Event
+        private void frmDanhMucChiPhi_Load(object sender, EventArgs e)
+        {
+            initDataGridView();
+            LoadComboboxLoaiChiPhi();
+            LoadDataGridView();
+        }
+
         private void dgvDanhMuc_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             for (int i = 0; i < dgvDanhMuc.Rows.Count; i++)

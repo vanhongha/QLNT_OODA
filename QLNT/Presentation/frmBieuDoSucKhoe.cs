@@ -91,6 +91,9 @@ namespace QLNT.Presentation
                 listThang.Add(thangBatDau);
             }
 
+            cboTuThang.Items.Clear();
+            cboDenThang.Items.Clear();
+
             foreach (int thang in listThang)
             {
                 cboTuThang.Items.Add(thang.ToString());
@@ -163,6 +166,13 @@ namespace QLNT.Presentation
 
         private void LoadListChiTietSucKhoe()
         {
+            if (cboTuThang.SelectedItem == null || cboDenThang.SelectedItem == null)
+            {
+                dgvChiTietSucKhoe.DataSource = null;
+                UpdateChartData();
+                return;
+            }
+
             dgvChiTietSucKhoe.DataSource = SucKhoeBLL.GetListSucKhoeTheoThang(
                     maTre,
                     int.Parse(cboTuThang.SelectedItem.ToString()),
@@ -195,7 +205,7 @@ namespace QLNT.Presentation
         {
             series.Points.Clear();
             title.Text = rdoCanNang.Checked ? "Biểu đồ cân nặng" : "Biểu đồ chiều cao";
-            if (maTre == "") return;
+            if (maTre == "" || cboTuThang.SelectedItem == null || cboDenThang.SelectedItem == null) return;
             List<SucKhoe> listSucKhoe = SucKhoeBLL.GetListSucKhoeTheoThang(
                     maTre,
                     int.Parse(cboTuThang.SelectedItem.ToString()),
