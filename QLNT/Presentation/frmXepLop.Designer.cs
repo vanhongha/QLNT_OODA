@@ -59,6 +59,7 @@
             this.btnPutForwardAll = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.btnThoiHoc = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnPutForward = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -418,6 +419,17 @@
             this.btnThoiHoc.UseVisualStyleBackColor = true;
             this.btnThoiHoc.Click += new System.EventHandler(this.btnThoiHoc_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnRefresh.Image = global::QLNT.Properties.Resources.icons8_available_updates_48;
+            this.btnRefresh.Location = new System.Drawing.Point(534, 107);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(130, 52);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // btnPutForward
             // 
             this.btnPutForward.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -441,6 +453,7 @@
             this.Controls.Add(this.btnPutForwardAll);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnThoiHoc);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnPutForward);
             this.Controls.Add(this.dgvKetQua);
             this.Controls.Add(this.dgvDanhSach);
@@ -492,5 +505,6 @@
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.ComboBox cboDoTuoi;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

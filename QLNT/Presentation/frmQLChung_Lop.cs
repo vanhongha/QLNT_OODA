@@ -277,8 +277,8 @@ namespace QLNT.Presentation
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
-        {
-            if(rdoQLLop.Checked)
+        {            
+            if (rdoQLLop.Checked)
             {
                 if(LopBLL.CapNhatLop(txtMaLop.Text, txtTenLop.Text, cboGiangVien.Text))
                 {
@@ -288,6 +288,7 @@ namespace QLNT.Presentation
                      MessageBoxIcon.Information);
                     listLop = LopBLL.GetListLop();
                     LoadDatagridView();
+                    LoadValueInDGV();
                 }
             }
             else if(rdoQLLoaiLop.Checked)
@@ -317,7 +318,6 @@ namespace QLNT.Presentation
                 }
             }
 
-            LoadValueInDGV();
         }
 
         private void btnThem_Click(object sender, EventArgs e)

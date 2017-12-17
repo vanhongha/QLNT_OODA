@@ -596,8 +596,19 @@ namespace QLNT.Presentation
             this.Close();
             tabControl.Tabs.Remove(tab);
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadListDoTuoi();
+            LoadListLoaiLop();
+            LoadListNamHoc();
+            cboLop.Text = null;
+            cboLopHoc_LuaChon.Text = null;
+            txtSiSo.Text = null;
+            txtSiSo_LuaChon.Text = null;
+            dgvDanhSach.DataSource = null;
+            dgvKetQua.DataSource = null;
+        }
         #endregion
-
-
     }
 }

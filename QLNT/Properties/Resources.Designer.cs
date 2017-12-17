@@ -113,6 +113,16 @@ namespace QLNT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_available_updates_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-available-updates-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_back_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-back-50", resourceCulture);
