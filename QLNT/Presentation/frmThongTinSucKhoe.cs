@@ -4,6 +4,7 @@ using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace QLNT.Presentation
@@ -24,14 +25,7 @@ namespace QLNT.Presentation
             tab = _tab;
         }
 
-        private void frmThongTinSucKhoe_Load(object sender, EventArgs e)
-        {
-            initDataGridView();
-            loadListNamHoc();
-            loadListLoaiLop();
-            LoadDataGirdView();
-        }
-
+        #region Init
         private void initDataGridView()
         {
             DataGridViewTextBoxColumn sttColumn = new DataGridViewTextBoxColumn();
@@ -40,8 +34,26 @@ namespace QLNT.Presentation
             sttColumn.Width = 50;
             sttColumn.ReadOnly = true;
             dgvSucKhoe.Columns.Add(sttColumn);
-        }
 
+            DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
+            gioiTinhColumn.Name = "GioiTinhCol";
+            gioiTinhColumn.HeaderText = "Giới tính";
+            gioiTinhColumn.Width = 150;
+            gioiTinhColumn.ReadOnly = false;
+            gioiTinhColumn.FillWeight = 10;
+            dgvSucKhoe.Columns.Add(gioiTinhColumn);
+
+            DataGridViewTextBoxColumn tinhTrangCol = new DataGridViewTextBoxColumn();
+            tinhTrangCol.Name = "TinhTrangCol";
+            tinhTrangCol.HeaderText = "Tình trạng học tập";
+            tinhTrangCol.Width = 200;
+            tinhTrangCol.ReadOnly = false;
+            tinhTrangCol.FillWeight = 10;
+            dgvSucKhoe.Columns.Add(tinhTrangCol);
+        }
+        #endregion
+
+        #region Function
         private void loadListNamHoc()
         {
             cboNamHoc.DisplayMember = "Text";
@@ -50,6 +62,7 @@ namespace QLNT.Presentation
             {
                 cboNamHoc.Items.Add(new { Text = namHoc.NienKhoa.Trim(), Value = namHoc.MaNamHoc.Trim() });
             }
+            cboNamHoc.SelectedIndex = cboNamHoc.Items.Count - 1;
         }
 
         private void loadListLoaiLop()
@@ -60,6 +73,7 @@ namespace QLNT.Presentation
             {
                 cboLoaiLop.Items.Add(new { Text = loaiLop.TenLoaiLop.Trim(), Value = loaiLop.MaLoaiLop.Trim() });
             }
+            cboLoaiLop.SelectedIndex = 0;
         }
 
         private void loadListLop()
@@ -72,8 +86,6 @@ namespace QLNT.Presentation
             {
                 cboLop.Items.Add(new { Text = lop.TenLop.Trim(), Value = lop.MaLop.Trim() });
             }
-            cboLop.Text = "";
-            txtSiSo.Text = "";
         }
 
         private void LoadListThang()
@@ -99,6 +111,114 @@ namespace QLNT.Presentation
             {
                 cboThang.Items.Add(thang.ToString());
             }
+
+            cboThang.Text = DateTime.Now.Month.ToString();
+        }
+
+        private void LoadDataGirdView()
+        {
+            if (cboLop.SelectedItem == null || cboThang.SelectedItem == null || cboNamHoc.SelectedItem == null)
+            {
+                dgvSucKhoe.DataSource = SucKhoeBLL.GetListSucKhoe("", 0, "");
+            }
+            else
+            {
+                dgvSucKhoe.DataSource = SucKhoeBLL.GetListSucKhoe(
+                    KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
+                    int.Parse(cboThang.SelectedItem.ToString()),
+                    KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+            }
+
+            dgvSucKhoe.Columns["HoTenTre"].DisplayIndex = 1;
+            dgvSucKhoe.Columns["GioiTinhCol"].DisplayIndex = 2;
+            dgvSucKhoe.Columns["NgaySinh"].DisplayIndex = 3;
+            dgvSucKhoe.Columns["CanNang"].DisplayIndex = 4;
+            dgvSucKhoe.Columns["ChieuCao"].DisplayIndex = 5;
+            dgvSucKhoe.Columns["BMI"].DisplayIndex = 6;
+            dgvSucKhoe.Columns["TinhTrang"].DisplayIndex = 7;
+            dgvSucKhoe.Columns["GhiChu"].DisplayIndex = 8;
+            dgvSucKhoe.Columns["TinhTrangCol"].DisplayIndex = 9;
+
+            dgvSucKhoe.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
+            dgvSucKhoe.Columns["GioiTinhCol"].HeaderText = "Giới tính";
+            dgvSucKhoe.Columns["NgaySinh"].HeaderText = "Ngày sinh";
+            dgvSucKhoe.Columns["CanNang"].HeaderText = "Cân nặng (kg)";
+            dgvSucKhoe.Columns["ChieuCao"].HeaderText = "Chiều cao (cm)";
+            dgvSucKhoe.Columns["BMI"].HeaderText = "BMI";
+            dgvSucKhoe.Columns["TinhTrang"].HeaderText = "Tình trạng";
+            dgvSucKhoe.Columns["GhiChu"].HeaderText = "Ghi chú";
+
+            dgvSucKhoe.Columns["HoTenTre"].Width = 200;
+            dgvSucKhoe.Columns["GioiTinhCol"].Width = 80;
+            dgvSucKhoe.Columns["NgaySinh"].Width = 100;
+            dgvSucKhoe.Columns["CanNang"].Width = 140;
+            dgvSucKhoe.Columns["ChieuCao"].Width = 140;
+            dgvSucKhoe.Columns["BMI"].Width = 70;
+            dgvSucKhoe.Columns["TinhTrang"].Width = 180;
+            dgvSucKhoe.Columns["GhiChu"].Width = 200;
+
+            string[] listProp = { "STT", "HoTenTre", "GioiTinhCol", "NgaySinh", "CanNang", "ChieuCao", "BMI", "TinhTrang", "GhiChu", "TinhTrangCol"};
+            ControlFormat.DataGridViewFormat(dgvSucKhoe, listProp);
+
+            dgvSucKhoe.ClearSelection();
+            maTre = "";
+        }
+
+        private void ClearAllField()
+        {
+            txtCanNang.Clear();
+            txtChieuCao.Clear();
+            txtBMI.Clear();
+            txtTinhTrang.Clear();
+            txtGhiChu.Clear();
+            txtTenTre.Clear();
+            btnCapNhat.Enabled = false;
+            lbMessage.Text = "";
+        }
+
+        private void XetRangBuocCapNhatSucKhoe(string maTinhTrang, int dieuKien)
+        {
+            if (maTinhTrang == "2")
+            {
+                txtCanNang.ReadOnly = true;
+                txtChieuCao.ReadOnly = true;
+                txtGhiChu.Enabled = false;
+                btnCapNhat.Enabled = false;
+                lbMessage.Text = "Không thể cập nhật sức khỏe cho trẻ đã thôi học";
+            }
+            else
+            {
+                if (dieuKien == 0)
+                {
+                    txtCanNang.ReadOnly = false;
+                    txtChieuCao.ReadOnly = false;
+                    txtGhiChu.Enabled = true;
+                    btnCapNhat.Enabled = true;
+                    lbMessage.Text = "";
+                }
+                else
+                {
+                    txtCanNang.ReadOnly = true;
+                    txtChieuCao.ReadOnly = true;
+                    txtGhiChu.Enabled = false;
+                    btnCapNhat.Enabled = false;
+                    lbMessage.Text =
+                        dieuKien == -1
+                        ? "Đã qua thời gian cập nhật sức khỏe cho trẻ"
+                        : "Chưa tới thời gian cập nhật sức khỏe cho trẻ";
+                }
+            }
+        }
+
+        #endregion
+
+        #region Event
+        private void frmThongTinSucKhoe_Load(object sender, EventArgs e)
+        {
+            initDataGridView();
+            loadListNamHoc();
+            loadListLoaiLop();
+            LoadDataGirdView();
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,59 +242,11 @@ namespace QLNT.Presentation
             }
         }
 
- 
-
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSiSo.Text = LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())).SiSo.ToString();
             LoadDataGirdView();
             ClearAllField();
-        }
-
-        private void LoadDataGirdView()
-        {
-            if (cboLop.SelectedItem == null || cboThang.SelectedItem == null || cboNamHoc.SelectedItem == null)
-            {
-                dgvSucKhoe.DataSource = SucKhoeBLL.GetListSucKhoe("", 0, "");
-            }
-            else
-            {
-                dgvSucKhoe.DataSource = SucKhoeBLL.GetListSucKhoe(
-                    KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
-                    int.Parse(cboThang.SelectedItem.ToString()),
-                    KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-            }
-
-            dgvSucKhoe.Columns[0].HeaderText = "STT";
-            dgvSucKhoe.Columns[4].HeaderText = "Họ tên trẻ";
-            dgvSucKhoe.Columns[5].HeaderText = "Giới tính";
-            dgvSucKhoe.Columns[6].HeaderText = "Ngày sinh";
-            dgvSucKhoe.Columns[7].HeaderText = "Cân nặng (kg)";
-            dgvSucKhoe.Columns[8].HeaderText = "Chiều cao (cm)";
-            dgvSucKhoe.Columns[9].HeaderText = "BMI";
-            dgvSucKhoe.Columns[10].HeaderText = "Tình trạng";
-            dgvSucKhoe.Columns[11].HeaderText = "Ghi chú";
-
-            dgvSucKhoe.Columns[0].Width = 50;
-            dgvSucKhoe.Columns[4].Width = 260;
-            dgvSucKhoe.Columns[5].Width = 100;
-            dgvSucKhoe.Columns[6].Width = 120;
-            dgvSucKhoe.Columns[7].Width = 150;
-            dgvSucKhoe.Columns[8].Width = 150;
-            dgvSucKhoe.Columns[9].Width = 120;
-            dgvSucKhoe.Columns[10].Width = 200;
-            dgvSucKhoe.Columns[10].Width = 300;
-
-            for (int i = 0; i < dgvSucKhoe.Rows.Count; i++)
-            {
-                dgvSucKhoe.Rows[i].Cells[0].Value = i + 1;
-            }
-
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "CanNang", "ChieuCao", "BMI", "TinhTrang", "GhiChu" };
-            ControlFormat.DataGridViewFormat(dgvSucKhoe, listProp);
-
-            dgvSucKhoe.ClearSelection();
-            maTre = "";
         }
 
         private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,7 +270,12 @@ namespace QLNT.Presentation
                     txtBMI.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["BMI"].Value.ToString();
                     txtTinhTrang.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["TinhTrang"].Value.ToString();
                     txtGhiChu.Text = dgvSucKhoe.Rows[e.RowIndex].Cells["GhiChu"].Value.ToString();
-                    btnCapNhat.Enabled = true;
+                    
+                    int dieuKien = SucKhoeBLL.CoTheCapNhatSucKhoe(
+                        int.Parse(cboThang.Text), 
+                        KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                    string maTinhTrang = dgvSucKhoe.Rows[e.RowIndex].Cells["MaTinhTrang"].Value.ToString().Trim();
+                    XetRangBuocCapNhatSucKhoe(maTinhTrang, dieuKien);
                 }
                 catch(Exception ex)
                 {
@@ -283,11 +360,6 @@ namespace QLNT.Presentation
                 MessageBox.Show("Chiều cao không được để trống.");
                 return;
             }
-            if(!SucKhoeBLL.CoTheCapNhatSucKhoe(int.Parse(cboThang.Text), KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())))
-            {
-                MessageBox.Show("Chỉ được cập nhật sức khỏe ở tháng hiện tại.");
-                return;
-            }
             SucKhoe sucKhoe = new SucKhoe();
             sucKhoe.MaTre = maTre;
             sucKhoe.Thang = int.Parse(cboThang.Text);
@@ -314,15 +386,29 @@ namespace QLNT.Presentation
             tabControl.Tabs.Remove(tab);
         }
 
-        private void ClearAllField()
+        private void dgvSucKhoe_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
-            txtCanNang.Clear();
-            txtChieuCao.Clear();
-            txtBMI.Clear();
-            txtTinhTrang.Clear();
-            txtGhiChu.Clear();
-            txtTenTre.Clear();
-            btnCapNhat.Enabled = false;
+            base.OnClick(e);
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
+
+        private void dgvSucKhoe_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            string maTinhTrang = "";
+            for (int i = 0; i < dgvSucKhoe.Rows.Count; i++)
+            {
+                dgvSucKhoe.Rows[i].Cells[0].Value = i + 1;
+                dgvSucKhoe.Rows[i].Cells["GioiTinhCol"].Value =
+                    int.Parse(dgvSucKhoe.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
+                maTinhTrang = dgvSucKhoe.Rows[i].Cells["MaTinhTrang"].Value.ToString().Trim();
+                dgvSucKhoe.Rows[i].DefaultCellStyle.BackColor = maTinhTrang == "2" ? Color.Yellow : Color.White;
+                if(maTinhTrang == "2")
+                {
+                    dgvSucKhoe.Rows[i].Cells["TinhTrangCol"].Value = "Đã thôi học";
+                }
+            }
+        }
+        #endregion
+
     }
 }

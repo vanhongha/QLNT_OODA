@@ -113,10 +113,27 @@ namespace QLNT.BusinessLayer
 
         }
 
-        public static bool CoTheCapNhatSucKhoe(int thang, string maNamHoc)
+        //return -1 khi thời gian cập nhật nhỏ hơn hiện tại
+        //return 0 khi thời gian cập nhật bằng hiện tại
+        //return 1 khi thời gian cập nhật lớn hơn hiện tại
+        public static int CoTheCapNhatSucKhoe(int thang, string maNamHoc)
         {
             int nam = LopBLL.GetNamHoc(thang, maNamHoc);
-            return thang == DateTime.Now.Month && nam == DateTime.Now.Year;
+            if (DateTime.Now.Year > nam)
+            {
+                return -1;
+            }
+            else if (DateTime.Now.Year < nam)
+            {
+                return 1;
+            } else if (DateTime.Now.Month < thang)
+            {
+                return 1;
+            } else if (DateTime.Now.Month > thang)
+            {
+                return -1;
+            }
+            return 0;
         }
 
         public static bool CapNhatSucKhoe(SucKhoe sucKhoe)
