@@ -324,6 +324,16 @@ namespace QLNT.Presentation
 
         private void btnInBaoCaoTheoThang_Click(object sender, System.EventArgs e)
         {
+            if(cboTuThang.Text == "" || cboDenThang.Text == "")
+            {
+                MessageBox.Show("Phải chọn thời gian để in báo cáo.");
+                return;
+            }
+            if(maTre == "")
+            {
+                MessageBox.Show("Phải chọn một trẻ để in báo cáo.");
+                return;
+            }
             DateTime tgBatDau = DateTime.Now;
             DateTime tgKetThuc = DateTime.Now;
 
