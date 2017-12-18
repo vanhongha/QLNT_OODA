@@ -657,7 +657,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>SucKhoeTheoThangDS</DataSetName>
-        <Top>1.60292in</Top>
+        <Top>2.71403in</Top>
         <Height>0.5in</Height>
         <Width>6.02778in</Width>
         <ZIndex>5</ZIndex>
@@ -931,9 +931,10 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>SucKhoeTheoThangDS</DataSetName>
-        <Top>2.32167in</Top>
+        <Top>3.28347in</Top>
+        <Left>0in</Left>
         <Height>2in</Height>
-        <Width>3in</Width>
+        <Width>6.02778in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -1208,10 +1209,10 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>SucKhoeTheoThangDS</DataSetName>
-        <Top>2.32167in</Top>
-        <Left>3.02778in</Left>
+        <Top>5.31125in</Top>
+        <Left>0in</Left>
         <Height>2in</Height>
-        <Width>3in</Width>
+        <Width>6.02778in</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -1222,8 +1223,142 @@
           <BackgroundGradientType>None</BackgroundGradientType>
         </Style>
       </Chart>
+      <Textbox Name="Textbox12">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Họ tên trẻ: </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!HoTenTre.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>1.51728in</Top>
+        <Left>0.125in</Left>
+        <Height>0.25in</Height>
+        <Width>2.95126in</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox16">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Kết quả chi tiết:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>2.39458in</Top>
+        <Left>0.125in</Left>
+        <Height>0.25in</Height>
+        <Width>1.13184in</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox14">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Giới tính: </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!GioiTinh.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>1.78124in</Top>
+        <Left>0.125in</Left>
+        <Height>0.25in</Height>
+        <Width>2.95126in</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox18">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Ngày sinh: </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!NgaySinh.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>2.03124in</Top>
+        <Left>0.125in</Left>
+        <Height>0.25in</Height>
+        <Width>2.94407in</Width>
+        <ZIndex>11</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.405in</Height>
+    <Height>7.43625in</Height>
     <Style />
   </Body>
   <Width>6.04042in</Width>
@@ -1308,6 +1443,18 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="NamKetThuc">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="HoTenTre">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="GioiTinh">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NgaySinh">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

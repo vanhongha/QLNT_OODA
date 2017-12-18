@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using QLNT.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,15 +35,22 @@ namespace QLNT.Presentation
 
         private void FillParameter()
         {
-            ReportParameter[] key = new ReportParameter[4];
+            ReportParameter[] key = new ReportParameter[7];
             ReportParameter ThangBatDau = new ReportParameter("ThangBatDau", tgBatDau.Month.ToString());
             ReportParameter NamBatDau = new ReportParameter("NamBatDau", tgBatDau.Year.ToString());
             ReportParameter ThangKetThuc = new ReportParameter("ThangKetThuc", tgKetThuc.Month.ToString());
             ReportParameter NamKetThuc = new ReportParameter("NamKetThuc", tgKetThuc.Year.ToString());
+            ReportParameter HoTenTre = new ReportParameter("HoTenTre", TreBLL.GetTre(maTre).HoTen);
+            ReportParameter GioiTinh = new ReportParameter("GioiTinh", TreBLL.GetTre(maTre).GioiTinh == 1 ? "Nam" : "Nữ");
+            ReportParameter NgaySinh = new ReportParameter("NgaySinh", TreBLL.GetTre(maTre).NgaySinh.ToShortDateString());
+
             key[0] = ThangBatDau;
             key[1] = NamBatDau;
             key[2] = ThangKetThuc;
             key[3] = NamKetThuc;
+            key[4] = HoTenTre;
+            key[5] = GioiTinh;
+            key[6] = NgaySinh;
             reportViewer1.LocalReport.SetParameters(key);
         }
     }

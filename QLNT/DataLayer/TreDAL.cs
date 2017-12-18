@@ -39,6 +39,23 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
+        public static Tre GetTre(string maTre)
+        {
+            DataAccessHelper db = new DataAccessHelper();
+            SqlCommand cmd = db.Command("GetTreTheoMaTre");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@MaTre", maTre);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            db.dt = new DataTable();
+            da.Fill(db.dt);
+            foreach (DataRow row in db.dt.Rows)            
+                return new Tre(row);
+            
+            return null;
+        }
+
         public static DataTable GetListTreChuaCoLop(int tuoiMin, int tuoiMax)
         {
             DataAccessHelper db = new DataAccessHelper();
@@ -47,7 +64,6 @@ namespace QLNT.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TuoiMin", tuoiMin);
             cmd.Parameters.AddWithValue("@TuoiMax", tuoiMax);
-
           
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();
@@ -97,7 +113,6 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@TenMe", tre.TenMe);
             cmd.Parameters.AddWithValue("@DiaChi", tre.DiaChi);
             cmd.Parameters.AddWithValue("@DienThoai", tre.DienThoai);
-
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             db.dt = new DataTable();

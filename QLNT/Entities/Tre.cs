@@ -127,12 +127,13 @@ namespace QLNT.Entities
             this.maTre = row["MaTre"].ToString();
             this.HoTen = row["HoTenTre"].ToString();
             this.ngaySinh = (DateTime)row["NgaySinh"];
-            this.gioiTinh = (int)row["GioiTinh"];
+            this.gioiTinh = Convert.ToInt32(row[3].ToString());
             this.tenCha = row["HoTenCha"].ToString();
             this.tenMe = row["HoTenMe"].ToString();
             this.diaChi = row["DiaChi"].ToString();
             this.dienThoai = row["SDTLienLac"].ToString();
         }
+
         public Tre(string maTre, string hoTen, 
             int gioiTinh, DateTime ngaySinh, 
             string tenCha, string tenMe, 
