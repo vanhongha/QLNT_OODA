@@ -194,17 +194,22 @@ namespace QLNT.BusinessLayer
 
         public static string getTongNangLuong(DataGridView dgvMonAn)
         {
-            int tongNL = 0;
+            double tongNL = 0;
             for (int i = 0; i < dgvMonAn.RowCount; i++)
             {
                 if(dgvMonAn.Rows[i].Cells["NangLuong"].Value.ToString() == "") { continue; }
-                tongNL += Convert.ToInt32(dgvMonAn.Rows[i].Cells["NangLuong"].Value.ToString());
+                tongNL += Convert.ToDouble(dgvMonAn.Rows[i].Cells["NangLuong"].Value.ToString());
             }
             return "Tổng năng lượng: " + tongNL;
         }
 
         public static bool xoaMonAnTrongBangMonAn(DataTable tableMonAn, string tenMonAn)
         {
+            if (MonAnBLL.LayMaMonAnTheoTen(tenMonAn) == "")
+            {
+                MessageBox.Show("Món ăn đã nhập không tồn tại\nVui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
             if (tenMonAn == "")
             {
                 MessageBox.Show("Chưa chọn món ăn để xóa", "Thông báo", MessageBoxButtons.OK);
@@ -225,7 +230,13 @@ namespace QLNT.BusinessLayer
 
         public static bool themMonAnTrongBangMonAn(DataTable tableMonAn, string tenMonAn)
         {
-            if(tableMonAn.Rows.Count >= 6)
+            if (MonAnBLL.LayMaMonAnTheoTen(tenMonAn) == "")
+            {
+                MessageBox.Show("Món ăn đã nhập không tồn tại\nVui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+
+            if (tableMonAn.Rows.Count >= 6)
             {
                 MessageBox.Show("Không thể thêm món\nChỉ được chọn tối đa 6 món ăn cho một bữa ăn", "Thông báo", MessageBoxButtons.OK);
                 return false;
@@ -236,12 +247,40 @@ namespace QLNT.BusinessLayer
                 MessageBox.Show("Món ăn đã tồn tại trong bảng", "Thông báo", MessageBoxButtons.OK);
                 return false;
             }
+            
             DataRow row = tableMonAn.NewRow();
             row["TenMonAn"] = tenMonAn;
             row["NangLuong"] = MonAnBLL.LayNangLuongMonAnTheoTen(tenMonAn);
             tableMonAn.Rows.Add(row);
 
             return true;
+        }
+
+        public static bool kiemTraInBaoCao(string BuoiAD, DateTime NgayAD)
+        {
+            if(BuoiAD == "")
+            {
+                MessageBox.Show("Chưa chọn buổi để xuất báo cáo", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+            
+            if(NgayAD == null)
+            {
+                MessageBox.Show("Chưa chọn ngày để xuất báo cáo", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool kiemTraInBaoCao( string MaLop, string BuoiAD, DateTime NgayAD)
+        {
+            if(MaLop == "")
+            {
+                MessageBox.Show("Chưa chọn buổi để xuất báo cáo", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+
+            return kiemTraInBaoCao(BuoiAD, NgayAD);
         }
     }
 }

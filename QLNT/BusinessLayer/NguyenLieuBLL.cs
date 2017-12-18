@@ -123,7 +123,7 @@ namespace QLNT.BusinessLayer
             return NguyenLieuDAL.LayDanhSachTenVaMaNguyenLieu();
         }
 
-        public static float LayNangLuongNguyenLieuTheoMa(string maNL)
+        public static double LayNangLuongNguyenLieuTheoMa(string maNL)
         {
             return NguyenLieuDAL.LayNangLuongNguyenLieuTheoMa(maNL);
         }

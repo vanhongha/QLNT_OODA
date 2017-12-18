@@ -204,7 +204,7 @@ namespace QLNT.DataLayer
             return db.dt;
         }
 
-        public static float LayNangLuongNguyenLieuTheoMa(string maNL)
+        public static double LayNangLuongNguyenLieuTheoMa(string maNL)
         {
             DataAccessHelper db = new DataAccessHelper();
             SqlCommand cmd = db.Command("LayNangLuongNguyenLieuTheoMa");
@@ -216,7 +216,7 @@ namespace QLNT.DataLayer
             da.Fill(db.dt);
             foreach (DataRow row in db.dt.Rows)
             {
-                return float.Parse(row.ItemArray[0].ToString());
+                return double.Parse(row.ItemArray[0].ToString());
             }
             return 0;
 

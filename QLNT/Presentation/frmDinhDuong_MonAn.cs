@@ -49,6 +49,7 @@ namespace QLNT.Presentation
 
             dgvMonAn.ClearSelection();
             dgvMonAn.CurrentCell = null;
+            getDataGridViewChiTietMonAn("");
         }
 
         private void getDataGridViewChiTietMonAn(string maMon)
@@ -72,7 +73,7 @@ namespace QLNT.Presentation
             dgvChiTietMonAn.Columns[3].HeaderText = "Năng Lượng (Kcal/gam)";
             dgvChiTietMonAn.Columns[3].Width = 120;
             dgvChiTietMonAn.ClearSelection();
-            XoaTrangChiTiet();
+            
         }
 
         private void getCombobox()
@@ -168,6 +169,7 @@ namespace QLNT.Presentation
             MonAnBLL.XoaMonAn(txtMaMonAn.Text);
             XoaTrang();
             getDataGridViewMonAn();
+            XoaTrangChiTiet();
 
         }
 

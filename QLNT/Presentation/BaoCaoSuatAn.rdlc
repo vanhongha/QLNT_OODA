@@ -95,7 +95,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Danh sách thực đơn theo lớp:</Value>
+                <Value>Danh sách thực đơn:</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <Color>Blue</Color>
@@ -106,7 +106,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.84555in</Top>
+        <Top>2.28694in</Top>
         <Left>0.62091in</Left>
         <Height>0.25in</Height>
         <Width>2.39583in</Width>
@@ -167,7 +167,9 @@
               </TextRun>
               <TextRun>
                 <Value>=Fields!NgayApDung.Value</Value>
-                <Style />
+                <Style>
+                  <Format>dd/MM/yyyy</Format>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style>
@@ -387,7 +389,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>2.3425in</Top>
+        <Top>2.5925in</Top>
         <Left>0.62091in</Left>
         <Height>0.5in</Height>
         <Width>2.375in</Width>
@@ -398,6 +400,74 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox8">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tên lớp:</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!TenLop.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox8</rd:DefaultName>
+        <Top>1.7275in</Top>
+        <Left>0.62091in</Left>
+        <Height>0.25in</Height>
+        <Width>2.39583in</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>GVCN: </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!TenNhanVien.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox9</rd:DefaultName>
+        <Top>1.9775in</Top>
+        <Left>0.62091in</Left>
+        <Height>0.25in</Height>
+        <Width>2.39583in</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>5.32084in</Height>
     <Style />

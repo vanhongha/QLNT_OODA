@@ -35,7 +35,7 @@ namespace QLNT.BusinessLayer
 
 
 
-            ChiTietMonAn chiTiet = new ChiTietMonAn(maMonAn, _maNL, float.Parse(soLuong));
+            ChiTietMonAn chiTiet = new ChiTietMonAn(maMonAn, _maNL, double.Parse(soLuong));
             if (KiemTraMaNL(maMonAn,_maNL))
             {
                 CapNhatChiTietMonAn(chiTiet);
@@ -72,7 +72,7 @@ namespace QLNT.BusinessLayer
             return ChiTietMonAnDAL.KiemTraMaNL(maMon, MaNL);
         }
 
-        public static float TinhNangLuong(TextBox txtKhoiLuong, string tenNguyenLieu)
+        public static double TinhNangLuong(TextBox txtKhoiLuong, string tenNguyenLieu)
         {
             if(txtKhoiLuong.Text == "")
             {
@@ -87,10 +87,10 @@ namespace QLNT.BusinessLayer
                 return 0;
             }
 
-            float _khoiLuong = 0;
+            double _khoiLuong = 0;
             try
             {
-                _khoiLuong = float.Parse(txtKhoiLuong.Text);
+                _khoiLuong = double.Parse(txtKhoiLuong.Text);
             }
             catch
             {

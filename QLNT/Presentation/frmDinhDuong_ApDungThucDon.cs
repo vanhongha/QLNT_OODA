@@ -159,17 +159,34 @@ namespace QLNT.Presentation
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.Name = "X";
             checkBoxColumn.Width = 50;
-            checkBoxColumn.ReadOnly = true;
             dgv.Columns.Clear();
             dgv.Columns.Add(checkBoxColumn);
         }
 
         private void getDataGridViewTre()
         {
-            getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
-            getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
-            ckbAll.Checked = false;
-            ckbAll_TreDaXetTD.Checked = false;
+            try {
+                getDataGridViewTreChuaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+                getDataGridViewTreDaXetThucDon(cboLop.SelectedValue.ToString().Trim(), dtpNgay_Loc.Value.Month, dtpNgay_Loc.Value.Year);
+                ckbAll.Checked = false;
+                ckbAll_TreDaXetTD.Checked = false;
+            }
+            catch { }
+            
+        }
+
+        private void setEnableButton(bool value)
+        {
+            btnAdd.Enabled = value;
+            btnAddAll.Enabled = value;
+            btnRemove.Enabled = value;
+            btnRemoveAll.Enabled = value;
+            btnReload.Enabled = value;
+            btnThem.Enabled = value;
+            btnXoa.Enabled = value;
+            btnXuatDanhSachTheoLop.Enabled = value;
+            btnBaoCaoNhaBep.Enabled = value;
+            lblNote.Visible = !value;
         }
 
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -257,6 +274,14 @@ namespace QLNT.Presentation
         private void dtpNgay_Loc_ValueChanged(object sender, EventArgs e)
         {
             getComboboxLop();
+            if(DateTime.Compare(dtpNgay_Loc.Value, DateTime.Today) < 0)
+            {
+                setEnableButton(false);
+            }
+            else
+            {
+                setEnableButton(true);
+            }
         }
 
         private void ckbAll_CheckedChanged(object sender, EventArgs e)
@@ -291,11 +316,6 @@ namespace QLNT.Presentation
             lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
         }
 
-        private void btnReload_Click(object sender, EventArgs e)
-        {
-            getComboBoxMonAn();
-        }
-
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -304,14 +324,49 @@ namespace QLNT.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form frmBaoCaoNhaBep = new frmDinhDuong_BaoCaoNhaBep(cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value);
-            frmBaoCaoNhaBep.ShowDialog();
+            try
+            {
+                if (dgvThongTinThucDon_MonAn.Rows.Count <= 0)
+                {
+                    MessageBox.Show("Chưa có dữ liệu nào cho bữa ăn này", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (ThongTinThucDonBLL.kiemTraInBaoCao(cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value))
+                {
+                    Form frmBaoCaoNhaBep = new frmDinhDuong_BaoCaoNhaBep(cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value);
+                    frmBaoCaoNhaBep.ShowDialog();
+                }
+            }
+            catch { }
+            
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form frmBaoCaoSuatAn = new frmDinhDuong_BaoCaoSuatAn( cboLop.SelectedValue.ToString().Trim(),cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value);
-            frmBaoCaoSuatAn.ShowDialog();
+            try
+            {
+                if (dgvThongTinThucDon_MonAn.Rows.Count <= 0)
+                {
+                    MessageBox.Show("Chưa có dữ liệu nào cho bữa ăn này", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (ThongTinThucDonBLL.kiemTraInBaoCao(cboLop.SelectedValue.ToString().Trim(), cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value))
+                {
+                    Form frmBaoCaoSuatAn = new frmDinhDuong_BaoCaoSuatAn(cboLop.SelectedValue.ToString().Trim(), cboBuoiAD.Text.Trim(), dtpNgay_Loc.Value);
+                    frmBaoCaoSuatAn.ShowDialog();
+                }
+            }
+            catch { }
+            
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            getComboBoxMonAn();
+            
         }
     }
 }
