@@ -141,7 +141,7 @@ namespace QLNT.Presentation
 
         public void getComboBoxMonAn()
         {
-            cboTenMonAn.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn();
+            cboTenMonAn.DataSource = ThongTinThucDonBLL.LayDanhSachTenVaMaMonAn();
             cboTenMonAn.DisplayMember = "TenMonAn";
             cboTenMonAn.ValueMember = "MaMonAn";
             cboTenMonAn.Text = "";
@@ -149,7 +149,7 @@ namespace QLNT.Presentation
 
         private void getComboboxMonAnTheoTuKhoa(ComboBox cbo)
         {
-            cbo.DataSource = ChiTietThucDonBLL.LayDanhSachTenVaMaMonAn(cboBuoiAD.Text);
+            cbo.DataSource = ThongTinThucDonBLL.LayDanhSachTenVaMaMonAn(cboBuoiAD.Text);
             cbo.DisplayMember = "TenMonAn";
             cbo.ValueMember = "MaMonAn";
         }
@@ -283,11 +283,7 @@ namespace QLNT.Presentation
                 setEnableButton(true);
             }
         }
-
-        private void ckbAll_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         private void dgvTreChuaXetThucDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {

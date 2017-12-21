@@ -100,6 +100,12 @@ namespace QLNT.Presentation
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            if (NguyenLieuBLL.KiemTraTonTaiMaNguyenLieuTrongMonAn(txtMaNguyenLieu.Text))
+            {
+                SetEnabledComponents(false);
+                MessageBox.Show("Không thể cập nhật nguyên liệu đã được sử dụng trong món ăn");
+                return;
+            }
             NguyenLieuBLL.LuuNguyenLieu(txtMaNguyenLieu.Text.Trim(),txtTenNguyenLieu.Text.Trim(), cboLoaiNguyenLieu.Text.Trim(), txtNangLuong.Text.Trim(), txtDonViTinh.Text.Trim());
             getDataGridView();
         }
@@ -111,6 +117,12 @@ namespace QLNT.Presentation
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if (NguyenLieuBLL.KiemTraTonTaiMaNguyenLieuTrongMonAn(txtMaNguyenLieu.Text))
+            {
+                SetEnabledComponents(false);
+                MessageBox.Show("Không thể xóa nguyên liệu đã được sử dụng trong món ăn");
+                return;
+            }
             NguyenLieuBLL.XoaNguyenLieu(txtMaNguyenLieu.Text.Trim());
             getDataGridView();
             XoaTrang();

@@ -246,9 +246,6 @@ namespace QLNT.Presentation
         }
         #endregion
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }

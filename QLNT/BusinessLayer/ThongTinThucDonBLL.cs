@@ -139,6 +139,16 @@ namespace QLNT.BusinessLayer
             return ThongTinThucDonDAL.LayDanhSachNguyenLieuTheoNgay(ngayAD);
         }
 
+        public static DataTable LayDanhSachTenVaMaMonAn()
+        {
+            return ThongTinThucDonDAL.LayDanhSachTenVaMaMonAn();
+        }
+
+        public static DataTable LayDanhSachTenVaMaMonAn(string tuKhoa)
+        {
+            return ThongTinThucDonDAL.LayDanhSachTenVaMaMonAn(tuKhoa);
+        }
+
         public static void getListTre(List<string> listTre, DataGridView dgv, bool getAll)
         {
             listTre.Clear();

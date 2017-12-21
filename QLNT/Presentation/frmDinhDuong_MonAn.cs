@@ -175,7 +175,12 @@ namespace QLNT.Presentation
 
         private void btnLuuChiTiet_Click(object sender, EventArgs e)
         {
-            if(ChiTietMonAnBLL.LuuChiTietMonAn(txtMaMonAn.Text.Trim(), 
+            if (MonAnBLL.KiemTraMonAnTrongThucDon(txtMaMonAn.Text)){
+                SetEnabledComponents(false);
+                MessageBox.Show("Không thể cập nhật chi tiết của món ăn đã được áp dụng", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            if (ChiTietMonAnBLL.LuuChiTietMonAn(txtMaMonAn.Text.Trim(), 
                 cboChonNguyenLieu.Text.Trim(), txtKhoiLuong.Text))
             {
                 getDataGridViewMonAn();
@@ -186,6 +191,12 @@ namespace QLNT.Presentation
 
         private void btnXoaChiTiet_Click(object sender, EventArgs e)
         {
+            if (MonAnBLL.KiemTraMonAnTrongThucDon(txtMaMonAn.Text))
+            {
+                SetEnabledComponents(false);
+                MessageBox.Show("Không thể xóa chi tiết của món ăn đã được áp dụng", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             ChiTietMonAnBLL.XoaChiTietMonAn(txtMaMonAn.Text.Trim(), cboChonNguyenLieu.Text.Trim());
             XoaTrangChiTiet();
             getDataGridViewMonAn();
