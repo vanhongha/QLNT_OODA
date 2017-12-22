@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmXepLop));
             this.dgvDanhSach = new System.Windows.Forms.DataGridView();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -422,7 +423,7 @@
             // btnRefresh
             // 
             this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRefresh.Image = global::QLNT.Properties.Resources.icons8_available_updates_48;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
             this.btnRefresh.Location = new System.Drawing.Point(534, 107);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(130, 52);

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDinhDuong_MonAn));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -82,7 +82,7 @@
             this.groupBox1.Controls.Add(this.dgvChiTietMonAn);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox1.Location = new System.Drawing.Point(586, 39);
+            this.groupBox1.Location = new System.Drawing.Point(586, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(591, 463);
             this.groupBox1.TabIndex = 51;
@@ -230,14 +230,14 @@
             this.dgvChiTietMonAn.AllowUserToAddRows = false;
             this.dgvChiTietMonAn.AllowUserToDeleteRows = false;
             this.dgvChiTietMonAn.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiTietMonAn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTietMonAn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvChiTietMonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietMonAn.Location = new System.Drawing.Point(16, 32);
             this.dgvChiTietMonAn.Name = "dgvChiTietMonAn";
@@ -259,7 +259,7 @@
             this.groupBox2.Controls.Add(this.dgvMonAn);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox2.Location = new System.Drawing.Point(6, 39);
+            this.groupBox2.Location = new System.Drawing.Point(6, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(563, 463);
             this.groupBox2.TabIndex = 52;
@@ -353,7 +353,7 @@
             this.closeBtn.BackColor = System.Drawing.Color.Transparent;
             this.closeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.closeBtn.Image = ((System.Drawing.Image)(resources.GetObject("closeBtn.Image")));
-            this.closeBtn.Location = new System.Drawing.Point(1156, 9);
+            this.closeBtn.Location = new System.Drawing.Point(1157, 1);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(25, 25);
             this.closeBtn.TabIndex = 138;
@@ -364,11 +364,10 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Controls.Add(this.closeBtn);
             this.groupBox3.Controls.Add(this.groupBox1);
-            this.groupBox3.Location = new System.Drawing.Point(1, 0);
+            this.groupBox3.Location = new System.Drawing.Point(1, 32);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1183, 542);
+            this.groupBox3.Size = new System.Drawing.Size(1183, 510);
             this.groupBox3.TabIndex = 139;
             this.groupBox3.TabStop = false;
             // 
@@ -378,6 +377,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 542);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.closeBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDinhDuong_MonAn";
             this.Text = "frmDinhDuong_MonAn";

@@ -294,7 +294,7 @@
             // 
             // btnDiemDanh
             // 
-            this.btnDiemDanh.Image = global::QLNT.Properties.Resources.diemdanh;
+            this.btnDiemDanh.Image = ((System.Drawing.Image)(resources.GetObject("btnDiemDanh.Image")));
             this.btnDiemDanh.ImagePaddingHorizontal = 8;
             this.btnDiemDanh.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
             this.btnDiemDanh.Name = "btnDiemDanh";

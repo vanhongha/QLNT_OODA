@@ -89,7 +89,7 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboBuoiAD.Location = new System.Drawing.Point(101, 73);
+            this.cboBuoiAD.Location = new System.Drawing.Point(101, 60);
             this.cboBuoiAD.Name = "cboBuoiAD";
             this.cboBuoiAD.Size = new System.Drawing.Size(140, 24);
             this.cboBuoiAD.TabIndex = 101;
@@ -121,7 +121,7 @@
             // 
             this.dtpNgay_Loc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgay_Loc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgay_Loc.Location = new System.Drawing.Point(100, 45);
+            this.dtpNgay_Loc.Location = new System.Drawing.Point(100, 32);
             this.dtpNgay_Loc.Name = "dtpNgay_Loc";
             this.dtpNgay_Loc.Size = new System.Drawing.Size(140, 22);
             this.dtpNgay_Loc.TabIndex = 100;
@@ -150,7 +150,7 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboLoaiLop.Location = new System.Drawing.Point(101, 103);
+            this.cboLoaiLop.Location = new System.Drawing.Point(101, 90);
             this.cboLoaiLop.Name = "cboLoaiLop";
             this.cboLoaiLop.Size = new System.Drawing.Size(140, 24);
             this.cboLoaiLop.TabIndex = 109;
@@ -178,7 +178,7 @@
             "Sáng",
             "Trưa",
             "Chiều"});
-            this.cboLop.Location = new System.Drawing.Point(101, 133);
+            this.cboLop.Location = new System.Drawing.Point(101, 120);
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(140, 24);
             this.cboLop.TabIndex = 114;
@@ -215,7 +215,7 @@
             this.gbx.Controls.Add(this.dgvTreChuaXetThucDon);
             this.gbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gbx.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.gbx.Location = new System.Drawing.Point(9, 287);
+            this.gbx.Location = new System.Drawing.Point(9, 274);
             this.gbx.Name = "gbx";
             this.gbx.Size = new System.Drawing.Size(559, 261);
             this.gbx.TabIndex = 105;
@@ -251,7 +251,7 @@
             // 
             this.btnRemoveAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRemoveAll.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAll.Image")));
-            this.btnRemoveAll.Location = new System.Drawing.Point(572, 470);
+            this.btnRemoveAll.Location = new System.Drawing.Point(567, 456);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(48, 34);
             this.btnRemoveAll.TabIndex = 133;
@@ -262,7 +262,7 @@
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(572, 354);
+            this.btnAdd.Location = new System.Drawing.Point(567, 340);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(48, 34);
             this.btnAdd.TabIndex = 130;
@@ -273,7 +273,7 @@
             // 
             this.btnAddAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAddAll.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAll.Image")));
-            this.btnAddAll.Location = new System.Drawing.Point(572, 390);
+            this.btnAddAll.Location = new System.Drawing.Point(567, 376);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(48, 34);
             this.btnAddAll.TabIndex = 131;
@@ -284,7 +284,7 @@
             // 
             this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
-            this.btnRemove.Location = new System.Drawing.Point(572, 434);
+            this.btnRemove.Location = new System.Drawing.Point(567, 420);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(48, 34);
             this.btnRemove.TabIndex = 132;
@@ -302,7 +302,7 @@
             this.groupBox3.Controls.Add(this.label29);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox3.Location = new System.Drawing.Point(252, 25);
+            this.groupBox3.Location = new System.Drawing.Point(252, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(316, 243);
             this.groupBox3.TabIndex = 130;
@@ -407,7 +407,7 @@
             this.groupBox1.Controls.Add(this.dgvThongTinThucDon_MonAn);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox1.Location = new System.Drawing.Point(625, 25);
+            this.groupBox1.Location = new System.Drawing.Point(614, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(555, 243);
             this.groupBox1.TabIndex = 136;
@@ -472,7 +472,7 @@
             this.closeBtn.BackColor = System.Drawing.Color.Transparent;
             this.closeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.closeBtn.Image = ((System.Drawing.Image)(resources.GetObject("closeBtn.Image")));
-            this.closeBtn.Location = new System.Drawing.Point(1162, 5);
+            this.closeBtn.Location = new System.Drawing.Point(1177, 0);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(25, 25);
             this.closeBtn.TabIndex = 137;
@@ -486,7 +486,7 @@
             this.groupBox2.Controls.Add(this.dgvTreDaXetThucDon);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBox2.Location = new System.Drawing.Point(625, 287);
+            this.groupBox2.Location = new System.Drawing.Point(614, 274);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(555, 261);
             this.groupBox2.TabIndex = 138;
@@ -498,7 +498,7 @@
             this.lblNote.AutoSize = true;
             this.lblNote.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNote.ForeColor = System.Drawing.Color.Crimson;
-            this.lblNote.Location = new System.Drawing.Point(22, 27);
+            this.lblNote.Location = new System.Drawing.Point(22, 14);
             this.lblNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNote.Name = "lblNote";
             this.lblNote.Size = new System.Drawing.Size(223, 14);
@@ -510,7 +510,7 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 169);
+            this.pictureBox1.Location = new System.Drawing.Point(22, 156);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(221, 98);
             this.pictureBox1.TabIndex = 140;
@@ -520,7 +520,6 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.groupBox4.Controls.Add(this.gbx);
-            this.groupBox4.Controls.Add(this.closeBtn);
             this.groupBox4.Controls.Add(this.lblNote);
             this.groupBox4.Controls.Add(this.pictureBox1);
             this.groupBox4.Controls.Add(this.groupBox2);
@@ -538,9 +537,9 @@
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.cboBuoiAD);
-            this.groupBox4.Location = new System.Drawing.Point(1, -3);
+            this.groupBox4.Location = new System.Drawing.Point(14, 30);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1187, 559);
+            this.groupBox4.Size = new System.Drawing.Size(1176, 539);
             this.groupBox4.TabIndex = 141;
             this.groupBox4.TabStop = false;
             // 
@@ -548,8 +547,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 557);
+            this.ClientSize = new System.Drawing.Size(1203, 581);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.closeBtn);
             this.ForeColor = System.Drawing.SystemColors.Highlight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(1000, 557);
