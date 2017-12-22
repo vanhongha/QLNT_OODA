@@ -44,7 +44,7 @@ namespace QLNT.Presentation
 
             dtThangLapPhieu.Format = DateTimePickerFormat.Custom;
             dtThangLapPhieu.CustomFormat = "MM/yyyy";
-            dtThangLapPhieu.ShowUpDown = true;
+            //dtThangLapPhieu.ShowUpDown = true;
         }
         #endregion
 
@@ -75,10 +75,12 @@ namespace QLNT.Presentation
             dgvPhieuBeNgoan.Columns.Clear();
             if (!string.IsNullOrEmpty(cboLop.Text))
             {
+                
                 string datetime = dtThangLapPhieu.Text;
                 dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.LayPhieuBeNgoanTheoLop(
                     LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
                     datetime);
+                TaoPhieuTrong();
                 if (dgvPhieuBeNgoan.RowCount <= 0)
                 {
                     lbThongBao.Text = "Tháng " + dtThangLapPhieu.Value.ToString("MM-yyyy") + " chưa tạo phiếu bé ngoan";
@@ -87,7 +89,7 @@ namespace QLNT.Presentation
                 else
                 {
                     lbThongBao.Visible = false;
-                    TaoPhieuTrong();
+                    
 
                     for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                     {
@@ -122,26 +124,34 @@ namespace QLNT.Presentation
 
         private void TaoPhieuTrong()
         {
+            dgvPhieuBeNgoan.Columns["MaTre"].HeaderText = "Mã Trẻ";
+            dgvPhieuBeNgoan.Columns["MaTre"].FillWeight = 50;
+            dgvPhieuBeNgoan.Columns["HoTenTre"].HeaderText = "Họ Tên Trẻ";
+            dgvPhieuBeNgoan.Columns["HoTenTre"].FillWeight = 150;
+            dgvPhieuBeNgoan.Columns["NhanXetThang"].HeaderText = "Nhận Xét Tháng";
+
             for (int i = 1; i < 5; i++)
             {
                 DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
                 checkColumn.Name = "cbPhieu" + i;
-                checkColumn.HeaderText = "Phiếu Tuần " + i;
-                checkColumn.Width = 50;
+                checkColumn.HeaderText = "Tuần " + i;
                 checkColumn.ReadOnly = false;
-                checkColumn.FillWeight = 10;
+                checkColumn.FillWeight = 20;
+                checkColumn.DisplayIndex = 1 + i;
                 dgvPhieuBeNgoan.Columns.Add(checkColumn);
                 dgvPhieuBeNgoan.Columns["PhieuBeNgoanTuan" + i].Visible = false;
             }
             DataGridViewCheckBoxColumn phieuthang = new DataGridViewCheckBoxColumn();
             phieuthang.Name = "cbPhieuThang";
-            phieuthang.HeaderText = "Phiếu Tháng";
-            phieuthang.Width = 80;
+            phieuthang.HeaderText = "Cả Tháng";
             phieuthang.ReadOnly = false;
-            phieuthang.FillWeight = 50;
+            phieuthang.FillWeight = 30;
             phieuthang.DefaultCellStyle.BackColor = Color.LimeGreen;
+            phieuthang.DisplayIndex = 6;
             dgvPhieuBeNgoan.Columns.Add(phieuthang);
             dgvPhieuBeNgoan.Columns["PhieuBeNgoanThang"].Visible = false;
+
+            dgvPhieuBeNgoan.Columns["NhanXetThang"].DisplayIndex = 7;
 
         }
 
@@ -169,20 +179,25 @@ namespace QLNT.Presentation
         private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadListLop();
-            string namhoc = cboNamHoc.Text;
-            int year = Int32.Parse(namhoc.Split('-')[0]);
-            if ((new DateTime(year, 9, 5)) >= dtThangLapPhieu.MaxDate)
+            
+            DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+            DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+
+
+            if (ngayBatDau >= dtThangLapPhieu.MaxDate)
             {
-                dtThangLapPhieu.MaxDate = new DateTime(year + 1, 9, 5);
-                dtThangLapPhieu.MinDate = dtThangLapPhieu.MaxDate.AddYears(-1);
-                dtThangLapPhieu.Value = new DateTime(year, DateTime.Now.Month, 1);
+                dtThangLapPhieu.MaxDate = ngayKetThuc;
+                dtThangLapPhieu.MinDate = ngayBatDau;
+                dtThangLapPhieu.Value = ngayBatDau;
             }
-            if ((new DateTime(year + 1, 9, 5)) <= dtThangLapPhieu.MinDate)
+            else 
             {
-                dtThangLapPhieu.MinDate = new DateTime(year, 9, 5);
-                dtThangLapPhieu.MaxDate = dtThangLapPhieu.MinDate.AddYears(1);
-                dtThangLapPhieu.Value = new DateTime(year, DateTime.Now.Month, 1);
+                dtThangLapPhieu.MinDate = ngayBatDau;
+                dtThangLapPhieu.MaxDate = ngayKetThuc;
+                dtThangLapPhieu.Value = ngayBatDau;
             }
+            
+            
         }
 
         private void dtThangLapPhieu_ValueChanged(object sender, EventArgs e)
@@ -279,14 +294,20 @@ namespace QLNT.Presentation
             else if (LopBLL.GetSiSo(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())) <= 0)
             {
                 lbThongBao.Text += "\nLớp không có học sinh, không thể tạo phiếu mới";
+                btnLuuPhieu.Enabled = false;
+                btnTaoPhieuMoi.Enabled = false;
                 lbThongBao.Visible = true;
             }
             else if (!Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
             {
                 lbThongBao.Text += "\nNiên khóa đã qua, không thể tạo phiếu mới";
+                btnLuuPhieu.Enabled = false;
+                btnTaoPhieuMoi.Enabled = false;
                 lbThongBao.Visible = true;
             }
 
         }
+
+        
     }
 }
