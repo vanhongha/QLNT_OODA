@@ -13,32 +13,44 @@ namespace QLNT.BusinessLayer
 {
     class NguyenLieuBLL
     {
-        public static void LuuNguyenLieu(string maNL, string tenNL, string tenLoaiNL, string chiSoDD, string donViTinh)
+        public static void LuuNguyenLieu(string maNL, string tenNL, string tenLoaiNL, double nangLuong, string donViTinh)
         {
-            string _maNL = LayMaNguyenLieuTheoTen(tenNL);
+            if (tenNL == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên nguyên liệu", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
             string _maLNL = LoaiNguyenLieuBLL.layMaLoaiNguyenLieuTheoTen(tenLoaiNL);
-            if(_maLNL == "")
+            if (_maLNL == "")
             {
                 MessageBox.Show("Vui lòng chọn loại nguyên liệu", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
 
-            if (_maNL != "")
+            if (nangLuong == 0)
+            {
+                MessageBox.Show("Năng lượng không thể có giá trị 0\nvui lòng nhập năng lượng", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+
+            string _maNguyenLieuTheoTen = LayMaNguyenLieuTheoTen(tenNL);
+            if (_maNguyenLieuTheoTen != "")
             {   
-                if(_maNL != maNL)
+                if(_maNguyenLieuTheoTen != maNL)
                 {
-                    MessageBox.Show("Nguyên liệu '" + tenNL + "' đã tồn tại với mã '" + _maNL + "'\nVui lòng nhập tên khác", "Thông báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Nguyên liệu '" + tenNL + "' đã tồn tại với mã '" + _maNguyenLieuTheoTen + "'\nVui lòng nhập tên khác", "Thông báo", MessageBoxButtons.OK);
                     return;
                 }
                 else
                 {
-                    NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, chiSoDD, donViTinh);
+                    NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, nangLuong, donViTinh);
                     CapNhatNguyenLieu(nguyenLieu);
                 } 
             }
             else
             {
-                NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, chiSoDD, donViTinh);
+                NguyenLieu nguyenLieu = new NguyenLieu(maNL, tenNL, _maLNL, nangLuong, donViTinh);
                 if(KiemTraMaNL(maNL))
                 {
                     CapNhatNguyenLieu(nguyenLieu);

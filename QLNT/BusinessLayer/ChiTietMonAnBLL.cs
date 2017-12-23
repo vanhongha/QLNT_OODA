@@ -94,7 +94,7 @@ namespace QLNT.BusinessLayer
             }
             catch
             {
-                MessageBox.Show("Khối lượng phải là số thực", "Lỗi nhập", MessageBoxButtons.OK);
+                MessageBox.Show("Khối lượng phải là số thực dương", "Lỗi nhập", MessageBoxButtons.OK);
                 txtKhoiLuong.Text = "";
                 return 0;
             }

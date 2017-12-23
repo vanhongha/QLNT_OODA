@@ -106,7 +106,13 @@ namespace QLNT.Presentation
                 MessageBox.Show("Không thể cập nhật nguyên liệu đã được sử dụng trong món ăn");
                 return;
             }
-            NguyenLieuBLL.LuuNguyenLieu(txtMaNguyenLieu.Text.Trim(),txtTenNguyenLieu.Text.Trim(), cboLoaiNguyenLieu.Text.Trim(), txtNangLuong.Text.Trim(), txtDonViTinh.Text.Trim());
+
+            if(txtNangLuong.Text.Trim() == "")
+            {
+                MessageBox.Show("Năng lượng không được bỏ trống");
+                return;
+            }
+            NguyenLieuBLL.LuuNguyenLieu(txtMaNguyenLieu.Text.Trim(),txtTenNguyenLieu.Text.Trim(), cboLoaiNguyenLieu.Text.Trim(), double.Parse(txtNangLuong.Text.Trim()), txtDonViTinh.Text.Trim());
             getDataGridView();
         }
 
@@ -148,6 +154,20 @@ namespace QLNT.Presentation
         {
             this.Close();
             tabControl.Tabs.Remove(tab);
+        }
+
+        private void txtNangLuong_TextChanged(object sender, EventArgs e)
+        {
+            if(txtNangLuong.Text.Trim() == "") { return; }
+            try
+            {
+                 double.Parse(txtNangLuong.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show("Năng lượng phải là số thực lớn hơn 0", "Lỗi nhập", MessageBoxButtons.OK);
+                txtNangLuong.Text = "";
+            }
         }
     }
 }

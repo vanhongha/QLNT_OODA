@@ -29,8 +29,8 @@ namespace QLNT.Entities
             set { _maLoai = value; }
         }
 
-        private string _nangLuong;
-        public string NangLuong
+        private double _nangLuong;
+        public double NangLuong
         {
             get { return _nangLuong; }
             set { _nangLuong = value; }
@@ -45,7 +45,7 @@ namespace QLNT.Entities
 
         public NguyenLieu() { }
 
-        public NguyenLieu(string MaNguyenLieu, string TenNguyenLieu, string MaLoai, string NangLuong, string DonViTinh)
+        public NguyenLieu(string MaNguyenLieu, string TenNguyenLieu, string MaLoai, double NangLuong, string DonViTinh)
         {
             _maNguyenLieu = MaNguyenLieu;
             _tenNguyenLieu = TenNguyenLieu;

@@ -100,7 +100,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(23, 49);
+            this.label4.Location = new System.Drawing.Point(20, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 16);
             this.label4.TabIndex = 104;
@@ -111,7 +111,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(23, 76);
+            this.label5.Location = new System.Drawing.Point(27, 65);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 102;
@@ -121,7 +121,7 @@
             // 
             this.dtpNgay_Loc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpNgay_Loc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgay_Loc.Location = new System.Drawing.Point(100, 32);
+            this.dtpNgay_Loc.Location = new System.Drawing.Point(101, 32);
             this.dtpNgay_Loc.Name = "dtpNgay_Loc";
             this.dtpNgay_Loc.Size = new System.Drawing.Size(140, 22);
             this.dtpNgay_Loc.TabIndex = 100;
@@ -133,7 +133,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(61, 136);
+            this.label2.Location = new System.Drawing.Point(64, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 16);
             this.label2.TabIndex = 112;
@@ -161,7 +161,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(32, 106);
+            this.label1.Location = new System.Drawing.Point(35, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 16);
             this.label1.TabIndex = 110;
@@ -249,7 +249,7 @@
             // 
             // btnRemoveAll
             // 
-            this.btnRemoveAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnRemoveAll.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRemoveAll.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAll.Image")));
             this.btnRemoveAll.Location = new System.Drawing.Point(567, 456);
             this.btnRemoveAll.Name = "btnRemoveAll";
@@ -260,7 +260,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.Location = new System.Drawing.Point(567, 340);
             this.btnAdd.Name = "btnAdd";
@@ -271,7 +271,7 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddAll.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddAll.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAll.Image")));
             this.btnAddAll.Location = new System.Drawing.Point(567, 376);
             this.btnAddAll.Name = "btnAddAll";
@@ -282,7 +282,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
             this.btnRemove.Location = new System.Drawing.Point(567, 420);
             this.btnRemove.Name = "btnRemove";

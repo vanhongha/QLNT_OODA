@@ -140,6 +140,7 @@
             this.txtNangLuong.Name = "txtNangLuong";
             this.txtNangLuong.Size = new System.Drawing.Size(200, 26);
             this.txtNangLuong.TabIndex = 87;
+            this.txtNangLuong.TextChanged += new System.EventHandler(this.txtNangLuong_TextChanged);
             // 
             // txtDonViTinh
             // 
