@@ -30,9 +30,9 @@ namespace QLNT.DataLayer
             //con = new System.Data.SqlClient.SqlConnection();
             //con.ConnectionString = "Server=.\\SQLEXPRESS; AttachDbFilename = QLNT.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
             //con.Open();Server=.\SQLExpress;AttachDbFilename=|DataDirectory|\\hotel.mdf;
-            connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=DESKTOP-EMQJODI\HONGHA";
+            //connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=DESKTOP-EMQJODI\HONGHA";
             //String connectionString = @"Server=.\SQLExpress;AttachDbFilename=|DataDirectory|QLNT.mdf;Database=dbname; Trusted_Connection=Yes;";
-            con = new SqlConnection(connectionString);
+         
         }
         #endregion
 
@@ -67,9 +67,20 @@ namespace QLNT.DataLayer
             this.dt = dt;
         }
 
-        public void SetupSQLName(string name)
+        public bool SetupSQLName(string name)
         {
-            connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=" + name;
+            string prefix = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=";
+            connectionString = prefix + name;
+            con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         public SqlCommand Command(String commandString)
