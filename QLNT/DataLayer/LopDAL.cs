@@ -14,221 +14,236 @@ namespace QLNT.DataLayer
     {
         public static string GetLastID()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("Select top 1 MaLop from LOP order by MaLop desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("Select top 1 MaLop from LOP order by MaLop desc");
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
         
         public static string GetLastLoaiLopID()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("Select top 1 MaLoaiLop from LOAILOP order by MaLoaiLop desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("Select top 1 MaLoaiLop from LOAILOP order by MaLoaiLop desc");
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static string GetLastIDNienKhoa()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("Select top 1 MaNamHoc from NAMHOC order by MaNamHoc desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("Select top 1 MaNamHoc from NAMHOC order by MaNamHoc desc");
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static List<NamHoc> GetListNienKhoa()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetNamHoc");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetNamHoc");
 
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
             List<NamHoc> listNamHoc = new List<NamHoc>();
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
                 listNamHoc.Add(new NamHoc(row));
             }
-
+            DataAccessHelper.GetInstance().Close();
             return listNamHoc;
         }
 
         public static List<LoaiLop> GetListLoaiLop()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GETLOAILOP");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GETLOAILOP");
 
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
             List<LoaiLop> listLoaiLop = new List<LoaiLop>();
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
                 listLoaiLop.Add(new LoaiLop(row));
             }
+            DataAccessHelper.GetInstance().Close();
             return listLoaiLop;
         }
 
         public static List<Lop> GetListLop(string maNamHoc, string maLoaiLop)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetListLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetListLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNamHoc", maNamHoc);
             cmd.Parameters.AddWithValue("@MaLoaiLop", maLoaiLop);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
             List<Lop> listLop = new List<Lop>();
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
                 listLop.Add(new Lop(row));
             }
+            DataAccessHelper.GetInstance().Close();
             return listLop;
         }
 
         public static List<Lop> GetListLop(string maNamHoc = null)
         {
-            DataAccessHelper db = new DataAccessHelper();
+            DataAccessHelper.GetInstance().Open();
             SqlCommand cmd;
 
             if(maNamHoc == null)
             {
-                cmd = db.Command("GetLop");
+                cmd = DataAccessHelper.GetInstance().Command("GetLop");
                 cmd.CommandType = CommandType.StoredProcedure;
             }
             else
             {
-                cmd = db.Command("GETLISTLOP_NAM");
+                cmd = DataAccessHelper.GetInstance().Command("GETLISTLOP_NAM");
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MaNamHoc", maNamHoc);
             }        
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
             List<Lop> listLop = new List<Lop>();
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
                 listLop.Add(new Lop(row));
             }
+            DataAccessHelper.GetInstance().Close();
             return listLop;
         }
 
         public static DataTable GetInfoLop(string maLop)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetInfoLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetInfoLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static DataTable GetInfoNamHoc(string maNamHoc)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetInfoNamHoc");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetInfoNamHoc");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNamHoc", maNamHoc);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static string getMaNamHoc(DateTime ngayHoc)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayMaNamHocTheoNgay");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayMaNamHocTheoNgay");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Ngay", ngayHoc);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static int GetSiSo(string maLop)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetSiSoLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetSiSoLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return int.Parse(row.ItemArray[0].ToString());
             }
+            DataAccessHelper.GetInstance().Close();
             return -1;
         }
 
         public static void CapNhatSiSo(string maLop, int siSo)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatSiSoLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatSiSoLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
             cmd.Parameters.AddWithValue("@SiSo", siSo);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void CapNhatLop(string maLop, string tenLop, string maGV)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
             cmd.Parameters.AddWithValue("@TenLop", tenLop);
             cmd.Parameters.AddWithValue("@MaGV", maGV);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void ThemLop(string maLop, string maLoaiLop, string maNamHoc, string maGV, string tenLop)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("THEMLOP");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("THEMLOP");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
@@ -239,56 +254,60 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@TenLop", tenLop);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void ThemLoaiLop(string maLoaiLop, string tenLoaiLop)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("ThemLoaiLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("ThemLoaiLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLoaiLop", maLoaiLop);
             cmd.Parameters.AddWithValue("@TenLoaiLop", tenLoaiLop);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void CapNhatLoaiLop(string maLoaiLop, string tenLoaiLop)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatLoaiLop");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatLoaiLop");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLoaiLop", maLoaiLop);
             cmd.Parameters.AddWithValue("@TenLoaiLop", tenLoaiLop);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void CapNhatNienKhoa(string maNienKhoa, string tenNienKhoa)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatNienKhoa");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatNienKhoa");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNamHoc", maNienKhoa);
             cmd.Parameters.AddWithValue("@NamHoc", tenNienKhoa);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void ThemNienKhoa(string maNienKhoa, string tenNienKhoa, DateTime tgBatDau, DateTime tgKetThuc)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("ThemNienKhoa");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("ThemNienKhoa");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNamHoc", maNienKhoa);
@@ -297,8 +316,9 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@NgayKetThuc", tgKetThuc);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
     }
 }

@@ -15,33 +15,35 @@ namespace QLNT.DataLayer
     {
         public static DataTable layDanhSachLoaiNguyenLieu()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayDanhSachLoaiNguyenLieu");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayDanhSachLoaiNguyenLieu");
 
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
             //DataTable dt = db.GetDataTable("SELECT * FROM NGUYENLIEU");
-            return db.dt;
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static string layMaLoaiNguyenLieuTheoTen(string tenLoaiNL)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayMaLoaiNguyenLieuTheoTen");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayMaLoaiNguyenLieuTheoTen");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenLoaiNL", tenLoaiNL);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
     }

@@ -13,8 +13,8 @@ namespace QLNT.DataLayer
     {
         public static DataTable GetListHocPhiTheoThang(string maLop, int thang, int nam)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetListHocPhiTheoThang");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetListHocPhiTheoThang");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
@@ -22,31 +22,31 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@Nam", nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static DataTable GetChiTietHocPhi(string maHocPhi)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetChiTietHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetChiTietHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", maHocPhi);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static void CapNhatHocPhi(HocPhi hocPhi)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", hocPhi.MaHocPhi);
@@ -57,15 +57,15 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@SoTienConNo", hocPhi.SoTienConNo);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static DataTable KiemTraTonTaiHocPhi(string maTre, int thang, int nam)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KiemTraTonTaiHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("KiemTraTonTaiHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", maTre);
@@ -73,16 +73,16 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@Nam", nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static void KhoiTaoHocPhi(HocPhi hocPhi)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KhoiTaoHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("KhoiTaoHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", hocPhi.MaHocPhi);
@@ -91,14 +91,15 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@Nam", hocPhi.Nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static DataTable LaySoTienConNoCuaThang(int thang, int nam, string maTre)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LaySoTienConNoCuaThang");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LaySoTienConNoCuaThang");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", maTre);
@@ -106,41 +107,44 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@Nam", nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static string GetLastID()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("Select top 1 MaHocPhi from HOCPHI order by MaHocPhi desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("Select top 1 MaHocPhi from HOCPHI order by MaHocPhi desc");
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static void XoaChiTietHocPhi(ChiTietHocPhi chiTiet)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("XoaChiTietHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("XoaChiTietHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", chiTiet.MaHocPhi);
             cmd.Parameters.AddWithValue("@MaDanhMuc", chiTiet.MaDanhMuc);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void ThemChiTietHocPhi(ChiTietHocPhi chiTiet)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("ThemChiTietHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("ThemChiTietHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", chiTiet.MaHocPhi);
@@ -148,29 +152,30 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@SoTien", chiTiet.SoTien);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static DataTable GetInfoHocPhi(string maHocPhi)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetInfoHocPhi");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetInfoHocPhi");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaHocPhi", maHocPhi);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static DataTable LayDanhSachBienLaiTheoThang(string maTre, int thang, int nam)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayDanhSachBienLaiTheoThang");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayDanhSachBienLaiTheoThang");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", maTre);
@@ -178,16 +183,16 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@Nam", nam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static void ThemBienLai(BienLaiThuHocPhi bienLai)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("ThemBienLai");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("ThemBienLai");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaBienLai", bienLai.MaBienLai);
@@ -200,46 +205,50 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@GhiChu", bienLai.GhiChu);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void XoaBienLai(string maBienLai)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("XoaBienLai");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("XoaBienLai");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaBienLai", maBienLai);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static DataTable GetInfoBienLai(string maBienLai)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetInfoBienLai");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetInfoBienLai");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaBienLai", maBienLai);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static string GetLastBienLaiID()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("Select top 1 MaBienLai from BIENLAITHUHOCPHI order by MaBienLai desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("Select top 1 MaBienLai from BIENLAITHUHOCPHI order by MaBienLai desc");
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
     }

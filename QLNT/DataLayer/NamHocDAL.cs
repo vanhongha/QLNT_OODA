@@ -13,37 +13,43 @@ namespace QLNT.DataLayer
     {
         public static DateTime GetNgayBatDau(string maNam)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetNgayBatDauNamHoc");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetNgayBatDauNamHoc");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNam", maNam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
+            {
+                DataAccessHelper.GetInstance().Close();
                 return Convert.ToDateTime(row["NgayBatDau"]);
-            
+            }
+            DataAccessHelper.GetInstance().Close();
             return DateTime.Today;
         }
 
         public static DateTime GetNgayKetThuc(string maNam)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("GetNgayKetThucNamHoc");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetNgayKetThucNamHoc");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaNam", maNam);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
+            {
+                DataAccessHelper.GetInstance().Close();
                 return Convert.ToDateTime(row["NgayKetThuc"]);
-
+            }
+            DataAccessHelper.GetInstance().Close();
             return DateTime.Today;
         }
     }

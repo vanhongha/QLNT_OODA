@@ -13,31 +13,33 @@ namespace QLNT.DataLayer
     {
         public static void ThemMonAn(MonAn monAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("ThemMonAn");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("ThemMonAn");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaMonAn", monAn.MaMonAn);
             cmd.Parameters.AddWithValue("@TenMonAn", monAn.TenMonAn);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void XoaMonAn(string maMon)
         {
             try
             {
-                DataAccessHelper db = new DataAccessHelper();
-                SqlCommand cmd = db.Command("XoaMonAn");
+                DataAccessHelper.GetInstance().Open();
+                SqlCommand cmd = DataAccessHelper.GetInstance().Command("XoaMonAn");
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@MaMonAn", maMon);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                db.dt = new DataTable();
-                da.Fill(db.dt);
+                DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+                da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+                DataAccessHelper.GetInstance().Close();
             }
             catch (Exception e)
             {
@@ -48,105 +50,117 @@ namespace QLNT.DataLayer
 
         public static void CapNhatMonAn(MonAn monAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatMonAn");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatMonAn");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaMonAn", monAn.MaMonAn);
             cmd.Parameters.AddWithValue("@TenMonAn", monAn.TenMonAn);
            
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static string LayMaMonAnTheoTen(string tenMonAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayMaMonAnTheoTen");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayMaMonAnTheoTen");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenMonAn", tenMonAn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static string LayNangLuongMonAnTheoTen(string tenMonAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayNangLuongMonAnTheoTen");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayNangLuongMonAnTheoTen");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@TenMonAn", tenMonAn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            foreach (DataRow row in db.dt.Rows)
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static DataTable LayDanhSachMonAn()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayDanhSachMonAn");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayDanhSachMonAn");
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static string LayMaCuoi()
         {
 
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("select top 1 MaMonAn from MONAN order by MaMonAn desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("select top 1 MaMonAn from MONAN order by MaMonAn desc");
 
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static bool KiemTraMonAn(string maMonAn)
         {
 
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("select * from MONAN where MaMonAn = '" + maMonAn.Trim() + "'");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("select * from MONAN where MaMonAn = '" + maMonAn.Trim() + "'");
 
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return true;
             }
+            DataAccessHelper.GetInstance().Close();
             return false;
         }
 
         public static bool KiemTraMonAnTrongThucDon(string maMonAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("KiemTraTonTaiMonAnTrongThucDon");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("KiemTraTonTaiMonAnTrongThucDon");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaMonAn", maMonAn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
 
-            foreach (DataRow row in db.dt.Rows)
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return true;
             }
+            DataAccessHelper.GetInstance().Close();
             return false;
         }
     }

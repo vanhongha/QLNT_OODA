@@ -13,10 +13,9 @@ namespace QLNT.DataLayer
     {
         public static object TaoPhieuBeNgoanMoi(Lop lop, string datetime)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = null;
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("TAO_PHIEU_BE_NGOAN_MOI");
 
-            cmd = db.Command("TAO_PHIEU_BE_NGOAN_MOI");
             cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
             cmd.Parameters.AddWithValue("@Thang", Int32.Parse(datetime.Split('/')[0]));
             cmd.Parameters.AddWithValue("@Nam", Int32.Parse(datetime.Split('/')[1]));
@@ -25,16 +24,16 @@ namespace QLNT.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static DataTable LuuPhieuBeNgoan(TheoDoiThang phieubengoan)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LUU_PHIEU_BE_NGOAN");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LUU_PHIEU_BE_NGOAN");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", phieubengoan.MaTre);
@@ -48,15 +47,16 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@PhieuBeNgoanThang", phieubengoan.PhieuThang);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static void XoaPhieuBeNgoan(string value, string v1, string v2)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("XOA_PHIEU_BE_NGOAN");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("XOA_PHIEU_BE_NGOAN");
             
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", value);
@@ -65,17 +65,17 @@ namespace QLNT.DataLayer
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static object LayPhieuBeNgoanTheoLop(Lop lop, string datetime)
         {
-            DataAccessHelper db = new DataAccessHelper();
+            DataAccessHelper.GetInstance().Open();
             SqlCommand cmd = null;
 
-            cmd = db.Command("LAY_PHIEU_BE_NGOAN_LOP");
+            cmd = DataAccessHelper.GetInstance().Command("LAY_PHIEU_BE_NGOAN_LOP");
             cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
             cmd.Parameters.AddWithValue("@Thang", Int32.Parse(datetime.Split('/')[0]));
             cmd.Parameters.AddWithValue("@Nam", Int32.Parse(datetime.Split('/')[1]));
@@ -83,10 +83,10 @@ namespace QLNT.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
     }
 }

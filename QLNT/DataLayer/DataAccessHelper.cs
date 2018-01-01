@@ -11,17 +11,26 @@ namespace QLNT.DataLayer
         #region Data access properties
         SqlConnection con;
         SqlCommand cmd;
-        public DataTable dt;
+        string connectionString;
+        DataTable dt;
 
+        static DataAccessHelper instance;
         #endregion
 
         #region Init properties
+        public static DataAccessHelper GetInstance()
+        {
+            if (instance == null)
+                instance = new DataAccessHelper();
+            return instance;
+        }
+
         public DataAccessHelper()
         {
             //con = new System.Data.SqlClient.SqlConnection();
             //con.ConnectionString = "Server=.\\SQLEXPRESS; AttachDbFilename = QLNT.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
             //con.Open();Server=.\SQLExpress;AttachDbFilename=|DataDirectory|\\hotel.mdf;
-            String connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=DESKTOP-EMQJODI\HONGHA";
+            connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=DESKTOP-EMQJODI\HONGHA";
             //String connectionString = @"Server=.\SQLExpress;AttachDbFilename=|DataDirectory|QLNT.mdf;Database=dbname; Trusted_Connection=Yes;";
             con = new SqlConnection(connectionString);
         }
@@ -34,7 +43,7 @@ namespace QLNT.DataLayer
                 con.Open();
         }
 
-        private void Close()
+        public void Close()
         {
             if (con.State == System.Data.ConnectionState.Open)
                 con.Close();
@@ -47,12 +56,29 @@ namespace QLNT.DataLayer
             da.Fill(dt);
             return dt;
         }
-        #endregion
+
+        public DataTable GetDataTable()
+        {
+            return dt;
+        }
+
+        public void SetDataTable(DataTable dt)
+        {
+            this.dt = dt;
+        }
+
+        public void SetupSQLName(string name)
+        {
+            connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=" + name;
+        }
 
         public SqlCommand Command(String commandString)
         {
             this.cmd = new SqlCommand(commandString, con);
             return cmd;
         }
+        #endregion
+
+
     }
 }

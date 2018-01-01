@@ -13,19 +13,21 @@ namespace QLNT.DataLayer
     {
         public static string GetLastID()
         {
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("Select top 1 MaPhieu from PHIEUTIEPNHANTRE order by MaPhieu desc");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("Select top 1 MaPhieu from PHIEUTIEPNHANTRE order by MaPhieu desc");
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return row.ItemArray[0].ToString();
             }
+            DataAccessHelper.GetInstance().Close();
             return "";
         }
 
         public static DataTable ThemPhieu(PhieuTiepNhanTre phieumoi)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("THEM_PHIEU_TIEP_NHAN");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("THEM_PHIEU_TIEP_NHAN");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaTre", phieumoi.MaTre);
@@ -34,9 +36,10 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@NguoiTiepNhan", phieumoi.NguoiTiepNhan);
             
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
     }
 }

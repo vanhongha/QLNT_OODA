@@ -14,24 +14,24 @@ namespace QLNT.DataLayer
     {
         public static void ThemChiTietMonAn(ChiTietMonAn chiTietMonAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("ThemNguyenLieuTungMon");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("ThemNguyenLieuTungMon");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaMonAn", chiTietMonAn.MaMon);
             cmd.Parameters.AddWithValue("@MaNL", chiTietMonAn.MaNL);
             cmd.Parameters.AddWithValue("@SL", chiTietMonAn.SoLuong);
 
-
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void CapNhatChiTietMonAn(ChiTietMonAn chiTietMonAn)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("CapNhatNguyenLieuTungMon");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatNguyenLieuTungMon");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaMonAn", chiTietMonAn.MaMon);
@@ -39,62 +39,65 @@ namespace QLNT.DataLayer
             cmd.Parameters.AddWithValue("@SL", chiTietMonAn.SoLuong);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         public static void XoaChiTietMonAn(string maMon, string maNL)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("XoaNguyenLieuTungMon");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("XoaNguyenLieuTungMon");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaMon", maMon);
             cmd.Parameters.AddWithValue("@MaNL", maNL);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
         }
 
         //public static void XoaDanhSachChiTietPhieuMuaNL(string maPhieuMua)
         //{
-        //    DataAccessHelper db = new DataAccessHelper();
-        //    SqlCommand cmd = db.Command("XOA_DANH_SACH_CHI_TIET_PHIEU_MUA");
+        //    DataAccessHelper.GetInstance().Open();
+        //    SqlCommand cmd = DataAccessHelper.GetInstance().Command("XOA_DANH_SACH_CHI_TIET_PHIEU_MUA");
         //    cmd.CommandType = CommandType.StoredProcedure;
 
         //    cmd.Parameters.AddWithValue("@MaPhieu", maPhieuMua);
 
         //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    db.dt = new DataTable();
-        //    da.Fill(db.dt);
+        //    DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+        //    da.Fill(DataAccessHelper.GetInstance().GetDataTable());
         //}
 
         public static DataTable LayDanhSachChiTietMonAn(string maMon)
         {
-            DataAccessHelper db = new DataAccessHelper();
-            SqlCommand cmd = db.Command("LayDanhSachNguyenLieuTheoMaMon");
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("LayDanhSachNguyenLieuTheoMaMon");
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MaMonAn", maMon);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            db.dt = new DataTable();
-            da.Fill(db.dt);
-
-            return db.dt;
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+            return DataAccessHelper.GetInstance().GetDataTable();
         }
 
         public static bool KiemTraMaNL(string maMon, string maNL)
         {
-
-            DataAccessHelper db = new DataAccessHelper();
-            DataTable dt = db.GetDataTable("select * from CHITIET_MONAN where MaMonAn = '" + maMon + "' and MaNguyenLieu = '" + maNL + "'");
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("select * from CHITIET_MONAN where MaMonAn = '" + maMon + "' and MaNguyenLieu = '" + maNL + "'");
 
             foreach (DataRow row in dt.Rows)
             {
+                DataAccessHelper.GetInstance().Close();
                 return true;
             }
+            DataAccessHelper.GetInstance().Close();
             return false;
         }
     }
