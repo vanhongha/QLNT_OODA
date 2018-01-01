@@ -9,7 +9,7 @@ namespace QLNT.DataLayer
     class DataAccessHelper
     {
         #region Data access properties
-        public SqlConnection con;
+        SqlConnection con;
         SqlCommand cmd;
         public DataTable dt;
 
@@ -20,8 +20,9 @@ namespace QLNT.DataLayer
         {
             //con = new System.Data.SqlClient.SqlConnection();
             //con.ConnectionString = "Server=.\\SQLEXPRESS; AttachDbFilename = QLNT.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-            //con.Open();
-            String connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=(local)\SQLEXPRESS";
+            //con.Open();Server=.\SQLExpress;AttachDbFilename=|DataDirectory|\\hotel.mdf;
+            String connectionString = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=QLNT;Data Source=DESKTOP-EMQJODI\HONGHA";
+            //String connectionString = @"Server=.\SQLExpress;AttachDbFilename=|DataDirectory|QLNT.mdf;Database=dbname; Trusted_Connection=Yes;";
             con = new SqlConnection(connectionString);
         }
         #endregion

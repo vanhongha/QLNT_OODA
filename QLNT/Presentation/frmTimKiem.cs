@@ -148,7 +148,6 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             loadDataGirdView();
-            MessageBox.Show("cbo lop");
         }
 
         private void btnDong_Click(object sender, System.EventArgs e)

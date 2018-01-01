@@ -33,6 +33,7 @@ namespace QLNT.Presentation
 
         private void frmQLChung_Lop_Load(object sender, EventArgs e)
         {
+            btnCapNhat.Enabled = false;
             listNienKhoa = LopBLL.GetListNienKhoa();
             listLoaiLop = LopBLL.GetListLoaiLop();
             listLop = LopBLL.GetListLop();
@@ -202,13 +203,16 @@ namespace QLNT.Presentation
         #region Event
         private void rdoQLLop_CheckedChanged(object sender, EventArgs e)
         {
+            btnCapNhat.Enabled = false;
             LoadDatagridView();
             LamMoi();
             LoadGroup("Lop");
+
         }
 
         private void rdoQLLoaiLop_CheckedChanged(object sender, EventArgs e)
         {
+            btnCapNhat.Enabled = false;
             LoadDatagridView();
             LamMoi();
             LoadGroup("LoaiLop");
@@ -216,6 +220,7 @@ namespace QLNT.Presentation
 
         private void rdoQLNienKhoa_CheckedChanged(object sender, EventArgs e)
         {
+            btnCapNhat.Enabled = false;
             LoadDatagridView();
             LamMoi();
             LoadGroup("NienKhoa");
@@ -259,16 +264,17 @@ namespace QLNT.Presentation
                     dtNgayKetThuc.Value = ngayKetThuc;
 
                     dtNgayBatDau.Enabled = false;
-                    dtNgayKetThuc.Enabled = false;
+                    dtNgayKetThuc.Enabled = false;            
                 }
             }
-
+            btnCapNhat.Enabled = true;
             btnThem.Enabled = false;
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             LamMoi();
+            btnCapNhat.Enabled = false;
         }
 
         private void btnDong_Click(object sender, EventArgs e)
