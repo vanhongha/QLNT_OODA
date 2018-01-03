@@ -249,7 +249,6 @@
             // 
             // btnRemoveAll
             // 
-            this.btnRemoveAll.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRemoveAll.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAll.Image")));
             this.btnRemoveAll.Location = new System.Drawing.Point(567, 456);
             this.btnRemoveAll.Name = "btnRemoveAll";
@@ -260,7 +259,6 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.Location = new System.Drawing.Point(567, 340);
             this.btnAdd.Name = "btnAdd";
@@ -271,7 +269,6 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddAll.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAll.Image")));
             this.btnAddAll.Location = new System.Drawing.Point(567, 376);
             this.btnAddAll.Name = "btnAddAll";
@@ -282,7 +279,6 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
             this.btnRemove.Location = new System.Drawing.Point(567, 420);
             this.btnRemove.Name = "btnRemove";
@@ -539,7 +535,7 @@
             this.groupBox4.Controls.Add(this.cboBuoiAD);
             this.groupBox4.Location = new System.Drawing.Point(14, 30);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1176, 539);
+            this.groupBox4.Size = new System.Drawing.Size(1176, 550);
             this.groupBox4.TabIndex = 141;
             this.groupBox4.TabStop = false;
             // 
