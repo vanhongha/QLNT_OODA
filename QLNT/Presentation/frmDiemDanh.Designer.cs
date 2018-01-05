@@ -39,13 +39,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbThongBao = new System.Windows.Forms.Label();
             this.dgvDiemDanh = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grpChonLop.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).BeginInit();
             this.SuspendLayout();
             // 
             // btnTaoBangMoi
@@ -53,7 +53,7 @@
             this.btnTaoBangMoi.Enabled = false;
             this.btnTaoBangMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaoBangMoi.Location = new System.Drawing.Point(704, 223);
-            this.btnTaoBangMoi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTaoBangMoi.Margin = new System.Windows.Forms.Padding(2);
             this.btnTaoBangMoi.Name = "btnTaoBangMoi";
             this.btnTaoBangMoi.Size = new System.Drawing.Size(120, 50);
             this.btnTaoBangMoi.TabIndex = 17;
@@ -66,7 +66,7 @@
             this.btnLuuDiemDanh.Enabled = false;
             this.btnLuuDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuuDiemDanh.Location = new System.Drawing.Point(832, 223);
-            this.btnLuuDiemDanh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLuuDiemDanh.Margin = new System.Windows.Forms.Padding(2);
             this.btnLuuDiemDanh.Name = "btnLuuDiemDanh";
             this.btnLuuDiemDanh.Size = new System.Drawing.Size(120, 50);
             this.btnLuuDiemDanh.TabIndex = 16;
@@ -79,7 +79,7 @@
             this.dtNgayDiemDanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtNgayDiemDanh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtNgayDiemDanh.Location = new System.Drawing.Point(782, 162);
-            this.dtNgayDiemDanh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtNgayDiemDanh.Margin = new System.Windows.Forms.Padding(2);
             this.dtNgayDiemDanh.Name = "dtNgayDiemDanh";
             this.dtNgayDiemDanh.Size = new System.Drawing.Size(170, 22);
             this.dtNgayDiemDanh.TabIndex = 4;
@@ -154,6 +154,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.dtNgayDiemDanh);
             this.panel2.Controls.Add(this.label2);
@@ -162,12 +163,21 @@
             this.panel2.Controls.Add(this.lbThongBao);
             this.panel2.Controls.Add(this.dgvDiemDanh);
             this.panel2.Controls.Add(this.grpChonLop);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.ForeColor = System.Drawing.SystemColors.Highlight;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(970, 545);
             this.panel2.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(693, 344);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(270, 155);
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
             // 
             // lbThongBao
             // 
@@ -197,16 +207,6 @@
             this.dgvDiemDanh.Size = new System.Drawing.Size(688, 454);
             this.dgvDiemDanh.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(693, 344);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(270, 155);
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmDiemDanh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,8 +221,8 @@
             this.grpChonLop.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemDanh)).EndInit();
             this.ResumeLayout(false);
 
         }

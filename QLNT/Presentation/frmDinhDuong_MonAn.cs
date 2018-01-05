@@ -30,6 +30,7 @@ namespace QLNT.Presentation
             getDataGridViewMonAn();
             getCombobox();
             setEnableChiTietMonAn(false);
+            XoaTrang();
         }
 
         private void getDataGridViewMonAn()

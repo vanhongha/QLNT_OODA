@@ -97,14 +97,14 @@ namespace QLNT.Presentation
             Ultilities.ControlFormat.DataGridViewFormat(dgvThongTinThucDon_MonAn, column);
 
             dgvThongTinThucDon_MonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvThongTinThucDon_MonAn.Columns[0].HeaderText = "Mã món ăn";
-            dgvThongTinThucDon_MonAn.Columns[0].Width = 120;
-            dgvThongTinThucDon_MonAn.Columns[1].HeaderText = "Tên món ăn";
-            dgvThongTinThucDon_MonAn.Columns[1].Width = 120;
-            dgvThongTinThucDon_MonAn.Columns[2].HeaderText = "Năng lượng";
-            dgvThongTinThucDon_MonAn.Columns[2].Width = 120;
-            dgvThongTinThucDon_MonAn.Columns[3].HeaderText = "Tổng suất ăn";
-            dgvThongTinThucDon_MonAn.Columns[3].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns["MaMonAn"].HeaderText = "Mã món ăn";
+            dgvThongTinThucDon_MonAn.Columns["MaMonAn"].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns["TenMonAn"].HeaderText = "Tên món ăn";
+            dgvThongTinThucDon_MonAn.Columns["TenMonAn"].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns["NangLuong"].HeaderText = "Năng lượng";
+            dgvThongTinThucDon_MonAn.Columns["NangLuong"].Width = 120;
+            dgvThongTinThucDon_MonAn.Columns["SoLuong"].HeaderText = "Tổng suất ăn";
+            dgvThongTinThucDon_MonAn.Columns["SoLuong"].Width = 120;
             dgvThongTinThucDon_MonAn.ClearSelection();
         }
 
@@ -115,12 +115,12 @@ namespace QLNT.Presentation
             Ultilities.ControlFormat.DataGridViewFormat(dgvThongTinThucDon_NguyenLieu, column);
 
             dgvThongTinThucDon_NguyenLieu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvThongTinThucDon_NguyenLieu.Columns[0].HeaderText = "Mã nguyên liệu";
-            dgvThongTinThucDon_NguyenLieu.Columns[0].Width = 120;
-            dgvThongTinThucDon_NguyenLieu.Columns[1].HeaderText = "Tên nguyên liệu";
-            dgvThongTinThucDon_NguyenLieu.Columns[1].Width = 120;
-            dgvThongTinThucDon_NguyenLieu.Columns[2].HeaderText = "Số lượng (gam)";
-            dgvThongTinThucDon_NguyenLieu.Columns[2].Width = 120;
+            dgvThongTinThucDon_NguyenLieu.Columns["MaNguyenLieu"].HeaderText = "Mã nguyên liệu";
+            dgvThongTinThucDon_NguyenLieu.Columns["MaNguyenLieu"].Width = 120;
+            dgvThongTinThucDon_NguyenLieu.Columns["TenNguyenLieu"].HeaderText = "Tên nguyên liệu";
+            dgvThongTinThucDon_NguyenLieu.Columns["TenNguyenLieu"].Width = 120;
+            dgvThongTinThucDon_NguyenLieu.Columns["SoLuong"].HeaderText = "Số lượng (gam)";
+            dgvThongTinThucDon_NguyenLieu.Columns["SoLuong"].Width = 120;
             dgvThongTinThucDon_NguyenLieu.ClearSelection();
         }
 

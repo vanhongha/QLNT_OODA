@@ -14,6 +14,11 @@ namespace QLNT.BusinessLayer
     {
         public static void LuuMonAn(string maMonAn, string tenMonAn)
         {
+            if(maMonAn == "")
+            {
+                MessageBox.Show("Chưa có mã món ăn\nVui lòng chọn Xóa trắng để sinh mã món ăn mới", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             string _maMonAn = LayMaMonAnTheoTen(tenMonAn);
             if (tenMonAn == "")
             {

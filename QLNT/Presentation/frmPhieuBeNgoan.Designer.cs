@@ -39,15 +39,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbThongBao = new System.Windows.Forms.Label();
             this.dgvPhieuBeNgoan = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.grpChonLop.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuBeNgoan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuBeNgoan)).BeginInit();
             this.SuspendLayout();
             // 
             // btnTaoPhieuMoi
@@ -55,7 +55,7 @@
             this.btnTaoPhieuMoi.Enabled = false;
             this.btnTaoPhieuMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaoPhieuMoi.Location = new System.Drawing.Point(874, 199);
-            this.btnTaoPhieuMoi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTaoPhieuMoi.Margin = new System.Windows.Forms.Padding(2);
             this.btnTaoPhieuMoi.Name = "btnTaoPhieuMoi";
             this.btnTaoPhieuMoi.Size = new System.Drawing.Size(120, 50);
             this.btnTaoPhieuMoi.TabIndex = 17;
@@ -68,7 +68,7 @@
             this.btnLuuPhieu.Enabled = false;
             this.btnLuuPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuuPhieu.Location = new System.Drawing.Point(997, 199);
-            this.btnLuuPhieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLuuPhieu.Margin = new System.Windows.Forms.Padding(2);
             this.btnLuuPhieu.Name = "btnLuuPhieu";
             this.btnLuuPhieu.Size = new System.Drawing.Size(120, 50);
             this.btnLuuPhieu.TabIndex = 16;
@@ -81,7 +81,7 @@
             this.dtThangLapPhieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtThangLapPhieu.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtThangLapPhieu.Location = new System.Drawing.Point(933, 156);
-            this.dtThangLapPhieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtThangLapPhieu.Margin = new System.Windows.Forms.Padding(2);
             this.dtThangLapPhieu.Name = "dtThangLapPhieu";
             this.dtThangLapPhieu.Size = new System.Drawing.Size(170, 22);
             this.dtThangLapPhieu.TabIndex = 4;
@@ -156,6 +156,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.btnTaoPhieuMoi);
@@ -170,6 +171,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1156, 517);
             this.panel2.TabIndex = 5;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(993, 300);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(130, 207);
+            this.pictureBox2.TabIndex = 19;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(864, 300);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(130, 207);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
             // 
             // lbThongBao
             // 
@@ -199,26 +220,6 @@
             this.dgvPhieuBeNgoan.Size = new System.Drawing.Size(820, 496);
             this.dgvPhieuBeNgoan.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(864, 300);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(130, 207);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(993, 300);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(130, 207);
-            this.pictureBox2.TabIndex = 19;
-            this.pictureBox2.TabStop = false;
-            // 
             // frmPhieuBeNgoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,9 +234,9 @@
             this.grpChonLop.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuBeNgoan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuBeNgoan)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -434,7 +434,6 @@
             // 
             this.dgvThongTinThucDon_NguyenLieu.AllowUserToAddRows = false;
             this.dgvThongTinThucDon_NguyenLieu.AllowUserToDeleteRows = false;
-            this.dgvThongTinThucDon_NguyenLieu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvThongTinThucDon_NguyenLieu.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvThongTinThucDon_NguyenLieu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongTinThucDon_NguyenLieu.Location = new System.Drawing.Point(7, 128);
@@ -450,7 +449,6 @@
             // 
             this.dgvThongTinThucDon_MonAn.AllowUserToAddRows = false;
             this.dgvThongTinThucDon_MonAn.AllowUserToDeleteRows = false;
-            this.dgvThongTinThucDon_MonAn.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvThongTinThucDon_MonAn.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvThongTinThucDon_MonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongTinThucDon_MonAn.Location = new System.Drawing.Point(7, 20);
