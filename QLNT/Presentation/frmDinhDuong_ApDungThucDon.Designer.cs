@@ -63,6 +63,9 @@
             this.lblNote = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblLop_Left = new System.Windows.Forms.Label();
+            this.lblLop_Right = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreChuaXetThucDon)).BeginInit();
             this.gbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreDaXetThucDon)).BeginInit();
@@ -209,6 +212,7 @@
             // 
             // gbx
             // 
+            this.gbx.Controls.Add(this.lblLop_Left);
             this.gbx.Controls.Add(this.ckbAll);
             this.gbx.Controls.Add(this.dgvTreChuaXetThucDon);
             this.gbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -355,7 +359,7 @@
             this.dgvMonAn.ReadOnly = true;
             this.dgvMonAn.RowHeadersVisible = false;
             this.dgvMonAn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMonAn.Size = new System.Drawing.Size(303, 147);
+            this.dgvMonAn.Size = new System.Drawing.Size(303, 127);
             this.dgvMonAn.TabIndex = 143;
             this.dgvMonAn.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMonAn_CellClick);
             // 
@@ -373,13 +377,13 @@
             // lblTongNangLuong
             // 
             this.lblTongNangLuong.AutoSize = true;
-            this.lblTongNangLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongNangLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTongNangLuong.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblTongNangLuong.Location = new System.Drawing.Point(139, 0);
+            this.lblTongNangLuong.Location = new System.Drawing.Point(7, 148);
             this.lblTongNangLuong.Name = "lblTongNangLuong";
-            this.lblTongNangLuong.Size = new System.Drawing.Size(144, 16);
+            this.lblTongNangLuong.Size = new System.Drawing.Size(148, 15);
             this.lblTongNangLuong.TabIndex = 142;
-            this.lblTongNangLuong.Text = "Tổng năng lượng:  0";
+            this.lblTongNangLuong.Text = "Tổng năng lượng:  0(Kcal)";
             // 
             // label29
             // 
@@ -395,6 +399,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnXuatDanhSachTheoLop);
             this.groupBox1.Controls.Add(this.btnBaoCaoNhaBep);
             this.groupBox1.Controls.Add(this.dgvThongTinThucDon_NguyenLieu);
@@ -406,7 +411,7 @@
             this.groupBox1.Size = new System.Drawing.Size(555, 243);
             this.groupBox1.TabIndex = 136;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "TỔNG HỢP THÔNG TIN BỮA ĂN TOÀN TRƯỜNG";
+            this.groupBox1.Text = "TỔNG HỢP THÔNG TIN BỮA ĂN ";
             // 
             // btnXuatDanhSachTheoLop
             // 
@@ -463,6 +468,7 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.lblLop_Right);
             this.groupBox2.Controls.Add(this.ckbAll_TreDaXetTD);
             this.groupBox2.Controls.Add(this.dgvTreDaXetThucDon);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -524,6 +530,42 @@
             this.groupBox4.TabIndex = 141;
             this.groupBox4.TabStop = false;
             // 
+            // lblLop_Left
+            // 
+            this.lblLop_Left.AutoSize = true;
+            this.lblLop_Left.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLop_Left.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblLop_Left.Location = new System.Drawing.Point(236, 0);
+            this.lblLop_Left.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLop_Left.Name = "lblLop_Left";
+            this.lblLop_Left.Size = new System.Drawing.Size(34, 15);
+            this.lblLop_Left.TabIndex = 140;
+            this.lblLop_Left.Text = "LỚP";
+            // 
+            // lblLop_Right
+            // 
+            this.lblLop_Right.AutoSize = true;
+            this.lblLop_Right.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLop_Right.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblLop_Right.Location = new System.Drawing.Point(216, 0);
+            this.lblLop_Right.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLop_Right.Name = "lblLop_Right";
+            this.lblLop_Right.Size = new System.Drawing.Size(34, 15);
+            this.lblLop_Right.TabIndex = 141;
+            this.lblLop_Right.Text = "LỚP";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label3.Location = new System.Drawing.Point(188, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 15);
+            this.label3.TabIndex = 142;
+            this.label3.Text = "TOÀN TRƯỜNG";
+            // 
             // frmDinhDuong_ApDungThucDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,6 +586,7 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonAn)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_NguyenLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_MonAn)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -591,5 +634,8 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblLop_Left;
+        private System.Windows.Forms.Label lblLop_Right;
+        private System.Windows.Forms.Label label3;
     }
 }

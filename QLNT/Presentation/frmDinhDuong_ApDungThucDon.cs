@@ -192,6 +192,10 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             getDataGridViewTre();
+            lblLop_Left.Text = "LỚP " + cboLop.Text;
+            lblLop_Left.Text = lblLop_Left.Text.ToUpper();
+            lblLop_Right.Text = "LỚP " + cboLop.Text;
+            lblLop_Right.Text = lblLop_Right.Text.ToUpper();
         }
         
 
@@ -200,7 +204,7 @@ namespace QLNT.Presentation
 
             if (ThongTinThucDonBLL.themMonAnTrongBangMonAn(tableMonAn, cboTenMonAn.Text.ToString().Trim()))
             {
-                lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
+                lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn) + "(Kcal)";
             }
         }
 
@@ -214,7 +218,7 @@ namespace QLNT.Presentation
             }
             if(ThongTinThucDonBLL.xoaMonAnTrongBangMonAn(tableMonAn, dgvMonAn.SelectedRows[0].Cells["TenMonAn"].Value.ToString().Trim()))
             {
-                lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
+                lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn) + "(Kcal)";
             }
             
         }
@@ -314,7 +318,7 @@ namespace QLNT.Presentation
             ckbAll_TreDaXetTD.Checked = ThongTinThucDonBLL.isCheckedAll(dgvTreDaXetThucDon);
 
             tableMonAn = MonAnBLL.setDateDgvMonAn(tableMonAn,ThongTinThucDonBLL.LayThongTinThucDonTheoTre(dgvTreDaXetThucDon.Rows[e.RowIndex].Cells["MaTre"].Value.ToString().Trim(),cboBuoiAD.Text, dtpNgay_Loc.Value));
-            lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
+            lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn) + "(Kcal)";
         }
 
         private void closeBtn_Click(object sender, EventArgs e)

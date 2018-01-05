@@ -417,7 +417,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>:</Value>
+                <Value>: </Value>
                 <Style />
               </TextRun>
               <TextRun>
