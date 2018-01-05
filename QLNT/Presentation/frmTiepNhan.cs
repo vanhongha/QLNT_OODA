@@ -88,6 +88,9 @@ namespace QLNT.Presentation
             dgvTiepNhan.Columns["NgaySinh"].DisplayIndex = 2;
             dgvTiepNhan.Columns["GioiTinhCol"].DisplayIndex = 3;
             dgvTiepNhan.Columns["SDTLienLac"].DisplayIndex = 4;
+            dgvTiepNhan.Columns["HoTenCha"].DisplayIndex = 5;
+            dgvTiepNhan.Columns["HoTenMe"].DisplayIndex = 6;
+            dgvTiepNhan.Columns["DiaChi"].DisplayIndex = 7;
 
         }
 
