@@ -45,7 +45,7 @@ namespace QLNT.Presentation
             dgvMonAn.Columns[0].Width = 160;
             dgvMonAn.Columns[1].HeaderText = "Tên món ăn";
             dgvMonAn.Columns[1].Width = 160;
-            dgvMonAn.Columns[2].HeaderText = "Năng lượng (Kcal/gam)";
+            dgvMonAn.Columns[2].HeaderText = "Năng lượng (Kcal)";
             dgvMonAn.Columns[2].Width = 160;
 
             dgvMonAn.ClearSelection();
@@ -71,7 +71,7 @@ namespace QLNT.Presentation
             dgvChiTietMonAn.Columns[1].Width = 120;
             dgvChiTietMonAn.Columns[2].HeaderText = "Khối Lượng (gam)";
             dgvChiTietMonAn.Columns[2].Width = 120;
-            dgvChiTietMonAn.Columns[3].HeaderText = "Năng Lượng (Kcal/gam)";
+            dgvChiTietMonAn.Columns[3].HeaderText = "Năng Lượng (Kcal)";
             dgvChiTietMonAn.Columns[3].Width = 120;
             dgvChiTietMonAn.ClearSelection();
             

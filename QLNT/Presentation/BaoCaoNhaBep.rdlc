@@ -273,7 +273,9 @@
                         <TextRuns>
                           <TextRun>
                             <Value>Tên Nguyên Liệu</Value>
-                            <Style />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -359,7 +361,9 @@
                         <TextRuns>
                           <TextRun>
                             <Value>Số lượng (gam)</Value>
-                            <Style />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -465,7 +469,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Tên Món Ăn</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -495,7 +501,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Số suất ăn</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -613,7 +621,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>5.32084in</Height>
+    <Height>3.84167in</Height>
     <Style>
       <Border>
         <Style>Solid</Style>

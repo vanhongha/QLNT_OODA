@@ -252,8 +252,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Ho Ten Tre</Value>
-                              <Style />
+                              <Value>Họ Tên Trẻ</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -282,8 +284,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Ten Mon An</Value>
-                              <Style />
+                              <Value>Tên Món Ăn</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -407,7 +411,13 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tên lớp:</Value>
+                <Value>Tên lớp</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>:</Value>
                 <Style />
               </TextRun>
               <TextRun>
@@ -441,7 +451,13 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>GVCN: </Value>
+                <Value>GVCN</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>: </Value>
                 <Style />
               </TextRun>
               <TextRun>
@@ -469,7 +485,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>5.32084in</Height>
+    <Height>3.22709in</Height>
     <Style />
   </Body>
   <Width>3.69667in</Width>

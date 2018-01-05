@@ -59,7 +59,6 @@
             this.btnBaoCaoNhaBep = new System.Windows.Forms.Button();
             this.dgvThongTinThucDon_NguyenLieu = new System.Windows.Forms.DataGridView();
             this.dgvThongTinThucDon_MonAn = new System.Windows.Forms.DataGridView();
-            this.closeBtn = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblNote = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -72,7 +71,6 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_NguyenLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_MonAn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -408,7 +406,7 @@
             this.groupBox1.Size = new System.Drawing.Size(555, 243);
             this.groupBox1.TabIndex = 136;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "THÔNG TIN THỰC ĐƠN  ĐÃ XÉT";
+            this.groupBox1.Text = "TỔNG HỢP THÔNG TIN BỮA ĂN TOÀN TRƯỜNG";
             // 
             // btnXuatDanhSachTheoLop
             // 
@@ -434,6 +432,7 @@
             // 
             this.dgvThongTinThucDon_NguyenLieu.AllowUserToAddRows = false;
             this.dgvThongTinThucDon_NguyenLieu.AllowUserToDeleteRows = false;
+            this.dgvThongTinThucDon_NguyenLieu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvThongTinThucDon_NguyenLieu.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvThongTinThucDon_NguyenLieu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongTinThucDon_NguyenLieu.Location = new System.Drawing.Point(7, 128);
@@ -449,6 +448,7 @@
             // 
             this.dgvThongTinThucDon_MonAn.AllowUserToAddRows = false;
             this.dgvThongTinThucDon_MonAn.AllowUserToDeleteRows = false;
+            this.dgvThongTinThucDon_MonAn.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvThongTinThucDon_MonAn.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvThongTinThucDon_MonAn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongTinThucDon_MonAn.Location = new System.Drawing.Point(7, 20);
@@ -459,19 +459,6 @@
             this.dgvThongTinThucDon_MonAn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvThongTinThucDon_MonAn.Size = new System.Drawing.Size(541, 103);
             this.dgvThongTinThucDon_MonAn.TabIndex = 135;
-            // 
-            // closeBtn
-            // 
-            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeBtn.BackColor = System.Drawing.Color.Transparent;
-            this.closeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.closeBtn.Image = ((System.Drawing.Image)(resources.GetObject("closeBtn.Image")));
-            this.closeBtn.Location = new System.Drawing.Point(1177, 0);
-            this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(25, 25);
-            this.closeBtn.TabIndex = 137;
-            this.closeBtn.TabStop = false;
-            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
             // groupBox2
             // 
@@ -543,7 +530,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 581);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.closeBtn);
             this.ForeColor = System.Drawing.SystemColors.Highlight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(1000, 557);
@@ -560,7 +546,6 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_NguyenLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongTinThucDon_MonAn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.closeBtn)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -601,7 +586,6 @@
         private System.Windows.Forms.DataGridView dgvThongTinThucDon_MonAn;
         private System.Windows.Forms.Button btnXuatDanhSachTheoLop;
         private System.Windows.Forms.Button btnBaoCaoNhaBep;
-        private System.Windows.Forms.PictureBox closeBtn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.Button btnReload;

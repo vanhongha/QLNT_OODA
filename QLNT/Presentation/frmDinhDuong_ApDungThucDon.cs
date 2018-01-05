@@ -85,7 +85,7 @@ namespace QLNT.Presentation
             dgvMonAn.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvMonAn.Columns[0].HeaderText = "Tên Món Ăn";
             dgvMonAn.Columns[0].Width = 120;
-            dgvMonAn.Columns[1].HeaderText = "Năng Lượng";
+            dgvMonAn.Columns[1].HeaderText = "Năng Lượng (Kcal)";
             dgvMonAn.Columns[1].Width = 120;
             dgvMonAn.ClearSelection();
         }
@@ -101,7 +101,7 @@ namespace QLNT.Presentation
             dgvThongTinThucDon_MonAn.Columns["MaMonAn"].Width = 120;
             dgvThongTinThucDon_MonAn.Columns["TenMonAn"].HeaderText = "Tên món ăn";
             dgvThongTinThucDon_MonAn.Columns["TenMonAn"].Width = 120;
-            dgvThongTinThucDon_MonAn.Columns["NangLuong"].HeaderText = "Năng lượng";
+            dgvThongTinThucDon_MonAn.Columns["NangLuong"].HeaderText = "Năng lượng (Kcal)";
             dgvThongTinThucDon_MonAn.Columns["NangLuong"].Width = 120;
             dgvThongTinThucDon_MonAn.Columns["SoLuong"].HeaderText = "Tổng suất ăn";
             dgvThongTinThucDon_MonAn.Columns["SoLuong"].Width = 120;
@@ -207,7 +207,12 @@ namespace QLNT.Presentation
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if(ThongTinThucDonBLL.xoaMonAnTrongBangMonAn(tableMonAn, cboTenMonAn.Text.ToString().Trim()))
+            if(dgvMonAn.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Chưa chọn món ăn để xóa", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            if(ThongTinThucDonBLL.xoaMonAnTrongBangMonAn(tableMonAn, dgvMonAn.SelectedRows[0].Cells["TenMonAn"].Value.ToString().Trim()))
             {
                 lblTongNangLuong.Text = ThongTinThucDonBLL.getTongNangLuong(dgvMonAn);
             }
@@ -216,8 +221,8 @@ namespace QLNT.Presentation
 
         private void dgvMonAn_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex < 0 || e.RowIndex > dgvMonAn.RowCount) { return; }
-            cboTenMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["TenMonAn"].Value.ToString().Trim();
+            //if(e.RowIndex < 0 || e.RowIndex > dgvMonAn.RowCount) { return; }
+            //cboTenMonAn.Text = dgvMonAn.Rows[e.RowIndex].Cells["TenMonAn"].Value.ToString().Trim();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
