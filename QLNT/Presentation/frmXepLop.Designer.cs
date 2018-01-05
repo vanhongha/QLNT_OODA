@@ -58,10 +58,11 @@
             this.btnPutBackAll = new System.Windows.Forms.Button();
             this.btnPutBack = new System.Windows.Forms.Button();
             this.btnPutForwardAll = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
             this.btnThoiHoc = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnPutForward = new System.Windows.Forms.Button();
+            this.btnUnSelectLeft = new System.Windows.Forms.Button();
+            this.btnUnSelectRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -392,20 +393,6 @@
             this.btnPutForwardAll.UseVisualStyleBackColor = true;
             this.btnPutForwardAll.Click += new System.EventHandler(this.btnPutForwardAll_Click);
             // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDong.Image = global::QLNT.Properties.Resources.icons8_close_window_50;
-            this.btnDong.Location = new System.Drawing.Point(1075, 636);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(116, 57);
-            this.btnDong.TabIndex = 1;
-            this.btnDong.Text = "Đóng";
-            this.btnDong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-            // 
             // btnThoiHoc
             // 
             this.btnThoiHoc.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -442,6 +429,32 @@
             this.btnPutForward.UseVisualStyleBackColor = true;
             this.btnPutForward.Click += new System.EventHandler(this.btnPutForward_Click);
             // 
+            // btnUnSelectLeft
+            // 
+            this.btnUnSelectLeft.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnUnSelectLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnSelectLeft.Location = new System.Drawing.Point(398, 636);
+            this.btnUnSelectLeft.Name = "btnUnSelectLeft";
+            this.btnUnSelectLeft.Size = new System.Drawing.Size(130, 51);
+            this.btnUnSelectLeft.TabIndex = 1;
+            this.btnUnSelectLeft.Text = "Bỏ chọn tất cả";
+            this.btnUnSelectLeft.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUnSelectLeft.UseVisualStyleBackColor = true;
+            this.btnUnSelectLeft.Click += new System.EventHandler(this.btnUnSelectLeft_Click);
+            // 
+            // btnUnSelectRight
+            // 
+            this.btnUnSelectRight.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnUnSelectRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnSelectRight.Location = new System.Drawing.Point(1061, 636);
+            this.btnUnSelectRight.Name = "btnUnSelectRight";
+            this.btnUnSelectRight.Size = new System.Drawing.Size(130, 51);
+            this.btnUnSelectRight.TabIndex = 1;
+            this.btnUnSelectRight.Text = "Bỏ chọn tất cả";
+            this.btnUnSelectRight.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUnSelectRight.UseVisualStyleBackColor = true;
+            this.btnUnSelectRight.Click += new System.EventHandler(this.btnUnSelectRight_Click);
+            // 
             // frmXepLop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,7 +465,8 @@
             this.Controls.Add(this.btnPutBackAll);
             this.Controls.Add(this.btnPutBack);
             this.Controls.Add(this.btnPutForwardAll);
-            this.Controls.Add(this.btnDong);
+            this.Controls.Add(this.btnUnSelectRight);
+            this.Controls.Add(this.btnUnSelectLeft);
             this.Controls.Add(this.btnThoiHoc);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnPutForward);
@@ -503,9 +517,10 @@
         private System.Windows.Forms.DataGridView dgvKetQua;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnThoiHoc;
-        private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.ComboBox cboDoTuoi;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnUnSelectLeft;
+        private System.Windows.Forms.Button btnUnSelectRight;
     }
 }

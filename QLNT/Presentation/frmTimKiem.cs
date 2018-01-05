@@ -36,6 +36,7 @@ namespace QLNT.Presentation
         {
             grpChonLop.Enabled = false;
             grpKey.Enabled = false;
+            grpGioiTinh.Enabled = false;
 
             DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
             gioiTinhColumn.Name = "GioiTinhCol";
@@ -60,14 +61,28 @@ namespace QLNT.Presentation
         #region Function
         private void loadDataGirdView()
         {
-            if (string.IsNullOrEmpty(cboLop.Text) && string.IsNullOrEmpty(txtKeyWord.Text))
+            if (string.IsNullOrEmpty(cboLop.Text) && string.IsNullOrEmpty(txtKeyWord.Text) && !chkTimTheoGioiTinh.Checked)
                 dgvKetQua.DataSource = TreBLL.GetListTre();
-            else if (string.IsNullOrEmpty(cboLop.Text) && !string.IsNullOrEmpty(txtKeyWord.Text))
+            else if (string.IsNullOrEmpty(cboLop.Text) && !string.IsNullOrEmpty(txtKeyWord.Text) && !chkTimTheoGioiTinh.Checked)
                 dgvKetQua.DataSource = TreBLL.GetListTre(null, txtKeyWord.Text.Trim());
-            else if (!string.IsNullOrEmpty(cboLop.Text) && string.IsNullOrEmpty(txtKeyWord.Text))
+            else if (!string.IsNullOrEmpty(cboLop.Text) && string.IsNullOrEmpty(txtKeyWord.Text) && !chkTimTheoGioiTinh.Checked)
                 dgvKetQua.DataSource = TreBLL.GetListTre(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())));
-            else
+            else if (string.IsNullOrEmpty(cboLop.Text) && string.IsNullOrEmpty(txtKeyWord.Text) && chkTimTheoGioiTinh.Checked)
+                dgvKetQua.DataSource = TreBLL.GetListTre(null, null, rdoTimKiem_Nam.Checked ? "1" : "0");
+            else if (!string.IsNullOrEmpty(cboLop.Text) && string.IsNullOrEmpty(txtKeyWord.Text) && chkTimTheoGioiTinh.Checked)
+                dgvKetQua.DataSource = TreBLL.GetListTre(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())), 
+                    null, 
+                    rdoTimKiem_Nam.Checked ? "1" : "0");
+            else if (string.IsNullOrEmpty(cboLop.Text) && !string.IsNullOrEmpty(txtKeyWord.Text) && chkTimTheoGioiTinh.Checked)
+                dgvKetQua.DataSource = TreBLL.GetListTre(null,
+                    txtKeyWord.Text.Trim(),
+                    rdoTimKiem_Nam.Checked ? "1" : "0");
+            else if (!string.IsNullOrEmpty(cboLop.Text) && !string.IsNullOrEmpty(txtKeyWord.Text) && !chkTimTheoGioiTinh.Checked)
                 dgvKetQua.DataSource = TreBLL.GetListTre(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())), txtKeyWord.Text);
+            else
+                dgvKetQua.DataSource = TreBLL.GetListTre(LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
+                     txtKeyWord.Text.Trim(),
+                    rdoTimKiem_Nam.Checked ? "1" : "0");
 
             dgvKetQua.Columns["MaTre"].DisplayIndex = 0;
             dgvKetQua.Columns["HoTenTre"].DisplayIndex = 1;
@@ -132,12 +147,21 @@ namespace QLNT.Presentation
             {
                 grpKey.Enabled = false;
                 txtKeyWord.Text = null;
+                loadDataGirdView();
             }
         }
+
         private void txtKeyWord_TextChanged(object sender, System.EventArgs e)
         {
             if (chkTimTheoKey.Checked)
+            {
                 loadDataGirdView();
+            }
+        }
+        private void txtKeyWord_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if(e.KeyCode == Keys.Enter)
+            //    loadDataGirdView();
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -189,7 +213,6 @@ namespace QLNT.Presentation
                 rdoNu.Checked = Convert.ToInt32(dgvKetQua.Rows[e.RowIndex].Cells["GioiTinh"].Value) == 0;
             }       
         }
-        #endregion
 
         private void dgvKetQua_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -199,5 +222,31 @@ namespace QLNT.Presentation
                     int.Parse(dgvKetQua.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
             }
         }
+
+        private void rdoTimKiem_Nam_CheckedChanged(object sender, EventArgs e)
+        {
+            loadDataGirdView();
+        }
+
+        private void rdoTimKiem_Nu_CheckedChanged(object sender, EventArgs e)
+        {
+            loadDataGirdView();
+        }
+
+        private void chkTimTheoGioiTinh_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTimTheoGioiTinh.Checked)
+                grpGioiTinh.Enabled = true;
+            else
+            {
+                grpGioiTinh.Enabled = false;
+                rdoTimKiem_Nam.Checked = false;
+                rdoTimKiem_Nu.Checked = false;
+                loadDataGirdView();
+            }
+        }
+        #endregion
+
+
     }
 }

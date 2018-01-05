@@ -609,6 +609,17 @@ namespace QLNT.Presentation
             dgvDanhSach.DataSource = null;
             dgvKetQua.DataSource = null;
         }
+        private void btnUnSelectLeft_Click(object sender, EventArgs e)
+        {
+            dgvDanhSach.ClearSelection();
+        }
+
+        private void btnUnSelectRight_Click(object sender, EventArgs e)
+        {
+            dgvKetQua.ClearSelection();
+        }
         #endregion
+
+
     }
 }

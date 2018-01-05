@@ -12,9 +12,9 @@ namespace QLNT.BusinessLayer
 {
     class TreBLL
     {
-        public static DataTable GetListTre(Lop lop = null, string keyWord = null)
+        public static DataTable GetListTre(Lop lop = null, string keyWord = null, string gioiTinh = null)
         {
-            return TreDAL.GetListTre(lop, keyWord);
+            return TreDAL.GetListTre(lop, keyWord, gioiTinh);
         }
 
         public static Tre GetTre(string maTre)

@@ -7,27 +7,55 @@ namespace QLNT.DataLayer
 {
     class TreDAL
     {
-        public static DataTable GetListTre(Lop lop = null, string keyWord = null)
+        public static DataTable GetListTre(Lop lop = null, string keyWord = null, string gioiTinh = null)
         {
             DataAccessHelper.GetInstance().Open();
             SqlCommand cmd = null;
-            if (lop == null && string.IsNullOrEmpty(keyWord))
+            if (lop == null && string.IsNullOrEmpty(keyWord) && gioiTinh == null)
                 cmd = DataAccessHelper.GetInstance().Command("GetTre");
-            else if (lop == null && !string.IsNullOrEmpty(keyWord))
+            else if (lop == null && !string.IsNullOrEmpty(keyWord) && gioiTinh == null)
             {
                 cmd = DataAccessHelper.GetInstance().Command("GETTRETHEOKEY");
                 cmd.Parameters.AddWithValue("@key", keyWord);
             }
-            else if (lop != null && string.IsNullOrEmpty(keyWord))
+            else if (lop != null && string.IsNullOrEmpty(keyWord) && gioiTinh == null)
             {
                 cmd = DataAccessHelper.GetInstance().Command("GETTRETHEOLOP");
                 cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
             }
-            else
+            else if (lop == null && string.IsNullOrEmpty(keyWord) && gioiTinh != null)
+            {
+                // Lọc theo giới tính
+                cmd = DataAccessHelper.GetInstance().Command("GetTreTheoGioiTinh");
+                cmd.Parameters.AddWithValue("@GioiTinh", Convert.ToInt32(gioiTinh));
+            }
+            else if(lop != null && string.IsNullOrEmpty(keyWord) && gioiTinh != null)
+            {
+                // Lọc theo giới tính và lớp
+                cmd = DataAccessHelper.GetInstance().Command("GetTreTheoGioiTinh_Lop");
+                cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
+                cmd.Parameters.AddWithValue("@GioiTinh", Convert.ToInt32(gioiTinh));
+            }
+            else if (lop == null && !string.IsNullOrEmpty(keyWord) && gioiTinh != null)
+            {
+                // Lọc theo giới tính và key
+                cmd = DataAccessHelper.GetInstance().Command("GetTreTheoGioiTinh_Key");
+                cmd.Parameters.AddWithValue("@key", keyWord);
+                cmd.Parameters.AddWithValue("@GioiTinh", Convert.ToInt32(gioiTinh));
+            }
+            else if (lop != null && !string.IsNullOrEmpty(keyWord) && gioiTinh == null) // Lọc theo lớp và key
             {
                 cmd = DataAccessHelper.GetInstance().Command("GETTRETHEOLOP_KEY");
                 cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
                 cmd.Parameters.AddWithValue("@key", keyWord);
+            }
+            else
+            {
+                // Lọc cả 3 thằng
+                cmd = DataAccessHelper.GetInstance().Command("GetTreAllFilter");
+                cmd.Parameters.AddWithValue("@MaLop", lop.MaLop);
+                cmd.Parameters.AddWithValue("@key", keyWord);
+                cmd.Parameters.AddWithValue("@GioiTinh", Convert.ToInt32(gioiTinh));
             }
 
             cmd.CommandType = CommandType.StoredProcedure;
