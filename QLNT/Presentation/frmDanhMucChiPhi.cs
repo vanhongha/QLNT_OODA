@@ -92,6 +92,8 @@ namespace QLNT.Presentation
             btnThem.Enabled = true;
             btnXoa.Enabled = false;
             btnCapNhat.Enabled = false;
+
+            lbMessage.Visible = false;
         }
         #endregion
 

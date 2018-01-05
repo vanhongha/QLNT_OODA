@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThuHocPhi));
             this.dgvTre = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -67,6 +68,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbNgayThu = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -117,6 +119,7 @@
             this.dgvTre.Size = new System.Drawing.Size(516, 165);
             this.dgvTre.TabIndex = 7;
             this.dgvTre.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTre_CellClick);
+            this.dgvTre.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvTre_DataBindingComplete);
             // 
             // panel3
             // 
@@ -284,6 +287,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnReload);
             this.panel1.Controls.Add(this.cboLoaiLop);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
@@ -485,6 +489,17 @@
             this.panel2.Size = new System.Drawing.Size(529, 558);
             this.panel2.TabIndex = 5;
             // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(480, 110);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(30, 28);
+            this.btnReload.TabIndex = 147;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // frmThuHocPhi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,5 +567,6 @@
         private System.Windows.Forms.Button btnXoaBienLai;
         private System.Windows.Forms.Button btnInBienLai;
         private System.Windows.Forms.Label lbNgayThu;
+        private System.Windows.Forms.Button btnReload;
     }
 }

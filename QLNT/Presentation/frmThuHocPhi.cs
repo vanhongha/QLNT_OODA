@@ -44,6 +44,14 @@ namespace QLNT.Presentation
             sttColumn.Width = 50;
             sttColumn.ReadOnly = true;
             dgvTre.Columns.Add(sttColumn);
+
+            DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
+            gioiTinhColumn.Name = "GioiTinhCol";
+            gioiTinhColumn.HeaderText = "Giới tính";
+            gioiTinhColumn.Width = 150;
+            gioiTinhColumn.ReadOnly = false;
+            gioiTinhColumn.FillWeight = 10;
+            dgvTre.Columns.Add(gioiTinhColumn);
         }
 
         private void LoadListNamHoc()
@@ -100,28 +108,31 @@ namespace QLNT.Presentation
                     thang, nam);
             }
 
-            dgvTre.Columns[0].HeaderText = "STT";
-            dgvTre.Columns[3].HeaderText = "Họ tên trẻ";
-            dgvTre.Columns[4].HeaderText = "Giới tính";
-            dgvTre.Columns[5].HeaderText = "Ngày sinh";
-            dgvTre.Columns[10].HeaderText = "Tổng tiền học phí";
-            dgvTre.Columns[11].HeaderText = "Số tiền đã đóng";
-            dgvTre.Columns[12].HeaderText = "Số tiền còn nợ";
+            dgvTre.Columns["STT"].DisplayIndex = 0;
+            dgvTre.Columns["HoTenTre"].DisplayIndex = 1;
+            dgvTre.Columns["GioiTinhCol"].DisplayIndex = 2;
+            dgvTre.Columns["NgaySinh"].DisplayIndex = 3;
+            dgvTre.Columns["TongTienHocPhi"].DisplayIndex = 4;
+            dgvTre.Columns["SoTienDaDong"].DisplayIndex = 5;
+            dgvTre.Columns["SoTienConNo"].DisplayIndex = 6;
 
-            dgvTre.Columns[0].Width = 50;
-            dgvTre.Columns[3].Width = 300;
-            dgvTre.Columns[4].Width = 100;
-            dgvTre.Columns[5].Width = 140;
-            dgvTre.Columns[10].Width = 250;
-            dgvTre.Columns[11].Width = 250;
-            dgvTre.Columns[12].Width = 250;
+            dgvTre.Columns["STT"].HeaderText = "STT";
+            dgvTre.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
+            dgvTre.Columns["GioiTinhCol"].HeaderText = "Giới tính";
+            dgvTre.Columns["NgaySinh"].HeaderText = "Ngày sinh";
+            dgvTre.Columns["TongTienHocPhi"].HeaderText = "Tổng tiền học phí";
+            dgvTre.Columns["SoTienDaDong"].HeaderText = "Số tiền đã đóng";
+            dgvTre.Columns["SoTienConNo"].HeaderText = "Số tiền còn nợ";
 
-            for (int i = 0; i < dgvTre.Rows.Count; i++)
-            {
-                dgvTre.Rows[i].Cells[0].Value = i + 1;
-            }
+            dgvTre.Columns["STT"].Width = 50;
+            dgvTre.Columns["HoTenTre"].Width = 300;
+            dgvTre.Columns["GioiTinhCol"].Width = 100;
+            dgvTre.Columns["NgaySinh"].Width = 140;
+            dgvTre.Columns["TongTienHocPhi"].Width = 250;
+            dgvTre.Columns["SoTienDaDong"].Width = 250;
+            dgvTre.Columns["SoTienConNo"].Width = 250;
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinh", "NgaySinh", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinhCol", "NgaySinh", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
 
             dgvTre.ClearSelection();
@@ -374,5 +385,19 @@ namespace QLNT.Presentation
             frmBienLai.ShowDialog();
         }
 
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadDataGirdView();
+        }
+
+        private void dgvTre_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < dgvTre.Rows.Count; i++)
+            {
+                dgvTre.Rows[i].Cells["STT"].Value = i + 1;
+                dgvTre.Rows[i].Cells["GioiTinhCol"].Value =
+                    int.Parse(dgvTre.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
+            }
+        }
     }
 }

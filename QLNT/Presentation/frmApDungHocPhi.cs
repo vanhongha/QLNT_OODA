@@ -191,7 +191,7 @@ namespace QLNT.Presentation
             dgvChiTietHocPhi.Columns[3].HeaderText = "Tên chi phí";
             dgvChiTietHocPhi.Columns[4].HeaderText = "Số tiền";
 
-            dgvChiTietHocPhi.Columns[3].Width = 250;
+            dgvChiTietHocPhi.Columns[3].Width = 150;
             dgvChiTietHocPhi.Columns[4].Width = 100;
 
             string[] listProp = { "STT", "TenChiPhi", "SoTien" };
@@ -408,14 +408,9 @@ namespace QLNT.Presentation
             RefreshView();
         }
 
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            tabControl.Tabs.Remove(tab);
-        }
-
         private void dgvChiTietHocPhi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnCapNhatChiPhi.Enabled = true;
             if (e.RowIndex != -1 && e.RowIndex < dgvChiTietHocPhi.RowCount)
             {
                 cboChiPhi.Text = dgvChiTietHocPhi.SelectedRows[0].Cells["TenChiPhi"].Value.ToString();
@@ -447,5 +442,28 @@ namespace QLNT.Presentation
         }
         #endregion
 
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadListChiPhi();
+        }
+
+        private void btnCapNhatChiPhi_Click(object sender, EventArgs e)
+        {
+            if(txtSoTien.Text == "")
+            {
+                MessageBox.Show("Số tiền không được bỏ trống.");
+            }
+            if (dgvChiTietHocPhi.SelectedRows.Count > 0)
+            {
+                string maDanhMuc = dgvChiTietHocPhi.SelectedRows[0].Cells["MaDanhMuc"].Value.ToString();
+                foreach (ChiTietHocPhi chiTiet in listChiTietHocPhi.ToArray())
+                {
+                    if (chiTiet.MaDanhMuc == maDanhMuc)
+                        chiTiet.SoTien = decimal.Parse(txtSoTien.Text.ToString());
+
+                }
+                LoadListChiTietHocPhi();
+            }
+        }
     }
 }

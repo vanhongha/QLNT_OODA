@@ -84,7 +84,7 @@ namespace QLNT.Entities
                 DanhMucChiPhi danhMuc = DanhMucChiPhiBLL.GetInfoDanhMuc(chiTiet.MaDanhMuc);
                 ChiTietHocPhi chiTietHocPhi = (ChiTietHocPhi)chiTiet.Clone();
                 //cap nhat lai so tien trong list neu danh muc chi phi nay tinh tien theo so ngay di hoc
-                chiTietHocPhi.SoTien = danhMuc.TinhTheoSoNgayDiHoc == 1 ? danhMuc.SoTien * soNgayDiHoc : danhMuc.SoTien;
+                chiTietHocPhi.SoTien = danhMuc.TinhTheoSoNgayDiHoc == 1 ? danhMuc.SoTien * soNgayDiHoc : chiTiet.SoTien;
                 chiTietHocPhi.MaHocPhi = hocPhi.MaHocPhi;
                 HocPhiDAL.ThemChiTietHocPhi(chiTietHocPhi);
             }
@@ -136,7 +136,7 @@ namespace QLNT.Entities
                 DanhMucChiPhi danhMuc = DanhMucChiPhiBLL.GetInfoDanhMuc(chiTiet.MaDanhMuc);
 
                 //cap nhat lai so tien trong list neu danh muc chi phi nay tinh tien theo so ngay di hoc
-                tong += danhMuc.TinhTheoSoNgayDiHoc == 1 ? danhMuc.SoTien * soNgayDiHoc : danhMuc.SoTien;
+                tong += danhMuc.TinhTheoSoNgayDiHoc == 1 ? danhMuc.SoTien * soNgayDiHoc : chiTiet.SoTien;
             }
 
             return tong;
