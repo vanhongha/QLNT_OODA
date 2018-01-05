@@ -16,6 +16,7 @@ namespace QLNT.Presentation
         public frmDangNhap()
         {
             InitializeComponent();
+            labStatus.Visible = false;
         }
 
         private void txtThoat_Click(object sender, EventArgs e)

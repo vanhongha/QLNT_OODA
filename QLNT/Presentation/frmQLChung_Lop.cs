@@ -342,6 +342,7 @@ namespace QLNT.Presentation
                             maNienKhoa,
                             cboGiangVien.Text,
                             txtTenLop.Text);
+                        LoadValueInDGV();
                     }
                     else
                     {
@@ -350,11 +351,14 @@ namespace QLNT.Presentation
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
                         if (r == DialogResult.Yes)
+                        {
                             ThemLop(LopBLL.GenMaLop(),
-                              KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
-                              maNienKhoa,
-                              cboGiangVien.Text,
-                              txtTenLop.Text);                        
+                             KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
+                             maNienKhoa,
+                             cboGiangVien.Text,
+                             txtTenLop.Text);
+                            LoadValueInDGV();
+                        }
                     }
                 }
                 else
