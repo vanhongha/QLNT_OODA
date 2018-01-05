@@ -44,7 +44,6 @@
             this.btnThemChiPhi = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnApDungHocPhi = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -226,11 +225,11 @@
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(792, 493);
+            this.btnRefresh.Location = new System.Drawing.Point(859, 493);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(110, 38);
+            this.btnRefresh.Size = new System.Drawing.Size(164, 38);
             this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -240,28 +239,15 @@
             this.btnApDungHocPhi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApDungHocPhi.Location = new System.Drawing.Point(638, 493);
             this.btnApDungHocPhi.Name = "btnApDungHocPhi";
-            this.btnApDungHocPhi.Size = new System.Drawing.Size(144, 38);
+            this.btnApDungHocPhi.Size = new System.Drawing.Size(180, 38);
             this.btnApDungHocPhi.TabIndex = 8;
             this.btnApDungHocPhi.Text = "Áp dụng học phí";
             this.btnApDungHocPhi.UseVisualStyleBackColor = true;
             this.btnApDungHocPhi.Click += new System.EventHandler(this.btnApDungHocPhi_Click);
             // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDong.Location = new System.Drawing.Point(913, 493);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(110, 38);
-            this.btnDong.TabIndex = 9;
-            this.btnDong.Text = "Đóng";
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.groupBox3);
-            this.panel5.Controls.Add(this.btnDong);
             this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Controls.Add(this.btnApDungHocPhi);
             this.panel5.Controls.Add(this.groupChiTiet);
@@ -440,7 +426,6 @@
         private System.Windows.Forms.GroupBox groupChiTiet;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnApDungHocPhi;
-        private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ComboBox cboLoaiLop;
         private System.Windows.Forms.Label label1;
