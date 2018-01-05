@@ -201,9 +201,9 @@
             this.ribbonBar7.AutoOverflowEnabled = true;
             this.ribbonBar7.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar7.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnApDung,
+            this.btnNguyenLieu,
             this.btnMonAn,
-            this.btnNguyenLieu});
+            this.btnApDung});
             this.ribbonBar7.Location = new System.Drawing.Point(398, 0);
             this.ribbonBar7.Name = "ribbonBar7";
             this.ribbonBar7.Size = new System.Drawing.Size(210, 101);
@@ -280,11 +280,11 @@
             this.ribbonBar4.AutoOverflowEnabled = true;
             this.ribbonBar4.Dock = System.Windows.Forms.DockStyle.Left;
             this.ribbonBar4.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnDiemDanh,
-            this.btnTraCuu,
-            this.btnPhieuBeNgoan,
             this.btnTiepNhan,
-            this.btnXepLop});
+            this.btnXepLop,
+            this.btnDiemDanh,
+            this.btnPhieuBeNgoan,
+            this.btnTraCuu});
             this.ribbonBar4.Location = new System.Drawing.Point(3, 0);
             this.ribbonBar4.Name = "ribbonBar4";
             this.ribbonBar4.Size = new System.Drawing.Size(271, 101);

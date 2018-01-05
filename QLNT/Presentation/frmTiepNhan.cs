@@ -253,7 +253,7 @@ namespace QLNT.Presentation
 
         private void btnNhapTuFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog(); ;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
             DialogResult result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
@@ -261,6 +261,7 @@ namespace QLNT.Presentation
                 try
                 {
                     DataTable dt = DataHandle.ReadDataFromExcelFile(filePath);
+                    //MessageBox.Show(dt.Rows[0][1].ToString());
                     DataHandle.ThemTreVaoDBTuExcel(dt);
                     loadDataGridView();
                 }
