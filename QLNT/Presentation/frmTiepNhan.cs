@@ -101,7 +101,7 @@ namespace QLNT.Presentation
             txtHoTenMe.Text = "";
             txtSDT.Text = "";
             txtDiaChi.Text = "";
-            dateNgaySinh.ResetText();
+            //dateNgaySinh.ResetText();
             rdbNam.Checked = true;
             rdbNu.Checked = false;
         }
