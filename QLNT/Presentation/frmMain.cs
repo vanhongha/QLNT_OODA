@@ -74,7 +74,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Thông tin sức khỏe"))
             {
                 TabItem tab = tabControl.CreateTab("Thông tin sức khỏe");
-                tab.PredefinedColor = eTabItemColor.Yellow;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmThongTinSucKhoe _frmBieuDoSucKhoe = new frmThongTinSucKhoe(tabControl, tab);
                 _frmBieuDoSucKhoe.TopLevel = false;
                 _frmBieuDoSucKhoe.Dock = DockStyle.Fill;
@@ -97,7 +97,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Tiếp nhận"))
             {
                 TabItem tab = tabControl.CreateTab("Tiếp nhận");
-                tab.PredefinedColor = eTabItemColor.Green;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmTiepNhan _frmTiepNhan = new frmTiepNhan(tabControl, tab);
                 _frmTiepNhan.TopLevel = false;
                 _frmTiepNhan.Dock = DockStyle.Fill;
@@ -116,7 +116,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Điểm danh"))
             {
                 TabItem tab = tabControl.CreateTab("Điểm danh");
-                tab.PredefinedColor = eTabItemColor.Lemon;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmDiemDanh _frmDiemDanh = new frmDiemDanh(tabControl, tab);
                 _frmDiemDanh.TopLevel = false;
                 _frmDiemDanh.Dock = DockStyle.Fill;
@@ -134,7 +134,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Phiếu bé ngoan"))
             {
                 TabItem tab = tabControl.CreateTab("Phiếu bé ngoan");
-                tab.PredefinedColor = eTabItemColor.Red;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmPhieuBeNgoan _frmPhieuBeNgoan = new frmPhieuBeNgoan(tabControl, tab);
                 _frmPhieuBeNgoan.TopLevel = false;
                 _frmPhieuBeNgoan.Dock = DockStyle.Fill;
@@ -152,7 +152,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Tra cứu"))
             {
                 TabItem tab = tabControl.CreateTab("Tra cứu");
-                tab.PredefinedColor = eTabItemColor.Cyan;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmTimKiem _frmTimKiem = new frmTimKiem(tabControl, tab);
                 _frmTimKiem.TopLevel = false;
                 _frmTimKiem.Dock = DockStyle.Fill;
@@ -170,7 +170,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Biểu đồ sức khỏe"))
             {
                 TabItem tab = tabControl.CreateTab("Biểu đồ sức khỏe");
-                tab.PredefinedColor = eTabItemColor.Yellow;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmBieuDoSucKhoe _frmBieuDoSucKhoe = new frmBieuDoSucKhoe(tabControl, tab);
                 _frmBieuDoSucKhoe.TopLevel = false;
                 _frmBieuDoSucKhoe.Dock = DockStyle.Fill;
@@ -188,7 +188,7 @@ namespace QLNT.Presentation
             if (!CheckOpenedTabs("Xếp lớp"))
             {
                 TabItem tab = tabControl.CreateTab("Xếp lớp");
-                tab.PredefinedColor = eTabItemColor.Cyan;
+                tab.PredefinedColor = eTabItemColor.Blue;
                 frmXepLop _frmXepLop = new frmXepLop(tabControl, tab);
                 _frmXepLop.TopLevel = false;
                 _frmXepLop.Dock = DockStyle.Fill;
