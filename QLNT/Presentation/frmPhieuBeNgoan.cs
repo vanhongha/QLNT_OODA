@@ -84,12 +84,13 @@ namespace QLNT.Presentation
                 if (dgvPhieuBeNgoan.RowCount <= 0)
                 {
                     lbThongBao.Text = "Tháng " + dtThangLapPhieu.Value.ToString("MM-yyyy") + " chưa tạo phiếu bé ngoan";
+                    btnLuuPhieu.Enabled = false;
                     lbThongBao.Visible = true;
                 }
                 else
                 {
                     lbThongBao.Visible = false;
-                    
+                    btnLuuPhieu.Enabled = true;
 
                     for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                     {
@@ -226,6 +227,7 @@ namespace QLNT.Presentation
                             dtThangLapPhieu.Text);
                         TaoPhieuTrong();
                         MessageBox.Show("Một phiếu mới hoàn toàn vừa được tạo", "Thông báo");
+                        btnLuuPhieu.Enabled = true;
                     }
                 }
                 else if (confirm == DialogResult.No)
@@ -289,7 +291,7 @@ namespace QLNT.Presentation
             && Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
             {
                 btnTaoPhieuMoi.Enabled = true;
-                btnLuuPhieu.Enabled = true;
+                //btnLuuPhieu.Enabled = true;
             }
             else if (LopBLL.GetSiSo(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())) <= 0)
             {

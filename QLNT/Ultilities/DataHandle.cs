@@ -50,7 +50,8 @@ namespace QLNT.Ultilities
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("File nhập vào không đúng định dạng!\nVui lòng xem HDSD để chuẩn bị file có định dạng đúng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             finally
             {
@@ -94,7 +95,8 @@ namespace QLNT.Ultilities
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("File nhập vào không đúng định dạng!\nVui lòng xem HDSD để chuẩn bị file có định dạng đúng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
 
 

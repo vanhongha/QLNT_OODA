@@ -75,7 +75,7 @@ namespace QLNT.Presentation
             if (LopBLL.GetSiSo(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())) > 0
             && Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
             {
-                btnLuuDiemDanh.Enabled = true;
+                //btnLuuDiemDanh.Enabled = true;
                 btnTaoBangMoi.Enabled = true;
             }
             else if (LopBLL.GetSiSo(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())) <= 0)
@@ -134,7 +134,7 @@ namespace QLNT.Presentation
                         dtNgayDiemDanh.Text);
                     TaoPhieuTrong();
                     MessageBox.Show("Một phiếu mới hoàn toàn vừa được tạo", "Thông báo");
-
+                    btnLuuDiemDanh.Enabled = true;
                 }
             }
             else if (confirm == DialogResult.No)
@@ -164,13 +164,13 @@ namespace QLNT.Presentation
                 {
                     lbThongBao.Text = "Ngày " + dtNgayDiemDanh.Value.ToString("dd-MM-yyyy") + " chưa có điểm danh";
                     lbThongBao.Visible = true;
+                    btnLuuDiemDanh.Enabled = false;
                 }
                 else
                 {
                     lbThongBao.Visible = false;
-                    
+                    btnLuuDiemDanh.Enabled = true;
 
-                    
                     for (int i = 0; i < dgvDiemDanh.RowCount; i++)
                     {
                         DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvDiemDanh.Rows[i].Cells["HienDienCheckbox"];

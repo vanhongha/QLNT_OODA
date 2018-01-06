@@ -44,18 +44,9 @@ namespace QLNT.Presentation
         {
             txtMaPhieu.Text = PhieuTiepNhanBLL.GenMaPhieu().ToString();
             txtMaHocSinh.Text = TreBLL.GenMaTre().ToString();
-            txtNgayTiepNhan.Text = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            txtNgayTiepNhan.Text = DateTime.Now.ToString("dd-MM-yyyy");
             txtNguoiTiepNhan.Text = TaiKhoanBLL.GetTenNguoiDung(username);
-            dateNgaySinh.MinDate = DateTime.Today.AddYears(-7);
-            dateNgaySinh.MaxDate = DateTime.Today.AddYears(-2);
 
-            DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
-            gioiTinhColumn.Name = "GioiTinhCol";
-            gioiTinhColumn.HeaderText = "Giới tính";
-            gioiTinhColumn.ReadOnly = false;
-            gioiTinhColumn.FillWeight = 10;
-            dgvTiepNhan.Columns.Add(gioiTinhColumn);
-            
         }
 
         #endregion
@@ -63,7 +54,17 @@ namespace QLNT.Presentation
         #region Functions
         private void loadDataGridView()
         {
+            if (dgvTiepNhan.Columns["GioiTinhCol"] == null)
+            {
+                DataGridViewTextBoxColumn gioiTinhColumn = new DataGridViewTextBoxColumn();
+                gioiTinhColumn.Name = "GioiTinhCol";
+                gioiTinhColumn.HeaderText = "Giới tính";
+                gioiTinhColumn.ReadOnly = false;
+                gioiTinhColumn.FillWeight = 10;
+                dgvTiepNhan.Columns.Add(gioiTinhColumn);
+            }
             dgvTiepNhan.DataSource = TreBLL.GetListTre();
+
             dgvTiepNhan.Columns["MaTre"].HeaderText = "Mã trẻ";
             dgvTiepNhan.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
             dgvTiepNhan.Columns["NgaySinh"].HeaderText = "Ngày sinh";
@@ -127,6 +128,7 @@ namespace QLNT.Presentation
             txtHoTenCha.Text = dt.Rows[0]["HoTenCha"].ToString();
             txtSDT.Text = dt.Rows[0]["SDTLienLac"].ToString();
             txtDiaChi.Text = dt.Rows[0]["DiaChi"].ToString();
+
         }
         #endregion
 
@@ -144,9 +146,15 @@ namespace QLNT.Presentation
             if ( String.IsNullOrEmpty(txtHoTen.Text)
                 || String.IsNullOrEmpty(txtHoTenCha.Text)
                 || String.IsNullOrEmpty(txtHoTenMe.Text)
-                || String.IsNullOrEmpty(txtDiaChi.Text))
+                || String.IsNullOrEmpty(txtDiaChi.Text)
+                || String.IsNullOrEmpty(txtSDT.Text))
             {
                 MessageBox.Show("Phải nhập đầy đủ trưởng thông tin. Không có ghi rõ: 'Không có'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if((DateTime.Now-dateNgaySinh.Value).TotalDays<= 1095 || (DateTime.Now - dateNgaySinh.Value).TotalDays>= 2190)
+            {
+                MessageBox.Show("Nhà trường chỉ nhận trẻ từ 3 đến 6 tuổi vào học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             Tre hocsinhmoi = new Tre(txtMaHocSinh.Text, txtHoTen.Text,
@@ -168,7 +176,7 @@ namespace QLNT.Presentation
                     loadDataGridView();
                 }
                 else
-                    MessageBox.Show("Lỗi chưa xác định", "Thông báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi khi thêm trẻ", "Thông báo", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
@@ -193,13 +201,35 @@ namespace QLNT.Presentation
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Thông báo");
+                MessageBox.Show("Lỗi khi đọc dữ liệu từ bảng", "Thông báo");
             }
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
             try
             {
+                if (txtHoTen.Text.Length > 50
+                || txtHoTenCha.Text.Length > 50
+                || txtHoTenMe.Text.Length > 50
+                || txtDiaChi.Text.Length > 100)
+                {
+                    MessageBox.Show("Các trường họ tên không được quá dài (ít hơn 50 ký tự)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (String.IsNullOrEmpty(txtHoTen.Text)
+                    || String.IsNullOrEmpty(txtHoTenCha.Text)
+                    || String.IsNullOrEmpty(txtHoTenMe.Text)
+                    || String.IsNullOrEmpty(txtDiaChi.Text)
+                    || String.IsNullOrEmpty(txtSDT.Text))
+                {
+                    MessageBox.Show("Phải nhập đầy đủ trưởng thông tin. Không có ghi rõ: 'Không có'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if ((DateTime.Now - dateNgaySinh.Value).TotalDays <= 1095 || (DateTime.Now - dateNgaySinh.Value).TotalDays >= 2190)
+                {
+                    MessageBox.Show("Nhà trường chỉ nhận trẻ từ 3 đến 6 tuổi vào học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 Tre tre = new Tre();
 
                 tre.MaTre = maTre;
@@ -222,13 +252,15 @@ namespace QLNT.Presentation
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Thông báo");
+                MessageBox.Show("Cập nhật không thành công.\nHãy xem lại thông tin nhập", "Thông báo");
             }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             Init();
             CleanInput();
         }
@@ -242,7 +274,7 @@ namespace QLNT.Presentation
                 if (dialog == DialogResult.Yes)
                 {
                     TreBLL.XoaTre(listMaTre);
-                    MessageBox.Show("Đã xóa" + listMaTre.Count + " trẻ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Đã xóa " + listMaTre.Count + " trẻ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     CleanInput();
                     loadDataGridView();
@@ -250,7 +282,7 @@ namespace QLNT.Presentation
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Thông báo");
+                MessageBox.Show("Trẻ này đã học được một thời gian. Không thể xóa.\nNếu muốn cho thôi học, hãy sang bảng Xếp lớp -> Chọn thôi học", "Thông báo");
             }
         }
 
@@ -268,8 +300,9 @@ namespace QLNT.Presentation
                     DataHandle.ThemTreVaoDBTuExcel(dt);
                     loadDataGridView();
                 }
-                catch (IOException)
+                catch (Exception ex)
                 {
+                    MessageBox.Show("File nhập vào không đúng định dạng!\nVui lòng xem HDSD để chuẩn bị file có định dạng đúng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
