@@ -336,7 +336,7 @@ namespace QLNT.Presentation
                 DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
                 string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
                 string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
-                if (LopBLL.GetSiSo(maLopLuaChon) < LopBLL.GetSiSoToiDa())
+                if (LopBLL.GetSiSo(maLop) < LopBLL.GetSiSoToiDa())
                 {
                     if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))   // Kiểm tra nếu như ngày bắt đầu, kết thúc của niên khóa cần chuyển đến là hợp lệ
                     {
@@ -405,7 +405,8 @@ namespace QLNT.Presentation
                 string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
                 string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
                 if(LopBLL.GetSiSo(maLopLuaChon) < LopBLL.GetSiSoToiDa())
-                {    if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
+                {
+                    if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
                     {
                         if (listMaTre.Count > 0)
                         {
@@ -442,6 +443,11 @@ namespace QLNT.Presentation
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                 }
+                else
+                    MessageBox.Show("Không thể chuyển trẻ vào lớp mới,\nvì lớp mới vì sĩ số đã lớn hơn sĩ số tối đa của 1 lớp!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
             }
             else
                 MessageBox.Show("Vui lòng chọn lớp để chuyển trẻ!",
