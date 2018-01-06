@@ -44,7 +44,7 @@ namespace QLNT.Presentation
         {
             txtMaPhieu.Text = PhieuTiepNhanBLL.GenMaPhieu().ToString();
             txtMaHocSinh.Text = TreBLL.GenMaTre().ToString();
-            txtNgayTiepNhan.Text = DateTime.Now.ToString("dd-MM-yyyy");
+            txtNgayTiepNhan.Text = DateTime.Now.ToShortDateString();
             txtNguoiTiepNhan.Text = TaiKhoanBLL.GetTenNguoiDung(username);
 
         }
@@ -296,8 +296,7 @@ namespace QLNT.Presentation
                 try
                 {
                     DataTable dt = DataHandle.ReadDataFromExcelFile(filePath);
-                    //MessageBox.Show(dt.Rows[0][1].ToString());
-                    DataHandle.ThemTreVaoDBTuExcel(dt);
+                    DataHandle.ThemTreVaoDBTuExcel(dt, txtNgayTiepNhan.Text, txtNguoiTiepNhan.Text);
                     loadDataGridView();
                 }
                 catch (Exception ex)

@@ -61,7 +61,7 @@ namespace QLNT.Ultilities
             return data;
         }
 
-        public static void ThemTreVaoDBTuExcel(DataTable data)
+        public static void ThemTreVaoDBTuExcel(DataTable data, string ngayTiepNhan, string nguoiTiepNhan)
         {
             if (data == null || data.Rows.Count == 0)
             {
@@ -72,7 +72,8 @@ namespace QLNT.Ultilities
             {
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
-                    Tre tre = new Tre(TreBLL.GenMaTre().ToString(),
+                    string maTre = TreBLL.GenMaTre();
+                    Tre tre = new Tre(maTre,
                         data.Rows[i][0].ToString().Trim(),  // Họ tên
                         Convert.ToInt32(data.Rows[i][1].ToString()),   // Giới tính,
                         DateTime.Parse(data.Rows[i][2].ToString().Trim()), // Ngày sinh
@@ -80,10 +81,13 @@ namespace QLNT.Ultilities
                         data.Rows[i][4].ToString().Trim(),  // Họ tên mẹ
                         data.Rows[i][5].ToString().Trim(),  // Địa chỉ
                         data.Rows[i][6].ToString().Trim()); // SĐT
+                    PhieuTiepNhanTre phieumoi = new PhieuTiepNhanTre(maTre, PhieuTiepNhanBLL.GenMaPhieu(), ngayTiepNhan, nguoiTiepNhan);
+
 
                     try
                     {
                         TreBLL.ThemTre(tre);
+                        PhieuTiepNhanBLL.ThemPhieu(phieumoi);
                     }
                     catch (Exception ex)
                     {
