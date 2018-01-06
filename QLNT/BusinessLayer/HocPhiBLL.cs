@@ -194,10 +194,10 @@ namespace QLNT.Entities
             HocPhiDAL.CapNhatHocPhi(hocPhi);
         }
 
-        public static void XoaBienLai(BienLaiThuHocPhi bienLai, string maHocPhi)
+        public static void HuyBienLai(BienLaiThuHocPhi bienLai, string maHocPhi)
         {
             //Xóa biên lai
-            HocPhiDAL.XoaBienLai(bienLai.MaBienLai);
+            HocPhiDAL.HuyBienLai(bienLai.MaBienLai);
 
             //Cập nhật lại học phí cho trẻ
             HocPhi hocPhi = LayThongTinHocPhi(maHocPhi);
@@ -219,9 +219,9 @@ namespace QLNT.Entities
             return "MABL" + id;
         }
 
-        public static bool CoTheXoaBienLai(DateTime ngayThu, DateTime ngayXoa)
+        public static bool CoTheHuyBienLai(DateTime ngayThu, DateTime ngayHuy)
         {
-            return ngayThu.Month == ngayXoa.Month && ngayThu.Year == ngayXoa.Year;
+            return ngayHuy.Day == ngayThu.Day && ngayThu.Month == ngayHuy.Month && ngayThu.Year == ngayHuy.Year;
         }
     }
 }

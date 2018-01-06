@@ -210,10 +210,10 @@ namespace QLNT.DataLayer
             DataAccessHelper.GetInstance().Close();
         }
 
-        public static void XoaBienLai(string maBienLai)
+        public static void HuyBienLai(string maBienLai)
         {
             DataAccessHelper.GetInstance().Open();
-            SqlCommand cmd = DataAccessHelper.GetInstance().Command("XoaBienLai");
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("HuyBienLai");
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaBienLai", maBienLai);

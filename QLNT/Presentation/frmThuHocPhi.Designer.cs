@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThuHocPhi));
             this.dgvTre = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnXoaBienLai = new System.Windows.Forms.Button();
@@ -49,7 +48,7 @@
             this.txtSoTienConNo = new System.Windows.Forms.TextBox();
             this.txtSoTienDong = new System.Windows.Forms.TextBox();
             this.txtNguoiDongTien = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.cboLoaiLop = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,14 +67,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbNgayThu = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).BeginInit();
-            this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBienLai)).BeginInit();
             this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -84,62 +80,55 @@
             // 
             this.dgvTre.AllowUserToAddRows = false;
             this.dgvTre.AllowUserToDeleteRows = false;
+            this.dgvTre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTre.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvTre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTre.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTre.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvTre.Location = new System.Drawing.Point(0, 144);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTre.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvTre.Location = new System.Drawing.Point(24, 144);
             this.dgvTre.MultiSelect = false;
             this.dgvTre.Name = "dgvTre";
             this.dgvTre.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.GreenYellow;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTre.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.GreenYellow;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTre.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvTre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTre.Size = new System.Drawing.Size(516, 165);
+            this.dgvTre.Size = new System.Drawing.Size(477, 165);
             this.dgvTre.TabIndex = 7;
             this.dgvTre.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTre_CellClick);
             this.dgvTre.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvTre_DataBindingComplete);
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.groupBox1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 309);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(516, 249);
-            this.panel3.TabIndex = 6;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.panel5);
             this.groupBox1.Controls.Add(this.cboThang);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.dgvBienLai);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 10);
+            this.groupBox1.Location = new System.Drawing.Point(12, 319);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(489, 230);
             this.groupBox1.TabIndex = 0;
@@ -163,7 +152,7 @@
             this.btnXoaBienLai.Name = "btnXoaBienLai";
             this.btnXoaBienLai.Size = new System.Drawing.Size(102, 33);
             this.btnXoaBienLai.TabIndex = 12;
-            this.btnXoaBienLai.Text = "Xóa biên lai";
+            this.btnXoaBienLai.Text = "Hủy biên lai";
             this.btnXoaBienLai.UseVisualStyleBackColor = true;
             this.btnXoaBienLai.Click += new System.EventHandler(this.btnXoaBienLai_Click);
             // 
@@ -213,6 +202,8 @@
             this.dgvBienLai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBienLai.Size = new System.Drawing.Size(471, 159);
             this.dgvBienLai.TabIndex = 7;
+            this.dgvBienLai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBienLai_CellClick);
+            this.dgvBienLai.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvBienLai_DataBindingComplete);
             // 
             // btnLapBienLai
             // 
@@ -231,7 +222,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 516);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(529, 42);
+            this.panel4.Size = new System.Drawing.Size(538, 42);
             this.panel4.TabIndex = 1;
             // 
             // txtGhiChu
@@ -285,27 +276,23 @@
             this.txtNguoiDongTien.Size = new System.Drawing.Size(329, 26);
             this.txtNguoiDongTien.TabIndex = 2;
             // 
-            // panel1
+            // btnReload
             // 
-            this.panel1.Controls.Add(this.btnReload);
-            this.panel1.Controls.Add(this.cboLoaiLop);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.cboLop);
-            this.panel1.Controls.Add(this.cboNamHoc);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(516, 144);
-            this.panel1.TabIndex = 4;
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(471, 110);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(30, 28);
+            this.btnReload.TabIndex = 147;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // cboLoaiLop
             // 
             this.cboLoaiLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLoaiLop.FormattingEnabled = true;
-            this.cboLoaiLop.Location = new System.Drawing.Point(133, 57);
+            this.cboLoaiLop.Location = new System.Drawing.Point(120, 53);
             this.cboLoaiLop.Name = "cboLoaiLop";
             this.cboLoaiLop.Size = new System.Drawing.Size(160, 28);
             this.cboLoaiLop.TabIndex = 5;
@@ -315,7 +302,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 18);
+            this.label1.Location = new System.Drawing.Point(20, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 20);
             this.label1.TabIndex = 2;
@@ -325,7 +312,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(33, 60);
+            this.label2.Location = new System.Drawing.Point(20, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 3;
@@ -335,7 +322,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(33, 105);
+            this.label3.Location = new System.Drawing.Point(20, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 20);
             this.label3.TabIndex = 4;
@@ -346,7 +333,7 @@
             this.cboLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLop.FormattingEnabled = true;
-            this.cboLop.Location = new System.Drawing.Point(133, 99);
+            this.cboLop.Location = new System.Drawing.Point(120, 95);
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(160, 28);
             this.cboLop.TabIndex = 6;
@@ -357,7 +344,7 @@
             this.cboNamHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNamHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboNamHoc.FormattingEnabled = true;
-            this.cboNamHoc.Location = new System.Drawing.Point(133, 15);
+            this.cboNamHoc.Location = new System.Drawing.Point(120, 11);
             this.cboNamHoc.Name = "cboNamHoc";
             this.cboNamHoc.Size = new System.Drawing.Size(160, 28);
             this.cboNamHoc.TabIndex = 7;
@@ -484,55 +471,47 @@
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(516, 0);
+            this.panel2.Location = new System.Drawing.Point(507, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(529, 558);
+            this.panel2.Size = new System.Drawing.Size(538, 558);
             this.panel2.TabIndex = 5;
-            // 
-            // btnReload
-            // 
-            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.Location = new System.Drawing.Point(480, 110);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(30, 28);
-            this.btnReload.TabIndex = 147;
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // frmThuHocPhi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 558);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnReload);
             this.Controls.Add(this.dgvTre);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.cboLoaiLop);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboNamHoc);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboLop);
+            this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmThuHocPhi";
             this.Text = "frmThuHocPhi";
             this.Load += new System.EventHandler(this.frmThuHocPhi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).EndInit();
-            this.panel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBienLai)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dgvTre;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnLapBienLai;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.RichTextBox txtGhiChu;
@@ -541,7 +520,6 @@
         private System.Windows.Forms.TextBox txtSoTienConNo;
         private System.Windows.Forms.TextBox txtSoTienDong;
         private System.Windows.Forms.TextBox txtNguoiDongTien;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cboLoaiLop;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
