@@ -24,6 +24,19 @@ namespace QLNT.DataLayer
             DataAccessHelper.GetInstance().Close();
             return "";
         }
+
+        public static int GetSiSoToiDa()
+        {
+            DataAccessHelper.GetInstance().Open();
+            DataTable dt = DataAccessHelper.GetInstance().GetDataTable("SELECT SiSoToiDaCuaLop from QUYDINH");
+            foreach (DataRow row in dt.Rows)
+            {
+                DataAccessHelper.GetInstance().Close();
+                return Convert.ToInt32(row.ItemArray[0].ToString());
+            }
+            DataAccessHelper.GetInstance().Close();
+            return 0;
+        }
         
         public static string GetLastLoaiLopID()
         {
@@ -219,6 +232,21 @@ namespace QLNT.DataLayer
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@MaLop", maLop);
             cmd.Parameters.AddWithValue("@SiSo", siSo);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+            DataAccessHelper.GetInstance().Close();
+        }
+
+        public static void CapNhatSiSoToiDa(int siSoCu, int siSoMoi)
+        {
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("CapNhatSiSoToiDa");
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SiSoCu", siSoCu);
+            cmd.Parameters.AddWithValue("@SiSo", siSoMoi);
+
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataAccessHelper.GetInstance().SetDataTable(new DataTable());
             da.Fill(DataAccessHelper.GetInstance().GetDataTable());

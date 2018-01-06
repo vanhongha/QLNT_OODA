@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoQuyDinh = new System.Windows.Forms.RadioButton();
             this.rdoQLNienKhoa = new System.Windows.Forms.RadioButton();
             this.rdoQLLoaiLop = new System.Windows.Forms.RadioButton();
             this.rdoQLLop = new System.Windows.Forms.RadioButton();
@@ -69,11 +70,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtSiSoToiDa = new System.Windows.Forms.TextBox();
+            this.grpQLQuyDinh = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.grpQLLop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
             this.grpQLLoaiLop.SuspendLayout();
             this.grpQLNienKhoa.SuspendLayout();
+            this.grpQLQuyDinh.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -88,22 +93,38 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rdoQuyDinh);
             this.groupBox1.Controls.Add(this.rdoQLNienKhoa);
             this.groupBox1.Controls.Add(this.rdoQLLoaiLop);
             this.groupBox1.Controls.Add(this.rdoQLLop);
-            this.groupBox1.Location = new System.Drawing.Point(205, 54);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(172, 54);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(616, 44);
+            this.groupBox1.Size = new System.Drawing.Size(669, 44);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lựa chọn";
             // 
+            // rdoQuyDinh
+            // 
+            this.rdoQuyDinh.AutoSize = true;
+            this.rdoQuyDinh.Location = new System.Drawing.Point(489, 14);
+            this.rdoQuyDinh.Name = "rdoQuyDinh";
+            this.rdoQuyDinh.Size = new System.Drawing.Size(143, 24);
+            this.rdoQuyDinh.TabIndex = 0;
+            this.rdoQuyDinh.TabStop = true;
+            this.rdoQuyDinh.Text = "Quản lý quy định";
+            this.rdoQuyDinh.UseVisualStyleBackColor = true;
+            this.rdoQuyDinh.CheckedChanged += new System.EventHandler(this.rdoQuyDinh_CheckedChanged);
+            // 
             // rdoQLNienKhoa
             // 
             this.rdoQLNienKhoa.AutoSize = true;
-            this.rdoQLNienKhoa.Location = new System.Drawing.Point(193, 19);
+            this.rdoQLNienKhoa.Location = new System.Drawing.Point(330, 14);
             this.rdoQLNienKhoa.Name = "rdoQLNienKhoa";
-            this.rdoQLNienKhoa.Size = new System.Drawing.Size(111, 17);
+            this.rdoQLNienKhoa.Size = new System.Drawing.Size(153, 24);
             this.rdoQLNienKhoa.TabIndex = 0;
             this.rdoQLNienKhoa.TabStop = true;
             this.rdoQLNienKhoa.Text = "Quản lý niên khóa";
@@ -113,9 +134,9 @@
             // rdoQLLoaiLop
             // 
             this.rdoQLLoaiLop.AutoSize = true;
-            this.rdoQLLoaiLop.Location = new System.Drawing.Point(90, 19);
+            this.rdoQLLoaiLop.Location = new System.Drawing.Point(191, 14);
             this.rdoQLLoaiLop.Name = "rdoQLLoaiLop";
-            this.rdoQLLoaiLop.Size = new System.Drawing.Size(97, 17);
+            this.rdoQLLoaiLop.Size = new System.Drawing.Size(133, 24);
             this.rdoQLLoaiLop.TabIndex = 0;
             this.rdoQLLoaiLop.TabStop = true;
             this.rdoQLLoaiLop.Text = "Quản lý loại lớp";
@@ -125,9 +146,9 @@
             // rdoQLLop
             // 
             this.rdoQLLop.AutoSize = true;
-            this.rdoQLLop.Location = new System.Drawing.Point(6, 19);
+            this.rdoQLLop.Location = new System.Drawing.Point(80, 14);
             this.rdoQLLop.Name = "rdoQLLop";
-            this.rdoQLLop.Size = new System.Drawing.Size(78, 17);
+            this.rdoQLLop.Size = new System.Drawing.Size(105, 24);
             this.rdoQLLop.TabIndex = 0;
             this.rdoQLLop.TabStop = true;
             this.rdoQLLop.Text = "Quản lý lớp";
@@ -332,7 +353,7 @@
             // 
             this.btnThem.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.Location = new System.Drawing.Point(284, 473);
+            this.btnThem.Location = new System.Drawing.Point(295, 473);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(106, 43);
             this.btnThem.TabIndex = 6;
@@ -344,7 +365,7 @@
             // 
             this.btnCapNhat.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCapNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhat.Location = new System.Drawing.Point(396, 473);
+            this.btnCapNhat.Location = new System.Drawing.Point(407, 473);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(106, 43);
             this.btnCapNhat.TabIndex = 6;
@@ -356,7 +377,7 @@
             // 
             this.btnLamMoi.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnLamMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamMoi.Location = new System.Drawing.Point(508, 473);
+            this.btnLamMoi.Location = new System.Drawing.Point(519, 473);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(106, 43);
             this.btnLamMoi.TabIndex = 6;
@@ -368,7 +389,7 @@
             // 
             this.btnDong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDong.Location = new System.Drawing.Point(620, 473);
+            this.btnDong.Location = new System.Drawing.Point(631, 473);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(106, 43);
             this.btnDong.TabIndex = 6;
@@ -522,11 +543,43 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Mã niên khóa:";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(24, 51);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 20);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Sĩ số tối đa:";
+            // 
+            // txtSiSoToiDa
+            // 
+            this.txtSiSoToiDa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSiSoToiDa.Location = new System.Drawing.Point(121, 48);
+            this.txtSiSoToiDa.Name = "txtSiSoToiDa";
+            this.txtSiSoToiDa.Size = new System.Drawing.Size(52, 26);
+            this.txtSiSoToiDa.TabIndex = 11;
+            // 
+            // grpQLQuyDinh
+            // 
+            this.grpQLQuyDinh.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.grpQLQuyDinh.Controls.Add(this.txtSiSoToiDa);
+            this.grpQLQuyDinh.Controls.Add(this.label14);
+            this.grpQLQuyDinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpQLQuyDinh.Location = new System.Drawing.Point(405, 139);
+            this.grpQLQuyDinh.Name = "grpQLQuyDinh";
+            this.grpQLQuyDinh.Size = new System.Drawing.Size(200, 100);
+            this.grpQLQuyDinh.TabIndex = 12;
+            this.grpQLQuyDinh.TabStop = false;
+            this.grpQLQuyDinh.Text = "Quản lý quy định";
+            // 
             // frmQLChung_Lop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 519);
+            this.Controls.Add(this.grpQLQuyDinh);
             this.Controls.Add(this.grpQLNienKhoa);
             this.Controls.Add(this.grpQLLoaiLop);
             this.Controls.Add(this.btnDong);
@@ -550,6 +603,8 @@
             this.grpQLLoaiLop.PerformLayout();
             this.grpQLNienKhoa.ResumeLayout(false);
             this.grpQLNienKhoa.PerformLayout();
+            this.grpQLQuyDinh.ResumeLayout(false);
+            this.grpQLQuyDinh.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,5 +653,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RadioButton rdoQuyDinh;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtSiSoToiDa;
+        private System.Windows.Forms.GroupBox grpQLQuyDinh;
     }
 }

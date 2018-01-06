@@ -23,6 +23,11 @@ namespace QLNT.BusinessLayer
             return "MLOP" + id;
         }
 
+        public static int GetSiSoToiDa()
+        {
+            return LopDAL.GetSiSoToiDa();
+        }
+
         public static string GenMaLoaiLop()
         {
             string id = LopDAL.GetLastLoaiLopID().Trim();
@@ -109,6 +114,20 @@ namespace QLNT.BusinessLayer
         public static void CapNhatSiSo(string maLop, int siSo)
         {
             LopDAL.CapNhatSiSo(maLop, siSo);
+        }
+
+        public static bool CapNhatSiSoToiDa(int siSoCu, int siSoMoi)
+        {
+            try
+            {
+                LopDAL.CapNhatSiSoToiDa(siSoCu, siSoMoi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            return true;
         }
 
         public static bool CapNhatLop(string maLop, string tenLop, string maGV)

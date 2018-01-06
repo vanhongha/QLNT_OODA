@@ -23,6 +23,7 @@ namespace QLNT.Presentation
         private List<NamHoc> listNienKhoa;
         private List<LoaiLop> listLoaiLop;
         private List<Lop> listLop;
+        private int siSoToiDaHienTai;
 
         public frmQLChung_Lop(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
@@ -111,6 +112,8 @@ namespace QLNT.Presentation
                     grpQLLoaiLop.Visible = false;
                     grpQLNienKhoa.Enabled = false;
                     grpQLNienKhoa.Visible = false;
+                    grpQLQuyDinh.Visible = false;
+                    grpQLQuyDinh.Enabled = false;
                     break;
                 case "NienKhoa":
                     grpQLNienKhoa.Enabled = true;
@@ -120,6 +123,8 @@ namespace QLNT.Presentation
                     grpQLLoaiLop.Visible = false;
                     grpQLLop.Enabled = false;
                     grpQLLop.Visible = false;
+                    grpQLQuyDinh.Visible = false;
+                    grpQLQuyDinh.Enabled = false;
                     break;
                 case "LoaiLop":
                     grpQLLoaiLop.Enabled = true;
@@ -129,6 +134,23 @@ namespace QLNT.Presentation
                     grpQLNienKhoa.Visible = false;
                     grpQLLop.Enabled = false;
                     grpQLLop.Visible = false;
+                    grpQLQuyDinh.Visible = false;
+                    grpQLQuyDinh.Enabled = false;
+                    break;
+                case "QuyDinh":
+                    grpQLQuyDinh.Visible = true;
+                    grpQLQuyDinh.Enabled = true;
+
+                    grpQLLoaiLop.Enabled = false;
+                    grpQLLoaiLop.Visible = false;
+                    grpQLNienKhoa.Enabled = false;
+                    grpQLNienKhoa.Visible = false;
+                    grpQLLop.Enabled = false;
+                    grpQLLop.Visible = false;
+                    dgvDanhSach.Visible = false;
+                    dgvDanhSach.Enabled = false;
+                    btnThem.Enabled = false;
+                    btnCapNhat.Enabled = true;                  
                     break;
             }
         }
@@ -226,6 +248,12 @@ namespace QLNT.Presentation
             LoadGroup("NienKhoa");
         }
 
+        private void rdoQuyDinh_CheckedChanged(object sender, EventArgs e)
+        {
+            txtSiSoToiDa.Text = LopBLL.GetSiSoToiDa().ToString();
+            siSoToiDaHienTai = LopBLL.GetSiSoToiDa();
+            LoadGroup("QuyDinh");
+        }
         private void dgvDanhSach_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (rdoQLLop.Checked)
@@ -308,6 +336,16 @@ namespace QLNT.Presentation
                     listLoaiLop = LopBLL.GetListLoaiLop();
                     listLop = LopBLL.GetListLop();
                     LoadDatagridView();
+                }
+            }
+            else if(rdoQuyDinh.Checked)
+            {
+                if(LopBLL.CapNhatSiSoToiDa(siSoToiDaHienTai, Convert.ToInt32(txtSiSoToiDa.Text)))
+                {
+                    MessageBox.Show("Cập nhật sĩ số lớp tối đa thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 }
             }
             else
@@ -396,8 +434,9 @@ namespace QLNT.Presentation
                             MessageBoxIcon.Warning);
             }
         }
+
         #endregion
 
-
+      
     }
 }

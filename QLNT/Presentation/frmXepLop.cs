@@ -19,6 +19,7 @@ namespace QLNT.Presentation
         DevComponents.DotNetBar.TabControl tabControl;
         TabItem tab;
         private List<string> listMaTre;
+        private int siSoLeft, siSoRight;
 
         public frmXepLop()
         {
@@ -30,6 +31,8 @@ namespace QLNT.Presentation
             InitializeComponent();
             tabControl = _tabControl;
             tab = _tab;
+            siSoLeft = 0;
+            siSoRight = 0;
         }
 
         #region Function
@@ -303,14 +306,15 @@ namespace QLNT.Presentation
 
         void ThoiHoc(List<string> listMaTre, string maLop)
         {
-            if (TreBLL.ThoiHoc(listMaTre, maLop))
-            {                
-                MessageBox.Show("Thôi học " + listMaTre.Count + " trẻ trong lớp " +
-                    LopBLL.GetInfoLop(maLop).TenLop +
-                    " thành công!",
-                    "Thông báo",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+            if (TreBLL.ThoiHoc(listMaTre, maLop) )
+            {
+                if (listMaTre.Count > 0)
+                    MessageBox.Show("Thôi học " + listMaTre.Count + " trẻ trong lớp " +
+                        LopBLL.GetInfoLop(maLop).TenLop +
+                        " thành công!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
             }
             else
             {
@@ -330,49 +334,59 @@ namespace QLNT.Presentation
                 DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
                 // Ngày kết thúc của niên khóa cần chuyển đến
                 DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-                if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))   // Kiểm tra nếu như ngày bắt đầu, kết thúc của niên khóa cần chuyển đến là hợp lệ
+                string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
+                string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
+                if (LopBLL.GetSiSo(maLopLuaChon) < LopBLL.GetSiSoToiDa())
                 {
-                    if (listMaTre.Count > 0)
+                    if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))   // Kiểm tra nếu như ngày bắt đầu, kết thúc của niên khóa cần chuyển đến là hợp lệ
                     {
-                        // ------------------ XẾP LỚP - Dành cho trẻ mới được thêm vào trường và chưa có lớp ------------------ //
-                        if (rdoXepLop.Checked)
+                        if (listMaTre.Count > 0)
                         {
-                            string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
-                            XepLop(listMaTre, maLop, ngayBatDau, ngayKetThuc);
-                            LopBLL.CapNhatSiSo(maLop, dgvKetQua.Rows.Count);
-                            txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
-                        }
-                        // ------------------ CHUYỂN LỚP - LÊN LỚP ------------------ //
-                        else
-                        {
-                            // Ngày bắt đầu của niên khóa đang được chọn (left)
-                            DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
-                            // Ngày kết thúc của niên khóa đang được chọn (left)
-                            DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
-                            string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
-                            string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
-                            // CHUYỂN LỚP
-                            // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
-                            // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
-                            if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))                     
-                                ChuyenLop(listMaTre, maLop, maLopLuaChon);                              
-
-                            // Ngược lại thì trẻ được LÊN LỚP
+                            // ------------------ XẾP LỚP - Dành cho trẻ mới được thêm vào trường và chưa có lớp ------------------ //
+                            if (rdoXepLop.Checked)
+                            {
+                                //string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
+                                XepLop(listMaTre, maLop, ngayBatDau, ngayKetThuc);
+                                LopBLL.CapNhatSiSo(maLop, GetSiSo(dgvKetQua));
+                                txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
+                            }
+                            // ------------------ CHUYỂN LỚP - LÊN LỚP ------------------ //
                             else
-                                LenLop(listMaTre, maLop, maLopLuaChon, ngayBatDau, ngayKetThuc);
+                            {
+                                // Ngày bắt đầu của niên khóa đang được chọn (left)
+                                DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
+                                // Ngày kết thúc của niên khóa đang được chọn (left)
+                                DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
+                                //string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
+                                //string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
+                                // CHUYỂN LỚP
+                                // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
+                                // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
+                                if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))
+                                    ChuyenLop(listMaTre, maLop, maLopLuaChon);
 
-                            // Xếp lớp xong thì cập nhật sĩ số
-                            LopBLL.CapNhatSiSo(maLop, dgvKetQua.Rows.Count);
-                            LopBLL.CapNhatSiSo(maLopLuaChon, dgvDanhSach.Rows.Count);
-                            txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
-                            txtSiSo_LuaChon.Text = LopBLL.GetSiSo(maLopLuaChon).ToString();
+                                // Ngược lại thì trẻ được LÊN LỚP
+                                else
+                                    LenLop(listMaTre, maLop, maLopLuaChon, ngayBatDau, ngayKetThuc);
+
+                                // Xếp lớp xong thì cập nhật sĩ số
+                                LopBLL.CapNhatSiSo(maLop, GetSiSo(dgvKetQua));
+                                LopBLL.CapNhatSiSo(maLopLuaChon, GetSiSo(dgvDanhSach));
+                                txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
+                                txtSiSo_LuaChon.Text = LopBLL.GetSiSo(maLopLuaChon).ToString();
+                            }
                         }
                     }
+                    else
+                        MessageBox.Show("Lớp được chọn không còn hoạt động, vui lòng chọn lớp của niên khóa hiện tại",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                 }
                 else
-                    MessageBox.Show("Lớp được chọn không còn hoạt động, vui lòng chọn lớp của niên khóa hiện tại", 
+                    MessageBox.Show("Không thể chuyển trẻ vào lớp mới,\nvì lớp mới vì sĩ số đã lớn hơn sĩ số tối đa của 1 lớp!",
                         "Thông báo",
-                        MessageBoxButtons.OK, 
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
             }
             else
@@ -388,42 +402,46 @@ namespace QLNT.Presentation
             {
                 DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
                 DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
-                if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
-                {
-                    if (listMaTre.Count > 0)
+                string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
+                string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
+                if(LopBLL.GetSiSo(maLopLuaChon) < LopBLL.GetSiSoToiDa())
+                {    if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
                     {
-                        // CHUYỂN LỚP - LÊN LỚP
-                        if (rdoChuyenLop.Checked)
+                        if (listMaTre.Count > 0)
                         {
-                            // Ngày bắt đầu của niên khóa đang được chọn (right)
-                            DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-                            // Ngày kết thúc của niên khóa đang được chọn (right)
-                            DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-                            string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
-                            string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
-                            // CHUYỂN LỚP
-                            // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
-                            // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
-                            if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))
-                                ChuyenLop(listMaTre, maLopLuaChon, maLop);
+                            // CHUYỂN LỚP - LÊN LỚP
+                            if (rdoChuyenLop.Checked)
+                            {
+                                // Ngày bắt đầu của niên khóa đang được chọn (right)
+                                DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                                // Ngày kết thúc của niên khóa đang được chọn (right)
+                                DateTime _ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                                //string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
+                                //string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
+                                // CHUYỂN LỚP
+                                // Nếu như niên khóa được chọn hợp lệ: có nghĩa là lớp đó đang trong niên khóa đang được hoạt động
+                                // và được chuyển đến lớp có niên khóa đang được hoạt động => CHUYỂN LỚP
+                                if (Checking.IsInOfDate(_ngayBatDau, _ngayKetThuc))
+                                    ChuyenLop(listMaTre, maLopLuaChon, maLop);
 
-                            // Ngược lại thì trẻ được LÊN LỚP
-                            else
-                                LenLop(listMaTre, maLopLuaChon, maLop, ngayBatDau, ngayKetThuc);
+                                // Ngược lại thì trẻ được LÊN LỚP
+                                else
+                                    LenLop(listMaTre, maLopLuaChon, maLop, ngayBatDau, ngayKetThuc);
 
-                            // Xếp lớp xong thì cập nhật sĩ số
-                            LopBLL.CapNhatSiSo(maLop, dgvKetQua.Rows.Count);
-                            LopBLL.CapNhatSiSo(maLopLuaChon, dgvDanhSach.Rows.Count);
-                            txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
-                            txtSiSo_LuaChon.Text = LopBLL.GetSiSo(maLopLuaChon).ToString();
+                                // Xếp lớp xong thì cập nhật sĩ số
+                                LopBLL.CapNhatSiSo(maLop, GetSiSo(dgvKetQua));
+                                LopBLL.CapNhatSiSo(maLopLuaChon, GetSiSo(dgvDanhSach));
+                                txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
+                                txtSiSo_LuaChon.Text = LopBLL.GetSiSo(maLopLuaChon).ToString();
+                            }
                         }
                     }
+                    else
+                        MessageBox.Show("Lớp được chọn không còn hoạt động, vui lòng chọn lớp của niên khóa hiện tại",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                 }
-                else
-                    MessageBox.Show("Lớp được chọn không còn hoạt động, vui lòng chọn lớp của niên khóa hiện tại",
-                        "Thông báo",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
             }
             else
                 MessageBox.Show("Vui lòng chọn lớp để chuyển trẻ!",
@@ -524,13 +542,24 @@ namespace QLNT.Presentation
         private void cboLopHoc_LuaChon_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDGVDanhSach();
-            txtSiSo_LuaChon.Text = dgvDanhSach.Rows.Count.ToString();
+            txtSiSo_LuaChon.Text = GetSiSo(dgvDanhSach).ToString();
         }
 
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDGVKetQua();
-            txtSiSo.Text = dgvKetQua.Rows.Count.ToString();
+            txtSiSo.Text = GetSiSo(dgvKetQua).ToString();
+        }
+
+        private int GetSiSo(DataGridView dgv)
+        {
+            int result = 0;
+            foreach (DataGridViewRow row in dgv.Rows) 
+            {
+                if (string.Compare(row.Cells[9].Value.ToString().Trim(), "Đang học") == 0)
+                    result++;
+            }
+            return result;
         }
 
         private void btnPutForward_Click(object sender, EventArgs e)
@@ -571,21 +600,26 @@ namespace QLNT.Presentation
                 // B1: thôi học những trẻ ở trong DGV danh sách (left) trước
                 if (cboLoaiLop_LuaChon.SelectedItem != null)
                 {
+                    string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
                     RemoveAllListMaTre();
                     SaveListMaTre(dgvDanhSach);
-                    ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString()));
+                    ThoiHoc(listMaTre, maLopLuaChon);
+                    LoadDGVDanhSach();
+                    LopBLL.CapNhatSiSo(maLopLuaChon, GetSiSo(dgvDanhSach));
+                    txtSiSo_LuaChon.Text = LopBLL.GetSiSo(maLopLuaChon).ToString();                    
                 }
 
                 // B2: thôi học những trẻ ở trong DGV kết quả (right) trước
                 if (cboLop.SelectedItem != null)
                 {
+                    string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
                     RemoveAllListMaTre();
                     SaveListMaTre(dgvKetQua);
-                    ThoiHoc(listMaTre, KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()));
-                }
-
-                LoadDGVDanhSach();
-                LoadDGVKetQua();
+                    ThoiHoc(listMaTre, maLop);
+                    LoadDGVKetQua();
+                    LopBLL.CapNhatSiSo(maLop, GetSiSo(dgvKetQua));
+                    txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
+                }                
             }
             else
                 MessageBox.Show("Đã hủy thôi học!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);          
