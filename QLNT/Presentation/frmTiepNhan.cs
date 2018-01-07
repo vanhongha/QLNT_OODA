@@ -164,8 +164,8 @@ namespace QLNT.Presentation
             txtHoTenMe.Text,
             txtDiaChi.Text,
             txtSDT.Text);
-
-            PhieuTiepNhanTre phieumoi = new PhieuTiepNhanTre(txtMaHocSinh.Text,txtMaPhieu.Text,txtNgayTiepNhan.Text,txtNguoiTiepNhan.Text);
+            string ngaytiepnhan = DateTime.Now.ToString("dd-MM-yyyy");
+            PhieuTiepNhanTre phieumoi = new PhieuTiepNhanTre(txtMaHocSinh.Text,txtMaPhieu.Text, ngaytiepnhan, txtNguoiTiepNhan.Text);
 
             try
             {
