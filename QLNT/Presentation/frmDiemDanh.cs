@@ -201,9 +201,10 @@ namespace QLNT.Presentation
             dgvDiemDanh.Columns["MaTre"].HeaderText = "Mã trẻ";
             dgvDiemDanh.Columns["MaTre"].FillWeight = 50;
             dgvDiemDanh.Columns["HoTenTre"].HeaderText = "Họ Tên Trẻ";
-            dgvDiemDanh.Columns["HoTenTre"].FillWeight = 150;
+            //dgvDiemDanh.Columns["HoTenTre"].FillWeight = 150;
             dgvDiemDanh.Columns["NhanXet"].HeaderText = "Nhận Xét";
             dgvDiemDanh.Columns["NhanXet"].DisplayIndex = 3;
+            dgvDiemDanh.Columns["NhanXet"].FillWeight = 150;
             dgvDiemDanh.Columns["HienDien"].Visible = false;
         }
         private void loadListNamHoc()

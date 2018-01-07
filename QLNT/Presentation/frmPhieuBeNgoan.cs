@@ -75,7 +75,7 @@ namespace QLNT.Presentation
             dgvPhieuBeNgoan.Columns.Clear();
             if (!string.IsNullOrEmpty(cboLop.Text))
             {
-                
+
                 string datetime = dtThangLapPhieu.Text;
                 dgvPhieuBeNgoan.DataSource = PhieuBeNgoanBLL.LayPhieuBeNgoanTheoLop(
                     LopBLL.GetInfoLop(KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())),
@@ -94,6 +94,7 @@ namespace QLNT.Presentation
 
                     for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                     {
+
                         for (int j = 1; j < 5; j++)
                         {
                             DataGridViewCheckBoxCell chkBoxCell = (DataGridViewCheckBoxCell)dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j];
@@ -101,6 +102,7 @@ namespace QLNT.Presentation
                                 chkBoxCell.Value = "true";
                             else
                                 chkBoxCell.Value = "false";
+                            
                         }
                         if (dgvPhieuBeNgoan.Rows[i].Cells["PhieuBeNgoanThang"].Value.ToString() == "1")
                             dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value = "true";
@@ -110,6 +112,8 @@ namespace QLNT.Presentation
                     }
                 }
             }
+            //(dgvPhieuBeNgoan as DataGridView).CellClick
+            //                += new DataGridViewCellEventHandler(cb_CheckedChange);
         }
 
         private void XoaPhieuCu()
@@ -128,8 +132,9 @@ namespace QLNT.Presentation
             dgvPhieuBeNgoan.Columns["MaTre"].HeaderText = "Mã Trẻ";
             dgvPhieuBeNgoan.Columns["MaTre"].FillWeight = 50;
             dgvPhieuBeNgoan.Columns["HoTenTre"].HeaderText = "Họ Tên Trẻ";
-            dgvPhieuBeNgoan.Columns["HoTenTre"].FillWeight = 150;
+            //dgvPhieuBeNgoan.Columns["HoTenTre"].FillWeight = 150;
             dgvPhieuBeNgoan.Columns["NhanXetThang"].HeaderText = "Nhận Xét Tháng";
+            dgvPhieuBeNgoan.Columns["NhanXetThang"].FillWeight = 150;
 
             for (int i = 1; i < 5; i++)
             {
@@ -141,6 +146,7 @@ namespace QLNT.Presentation
                 checkColumn.DisplayIndex = 1 + i;
                 dgvPhieuBeNgoan.Columns.Add(checkColumn);
                 dgvPhieuBeNgoan.Columns["PhieuBeNgoanTuan" + i].Visible = false;
+
             }
             DataGridViewCheckBoxColumn phieuthang = new DataGridViewCheckBoxColumn();
             phieuthang.Name = "cbPhieuThang";
@@ -180,7 +186,7 @@ namespace QLNT.Presentation
         private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadListLop();
-            
+
             DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
             DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
 
@@ -191,14 +197,14 @@ namespace QLNT.Presentation
                 dtThangLapPhieu.MinDate = ngayBatDau;
                 dtThangLapPhieu.Value = ngayBatDau;
             }
-            else 
+            else
             {
                 dtThangLapPhieu.MinDate = ngayBatDau;
                 dtThangLapPhieu.MaxDate = ngayKetThuc;
                 dtThangLapPhieu.Value = ngayBatDau;
             }
-            
-            
+
+
         }
 
         private void dtThangLapPhieu_ValueChanged(object sender, EventArgs e)
@@ -248,10 +254,8 @@ namespace QLNT.Presentation
                 //Xoa cai cu
                 XoaPhieuCu();
                 //Tao cai moi
-
                 for (int i = 0; i < dgvPhieuBeNgoan.Rows.Count; i++)
                 {
-
                     for (int j = 1; j < 5; j++)
                     {
                         if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu" + j].Value == null ||
@@ -279,7 +283,20 @@ namespace QLNT.Presentation
             }
         }
         #endregion
-
+        //public void cb_CheckedChange(object sender, EventArgs e)
+        //{
+        //    for (int i = 0; i < dgvPhieuBeNgoan.RowCount; i++) {
+        //        if (dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu1"].Value.ToString() == "true"
+        //            && dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu2"].Value.ToString() == "true"
+        //            && dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu3"].Value.ToString() == "true"
+        //            && dgvPhieuBeNgoan.Rows[i].Cells["cbPhieu4"].Value.ToString() == "true")
+        //        {
+        //            dgvPhieuBeNgoan.Rows[i].Cells["cbPhieuThang"].Value="1";
+        //        }
+        //    }
+        //    Console.Write("i - ");
+            
+        //}
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadDataGridView();
