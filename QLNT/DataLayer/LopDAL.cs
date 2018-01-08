@@ -104,6 +104,25 @@ namespace QLNT.DataLayer
             return listLoaiLop;
         }
 
+        public static List<string> GetListGiaoVien()
+        {
+            DataAccessHelper.GetInstance().Open();
+            SqlCommand cmd = DataAccessHelper.GetInstance().Command("GetListGiaoVien");
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataAccessHelper.GetInstance().SetDataTable(new DataTable());
+            da.Fill(DataAccessHelper.GetInstance().GetDataTable());
+
+            List<string> listGiaoVien = new List<string>();
+            foreach (DataRow row in DataAccessHelper.GetInstance().GetDataTable().Rows)
+            {
+                listGiaoVien.Add(row.ItemArray[0].ToString());
+            }
+            DataAccessHelper.GetInstance().Close();
+            return listGiaoVien;
+        }
+
         public static List<Lop> GetListLop(string maNamHoc, string maLoaiLop)
         {
             DataAccessHelper.GetInstance().Open();

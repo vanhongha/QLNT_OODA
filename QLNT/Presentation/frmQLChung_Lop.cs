@@ -38,6 +38,7 @@ namespace QLNT.Presentation
             listNienKhoa = LopBLL.GetListNienKhoa();
             listLoaiLop = LopBLL.GetListLoaiLop();
             listLop = LopBLL.GetListLop();
+            LoadListGiaoVien();
             LoadValueInDGV();
             Init();
         }
@@ -51,6 +52,11 @@ namespace QLNT.Presentation
             LoadGroup("Lop");
             ComboboxLoad.LoaiLop(cboLoaiLop);
             ComboboxLoad.NienKhoa(cboNienKhoa);
+        }
+
+        void LoadListGiaoVien()
+        {
+            cboGiangVien.DataSource = LopBLL.GetListGiaoVien();
         }
 
         // Lấy mã => đõ ra value trong mấy cột của datagridview
@@ -375,12 +381,19 @@ namespace QLNT.Presentation
                     DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(maNienKhoa); ;
                     if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))
                     {
-                        ThemLop(LopBLL.GenMaLop(),
-                            KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
-                            maNienKhoa,
-                            cboGiangVien.Text,
-                            txtTenLop.Text);
-                        LoadValueInDGV();
+                        if (cboLoaiLop.SelectedItem != null)
+                        {
+                            ThemLop(LopBLL.GenMaLop(),
+                              KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
+                              maNienKhoa,
+                              cboGiangVien.SelectedItem.ToString(),
+                              txtTenLop.Text);
+                            LoadValueInDGV();
+                        }
+                        else MessageBox.Show("Vui lòng chọn loại lớp!",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -390,12 +403,19 @@ namespace QLNT.Presentation
                             MessageBoxIcon.Warning);
                         if (r == DialogResult.Yes)
                         {
-                            ThemLop(LopBLL.GenMaLop(),
-                             KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
-                             maNienKhoa,
-                             cboGiangVien.Text,
-                             txtTenLop.Text);
-                            LoadValueInDGV();
+                            if (cboLoaiLop.SelectedItem != null)
+                            {
+                                ThemLop(LopBLL.GenMaLop(),
+                                 KeyHandle.GetKeyFromCombobox(cboLoaiLop.SelectedItem.ToString()),
+                                 maNienKhoa,
+                                 cboGiangVien.SelectedItem.ToString(),
+                                 txtTenLop.Text);
+                                LoadValueInDGV();
+                            }
+                            else MessageBox.Show("Vui lòng chọn loại lớp!",
+                              "Thông báo",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Warning);
                         }
                     }
                 }

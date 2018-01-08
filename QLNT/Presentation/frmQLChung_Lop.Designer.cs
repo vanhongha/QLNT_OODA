@@ -184,6 +184,7 @@
             // 
             // cboLoaiLop
             // 
+            this.cboLoaiLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLoaiLop.FormattingEnabled = true;
             this.cboLoaiLop.Location = new System.Drawing.Point(608, 60);
@@ -211,6 +212,7 @@
             // 
             // cboGiangVien
             // 
+            this.cboGiangVien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGiangVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboGiangVien.FormattingEnabled = true;
             this.cboGiangVien.Location = new System.Drawing.Point(608, 27);
@@ -220,6 +222,7 @@
             // 
             // cboNienKhoa
             // 
+            this.cboNienKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNienKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboNienKhoa.FormattingEnabled = true;
             this.cboNienKhoa.Location = new System.Drawing.Point(369, 27);

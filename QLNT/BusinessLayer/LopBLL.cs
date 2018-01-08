@@ -60,6 +60,11 @@ namespace QLNT.BusinessLayer
             return LopDAL.GetListLoaiLop();
         }
 
+        public static List<string> GetListGiaoVien()
+        {
+            return LopDAL.GetListGiaoVien();
+        }
+
         public static List<Lop> GetListLop(string maNamHoc, string maLoaiLop)
         {
             return LopDAL.GetListLop(maNamHoc, maLoaiLop);
