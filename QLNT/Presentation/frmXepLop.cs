@@ -327,13 +327,13 @@ namespace QLNT.Presentation
         {
             if (cboLop.SelectedItem != null)
             {
-                if (cboLopHoc_LuaChon.SelectedItem != null)
-                {               // Ngày bắt đầu của niên khóa cần chuyển đến
+                //if (cboLopHoc_LuaChon.SelectedItem != null)
+                {               
+                    // Ngày bắt đầu của niên khóa cần chuyển đến
                     DateTime ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
                     // Ngày kết thúc của niên khóa cần chuyển đến
                     DateTime ngayKetThuc = NamHocBLL.GetNgayKetThuc(KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
-                    string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
-                    string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
+                    string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());                   
                     if (LopBLL.GetSiSo(maLop) < LopBLL.GetSiSoToiDa())
                     {
                         if (Checking.IsInOfDate(ngayBatDau, ngayKetThuc))   // Kiểm tra nếu như ngày bắt đầu, kết thúc của niên khóa cần chuyển đến là hợp lệ
@@ -345,12 +345,11 @@ namespace QLNT.Presentation
                                 {
                                     //string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
                                     XepLop(listMaTre, maLop, ngayBatDau, ngayKetThuc);
-                                    LopBLL.CapNhatSiSo(maLop, GetSiSo(dgvKetQua));
-                                    txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
                                 }
                                 // ------------------ CHUYỂN LỚP - LÊN LỚP ------------------ //
                                 else
                                 {
+                                    string maLopLuaChon = KeyHandle.GetKeyFromCombobox(cboLopHoc_LuaChon.SelectedItem.ToString());
                                     // Ngày bắt đầu của niên khóa đang được chọn (left)
                                     DateTime _ngayBatDau = NamHocBLL.GetNgayBatDau(KeyHandle.GetKeyFromCombobox(cboNamHoc_LuaChon.SelectedItem.ToString()));
                                     // Ngày kết thúc của niên khóa đang được chọn (left)
@@ -387,11 +386,11 @@ namespace QLNT.Presentation
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                 }
-                else
-                    MessageBox.Show("Vui lòng chọn trẻ để chuyển lớp!",
-                        "Thông báo",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                //else
+                //    MessageBox.Show("Vui lòng chọn trẻ để chuyển lớp!",
+                //        "Thông báo",
+                //        MessageBoxButtons.OK,
+                //        MessageBoxIcon.Warning);
             }
             else
                 MessageBox.Show("Vui lòng chọn lớp để chuyển trẻ!",
@@ -455,11 +454,11 @@ namespace QLNT.Presentation
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                 }
-                else
-                    MessageBox.Show("Vui lòng chọn trẻ để chuyển lớp!",
-                           "Thông báo",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Warning);
+                //else
+                //    MessageBox.Show("Vui lòng chọn trẻ để chuyển lớp!",
+                //           "Thông báo",
+                //           MessageBoxButtons.OK,
+                //           MessageBoxIcon.Warning);
             }
             else
                 MessageBox.Show("Vui lòng chọn lớp để chuyển trẻ!",
