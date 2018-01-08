@@ -55,7 +55,6 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
             this.grpQLLoaiLop = new System.Windows.Forms.GroupBox();
             this.txtTenLoaiLop = new System.Windows.Forms.TextBox();
             this.txtMaLoaiLop = new System.Windows.Forms.TextBox();
@@ -73,6 +72,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtSiSoToiDa = new System.Windows.Forms.TextBox();
             this.grpQLQuyDinh = new System.Windows.Forms.GroupBox();
+            this.btnFresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpQLLop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSach)).BeginInit();
@@ -354,7 +354,7 @@
             // 
             this.btnThem.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.Location = new System.Drawing.Point(295, 473);
+            this.btnThem.Location = new System.Drawing.Point(396, 473);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(106, 43);
             this.btnThem.TabIndex = 6;
@@ -366,7 +366,7 @@
             // 
             this.btnCapNhat.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCapNhat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhat.Location = new System.Drawing.Point(407, 473);
+            this.btnCapNhat.Location = new System.Drawing.Point(508, 473);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(106, 43);
             this.btnCapNhat.TabIndex = 6;
@@ -378,25 +378,13 @@
             // 
             this.btnLamMoi.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnLamMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamMoi.Location = new System.Drawing.Point(519, 473);
+            this.btnLamMoi.Location = new System.Drawing.Point(620, 473);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(106, 43);
             this.btnLamMoi.TabIndex = 6;
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.UseVisualStyleBackColor = true;
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
-            // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnDong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDong.Location = new System.Drawing.Point(631, 473);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(106, 43);
-            this.btnDong.TabIndex = 6;
-            this.btnDong.Text = "Đóng";
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // grpQLLoaiLop
             // 
@@ -575,15 +563,25 @@
             this.grpQLQuyDinh.TabStop = false;
             this.grpQLQuyDinh.Text = "Quản lý quy định";
             // 
+            // btnFresh
+            // 
+            this.btnFresh.Image = global::QLNT.Properties.Resources.icons8_available_updates_48;
+            this.btnFresh.Location = new System.Drawing.Point(960, 54);
+            this.btnFresh.Name = "btnFresh";
+            this.btnFresh.Size = new System.Drawing.Size(57, 44);
+            this.btnFresh.TabIndex = 13;
+            this.btnFresh.UseVisualStyleBackColor = true;
+            this.btnFresh.Click += new System.EventHandler(this.btnFresh_Click);
+            // 
             // frmQLChung_Lop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 519);
+            this.Controls.Add(this.btnFresh);
             this.Controls.Add(this.grpQLQuyDinh);
             this.Controls.Add(this.grpQLNienKhoa);
             this.Controls.Add(this.grpQLLoaiLop);
-            this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnLamMoi);
             this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.btnThem);
@@ -635,7 +633,6 @@
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.Button btnLamMoi;
-        private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.ComboBox cboBaoMau1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboBaoMau2;
@@ -658,5 +655,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtSiSoToiDa;
         private System.Windows.Forms.GroupBox grpQLQuyDinh;
+        private System.Windows.Forms.Button btnFresh;
     }
 }

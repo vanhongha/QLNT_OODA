@@ -345,6 +345,8 @@ namespace QLNT.Presentation
                                 {
                                     //string maLop = KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString());
                                     XepLop(listMaTre, maLop, ngayBatDau, ngayKetThuc);
+                                    LopBLL.CapNhatSiSo(maLop, GetSiSo(dgvKetQua));
+                                    txtSiSo.Text = LopBLL.GetSiSo(maLop).ToString();
                                 }
                                 // ------------------ CHUYỂN LỚP - LÊN LỚP ------------------ //
                                 else

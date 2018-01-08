@@ -435,8 +435,17 @@ namespace QLNT.Presentation
             }
         }
 
+        private void btnFresh_Click(object sender, EventArgs e)
+        {
+            btnCapNhat.Enabled = false;
+            listNienKhoa = LopBLL.GetListNienKhoa();
+            listLoaiLop = LopBLL.GetListLoaiLop();
+            listLop = LopBLL.GetListLop();
+            LoadValueInDGV();
+            Init();
+        }
         #endregion
 
-      
+
     }
 }
