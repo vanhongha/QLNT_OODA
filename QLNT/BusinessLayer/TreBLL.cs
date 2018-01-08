@@ -227,5 +227,14 @@ namespace QLNT.BusinessLayer
             if (!HocPhiBLL.KiemTraTonTaiHocPhi(maTre, thang, nam))
                 HocPhiBLL.KhoiTaoHocPhi(maTre, thang, nam);
         }
+
+        public static bool KiemTraTreThoiHoc(string maTre, string maLop)
+        {
+            if (string.Compare(TreDAL.GetTinhTrangTrongLop(maTre, maLop).Trim(), "2") == 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

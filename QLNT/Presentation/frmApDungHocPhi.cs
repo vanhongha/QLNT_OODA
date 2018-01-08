@@ -4,6 +4,7 @@ using QLNT.Entities;
 using QLNT.Ultilities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace QLNT.Presentation
 
         private string maHocPhi = "";
         private List<ChiTietHocPhi> listChiTietHocPhi = new List<ChiTietHocPhi>();
+        private string message = "";
 
         public frmApDungHocPhi(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
@@ -41,6 +43,14 @@ namespace QLNT.Presentation
             gioiTinhColumn.ReadOnly = false;
             gioiTinhColumn.FillWeight = 10;
             dgvTre.Columns.Add(gioiTinhColumn);
+
+            DataGridViewTextBoxColumn tinhTrangCol = new DataGridViewTextBoxColumn();
+            tinhTrangCol.Name = "TinhTrangCol";
+            tinhTrangCol.HeaderText = "Tình trạng học tập";
+            tinhTrangCol.Width = 200;
+            tinhTrangCol.ReadOnly = false;
+            tinhTrangCol.FillWeight = 10;
+            dgvTre.Columns.Add(tinhTrangCol);
 
             DataGridViewTextBoxColumn columnSTTChiTiet = new DataGridViewTextBoxColumn();
             columnSTTChiTiet.Name = "STT";
@@ -147,6 +157,7 @@ namespace QLNT.Presentation
             dgvTre.Columns["TongTienHocPhi"].DisplayIndex = 6;
             dgvTre.Columns["SoTienDaDong"].DisplayIndex = 7;
             dgvTre.Columns["SoTienConNo"].DisplayIndex = 8;
+            dgvTre.Columns["TinhTrangCol"].DisplayIndex = 9;
 
             dgvTre.Columns["HoTenTre"].HeaderText = "Họ tên trẻ";
             dgvTre.Columns["GioiTinhCol"].HeaderText = "Giới tính";
@@ -166,7 +177,7 @@ namespace QLNT.Presentation
             dgvTre.Columns["SoTienDaDong"].Width = 140;
             dgvTre.Columns["SoTienConNo"].Width = 140;
 
-            string[] listProp = { "STT", "HoTenTre", "GioiTinhCol", "NgaySinh", "HocPhiThangNay", "TienNoThangTruoc", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo" };
+            string[] listProp = { "STT", "HoTenTre", "GioiTinhCol", "NgaySinh", "HocPhiThangNay", "TienNoThangTruoc", "TongTienHocPhi", "SoTienDaDong", "SoTienConNo", "TinhTrangCol" };
             ControlFormat.DataGridViewFormat(dgvTre, listProp);
 
             dgvTre.ClearSelection();
@@ -429,6 +440,12 @@ namespace QLNT.Presentation
             {
                 for (int i = 0; i < dgvTre.SelectedRows.Count; i++)
                 {
+                    if (TreBLL.KiemTraTreThoiHoc(dgvTre.SelectedRows[i].Cells["MaTre"].Value.ToString(),
+                        KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())))
+                    {
+                        message += dgvTre.SelectedRows[i].Cells["HoTenTre"].Value.ToString() + "\n";
+                        continue;
+                    }
                     HocPhi hocPhi = new HocPhi();
                     hocPhi.MaHocPhi = dgvTre.SelectedRows[i].Cells["MaHocPhi"].Value.ToString();
                     hocPhi.MaTre = dgvTre.SelectedRows[i].Cells["MaTre"].Value.ToString();
@@ -442,7 +459,14 @@ namespace QLNT.Presentation
 
                     HocPhiBLL.CapNhatHocPhi(hocPhi, listChiTietHocPhi);
                 }
-                MessageBox.Show("Áp dụng học phí thanh công!");
+                if (message == "")
+                {
+                    MessageBox.Show("Áp dụng học phí thanh công!");
+                } else
+                {
+                    MessageBox.Show("Trẻ: \n" + message + "đã thôi học nên không được xét học phí.");
+                    message = "";
+                }
             } catch (Exception ex)
             {
                 MessageBox.Show("Đã có lỗi xảy ra.");
@@ -467,6 +491,14 @@ namespace QLNT.Presentation
                 dgvTre.Rows[i].Cells[0].Value = i + 1;
                 dgvTre.Rows[i].Cells["GioiTinhCol"].Value =
                     int.Parse(dgvTre.Rows[i].Cells["GioiTinh"].Value.ToString()) == 1 ? "Nam" : "Nữ";
+                if(TreBLL.KiemTraTreThoiHoc(dgvTre.Rows[i].Cells["MaTre"].Value.ToString(), KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString())))
+                {
+                    dgvTre.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                    dgvTre.Rows[i].Cells["TinhTrangCol"].Value = "Đã thôi học";
+                } else
+                {
+                    dgvTre.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                }
             }
         }
 
