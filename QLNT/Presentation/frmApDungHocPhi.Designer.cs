@@ -41,7 +41,9 @@
             this.dgvChiTietHocPhi = new System.Windows.Forms.DataGridView();
             this.groupChiTiet = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
+            this.btnCapNhatChiPhi = new System.Windows.Forms.Button();
             this.btnThemChiPhi = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnApDungHocPhi = new System.Windows.Forms.Button();
@@ -57,8 +59,6 @@
             this.cboThang = new System.Windows.Forms.ComboBox();
             this.cboLop = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnReload = new System.Windows.Forms.Button();
-            this.btnCapNhatChiPhi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietHocPhi)).BeginInit();
             this.groupChiTiet.SuspendLayout();
@@ -204,6 +204,16 @@
             this.panel2.Size = new System.Drawing.Size(372, 341);
             this.panel2.TabIndex = 0;
             // 
+            // btnReload
+            // 
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(325, 12);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(30, 28);
+            this.btnReload.TabIndex = 146;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // btnXoa
             // 
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -214,6 +224,17 @@
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnCapNhatChiPhi
+            // 
+            this.btnCapNhatChiPhi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapNhatChiPhi.Location = new System.Drawing.Point(186, 99);
+            this.btnCapNhatChiPhi.Name = "btnCapNhatChiPhi";
+            this.btnCapNhatChiPhi.Size = new System.Drawing.Size(84, 35);
+            this.btnCapNhatChiPhi.TabIndex = 4;
+            this.btnCapNhatChiPhi.Text = "Cập nhật";
+            this.btnCapNhatChiPhi.UseVisualStyleBackColor = true;
+            this.btnCapNhatChiPhi.Click += new System.EventHandler(this.btnCapNhatChiPhi_Click);
             // 
             // btnThemChiPhi
             // 
@@ -393,27 +414,6 @@
             this.label3.Size = new System.Drawing.Size(66, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Lớp học";
-            // 
-            // btnReload
-            // 
-            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
-            this.btnReload.Location = new System.Drawing.Point(325, 12);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(30, 28);
-            this.btnReload.TabIndex = 146;
-            this.btnReload.UseVisualStyleBackColor = true;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
-            // btnCapNhatChiPhi
-            // 
-            this.btnCapNhatChiPhi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhatChiPhi.Location = new System.Drawing.Point(186, 99);
-            this.btnCapNhatChiPhi.Name = "btnCapNhatChiPhi";
-            this.btnCapNhatChiPhi.Size = new System.Drawing.Size(84, 35);
-            this.btnCapNhatChiPhi.TabIndex = 4;
-            this.btnCapNhatChiPhi.Text = "Cập nhật";
-            this.btnCapNhatChiPhi.UseVisualStyleBackColor = true;
-            this.btnCapNhatChiPhi.Click += new System.EventHandler(this.btnCapNhatChiPhi_Click);
             // 
             // frmApDungHocPhi
             // 

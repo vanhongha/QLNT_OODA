@@ -218,6 +218,44 @@ namespace QLNT.Presentation
             txtSoTien.Clear();
             cboChiPhi.SelectedIndex = -1;
         }
+
+        void CapNhatTienNoThangTruoc()
+        {
+            try
+            {
+                int thang = int.Parse(cboThang.Text);
+                int nam = LopBLL.GetNamHoc(thang, KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString()));
+                int dieuKien = HocPhiBLL.CoTheCapNhatHocPhi(thang, nam, DateTime.Now);
+                List<HocPhi> list = new List<HocPhi>();
+                if (cboLop.SelectedItem == null || cboThang.SelectedItem == null || cboNamHoc.SelectedItem == null)
+                {
+                    list = HocPhiBLL.GetListHocPhiTheoThang("", 0, 0);
+                }
+                else
+                {
+                    list = HocPhiBLL.GetListHocPhiTheoThang(
+                        KeyHandle.GetKeyFromCombobox(cboLop.SelectedItem.ToString()),
+                        int.Parse(cboThang.Text),
+                        LopBLL.GetNamHoc(int.Parse(cboThang.Text), KeyHandle.GetKeyFromCombobox(cboNamHoc.SelectedItem.ToString())));
+                }
+                if (dieuKien == 0)
+                {
+                    foreach (HocPhi hocPhi in list)
+                    {
+                        hocPhi.TienNoThangTruoc = HocPhiBLL.LayTienNoHocPhiThangTruoc(hocPhi);
+                        hocPhi.TongTienHocPhi = hocPhi.HocPhiThangNay + hocPhi.TienNoThangTruoc;
+                        hocPhi.SoTienConNo = hocPhi.TongTienHocPhi - hocPhi.SoTienDaDong;
+
+                        HocPhiBLL.CapNhatHocPhiVoiTienNoThangTruoc(hocPhi);
+                    }
+                    LoadDataGridViewTre();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Thông báo");
+            }
+        }
         #endregion
 
         #region Event
@@ -253,6 +291,7 @@ namespace QLNT.Presentation
         private void cboLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshView();
+            CapNhatTienNoThangTruoc();
         }
 
         private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -265,6 +304,7 @@ namespace QLNT.Presentation
             cboChiPhi.Enabled = false;
             txtSoTien.Enabled = false;
             btnThemChiPhi.Enabled = false;
+            btnCapNhatChiPhi.Enabled = false;
             btnXoa.Enabled = false;
             btnApDungHocPhi.Enabled = false;
             if(dieuKien == -1)
@@ -281,9 +321,12 @@ namespace QLNT.Presentation
                 cboChiPhi.Enabled = true;
                 txtSoTien.Enabled = true;
                 btnThemChiPhi.Enabled = true;
+                btnCapNhatChiPhi.Enabled = true;
                 btnXoa.Enabled = true;
                 btnApDungHocPhi.Enabled = true;
             }
+
+            CapNhatTienNoThangTruoc();
         }
 
         private void cboChiPhi_SelectedIndexChanged(object sender, EventArgs e)
@@ -440,7 +483,6 @@ namespace QLNT.Presentation
             base.OnClick(e);
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
-        #endregion
 
         private void btnReload_Click(object sender, EventArgs e)
         {
@@ -449,7 +491,7 @@ namespace QLNT.Presentation
 
         private void btnCapNhatChiPhi_Click(object sender, EventArgs e)
         {
-            if(txtSoTien.Text == "")
+            if (txtSoTien.Text == "")
             {
                 MessageBox.Show("Số tiền không được bỏ trống.");
             }
@@ -465,5 +507,7 @@ namespace QLNT.Presentation
                 LoadListChiTietHocPhi();
             }
         }
+        #endregion
+
     }
 }

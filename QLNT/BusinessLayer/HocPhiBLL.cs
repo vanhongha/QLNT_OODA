@@ -69,6 +69,11 @@ namespace QLNT.Entities
             return 0;
         }
 
+        public static void CapNhatHocPhiVoiTienNoThangTruoc(HocPhi hocPhi)
+        {
+            HocPhiDAL.CapNhatHocPhi(hocPhi);
+        }
+
         public static void CapNhatHocPhi(HocPhi hocPhi, List<ChiTietHocPhi> listChiTiet)
         {
             int soNgayDiHoc = TreBLL.GetSoNgayDiHocTrongThang(hocPhi.MaTre, hocPhi.Thang, hocPhi.Nam);
@@ -147,14 +152,14 @@ namespace QLNT.Entities
             int thang = hocPhi.Thang;
             int nam = hocPhi.Nam;
 
-            if(thang == 12)
+            if(thang == 1)
             {
-                thang = 1;
-                nam += 1;
+                thang = 12;
+                nam -= 1;
             }
             else
             {
-                thang += 1;
+                thang -= 1;
             }
 
             DataTable dt = HocPhiDAL.LaySoTienConNoCuaThang(thang, nam, hocPhi.MaTre);
