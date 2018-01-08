@@ -541,21 +541,25 @@ namespace QLNT.Presentation
         private void cboNamHoc_LuaChon_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboboxLoad.Lop(cboLopHoc_LuaChon, cboNamHoc_LuaChon, cboLoaiLop_LuaChon);
+            dgvDanhSach.DataSource = null;
         }
 
         private void cboLoaiLop_LuaChon_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboboxLoad.Lop(cboLopHoc_LuaChon, cboNamHoc_LuaChon, cboLoaiLop_LuaChon);
+            dgvDanhSach.DataSource = null;
         }
 
         private void cboLoaiLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboboxLoad.Lop(cboLop, cboNamHoc, cboLoaiLop);
+            dgvKetQua.DataSource = null;
         }
 
         private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboboxLoad.Lop(cboLop, cboNamHoc, cboLoaiLop);
+            dgvKetQua.DataSource = null;
         }
 
         private void cboLopHoc_LuaChon_SelectedIndexChanged(object sender, EventArgs e)
