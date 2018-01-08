@@ -21,11 +21,23 @@ namespace QLNT.Presentation
         TabItem tab;
         List<string> listMonAn = new List<string>();
         List<string> listTre = new List<string>();
+        
         public frmDinhDuong_ApDungThucDon(DevComponents.DotNetBar.TabControl _tabControl, TabItem _tab)
         {
             InitializeComponent();
             tabControl = _tabControl;
             tab = _tab;
+        }
+
+        public void PhanQuyenGiaoVien()
+        {
+            btnAdd.Enabled = false;
+            btnAddAll.Enabled = false;
+
+            btnRemove.Enabled = false;
+            btnRemoveAll.Enabled = false;
+            groupBox3.Enabled = false;
+            btnBaoCaoNhaBep.Enabled = false;
         }
 
         private void frmDinhDuong_ApDungThucDon_Load(object sender, EventArgs e)

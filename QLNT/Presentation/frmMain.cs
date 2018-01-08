@@ -46,6 +46,10 @@ namespace QLNT.Presentation
             switch (quyen)
             {
                 case Quyen.NhaBep:
+                    ribonQLChung.Enabled = false;
+                    ribonQLHP.Enabled = false;
+                    ribonQLSK.Enabled = false;
+                    ribonQLTre.Enabled = false;
                     break;
                 case Quyen.GiaoVien:
                     btnTraCuu.Enabled = false;
@@ -53,11 +57,18 @@ namespace QLNT.Presentation
                     btnXepLop.Enabled = false;
                     btnDanhMucChiPhi.Enabled = false;
                     btnApDungHocPhi.Enabled = false;
+                    btnNguyenLieu.Enabled = false;
+                    btnMonAn.Enabled = false;
+                    btnThuHocPhi.Enabled = false;
+                    btnQLChung_Lop.Enabled = false;
                     break;
                 case Quyen.GiaoVu:
                     btnPhieuBeNgoan.Enabled = false;
                     btnSucKhoe_ThongTin.Enabled = false;
                     btnSucKhoe_BaoCao.Enabled = false;
+                    btnNguyenLieu.Enabled = false;
+                    btnMonAn.Enabled = false;
+                    btnApDung.Enabled = false;
                     break;
             }
         }
@@ -311,6 +322,11 @@ namespace QLNT.Presentation
                 tab.AttachedControl.Controls.Add(_frmDinhDuong_ApDungThucDon);
                 _frmDinhDuong_ApDungThucDon.Show();
                 tabControl.SelectedTabIndex = tabControl.Tabs.Count - 1;
+
+                if(quyen==Quyen.GiaoVien)
+                {
+                    _frmDinhDuong_ApDungThucDon.PhanQuyenGiaoVien();
+                }
             }
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
