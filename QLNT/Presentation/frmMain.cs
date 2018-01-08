@@ -28,6 +28,13 @@ namespace QLNT.Presentation
             InitializeComponent();
         }
 
+        public void DangXuat()
+        {
+            this.Hide();
+            new frmDangNhap().ShowDialog();
+            this.Close();
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             PhanQuyen();
@@ -325,6 +332,17 @@ namespace QLNT.Presentation
             }
             else
                 tabControl.TabIndex = tabControl.Tabs.Count - 1;
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            DangXuat();
+        }
+
+        private void btnThongTin_TaiKhoan_Click(object sender, EventArgs e)
+        {
+            frmThongTinPhanMem _frmThongTinPhanMem = new frmThongTinPhanMem();
+            _frmThongTinPhanMem.ShowDialog();
         }
     }
     

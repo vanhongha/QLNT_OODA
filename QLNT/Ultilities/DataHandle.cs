@@ -72,6 +72,7 @@ namespace QLNT.Ultilities
             {
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
+                    
                     string maTre = TreBLL.GenMaTre();
                     Tre tre = new Tre(maTre,
                         data.Rows[i][0].ToString().Trim(),  // Họ tên

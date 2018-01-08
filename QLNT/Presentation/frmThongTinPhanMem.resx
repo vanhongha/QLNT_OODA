@@ -117,71 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="thongtin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\thongtin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-double-right-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-double-right-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="suckhoe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\suckhoe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ThemTre" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ThemTre.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-forward-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-forward-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hocphi" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hocphi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-double-left-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-double-left-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="baocao" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\baocao.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="phieubengoan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\phieubengoan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="diemdanh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\diemdanh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-delete-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-delete-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-microsoft-excel-40" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-microsoft-excel-40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="xeplop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xeplop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dangxuat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dangxuat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-back-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-back-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-available-updates-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-available-updates-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-restart-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-restart-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="list (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-close-window-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-close-window-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Emojione_1F3EB.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Emojione_1F3EB.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnDong.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAzNJREFUSEul
+        lstOYkEQhs+z6Ft4Fy8gIAo4W15AX8AQ3WjCyoVrNRoXauQFTAzxsjGu3JiJ3FFR1BmUASJoSNf81fQ5
+        9EHGcTKVfKnqrqq/T/dpORqf2cv0dDcIl/z+GCiAhoLjGOe4RpV/3Z6nprrQGAUNIABpmGPTc02Ue1T7
+        51b0+UIorgBSCC3Wx/o8xxXuVTKd7efk5DyKxP/AGkrObj+83hCSXECW9/lacYu/1QjWUrJNe/J4ujBZ
+        AaQQlb09qj8/U3lnhxvMeZmTHsdSPTykerFIv1ZX9RqOK6yp5LGA2x3FhDAp7+6Kt7c3i3I0auUkLH56
+        aqsprazYa6ApxQsTE92PbncDCECPHg+9Fovi/f2dGCVA5f19knmcc/XkRM7rNdXLy2be1IHmA7SNB5cr
+        jICAUJ7yGxuiXq9bzcoTdkIQN8fWArXXV3G7vCx7dR3WNgpOZwwInXtws7XFi9iOoRMsfh2JyJ52HRAz
+        7sfHC4CAUF7Gd04n3WxuEi9iPqn+5EqccpEI3bX1anHBuBsbawDRiTyK89vbHZ+cgbjId+jTaBgQaeRH
+        RwkI5Vuxy0Xl4+M/7qCEq4wFOvcy0DZusI3bkRECQvlmjCMqHx3ZXmb7AoBednfpFqK2XhWztnGNF3Hj
+        cBAQynNCsLguyNRqNeudaAvxIq1eTYe1jazXG74eHhY6pYODD+f9ituSXl4WueYV/pAvrq3ZNJicxxM2
+        koFAd3ZkpJEbGhKAcsPDVH16sp5aiRPEKYs8ENmNDdvt4prSxQXJfqXDmhm/v/mtyHg80ezgoADEpJeW
+        5BXkZr7nqaUlyqgc18l4fd36Y6yWSiI5N2fl2bOmFGdLBoNd6dHRSmZgQDBpkFhcFHfn5yKxsCDHZk6v
+        SeFHLn92JuKzs/YctNKBgP0DlPL7Q2lsL93fT0D6pBZrWDUp+PaaFDRYS8naLen3z8uCvj6GFHqsjz/W
+        oDc5Pd35g2NaIhgMJbDFZG+v+Be4JxEIfP7JNO1qZqYr4fNFEw5HI9HTIwBpmOOmR00ctXH0qPav2/eZ
+        me54MBiOe72xuNNZiOO3RcIxzwUC4atv3z75t8UwfgMb+jAsbjLPsQAAAABJRU5ErkJggg==
+</value>
   </data>
 </root>

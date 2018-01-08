@@ -205,6 +205,12 @@
     <Compile Include="Presentation\frmSetupSQL.Designer.cs">
       <DependentUpon>frmSetupSQL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\frmThongTinPhanMem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\frmThongTinPhanMem.Designer.cs">
+      <DependentUpon>frmThongTinPhanMem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\frmThongTinSucKhoe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmSetupSQL.resx">
       <DependentUpon>frmSetupSQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\frmThongTinPhanMem.resx">
+      <DependentUpon>frmThongTinPhanMem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\frmThongTinSucKhoe.resx">
       <DependentUpon>frmThongTinSucKhoe.cs</DependentUpon>
@@ -475,6 +484,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\img_nguyenlieu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Emojione_1F3EB.svg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

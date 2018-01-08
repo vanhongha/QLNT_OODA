@@ -103,6 +103,16 @@ namespace QLNT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Emojione_1F3EB_svg {
+            get {
+                object obj = ResourceManager.GetObject("Emojione_1F3EB.svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hocphi {
             get {
                 object obj = ResourceManager.GetObject("hocphi", resourceCulture);
