@@ -475,6 +475,7 @@
             this.dgvKetQua.Location = new System.Drawing.Point(0, 0);
             this.dgvKetQua.Name = "dgvKetQua";
             this.dgvKetQua.ReadOnly = true;
+            this.dgvKetQua.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKetQua.Size = new System.Drawing.Size(1233, 428);
             this.dgvKetQua.TabIndex = 0;
             this.dgvKetQua.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKetQua_CellClick);

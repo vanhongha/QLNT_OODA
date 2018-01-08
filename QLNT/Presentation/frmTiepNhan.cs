@@ -277,13 +277,13 @@ namespace QLNT.Presentation
                     MessageBox.Show("Đã xóa " + listMaTre.Count + " trẻ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     CleanInput();
-                    loadDataGridView();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Trẻ này đã học được một thời gian. Không thể xóa.\nNếu muốn cho thôi học, hãy sang bảng Xếp lớp -> Chọn thôi học", "Thông báo");
             }
+            loadDataGridView();
         }
 
         private void btnNhapTuFile_Click(object sender, EventArgs e)

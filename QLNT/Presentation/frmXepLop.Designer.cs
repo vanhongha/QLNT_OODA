@@ -81,6 +81,7 @@
             this.dgvDanhSach.Location = new System.Drawing.Point(12, 165);
             this.dgvDanhSach.Name = "dgvDanhSach";
             this.dgvDanhSach.ReadOnly = true;
+            this.dgvDanhSach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDanhSach.Size = new System.Drawing.Size(516, 465);
             this.dgvDanhSach.TabIndex = 0;
             // 
@@ -351,6 +352,7 @@
             this.dgvKetQua.Location = new System.Drawing.Point(670, 165);
             this.dgvKetQua.Name = "dgvKetQua";
             this.dgvKetQua.ReadOnly = true;
+            this.dgvKetQua.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKetQua.Size = new System.Drawing.Size(521, 465);
             this.dgvKetQua.TabIndex = 0;
             // 
