@@ -56,26 +56,34 @@ namespace QLNT.Presentation
 
         public static bool XetPhieuThang(DataGridView dgvPhieuBeNgoan, int rowIndex, int columnIndex)
         {
-            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu1"].Value))
+            try
             {
-                return false;
-            }
+                if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu1"].Value))
+                {
+                    return false;
+                }
 
-            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu2"].Value))
-            {
-                return false;
-            }
+                if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu2"].Value))
+                {
+                    return false;
+                }
 
-            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu3"].Value))
-            {
-                return false;
-            }
+                if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu3"].Value))
+                {
+                    return false;
+                }
 
-            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu4"].Value))
+                if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu4"].Value))
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
             {
                 return false;
             }
-            return true;
+            
         }
     }
 }

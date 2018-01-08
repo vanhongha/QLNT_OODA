@@ -196,14 +196,13 @@
             // 
             this.dgvDiemDanh.AllowUserToAddRows = false;
             this.dgvDiemDanh.AllowUserToDeleteRows = false;
-            this.dgvDiemDanh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvDiemDanh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDiemDanh.BackgroundColor = System.Drawing.Color.White;
             this.dgvDiemDanh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiemDanh.Location = new System.Drawing.Point(3, 45);
             this.dgvDiemDanh.Name = "dgvDiemDanh";
             this.dgvDiemDanh.RowHeadersVisible = false;
+            this.dgvDiemDanh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDiemDanh.Size = new System.Drawing.Size(688, 454);
             this.dgvDiemDanh.TabIndex = 0;
             // 

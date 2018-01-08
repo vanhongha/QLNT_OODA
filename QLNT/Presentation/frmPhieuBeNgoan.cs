@@ -329,9 +329,15 @@ namespace QLNT.Presentation
 
         private void dgvPhieuBeNgoan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvPhieuBeNgoan.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !Convert.ToBoolean(dgvPhieuBeNgoan.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-
-            dgvPhieuBeNgoan.Rows[e.RowIndex].Cells["cbPhieuThang"].Value = PhieuBeNgoanBLL.XetPhieuThang(dgvPhieuBeNgoan, e.RowIndex, e.ColumnIndex);
+            try
+            {
+                dgvPhieuBeNgoan.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !Convert.ToBoolean(dgvPhieuBeNgoan.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                dgvPhieuBeNgoan.Rows[e.RowIndex].Cells["cbPhieuThang"].Value = PhieuBeNgoanBLL.XetPhieuThang(dgvPhieuBeNgoan, e.RowIndex, e.ColumnIndex);
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }
