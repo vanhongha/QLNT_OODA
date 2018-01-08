@@ -2,6 +2,7 @@
 using QLNT.Entities;
 using QLNT.DataLayer;
 using System.Data;
+using System.Windows.Forms;
 
 namespace QLNT.Presentation
 {
@@ -32,6 +33,49 @@ namespace QLNT.Presentation
         public static void XoaPhieuBeNgoan(string value, string v1, string v2)
         {
             PhieuBeNgoanDAL.XoaPhieuBeNgoan(value, v1, v2);
+        }
+
+        //public static bool KiemTraPhieuTuan(DataGridView dgvPhieuBeNgoan, int rowIndex, int columnIndex, string tenPhieu)
+        //{
+        //    try
+        //    {
+        //        if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells[tenPhieu].Value))
+        //        {
+        //            dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieuThang"].Value = false;
+        //            return false;
+
+        //        }
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+
+        //}
+
+        public static bool XetPhieuThang(DataGridView dgvPhieuBeNgoan, int rowIndex, int columnIndex)
+        {
+            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu1"].Value))
+            {
+                return false;
+            }
+
+            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu2"].Value))
+            {
+                return false;
+            }
+
+            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu3"].Value))
+            {
+                return false;
+            }
+
+            if (!Convert.ToBoolean(dgvPhieuBeNgoan.Rows[rowIndex].Cells["cbPhieu4"].Value))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
